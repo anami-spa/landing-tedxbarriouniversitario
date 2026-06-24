@@ -3,6 +3,7 @@ name: GitHub Pages Preview
 on:
   push:
     branches: [main]
+  workflow_dispatch: # permite disparar manualmente desde GitHub UI o gh CLI
 
 permissions:
   contents: write

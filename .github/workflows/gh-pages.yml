@@ -38,8 +38,9 @@ jobs:
       # (sin dependencia de acciones de terceros)
       - name: Deploy to gh-pages via git
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Configuración global ANTES de git init en dist/
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           cd dist
           git init
           git add -A

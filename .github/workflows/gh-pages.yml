@@ -12,6 +12,9 @@ jobs:
   deploy-preview:
     name: Deploy GitHub Pages Preview
     runs-on: ubuntu-latest
+    # Seguridad: workflow_dispatch no filtra por rama — lo hacemos aquí.
+    # Evita que un dispatch desde una rama no-main sobreescriba gh-pages.
+    if: github.ref == 'refs/heads/main'
 
     steps:
       - name: Checkout

@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+// Página de confirmación post-formulario Formspree.
+// Formspree redirige aquí tras envío exitoso (campo _next en el form o config Formspree).
+---
+
+<BaseLayout
+  title="¡Mensaje enviado! — TEDxBarrioUniversitario Women 2026"
+  description="Tu mensaje fue recibido correctamente. Nos pondremos en contacto a la brevedad."
+>
+  <section class="gracias-section texture-overlay" aria-labelledby="gracias-titulo">
+    <div class="gracias-inner">
+
+      <!-- Boarding pass de confirmación -->
+      <div class="boarding-pass gracias-bp" role="img"
+           aria-label="Confirmación: tu idea ya está en camino">
+        <div class="boarding-pass__col">
+          <span class="boarding-pass__label">Estado</span>
+          <span class="boarding-pass__valor">IDEA</span>
+          <span class="boarding-pass__hora">enviada</span>
+        </div>
+        <div class="boarding-pass__divider">
+          <span class="boarding-pass__directo">En vuelo</span>
+        </div>
+        <div class="boarding-pass__col boarding-pass__col--right">
+          <span class="boarding-pass__label">Destino</span>
+          <span class="boarding-pass__valor">ACCIÓN</span>
+          <span class="boarding-pass__hora">pronto</span>
+        </div>
+      </div>
+
+      <!-- Ícono confirmación -->
+      <div class="gracias-check" aria-hidden="true">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+          <circle cx="28" cy="28" r="28" fill="#db0028" opacity="0.08"/>
+          <path d="M17 28l8 8 14-16" stroke="#db0028" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <h1 class="display-black gracias-titulo" id="gracias-titulo">
+        ¡Mensaje<br/>
+        <span class="display-light">enviado!</span>
+      </h1>
+
+      <p class="gracias-sub">
+        Recibimos tu consulta y te responderemos en menos de
+        <strong>48 horas hábiles</strong>.
+      </p>
+
+      <div class="gracias-flecha" aria-hidden="true">
+        <svg width="120" height="30" viewBox="0 0 120 30" fill="none">
+          <path d="M0 20 Q60 5 120 15" stroke="#232323" stroke-width="1.5"
+                stroke-dasharray="5 4" fill="none"/>
+        </svg>
+        <span class="flecha-roja" style="font-size:1.6rem;">→</span>
+      </div>
+
+      <a href="/" class="btn-primary gracias-cta" aria-label="Volver al inicio de la landing">
+        Volver al inicio →
+      </a>
+
+      <p class="gracias-nota">
+        <strong>TEDxBarrioUniversitario Women · 04 Diciembre 2026</strong><br/>
+        Universidad de Concepción · Concepción, Chile
+      </p>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.gracias-section {
+  background: var(--color-surface);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gracias-inner {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: clamp(48px, 8vw, 80px) clamp(16px, 5vw, 32px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.gracias-bp {
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+
+.gracias-check {
+  margin-top: 8px;
+}
+
+.gracias-titulo {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  color: var(--color-charcoal);
+  margin: 0;
+  line-height: 1.05;
+}
+
+.gracias-sub {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: rgba(35,35,35,0.65);
+  line-height: 1.65;
+  max-width: 36ch;
+  margin: 0;
+}
+
+.gracias-flecha {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.gracias-cta {
+  margin-top: 4px;
+}
+
+.gracias-nota {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: rgba(35,35,35,0.4);
+  line-height: 1.6;
+  margin: 0;
+}
+</style>

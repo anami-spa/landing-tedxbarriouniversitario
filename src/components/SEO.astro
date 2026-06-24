@@ -1,0 +1,100 @@
+---
+/**
+ * SEO.astro — Metadatos + JSON-LD Event (schema.org) para TEDx
+ */
+
+export interface Props {
+  title: string
+  description: string
+  canonicalURL?: URL
+  ogImage?: string
+  ogType?: 'website' | 'article'
+  event?: {
+    name: string
+    description: string
+    startDate: string    // ISO 8601
+    endDate: string
+    url: string
+    location: {
+      name: string
+      address: string
+      city: string
+      country: string
+    }
+    organizer: string
+    image?: string
+  }
+}
+
+const {
+  title,
+  description,
+  canonicalURL = new URL(Astro.url.pathname, Astro.site),
+  ogImage = '/og-tedx.jpg',
+  ogType = 'website',
+  event,
+} = Astro.props
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? ''
+const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
+
+// JSON-LD Event schema
+const eventSchema = event ? {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: event.name,
+  description: event.description,
+  startDate: event.startDate,
+  endDate: event.endDate,
+  url: event.url,
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: {
+    '@type': 'Place',
+    name: event.location.name,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: event.location.address,
+      addressLocality: event.location.city,
+      addressCountry: event.location.country,
+    },
+  },
+  organizer: {
+    '@type': 'Organization',
+    name: event.organizer,
+    url: siteUrl,
+  },
+  ...(event.image && { image: event.image }),
+} : null
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL.toString()} />
+
+<!-- Open Graph -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalURL.toString()} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageAbsolute} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="es_CL" />
+<meta property="og:site_name" content="TEDxBarrioUniversitario Women 2026" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageAbsolute} />
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/logo-tedx-negro.svg" />
+
+<!-- JSON-LD: Event -->
+{eventSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(eventSchema, null, 0)} />
+)}

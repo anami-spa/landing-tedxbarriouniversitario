@@ -1,0 +1,45 @@
+---
+/**
+ * Hero.astro — Sección principal above-the-fold
+ * Personalizar: headline, subheadline, cta_text, cta_url, imagen de fondo
+ */
+export interface Props {
+  headline: string
+  subheadline: string
+  ctaText: string
+  ctaUrl: string
+  ctaSecondaryText?: string
+  ctaSecondaryUrl?: string
+}
+
+const { headline, subheadline, ctaText, ctaUrl, ctaSecondaryText, ctaSecondaryUrl } = Astro.props
+---
+
+<section class="relative overflow-hidden bg-white py-16 md:py-24 lg:py-32">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl">
+        {headline}
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-neutral-600 sm:text-xl">
+        {subheadline}
+      </p>
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href={ctaUrl}
+          class="rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          {ctaText}
+        </a>
+        {ctaSecondaryText && ctaSecondaryUrl && (
+          <a
+            href={ctaSecondaryUrl}
+            class="rounded-lg border border-neutral-300 bg-white px-8 py-3.5 text-base font-semibold text-neutral-900 shadow-sm transition-colors hover:bg-neutral-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            {ctaSecondaryText}
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

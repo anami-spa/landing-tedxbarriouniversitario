@@ -34,9 +34,16 @@ jobs:
           PUBLIC_CF_ANALYTICS_TOKEN: ''
           FORMSPREE_FORM_ID: 'placeholder'
 
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d231e62369c1b138c # v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          cname: ''
+      # Publicar dist/ en rama gh-pages usando git directamente
+      # (sin dependencia de acciones de terceros)
+      - name: Deploy to gh-pages via git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          cd dist
+          git init
+          git add -A
+          git commit -m "Deploy preview: ${{ github.sha }}"
+          git push --force \
+            "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" \
+            HEAD:gh-pages

@@ -129,7 +129,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 .gracias-nota {
   font-family: var(--font-sans);
   font-size: 0.78rem;
-  color: rgba(35,35,35,0.4);
+  color: rgba(35,35,35,0.65); /* era 0.4 = 1.7:1 FALLA → 0.65 = 4.6:1 ✓ WCAG AA */
   line-height: 1.6;
   margin: 0;
 }

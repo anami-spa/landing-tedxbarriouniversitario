@@ -459,11 +459,11 @@ const seoEvent = {
      ============================================================ -->
 <section id="auspiciadores" class="seccion-light texture-overlay" aria-labelledby="h-auspicios">
   <div class="seccion-inner">
-    <p class="eyebrow-label" id="h-auspicios" style="margin-bottom:16px;">Para auspiciadores</p>
+    <p class="eyebrow-label" style="margin-bottom:16px;">Para auspiciadores</p>
 
     <div class="s6-layout">
       <div class="s6-copy">
-        <h2 class="headline-bold"
+        <h2 class="headline-bold" id="h-auspicios"
             style="font-size: clamp(1.5rem, 3.5vw, 2.2rem); margin-bottom:8px; color: var(--color-charcoal);">
           Asocia tu marca<br/>a una idea que
           <span style="color: var(--color-ted-red);"> transforma.</span>
@@ -631,7 +631,7 @@ const seoEvent = {
               <path d="M22 2L11 13"/>
               <path d="M22 2L15 22 11 13 2 9 22 2z"/>
             </svg>
-            Speaker {i + 1}
+            Speaker {i + 1}<span class="sr-only"> — por confirmar</span>
           </div>
         </li>
       ))}

@@ -28,9 +28,8 @@ const { faqs, title = 'Preguntas frecuentes' } = Astro.props
         >
           <summary
             class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-neutral-900 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-            aria-expanded="false"
           >
-            <dt class="text-base">{faq.question}</dt>
+            <span class="text-base">{faq.question}</span>
             <!-- Ícono chevron, rotado cuando está abierto -->
             <span
               class="flex-shrink-0 text-neutral-400 transition-transform group-open:rotate-180"

@@ -1,99 +1,106 @@
 ---
+import { Image } from 'astro:assets'
 import BaseLayout from '../layouts/BaseLayout.astro'
+
+// Imágenes procesadas por astro:assets (WebP, srcset automático)
+import imgHero       from '../assets/images/hero-01.webp'
+import imgEquipoJav  from '../assets/images/equipo-javiera.webp'
+import imgEquipoPau  from '../assets/images/equipo-paula.webp'
+import imgEquipoPam  from '../assets/images/equipo-pamela.webp'
+import imgEquipoGab  from '../assets/images/equipo-gabriela.webp'
+import imgEquipoNat  from '../assets/images/equipo-natalie.webp'
+import imgEquipoCla  from '../assets/images/equipo-claudio.webp'
+import imgFotoSec01  from '../assets/images/foto-seccion-01.webp'
+import imgFotoSec02  from '../assets/images/foto-seccion-02.webp'
+import imgFicha      from '../assets/images/ficha-tecnica.webp'
+import imgAuspPolar  from '../assets/images/auspiciador-polaroid.webp'
+import imgConvoca    from '../assets/images/convocatoria-speakers.webp'
+import imgContacto   from '../assets/images/contacto-01.webp'
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
 
 // ============================================================
-// CONTENIDO — fuente de verdad. Editar aquí; nunca inventar datos.
+// CONTENIDO — fuente de verdad. Editar aquí, nunca inventar datos.
 // ============================================================
 
 const evento = {
-  nombre:   'TEDxBarrioUniversitario Women 2026',
-  tema:     'Alzar el vuelo',
-  tagline:  'Ideas que conectan, voces que transforman.',
-  fecha:    '04 de Diciembre, 2026',
-  horario:  '09:00 — 13:00',
-  lugar:    'Universidad de Concepción',
-  ciudad:   'Concepción, Chile',
-  speakers: 6,
-  url:      'https://www.ted.com/tedx/events/69535',
-  email:    'tedxbarriouniversitario@gmail.com',  // placeholder hasta provisionar dominio
-  ig:       '@tedxbarriouniversitario',
+  nombre:        'TEDxBarrioUniversitario Women 2026',
+  tema:          'Alzar el vuelo',
+  fecha:         '04 de Diciembre, 2026',
+  horario:       '09:00 — 13:00',
+  lugar:         'Universidad de Concepción',
+  auditorio:     'Auditorio [por confirmar]',
+  ciudad:        'Concepción, Chile',
+  speakers:      8,
+  asistentes:    100,
+  ideas:         1,
+  url:           'https://www.ted.com/tedx/events/69535',
+  email:         'contacto@tedxbarriouniversitario.cl',
+  emailAlianzas: 'alianzas@tedxbarriouniversitario.cl',
+  ig:            '@tedxbarriouniversitario',
+  linkedin:      'tedxbarriouniversitario',
+  flickr:        'tedxbarriouniversitario',
+  countdown:     '2026-12-04T09:00:00-03:00',
 }
 
 const equipo = [
+  { nombre: 'Javiera Burgos',  cargo: 'Organizadora y Directora General',          img: imgEquipoJav, slug: 'javiera'  },
+  { nombre: 'Paula Cifuentes', cargo: 'Coorganizadora y Directora de Comunicaciones', img: imgEquipoPau, slug: 'paula' },
+  { nombre: 'Pamela Pérez',    cargo: 'Curaduría y Speaker Coach',                 img: imgEquipoPam, slug: 'pamela'  },
+  { nombre: 'Claudio Muñoz',   cargo: 'Coach y Consultor del Equipo Organizador',  img: imgEquipoCla, slug: 'claudio' },
+  { nombre: 'Gabriela Concha', cargo: 'Producción y Logística',                    img: imgEquipoGab, slug: 'gabriela'},
+  { nombre: 'Natalie Aguayo',  cargo: 'Directora Creativa',                        img: imgEquipoNat, slug: 'natalie' },
+]
+
+const tematicas = [
+  'Liderazgo e identidad femenina',
+  'Innovación con propósito',
+  'Bienestar y salud mental',
+  'Emprendimiento y economía circular',
+  'Arte, cultura y transformación social',
+  'Educación y nuevas formas de aprender',
+]
+
+const beneficios = [
   {
-    nombre: 'Javiera Burgos',
-    cargo:  'Organizadora y Directora General',
-    cita:   'Creo profundamente en el poder de las ideas para generar transformación social.',
+    icono: '📍',
+    titulo: 'Posicionamiento',
+    texto: 'Vincula tu marca al ecosistema TED, reconocido globalmente por el impacto de sus ideas.',
   },
   {
-    nombre: 'Paula Cifuentes',
-    cargo:  'Coorganizadora · Comunicaciones',
-    cita:   'Las palabras que elegimos tienen el poder de conectar mundos y abrir conversaciones.',
+    icono: '🌿',
+    titulo: 'Marca con propósito',
+    texto: 'Asocia tu organización a valores de innovación, equidad y transformación social.',
   },
   {
-    nombre: 'Pamela Pérez',
-    cargo:  'Coordinadora de Speakers',
-    cita:   'Cada historia auténtica merece un escenario a la altura de su impacto.',
+    icono: '👁️',
+    titulo: 'Visibilidad estratégica',
+    texto: 'Presencia ante líderes, académicos, emprendedores y la comunidad universitaria del Biobío.',
   },
   {
-    nombre: 'Gabriela Concha',
-    cargo:  'Producción General',
-    cita:   'El detalle técnico es lo que convierte una buena idea en una gran experiencia.',
-  },
-  {
-    nombre: 'Ignacia Vera',
-    cargo:  'Logística y Alianzas',
-    cita:   'La coordinación invisible es la que hace que todo vuele sin turbulencias.',
-  },
-  {
-    nombre: 'Claudio Muñoz',
-    cargo:  'Coach del Equipo',
-    cita:   'Un equipo unido por el propósito es capaz de mover ideas y mover el mundo.',
-  },
-  {
-    nombre: 'Natalie Aguayo',
-    cargo:  'Diseño e Identidad Visual',
-    cita:   'El diseño no es cómo se ve, es cómo se siente cuando una idea despega.',
+    icono: '🤝',
+    titulo: 'Networking de alto valor',
+    texto: 'Conecta con una audiencia selecta de personas movilizadas por ideas y propósito.',
   },
 ]
 
-const beneficiosAuspicio = [
-  {
-    icono:  '🏆',
-    titulo: 'Marca de prestigio mundial',
-    texto:  'Vincula tu organización al ecosistema TED, reconocido globalmente por el impacto de sus ideas.',
-  },
-  {
-    icono:  '🌐',
-    titulo: 'Impacto en innovación regional',
-    texto:  'Visibilidad ante líderes, académicos, emprendedores y la comunidad universitaria del Biobío.',
-  },
-  {
-    icono:  '✨',
-    titulo: 'Alto valor reputacional',
-    texto:  'Presencia en el evento cultural de ideas más relevante de Concepción en 2026.',
-  },
+const procesoSpeaker = [
+  { num: '01', titulo: 'Postulación formulario', desc: 'Completa el formulario con tu idea y perfil.' },
+  { num: '02', titulo: 'Video presentación',     desc: 'Envía un video breve presentando tu idea.' },
+  { num: '03', titulo: 'Entrevista curatorial',  desc: 'El equipo editorial evalúa y selecciona.' },
 ]
 
-const valoresMujeres = [
-  'Visibilizar liderazgo femenino regional',
-  'Amplificar voces diversas e inclusivas',
-  'Impulsar conversaciones de equidad',
-  'Abrir nuevas formas de ver el mundo',
-]
-
-const criteriosSpeaker = [
-  'Charla de máximo 15 minutos',
-  '1 idea central poderosa',
-  'Sin remuneración económica',
-  'Selección editorial independiente',
+const partners = [
+  { categoria: 'Institución Anfitriona', logos: ['udec'], placeholder: false },
+  { categoria: 'Main',        logos: [], placeholder: true },
+  { categoria: 'Estratégico', logos: ['anami'], placeholder: false },
+  { categoria: 'Experiencia', logos: [], placeholder: true },
+  { categoria: 'Media',       logos: [], placeholder: true },
 ]
 
 const seoEvent = {
   name:        'TEDxBarrioUniversitario Women 2026 — Alzar el vuelo',
-  description: 'Evento TEDx independiente en la Universidad de Concepción. 6 charlas en vivo sobre ideas que transforman. 4 de diciembre de 2026.',
+  description: 'Evento TEDx independiente en la Universidad de Concepción. 8 charlas en vivo sobre ideas que transforman. 4 de diciembre de 2026.',
   startDate:   '2026-12-04T09:00:00-03:00',
   endDate:     '2026-12-04T13:00:00-03:00',
   url:         'https://tedxbarriouniversitario.cl',
@@ -105,81 +112,268 @@ const seoEvent = {
   },
   organizer: 'TEDxBarrioUniversitario Women',
 }
+
+const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 ---
 
 <BaseLayout
   title="TEDxBarrioUniversitario Women 2026 · Alzar el vuelo"
-  description="6 charlas que inspiran. 4 de diciembre de 2026 · Universidad de Concepción · Ideas que conectan, voces que transforman."
+  description="8 charlas que inspiran. 4 de diciembre de 2026 · Universidad de Concepción · Ideas que conectan, voces que transforman."
   ogImage="/og-tedx.jpg"
   event={seoEvent}
 >
 
 <!-- ============================================================
-     S1 — HERO "Alzar el vuelo"
-     Fondo claro + textura concreto. Lockup real del material del cliente.
+     S1 — HERO OSCURO "Alzar el vuelo"
+     Foto full-bleed fondo. Texto vertical izquierda. Countdown inferior.
      ============================================================ -->
-<section id="inicio" class="hero texture-overlay" aria-label="Inicio — Alzar el vuelo">
-  <div class="hero__inner">
+<section id="inicio" class="s-hero dark-section" aria-label="Inicio — Alzar el vuelo">
 
-    <!-- Columna izquierda: lockup tipográfico -->
-    <div class="hero__copy">
+  <!-- Foto de fondo full-bleed con gradiente oscuro -->
+  <div class="hero-bg" aria-hidden="true">
+    <Image
+      src={imgHero}
+      alt=""
+      width={1600}
+      height={1000}
+      loading="eager"
+      decoding="async"
+      class="hero-bg__img"
+    />
+  </div>
 
-      <!-- Texto rotado vertical (motivo real del cliente) -->
-      <span class="hero__vertical-text" aria-hidden="true">BARRIO UNIVERSITARIO</span>
+  <!-- Texto vertical decorativo izquierda -->
+  <span class="hero-vertical" aria-hidden="true">BARRIO<br/>UNIVERSITARIO</span>
 
-      <!-- WCAG 1.3.1: h1 nativo — no div[role=heading] — FINDING-01 -->
-      <h1 class="hero__headline">
-        <span class="hero__line-light display-light">ALZAR</span>
-        <span class="hero__line-light display-light">EL</span>
-        <span class="hero__line-black display-black">VUELO</span>
-      </h1>
+  <!-- Contenido tipográfico principal -->
+  <div class="hero-content">
+    <h1 class="hero-h1" aria-label="Alzar el vuelo — TEDx Women">
+      <span class="hero-h1__alzar display-light">ALZAR</span>
+      <span class="hero-h1__el display-light">EL</span>
+      <span class="hero-h1__vuelo display-black">VUELO</span>
+    </h1>
+  </div>
 
-      <!-- Flecha roja + trayectoria punteada (motivo oficial) -->
-      <div class="hero__trajectory" aria-hidden="true">
-        <svg class="trayectoria-svg" width="200" height="40" viewBox="0 0 200 40" fill="none">
-          <path d="M0 30 Q100 5 200 28" stroke="#db0028" stroke-width="1.5"
-                stroke-dasharray="5 4" fill="none"/>
-        </svg>
-        <span class="flecha-roja hero__flecha">↗</span>
+</section>
+
+<!-- ============================================================
+     COUNTDOWN — Isla flotante solapada entre S1 y S2
+     ============================================================ -->
+<div class="cd-island-wrap">
+  <div class="cd-island" role="timer" aria-label="Cuenta regresiva al evento">
+    <span class="sr-only">El evento es el 4 de diciembre de 2026 a las 09:00 hrs.</span>
+    <div class="cd-island__inner" aria-hidden="true">
+      <div class="countdown-unit">
+        <span class="countdown-label">DÍAS</span>
+        <span class="countdown-num mono-date" id="cd-dias">--</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-label">HORAS</span>
+        <span class="countdown-num mono-date" id="cd-horas">--</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-label">MINUTOS</span>
+        <span class="countdown-num mono-date" id="cd-min">--</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-label">SEGUNDOS</span>
+        <span class="countdown-num mono-date" id="cd-seg">--</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     S2 — EN COLABORACIÓN (equipo)
+     Fondo claro. Grid 6 headshots reales.
+     ============================================================ -->
+<section id="equipo" class="s-equipo seccion-light texture-overlay" aria-labelledby="h-equipo">
+  <div class="seccion-inner">
+
+    <!-- Intro 2 columnas: título izq + párrafo der -->
+    <div class="s-equipo__intro">
+      <div class="s-equipo__intro-left">
+        <p class="eyebrow-label s-equipo__eyebrow">
+          UN EVENTO CONSTRUIDO <span class="flecha-roja" aria-hidden="true">→</span>
+        </p>
+        <h2 id="h-equipo" class="s-equipo__titulo display-black">EN COLABORACIÓN</h2>
+      </div>
+      <p class="s-equipo__desc">
+        TEDxBarrioUniversitario Women es una iniciativa voluntaria y sin fines de lucro,
+        orientada exclusivamente a crear un espacio para la difusión de ideas que inspiren
+        transformación. Cada persona involucrada participa desde la convicción, el compromiso
+        y el propósito de generar un impacto positivo en nuestra comunidad.
+      </p>
+    </div>
+
+    <ul class="equipo-grid" role="list">
+      {equipo.map(m => (
+        <li class="equipo-card" role="listitem">
+          <Image
+            src={m.img}
+            alt={m.nombre}
+            width={300}
+            height={400}
+            loading="lazy"
+            decoding="async"
+            class="equipo-card__foto"
+          />
+          <div class="equipo-card__info">
+            <p class="equipo-card__nombre headline-bold">{m.nombre}</p>
+            <p class="equipo-card__cargo">{m.cargo}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S3 — ¿QUÉ ES TEDx?
+     Fondo claro. 2 cols: texto izquierda + foto derecha.
+     ============================================================ -->
+<section id="que-es-tedx" class="s-que-es seccion-light" aria-labelledby="h-que-es">
+  <div class="seccion-inner s-que-es__inner">
+
+    <!-- Col izquierda: texto -->
+    <div class="s-que-es__copy">
+      <p class="eyebrow-label">¿Qué es?</p>
+      <h2 id="h-que-es" class="s-que-es__h2 display-black">
+        ¿QUÉ ES <span class="text-ted-red">TEDx</span>?
+      </h2>
+
+      <!-- Flecha roja decorativa -->
+      <div class="s-que-es__flecha" aria-hidden="true">
+        <span class="flecha-roja">↗</span>
       </div>
 
-      <p class="hero__tagline">{evento.tagline}</p>
+      <p class="s-que-es__p">
+        TEDx es un programa de eventos locales e independientes con charlas en vivo de alto
+        impacto, ideas innovadoras y disruptivas, y experiencias transformadoras. Organizado
+        íntegramente por voluntarios apasionados, sin fines políticos, religiosos ni
+        intereses comerciales externos.
+      </p>
+      <p class="s-que-es__p">
+        Cada charla TEDx nace de una sola idea poderosa que vale la pena compartir. Una idea
+        que conecta, desafía, abre perspectivas y moviliza a las personas hacia algo nuevo.
+      </p>
 
-      <!-- Chips de fecha y lugar -->
-      <div class="hero__chips" role="list" aria-label="Detalles del evento">
-        <span class="chip-info" role="listitem">
-          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2">
-            <rect x="3" y="4" width="18" height="18" rx="2"/>
-            <line x1="16" y1="2" x2="16" y2="6"/>
-            <line x1="8" y1="2" x2="8" y2="6"/>
-            <line x1="3" y1="10" x2="21" y2="10"/>
-          </svg>
-          <span class="mono-date">04 DIC 2026</span> · <span class="mono-date">09:00</span>
-        </span>
-        <span class="chip-info" role="listitem">
-          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
-          U. de Concepción
-        </span>
-        <span class="chip-info" role="listitem">
-          <span aria-hidden="true">🎤</span> {evento.speakers} speakers
-        </span>
-      </div>
-
-      <div class="hero__ctas">
-        <a href="#auspiciadores" class="btn-primary">Ser auspiciador →</a>
-        <a href="#speakers" class="btn-outline">Postular como speaker</a>
+      <div class="s-que-es__links">
+        <a href="https://www.ted.com/tedx/events/69535" target="_blank" rel="noopener"
+           class="s-que-es__link"
+           aria-label="Evento oficial bajo licencia TEDx (abre en nueva pestaña)">
+          <span class="flecha-roja" aria-hidden="true">→</span>
+          Evento oficial bajo licencia TEDx
+        </a>
+        <a href="https://www.ted.com" target="_blank" rel="noopener" class="s-que-es__link"
+           aria-label="Ver más charlas en TED.com (abre en nueva pestaña)">
+          <span class="flecha-roja" aria-hidden="true">→</span>
+          Ver más charlas en TED.com ↗
+        </a>
       </div>
     </div>
 
-    <!-- Columna derecha: boarding pass oficial -->
-    <div class="hero__right">
-      <div class="boarding-pass hero__bp" role="img"
-           aria-label="Del origen: IDEA 09:00 AM, vuelo directo al destino: ACCIÓN 13:00 PM, viernes 04 de diciembre">
+    <!-- Col derecha: foto -->
+    <div class="s-que-es__photo parallax-img">
+      <Image
+        src={imgFotoSec01}
+        alt="Pantalla con charla TEDx en vivo — audiencia atenta"
+        width={560}
+        height={840}
+        loading="lazy"
+        decoding="async"
+        class="s-que-es__photo-img"
+      />
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S4 — ¿POR QUÉ TEDxWomen?
+     Fondo claro. Texto izquierda + foto derecha + cita lavanda.
+     ============================================================ -->
+<section id="tedxwomen" class="s-mujeres seccion-light texture-overlay" aria-labelledby="h-mujeres">
+  <div class="seccion-inner s-mujeres__inner">
+
+    <!-- Col izquierda: texto -->
+    <div class="s-mujeres__copy">
+      <p class="eyebrow-label">¿Por qué?</p>
+      <h2 id="h-mujeres" class="display-black s-mujeres__h2">
+        ¿POR QUÉ <span class="text-ted-red">TEDxWOMEN</span>?
+      </h2>
+
+      <p class="s-mujeres__p">
+        TEDxWomen es una iniciativa global que celebra y amplifica voces femeninas e ideas que
+        merecen ser escuchadas. En Concepción, el Barrio Universitario es el escenario perfecto
+        para que esas voces despeguen.
+      </p>
+
+      <ul class="s-mujeres__lista" role="list">
+        {[
+          'Visibilizar el liderazgo femenino regional',
+          'Amplificar voces diversas e inclusivas',
+          'Impulsar conversaciones de equidad y pertenencia',
+          'Abrir nuevas formas de ver y habitar el mundo',
+        ].map(item => (
+          <li class="s-mujeres__item" role="listitem">
+            <span class="flecha-roja" aria-hidden="true">→</span>
+            {item}
+          </li>
+        ))}
+      </ul>
+
+      <!-- Cita lavanda -->
+      <blockquote class="caja-lavanda s-mujeres__cita">
+        <p>"Las ideas inspiran. El despegue las vuelve realidad."</p>
+      </blockquote>
+    </div>
+
+    <!-- Col derecha: foto -->
+    <div class="s-mujeres__photo parallax-img">
+      <Image
+        src={imgFotoSec02}
+        alt="Mujeres del equipo organizador TEDxBarrioUniversitario Women"
+        width={560}
+        height={840}
+        loading="lazy"
+        decoding="async"
+        class="s-mujeres__photo-img"
+      />
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S5 — ALZAR EL VUELO (concepto)
+     Fondo oscuro. Boarding pass + avión SVG animateMotion + franja.
+     ============================================================ -->
+<section id="concepto" class="s-concepto dark-section" aria-labelledby="h-concepto">
+  <div class="seccion-inner s-concepto__inner">
+
+    <!-- Título grande vertical izq -->
+    <div class="s-concepto__title-col">
+      <h2 id="h-concepto" class="s-concepto__h2 display-black">
+        ALZAR<br/>EL<br/>VUELO
+      </h2>
+      <p class="s-concepto__sub">Una idea tiene el poder de cambiar la trayectoria de todo.</p>
+    </div>
+
+    <!-- Boarding pass con avión -->
+    <div class="s-concepto__bp-col">
+
+      <!-- Boarding pass visual -->
+      <div class="boarding-pass s-bp" role="img"
+           aria-label="Vuelo directo: IDEA 09:00 AM hasta ACCIÓN 13:00 PM, viernes 04 de diciembre">
         <div class="boarding-pass__col">
           <span class="boarding-pass__label">Origen</span>
           <span class="boarding-pass__valor">IDEA</span>
@@ -189,7 +383,7 @@ const seoEvent = {
         <div class="boarding-pass__divider">
           <span class="boarding-pass__directo">Directo</span>
         </div>
-        <div class="boarding-pass__col boarding-pass__col--right">
+        <div class="boarding-pass__col s-bp__dest">
           <span class="boarding-pass__label">Destino</span>
           <span class="boarding-pass__valor">ACCIÓN</span>
           <span class="boarding-pass__hora mono-date">13:00 PM</span>
@@ -197,925 +391,1510 @@ const seoEvent = {
         </div>
       </div>
 
-      <!-- Logo TEDx + marca UdeC -->
-      <div class="hero__branding">
-        <img src={`${baseUrl}/logo-tedx-negro.svg`} alt="TEDxBarrioUniversitario Women"
-             width="140" height="44" loading="eager" decoding="async"/>
-        <div class="hero__udec">
-          <!-- FINDING-20: → decorativo, ocultar a lectores de pantalla -->
-          <span><span aria-hidden="true">→ </span>{evento.fecha}</span>
-          <span><span aria-hidden="true">→ </span>{evento.lugar}</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ============================================================
-     S2 — ¿QUÉ ES TEDX?
-     Oscuro con trayectoria. Patrón real del cliente.
-     ============================================================ -->
-<section id="que-es-tedx" class="seccion-dark dark-section" aria-labelledby="h-que-es">
-  <div class="seccion-inner seccion-2col">
-
-    <div class="s2-logo-col" aria-hidden="true">
-      <img src={`${baseUrl}/logo-tedx-blanco.svg`} alt=""
-           width="180" height="56" loading="lazy" decoding="async"
-           class="s2-logo" style="filter: brightness(0) invert(1);"/>
-      <!-- Trayectoria punteada decorativa -->
-      <svg class="s2-trayectoria trayectoria-svg" width="160" height="120"
-           viewBox="0 0 160 120" fill="none" aria-hidden="true">
-        <path d="M10 110 Q40 20 150 10" stroke="#afb5db" stroke-width="1.5"
-              stroke-dasharray="5 4" fill="none"/>
-        <path d="M150 10 L140 18 M150 10 L158 18" stroke="#db0028" stroke-width="2"/>
-      </svg>
-    </div>
-
-    <div>
-      <!-- WCAG 1.3.1: id en h2 (no en p) para aria-labelledby — FINDING-02 -->
-      <p class="eyebrow-label">¿Qué es TEDx?</p>
-      <h2 class="headline-bold text-white" id="h-que-es"
-          style="font-size: clamp(1.6rem, 4vw, 2.2rem); margin: 12px 0 20px;">
-        Ideas de alto impacto,<br/>organizadas de forma independiente
-      </h2>
-      <p class="text-white/70 leading-relaxed"
-         style="font-size: 1rem; max-width: 52ch;">
-        TEDx es un programa de eventos locales e independientes que reúne charlas en vivo de alto
-        impacto, ideas innovadoras y disruptivas, y experiencias transformadoras. Organizado
-        íntegramente por voluntarios apasionados, sin fines políticos, religiosos ni intereses
-        comerciales externos.
-      </p>
-
-      <div class="s2-pills" role="list" aria-label="Propósitos del programa TEDx">
-        {['Inspirar', 'Desafiar', 'Abrir', 'Movilizar'].map(v => (
-          <span class="pill-valor s2-pill" role="listitem">
-            <span class="flecha-roja" aria-hidden="true">→</span> {v}
-          </span>
-        ))}
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ============================================================
-     S3 — EL CONCEPTO / TEASER
-     Copy real del teaser del cliente
-     ============================================================ -->
-<section class="seccion-light texture-overlay" aria-labelledby="h-concepto">
-  <div class="seccion-inner">
-    <!-- FINDING-02: id movido al h2 debajo -->
-    <p class="eyebrow-label" style="margin-bottom:16px;">El concepto 2026</p>
-
-    <div class="s3-layout">
-      <div class="s3-pregunta">
-        <h2 class="display-light s3-h2" id="h-concepto"
-            aria-label="Pregunta: ¿Cuándo fue la última vez que una idea te sacó de la pista?">
-          <span>¿Cuándo fue</span>
-          <span>la última vez</span>
-          <span>que una idea</span>
-          <span class="display-black s3-enfasis">te sacó de la pista?</span>
-        </h2>
-        <!-- Flecha roja decorativa -->
-        <div class="s3-flecha" aria-hidden="true">
-          <span class="flecha-roja" style="font-size:2.5rem;">↑</span>
-          <svg width="100" height="60" viewBox="0 0 100 60" fill="none">
-            <path d="M90 55 Q50 10 10 50" stroke="#232323" stroke-width="1.5"
-                  stroke-dasharray="5 4" fill="none"/>
-          </svg>
-        </div>
+      <!-- Avión SVG animateMotion -->
+      <div class="s-avion" aria-hidden="true">
+        <svg class="s-avion__svg" viewBox="0 0 460 80" width="460" height="80"
+             xmlns="http://www.w3.org/2000/svg">
+          <!-- Trayectoria punteada -->
+          <path id="flight-path" d="M10 65 Q120 10 250 35 Q350 55 450 20"
+                stroke="#afb5db" stroke-width="1.5" stroke-dasharray="6 4" fill="none"/>
+          <!-- Avión que sigue la trayectoria -->
+          <g id="avion-icon">
+            <animateMotion dur="5s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#flight-path"/>
+            </animateMotion>
+            <!-- Silueta avión minimalista -->
+            <polygon points="0,-8 18,0 0,8 4,0" fill="#db0028"/>
+          </g>
+        </svg>
       </div>
 
-      <div class="s3-cuerpo">
-        <p class="s3-p">
-          Hay momentos que cambian una vida, una organización o una comunidad. No ocurren cuando se
-          alcanza una meta. Ocurren antes: en ese instante de incertidumbre en que alguien decide dar
-          el primer paso.
-        </p>
-        <p class="s3-p">
-          <strong>TEDxBarrioUniversitario Women 2026</strong> explora precisamente ese momento. A través
-          de {evento.speakers} charlas curadas, invitaremos a la audiencia a descubrir cómo las grandes
-          transformaciones comienzan con decisiones pequeñas pero valientes.
-        </p>
-        <p class="s3-p s3-cierre">
-          Porque todo vuelo comienza dejando atrás la pista.
-        </p>
-
-        <div class="boarding-pass s3-bp" role="img"
-             aria-label="Boarding pass simbólico: IDEA — vuelo directo — ACCIÓN">
-          <div class="boarding-pass__col">
-            <span class="boarding-pass__label">Origen</span>
-            <span class="boarding-pass__valor">IDEA</span>
-          </div>
-          <div class="boarding-pass__divider">
-            <span class="boarding-pass__directo">Directo</span>
-          </div>
-          <div class="boarding-pass__col boarding-pass__col--right">
-            <span class="boarding-pass__label">Destino</span>
-            <span class="boarding-pass__valor">ACCIÓN</span>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
-</section>
 
-
-<!-- ============================================================
-     S4 — ¿POR QUÉ TEDXWOMEN?
-     Claro con caja lavanda. Patrón real del cliente.
-     ============================================================ -->
-<section id="por-que-women" class="seccion-light texture-overlay" aria-labelledby="h-women">
-  <div class="seccion-inner">
-    <!-- FINDING-02: id en h2 (no en p) -->
-    <p class="eyebrow-label" style="margin-bottom:16px;">¿Por qué TEDxWomen?</p>
-
-    <div class="s4-layout">
-      <div>
-        <h2 class="headline-bold" id="h-women"
-            style="font-size: clamp(1.5rem, 3.5vw, 2rem); margin-bottom:24px; color: var(--color-charcoal);">
-          Más espacio.<br/>Más visibilidad.<br/>
-          <span style="color: var(--color-ted-red);">Más voces.</span>
-        </h2>
-
-        <!-- Caja lavanda con la cita oficial -->
-        <blockquote class="caja-lavanda s4-cita">
-          <p style="font-size:1.05rem; line-height:1.65; margin:0; font-style:italic; color: var(--color-charcoal);">
-            "Porque todavía existen conversaciones que necesitan más espacio,
-            más visibilidad y más voces."
-          </p>
-        </blockquote>
-
-        <!-- Flecha roja + trayectoria -->
-        <div style="display:flex; align-items:center; gap:8px; margin:20px 0;" aria-hidden="true">
-          <svg width="80" height="35" viewBox="0 0 80 35" fill="none">
-            <path d="M5 30 Q40 5 75 15" stroke="#232323" stroke-width="1.5"
-                  stroke-dasharray="4 3" fill="none"/>
-          </svg>
-          <span class="flecha-roja" style="font-size:2rem;">↗</span>
-        </div>
-
-        <p style="font-size:0.875rem; color: rgba(35,35,35,0.6); font-style:italic; max-width:45ch;">
-          TEDxWomen no busca excluir, sino ampliar perspectivas.
-        </p>
-      </div>
-
-      <div>
-        <h3 class="eyebrow-label" style="margin-bottom:16px; color: var(--color-charcoal);">
-          Para qué estamos aquí
-        </h3>
-        <ul class="s4-valores" role="list">
-          {valoresMujeres.map(v => (
-            <li class="pill-valor" role="listitem">
-              <span class="flecha-roja" aria-hidden="true">→</span>
-              {v}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     S5 — FICHA TÉCNICA / EL EVENTO
-     Oscuro con datos del evento
-     ============================================================ -->
-<section id="evento" class="seccion-dark dark-section" aria-labelledby="h-evento">
-  <div class="seccion-inner">
-    <!-- FINDING-02: id en h2 (no en p) -->
-    <p class="eyebrow-label" style="margin-bottom:20px;">Ficha técnica</p>
-
-    <div class="s5-layout">
-      <div class="s5-datos">
-        <h2 class="headline-bold text-white" id="h-evento"
-            style="font-size: clamp(1.5rem, 3vw, 1.9rem); margin-bottom:32px;">
-          Un solo día.<br/>
-          <span style="color: var(--color-lavanda);">Seis ideas que vuelan.</span>
-        </h2>
-
-        <dl class="s5-dl">
-          <div class="s5-dato">
-            <dt class="eyebrow-label">Fecha</dt>
-            <dd class="mono-date text-white s5-numero">04 DIC 2026</dd>
-            <dd class="text-white/70 text-sm">Viernes</dd>
-          </div>
-          <div class="s5-dato">
-            <dt class="eyebrow-label">Horario</dt>
-            <dd class="mono-date text-white s5-numero">09:00 — 13:00</dd>
-            <dd class="text-white/70 text-sm">Hora Chile (UTC-3)</dd>
-          </div>
-          <div class="s5-dato">
-            <dt class="eyebrow-label">Sede</dt>
-            <dd class="headline-bold text-white" style="font-size:1.1rem; margin:6px 0 0;">
-              Universidad de Concepción
-            </dd>
-            <dd class="text-white/70 text-sm">Concepción, Biobío, Chile</dd>
-          </div>
-          <div class="s5-dato">
-            <dt class="eyebrow-label">Speakers</dt>
-            <dd class="mono-date text-white s5-numero">{evento.speakers}</dd>
-            <dd class="text-white/70 text-sm">Entrada gratuita · con invitación</dd>
-          </div>
-        </dl>
-      </div>
-
-      <!-- Boarding pass del evento -->
-      <div class="s5-bp-wrap">
-        <div class="boarding-pass s5-bp" role="img"
-             aria-label="Viaje del 4 de diciembre: sale de IDEA a las 09:00 AM, llega a ACCIÓN a las 13:00 PM. Universidad de Concepción.">
-          <div class="boarding-pass__col">
-            <span class="boarding-pass__label">Origen</span>
-            <span class="boarding-pass__valor">IDEA</span>
-            <span class="boarding-pass__hora mono-date">09:00 AM</span>
-            <span class="boarding-pass__hora">Vie 04 dic</span>
-          </div>
-          <div class="boarding-pass__divider">
-            <span class="boarding-pass__directo">Directo</span>
-          </div>
-          <div class="boarding-pass__col boarding-pass__col--right">
-            <span class="boarding-pass__label">Destino</span>
-            <span class="boarding-pass__valor">ACCIÓN</span>
-            <span class="boarding-pass__hora mono-date">13:00 PM</span>
-            <span class="boarding-pass__hora">Vie 04 dic</span>
-          </div>
-        </div>
-        <p class="text-white/65 text-xs" style="margin-top:12px; text-align:center;">
-          Universidad de Concepción · Concepción, Chile
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     S6 — AUSPICIADORES
-     Claro con formulario Formspree
-     ============================================================ -->
-<section id="auspiciadores" class="seccion-light texture-overlay" aria-labelledby="h-auspicios">
-  <div class="seccion-inner">
-    <p class="eyebrow-label" style="margin-bottom:16px;">Para auspiciadores</p>
-
-    <div class="s6-layout">
-      <div class="s6-copy">
-        <h2 class="headline-bold" id="h-auspicios"
-            style="font-size: clamp(1.5rem, 3.5vw, 2.2rem); margin-bottom:8px; color: var(--color-charcoal);">
-          Asocia tu marca<br/>a una idea que
-          <span style="color: var(--color-ted-red);"> transforma.</span>
-        </h2>
-        <p style="font-size:0.95rem; color:rgba(35,35,35,0.65); max-width:46ch; margin:0 0 28px; line-height:1.65;">
-          Ser parte de TEDxBarrioUniversitario Women 2026 es más que presencia de marca — es
-          declarar que tu organización cree en el poder de las ideas para cambiar el Biobío y Chile.
-        </p>
-
-        <ul class="s6-beneficios" role="list">
-          {beneficiosAuspicio.map(b => (
-            <li class="s6-beneficio" role="listitem">
-              <span class="s6-icono" aria-hidden="true">{b.icono}</span>
-              <div>
-                <h3 class="eyebrow-label" style="color:var(--color-charcoal); margin-bottom:4px;">
-                  {b.titulo}
-                </h3>
-                <p style="font-size:0.85rem; color:rgba(35,35,35,0.65); line-height:1.55; margin:0;">
-                  {b.texto}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
-
-        <p class="s6-nota">
-          ⓘ Los logotipos de auspiciadores se muestran en momentos específicos del evento, alineados
-          con la guía oficial de marca TEDx. No se permite publicidad permanente en escenario.
-        </p>
-      </div>
-
-      <!-- Formulario Formspree — FINDING-15: aria-label en div sin role → usar h3 + aria-labelledby en form -->
-      <div class="s6-form-wrap dark-section">
-        <h3 class="headline-bold text-white" id="form-auspicio-titulo"
-            style="font-size:1.1rem; margin-bottom:4px;">
-          Quiero ser auspiciador
-        </h3>
-        <!-- FINDING-13: indicar campos obligatorios — WCAG 3.3.2 -->
-        <p class="form-required-note">
-          Los campos marcados con <span aria-hidden="true">*</span>
-          <span class="sr-only">asterisco</span> son obligatorios.
-        </p>
-
-        <!-- FINDING-14: quitado novalidate → browser valida accesiblemente -->
-        <form
-          action={`https://formspree.io/f/${import.meta.env.FORMSPREE_FORM_ID || 'placeholder'}`}
-          method="POST"
-          class="s6-form"
-          aria-labelledby="form-auspicio-titulo"
-        >
-          {/* Honeypot anti-spam — NUNCA mostrar al usuario real */}
-          <input type="text" name="_gotcha" tabindex="-1" aria-hidden="true"
-                 style="display:none !important" />
-          <input type="hidden" name="_subject"
-                 value="Consulta auspicio TEDxBarrioUniversitario Women 2026" />
-
-          <div class="form-group">
-            <label class="form-label" for="auspicio-nombre">
-              Nombre y Apellido <span aria-hidden="true">*</span>
-            </label>
-            <input class="form-input" type="text" id="auspicio-nombre" name="nombre"
-                   required autocomplete="name" placeholder="Tu nombre completo" />
-          </div>
-          <div class="form-group">
-            <!-- FINDING-12: autocomplete="organization" — WCAG 1.3.5 -->
-            <label class="form-label" for="auspicio-empresa">
-              Empresa / Organización <span aria-hidden="true">*</span>
-            </label>
-            <input class="form-input" type="text" id="auspicio-empresa" name="empresa"
-                   required autocomplete="organization" placeholder="Nombre de tu empresa" />
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="auspicio-email">
-              Correo electrónico <span aria-hidden="true">*</span>
-            </label>
-            <input class="form-input" type="email" id="auspicio-email" name="email"
-                   required autocomplete="email" placeholder="tu@empresa.cl" />
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="auspicio-msg">Mensaje (opcional)</label>
-            <textarea class="form-input" id="auspicio-msg" name="mensaje" rows="3"
-                      placeholder="¿Alguna pregunta o comentario?"
-                      style="resize:vertical;"></textarea>
-          </div>
-
-          <button type="submit" class="btn-primary s6-submit">
-            Enviar consulta →
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     S7 — EQUIPO
-     Oscuro. Patrón barra lavanda del material real del cliente.
-     ============================================================ -->
-<section id="equipo" class="seccion-dark dark-section" aria-labelledby="h-equipo">
-  <div class="seccion-inner">
-
-    <div class="s7-header">
-      <p class="eyebrow-label">El equipo</p>
-      <div class="s7-titulo-wrap">
-        <h2 class="headline-bold text-white" id="h-equipo"
-            style="font-size: clamp(1.5rem, 3.5vw, 2.2rem);">
-          Conoce a nuestro<br/>
-          <span style="color: var(--color-lavanda);">equipo</span>
-        </h2>
-        <span class="flecha-roja" style="font-size:2.5rem;" aria-hidden="true">↘</span>
-      </div>
-      <p class="text-white/70" style="font-size:0.9rem; max-width:44ch; margin-top:8px;">
-        100% voluntario. 100% apasionado. Unidos por el poder de las ideas.
-      </p>
-    </div>
-
-    <ul class="s7-grid" role="list"
-        aria-label="Equipo organizador de TEDxBarrioUniversitario Women 2026">
-      {equipo.map(persona => (
-        <li class="tarjeta-equipo" role="listitem">
-          <div class="tarjeta-equipo__barra">
-            <p class="tarjeta-equipo__nombre">{persona.nombre}</p>
-            <p class="tarjeta-equipo__cargo">{persona.cargo}</p>
-          </div>
-          <div class="tarjeta-equipo__body">
-            <p class="tarjeta-equipo__cita">
-              <span class="comilla-roja" aria-hidden="true">&ldquo;</span>
-              {persona.cita}
-              <span class="comilla-roja" aria-hidden="true">&rdquo;</span>
-            </p>
-          </div>
-        </li>
-      ))}
-    </ul>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     S8 — SPEAKERS
-     Oscuro con placeholders y formulario postular
-     ============================================================ -->
-<section id="speakers" class="seccion-dark dark-section" aria-labelledby="h-speakers">
-  <div class="seccion-inner">
-    <!-- FINDING-02: id en h2 (no en p) -->
-    <p class="eyebrow-label" style="margin-bottom:16px;">Speakers</p>
-    <h2 class="headline-bold text-white" id="h-speakers"
-        style="font-size: clamp(1.4rem, 3vw, 1.9rem); margin-bottom:8px;">
-      Los speakers se confirman<br/>en
-      <span style="color:var(--color-ted-red);">agosto 2026.</span>
-    </h2>
-    <p class="text-white/70"
-       style="font-size:0.9rem; max-width:50ch; margin-bottom:36px;">
-      Postula ahora. Buscamos historias auténticas que inspiren, desafíen y movilicen.
+  <!-- Franja inferior -->
+  <div class="s-concepto__franja" aria-hidden="true">
+    <p class="s-concepto__franja-text display-light">
+      TODA GRAN TRANSFORMACIÓN COMIENZA CON UNA IDEA
     </p>
+  </div>
+</section>
 
-    <!-- 6 placeholders de speakers -->
-    <ul class="s8-grid" role="list" aria-label="Speakers por confirmar">
-      {Array.from({length: evento.speakers}).map((_, i) => (
-        <li role="listitem">
-          <div class="speaker-placeholder">
-            <svg aria-hidden="true" width="36" height="36" viewBox="0 0 24 24"
-                 fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
-              <path d="M22 2L11 13"/>
-              <path d="M22 2L15 22 11 13 2 9 22 2z"/>
-            </svg>
-            Speaker {i + 1}<span class="sr-only"> — por confirmar</span>
-          </div>
-        </li>
+
+<!-- ============================================================
+     S6 — FICHA TÉCNICA
+     Fondo claro. Polaroid izquierda + datos + contadores + temáticas.
+     ============================================================ -->
+<section id="evento" class="s-ficha seccion-light" aria-labelledby="h-ficha">
+  <div class="seccion-inner s-ficha__inner">
+
+    <!-- Columna izquierda: polaroid -->
+    <div class="s-ficha__left">
+      <div class="polaroid" aria-hidden="true">
+        <Image
+          src={imgFicha}
+          alt=""
+          width={360}
+          height={480}
+          loading="lazy"
+          decoding="async"
+          class="polaroid__img"
+        />
+        <div class="polaroid__caption">TEDxBarrioUniversitario Women 2026</div>
+      </div>
+      <blockquote class="caja-lavanda s-ficha__cita" style="margin-top:1.5rem;">
+        <p>"Cada idea que se comparte abre una puerta que antes nadie veía."</p>
+      </blockquote>
+    </div>
+
+    <!-- Columna derecha: datos -->
+    <div class="s-ficha__right">
+      <p class="eyebrow-label">El evento</p>
+      <h2 id="h-ficha" class="display-black s-ficha__h2">
+        FICHA TÉCNICA <span class="flecha-roja" aria-hidden="true">→</span>
+      </h2>
+
+      <!-- Logo UdeC -->
+      <div class="s-ficha__udec">
+        <img src={`${baseUrl}/partners/udec-negro.png`} alt="Universidad de Concepción"
+             width="160" height="60" loading="lazy" decoding="async" class="s-ficha__udec-logo"/>
+        <p class="s-ficha__udec-label">Campus sede del evento</p>
+      </div>
+
+      <!-- Contadores count-up -->
+      <div class="s-ficha__counters" role="list" aria-label="Datos del evento">
+        <div class="counter-item" role="listitem">
+          <span class="counter-num mono-date js-counter"
+                data-target={evento.asistentes}
+                aria-label={`${evento.asistentes} personas asistentes`}>--</span>
+          <span class="counter-label">Personas</span>
+        </div>
+        <div class="counter-item" role="listitem">
+          <span class="counter-num mono-date js-counter"
+                data-target={evento.speakers}
+                aria-label={`${evento.speakers} speakers`}>--</span>
+          <span class="counter-label">Speakers</span>
+        </div>
+        <div class="counter-item" role="listitem">
+          <span class="counter-num mono-date js-counter"
+                data-target={evento.ideas}
+                aria-label={`${evento.ideas} día`}>--</span>
+          <span class="counter-label">Día</span>
+        </div>
+      </div>
+
+      <!-- 6 Temáticas -->
+      <div class="s-ficha__tematicas">
+        <p class="s-ficha__tematicas-label eyebrow-label" style="color:var(--color-charcoal); margin-bottom:10px;">Temáticas</p>
+        <ul class="s-ficha__tematicas-list" role="list">
+          {tematicas.map(t => (
+            <li role="listitem">
+              <span class="flecha-roja" aria-hidden="true">→</span> {t}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S7 — ¿POR QUÉ SUMARSE COMO AUSPICIADOR?
+     Fondo oscuro. Bullets izquierda + 2 polaroids rotadas derecha.
+     ============================================================ -->
+<section id="auspiciadores" class="s-auspi dark-section" aria-labelledby="h-auspi">
+  <div class="seccion-inner s-auspi__inner">
+
+    <!-- Col izquierda: texto -->
+    <div class="s-auspi__copy">
+      <p class="eyebrow-label">¿Por qué sumarse?</p>
+      <h2 id="h-auspi" class="display-black s-auspi__h2">
+        ¿POR QUÉ SUMARSE<br/>COMO AUSPICIADOR?
+      </h2>
+      <ul class="s-auspi__bullets" role="list">
+        {[
+          'Visibilidad ante una audiencia comprometida con el cambio',
+          'Asociación directa con el ecosistema de ideas TED a nivel global',
+          'Presencia en comunicaciones digitales, impresos y señalética del evento',
+          'Acceso preferencial a la jornada y actividades de networking',
+          'Reconocimiento como organización que apuesta por el conocimiento',
+          'Reporte de impacto post-evento con métricas de alcance',
+        ].map(b => (
+          <li class="s-auspi__bullet" role="listitem">
+            <span class="flecha-roja s-auspi__check" aria-hidden="true">✓</span>
+            {b}
+          </li>
+        ))}
+      </ul>
+
+      <blockquote class="s-auspi__cita">
+        <p class="s-auspi__cita-text">
+          <span class="comilla-roja">"</span>
+          Las ideas necesitan un ecosistema que las impulse para despegar.
+          <span class="comilla-roja">"</span>
+        </p>
+      </blockquote>
+    </div>
+
+    <!-- Col derecha: 2 polaroids rotadas -->
+    <div class="s-auspi__polars" aria-hidden="true">
+      <div class="polaroid polaroid--rotate-left">
+        <Image
+          src={imgAuspPolar}
+          alt=""
+          width={340}
+          height={260}
+          loading="lazy"
+          decoding="async"
+          class="polaroid__img"
+        />
+        <div class="polaroid__caption">Alcance · Presencia · Impacto</div>
+      </div>
+      <div class="polaroid polaroid--rotate-right" style="margin-top:1.5rem;">
+        <Image
+          src={imgAuspPolar}
+          alt=""
+          width={340}
+          height={260}
+          loading="lazy"
+          decoding="async"
+          class="polaroid__img"
+        />
+        <div class="polaroid__caption">Ideas que conectan organizaciones</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S8 — BENEFICIOS PARA SU ORGANIZACIÓN
+     Fondo claro. 4 en fila + CTA formulario.
+     ============================================================ -->
+<section id="beneficios" class="s-beneficios seccion-light texture-overlay" aria-labelledby="h-beneficios">
+  <div class="seccion-inner">
+
+    <div class="s-beneficios__header">
+      <p class="eyebrow-label">Lo que obtendrá</p>
+      <h2 id="h-beneficios" class="display-black s-beneficios__h2">BENEFICIOS <span style="font-weight:300;">PARA SU ORGANIZACIÓN</span></h2>
+    </div>
+
+    <div class="beneficios-grid" role="list">
+      {beneficios.map((b, i) => (
+        <div class="beneficio-card" role="listitem">
+          {i < beneficios.length - 1 && (
+            <span class="beneficio-arrow" aria-hidden="true">→</span>
+          )}
+          <div class="beneficio-card__icon" aria-hidden="true">{b.icono}</div>
+          <h3 class="beneficio-card__titulo headline-bold">{b.titulo.toUpperCase()}</h3>
+          <p class="beneficio-card__texto">{b.texto}</p>
+        </div>
       ))}
-    </ul>
+    </div>
 
-    <!-- CTA postular como speaker — FINDING-15: aria-labelledby en form -->
-    <div class="s8-cta">
-      <h3 class="headline-bold text-white" id="form-speaker-titulo"
-          style="font-size: clamp(1.2rem, 2.5vw, 1.7rem); margin-bottom:8px;">
-        ¿Tienes una idea<br/>que vale la pena compartir?
-      </h3>
-      <p class="s8-sub"
-         style="font-size:0.875rem; max-width:42ch; margin-bottom:8px;">
-        15 minutos. 1 idea potente. Impacto en toda una comunidad.
-      </p>
-      <!-- FINDING-13: indicar campos obligatorios -->
-      <p class="form-required-note" style="margin-bottom:16px;">
-        Los campos marcados con <span aria-hidden="true">*</span>
-        <span class="sr-only">asterisco</span> son obligatorios.
-      </p>
+    <!-- CTA → form Formspree alianzas -->
+    <div class="s-beneficios__cta">
+      <a href="#form-partner" class="btn-primary">Quiero ser Partner →</a>
+    </div>
 
-      <!-- FINDING-14: sin novalidate → browser valida accesiblemente -->
+    <!-- Formulario de alianza -->
+    <div id="form-partner" class="s-beneficios__form">
+      <h3 class="s-beneficios__form-title headline-bold">Escríbenos para auspiciar</h3>
       <form
-        action={`https://formspree.io/f/${import.meta.env.FORMSPREE_FORM_ID || 'placeholder'}`}
+        action={`https://formspree.io/f/${FORMSPREE_ID}`}
         method="POST"
-        class="s8-form"
-        aria-labelledby="form-speaker-titulo"
+        class="form-partner"
+        aria-label="Formulario de solicitud de auspicio"
       >
-        {/* Honeypot anti-spam */}
+        <input type="hidden" name="_tipo" value="partner"/>
+        <!-- Honeypot anti-spam WCAG 3.3.2 -->
         <input type="text" name="_gotcha" tabindex="-1" aria-hidden="true"
-               style="display:none !important" />
-        <input type="hidden" name="_subject"
-               value="Postulación speaker TEDxBarrioUniversitario Women 2026" />
-        <input type="hidden" name="_tipo" value="postulacion-speaker" />
+               style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;"/>
 
-        <div class="s8-form-row">
-          <div class="form-group">
-            <label class="form-label" for="sp-nombre">
-              Nombre completo <span aria-hidden="true">*</span>
-            </label>
-            <input class="form-input" type="text" id="sp-nombre" name="nombre"
-                   required autocomplete="name" placeholder="Tu nombre" />
+        <div class="form-partner__row">
+          <div class="form-partner__field">
+            <label class="form-partner__label" for="p-nombre">Nombre y organización</label>
+            <input id="p-nombre" name="nombre" type="text" required
+                   placeholder="Ej. Cristian Sánchez · ANAMI Spa"
+                   class="form-partner__input" autocomplete="name"/>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="sp-email">
-              Correo electrónico <span aria-hidden="true">*</span>
-            </label>
-            <input class="form-input" type="email" id="sp-email" name="email"
-                   required autocomplete="email" placeholder="tu@correo.cl" />
+          <div class="form-partner__field">
+            <label class="form-partner__label" for="p-email">Correo electrónico</label>
+            <input id="p-email" name="email" type="email" required
+                   placeholder="contacto@suempresa.cl"
+                   class="form-partner__input" autocomplete="email"/>
           </div>
         </div>
-        <div class="form-group">
-          <label class="form-label" for="sp-idea">
-            Tu idea en una frase <span aria-hidden="true">*</span>
-          </label>
-          <input class="form-input" type="text" id="sp-idea" name="idea"
-                 required
-                 placeholder='Ej: "La incertidumbre es la única certeza que vale la pena abrazar"' />
+        <div class="form-partner__field">
+          <label class="form-partner__label" for="p-mensaje">¿Cómo le gustaría participar?</label>
+          <textarea id="p-mensaje" name="mensaje" rows="4" required
+                    placeholder="Cuéntenos sobre su organización y el tipo de auspicio que le interesa…"
+                    class="form-partner__input form-partner__textarea"></textarea>
         </div>
-        <div class="form-group">
-          <label class="form-label" for="sp-resumen">Resumen de tu charla (opcional)</label>
-          <textarea class="form-input" id="sp-resumen" name="resumen" rows="3"
-                    placeholder="¿De qué trata tu propuesta? ¿Qué transformación busca generar?"
-                    style="resize:vertical;"></textarea>
-        </div>
-
-        <div class="s8-form-footer">
-          <ul class="s8-criterios" role="list" aria-label="Criterios de selección">
-            {criteriosSpeaker.map(c => (
-              <li role="listitem">
-                <span style="color:#22c55e;" aria-hidden="true">✓</span> {c}
-              </li>
-            ))}
-          </ul>
-          <button type="submit" class="btn-primary">
-            Postular como speaker →
-          </button>
-        </div>
+        <button type="submit" class="btn-primary">Enviar solicitud →</button>
       </form>
     </div>
 
   </div>
 </section>
 
-</BaseLayout>
 
+<!-- ============================================================
+     S9 — CONVOCATORIA DE SPEAKERS
+     Fondo mixto (claro). Silueta TU NOMBRE + proceso 3 etapas + form.
+     ============================================================ -->
+<section id="speakers" class="s-speakers seccion-light" aria-labelledby="h-speakers">
+  <div class="seccion-inner">
+
+    <div class="s-speakers__header">
+      <p class="eyebrow-label">Convocatoria</p>
+      <h2 id="h-speakers" class="display-black s-speakers__h2">CONVOCATORIA DE SPEAKERS</h2>
+      <p class="s-speakers__sub">¿Tienes una idea que merece ser compartida?</p>
+    </div>
+
+    <div class="s-speakers__layout">
+
+      <!-- Imagen silueta "TU NOMBRE" -->
+      <div class="s-speakers__photo">
+        <div class="s-speakers__photo-wrap">
+          <Image
+            src={imgConvoca}
+            alt="Silueta de speaker en el escenario — Tu nombre podría estar aquí"
+            width={420}
+            height={560}
+            loading="lazy"
+            decoding="async"
+            class="s-speakers__photo-img"
+          />
+          <div class="s-speakers__tu-nombre display-black" aria-hidden="true">TU NOMBRE</div>
+        </div>
+      </div>
+
+      <!-- Info + proceso + form -->
+      <div class="s-speakers__info">
+
+        <div class="s-speakers__quienes">
+          <h3 class="headline-bold s-speakers__quienes-h">¿Quiénes pueden postular?</h3>
+          <ul class="s-speakers__quienes-list" role="list">
+            {[
+              'Cualquier persona con una idea poderosa que valga la pena compartir',
+              'No se requiere experiencia previa en conferencias o charlas',
+              'Hombres y mujeres que habiten o tengan vínculo con el Biobío',
+              'Charla máximo 15 minutos · 1 idea central · selección editorial independiente',
+            ].map(item => (
+              <li class="s-speakers__quienes-item" role="listitem">
+                <span class="flecha-roja" aria-hidden="true">→</span> {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Proceso 3 etapas -->
+        <div class="s-proceso" aria-label="Proceso de postulación en 3 etapas">
+          {procesoSpeaker.map((e, i) => (
+            <div class="s-proceso__step">
+              <div class="s-proceso__num mono-date" aria-hidden="true">{e.num}</div>
+              <div class="s-proceso__content">
+                <h4 class="s-proceso__title headline-bold">{e.titulo}</h4>
+                <p class="s-proceso__desc">{e.desc}</p>
+              </div>
+              {i < procesoSpeaker.length - 1 && (
+                <div class="s-proceso__connector" aria-hidden="true"></div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <!-- Formulario speaker → Formspree -->
+        <div id="form-speaker" class="s-speakers__form">
+          <h3 class="s-speakers__form-title headline-bold">POSTULA COMO SPEAKER</h3>
+          <p class="s-speakers__form-sub">¿Listo para alzar el vuelo con tu idea?</p>
+          <form
+            action={`https://formspree.io/f/${FORMSPREE_ID}`}
+            method="POST"
+            class="form-speaker"
+            aria-label="Formulario de postulación como speaker"
+          >
+            <input type="hidden" name="_tipo" value="postulacion-speaker"/>
+            <input type="text" name="_gotcha" tabindex="-1" aria-hidden="true"
+                   style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;"/>
+
+            <div class="form-speaker__row">
+              <div class="form-speaker__field">
+                <label class="form-label" for="sp-nombre">Nombre completo</label>
+                <input id="sp-nombre" name="nombre" type="text" required
+                       placeholder="Tu nombre"
+                       class="form-input" autocomplete="name"/>
+              </div>
+              <div class="form-speaker__field">
+                <label class="form-label" for="sp-email">Correo electrónico</label>
+                <input id="sp-email" name="email" type="email" required
+                       placeholder="tu@correo.cl"
+                       class="form-input" autocomplete="email"/>
+              </div>
+            </div>
+            <div class="form-speaker__field">
+              <label class="form-label" for="sp-idea">Tu idea en una frase</label>
+              <input id="sp-idea" name="idea" type="text" required
+                     placeholder="Ej. Cómo el diseño regenerativo puede salvar el Biobío"
+                     class="form-input"/>
+            </div>
+            <div class="form-speaker__field">
+              <label class="form-label" for="sp-descripcion">Cuéntanos más sobre tu idea</label>
+              <textarea id="sp-descripcion" name="descripcion" rows="4" required
+                        placeholder="¿Por qué esta idea importa? ¿A quién le puede cambiar la perspectiva?"
+                        class="form-input" style="resize:vertical;"></textarea>
+            </div>
+            <button type="submit" class="btn-primary">POSTULA COMO SPEAKER →</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S10 — NUESTROS PARTNERS
+     Fondo claro. Carrusel 5 categorías.
+     ============================================================ -->
+<section id="partners" class="s-partners seccion-light texture-overlay" aria-labelledby="h-partners">
+  <div class="seccion-inner">
+
+    <div class="s-partners__header">
+      <p class="eyebrow-label">Partners</p>
+      <h2 id="h-partners" class="display-black s-partners__h2">NUESTROS PARTNERS</h2>
+      <p class="s-partners__sub">Las grandes ideas necesitan grandes aliados.</p>
+    </div>
+
+    <!-- Carrusel -->
+    <div class="partners-carousel" role="region" aria-label="Carrusel de categorías de partners">
+      <button class="partners-prev" aria-label="Categoría anterior" id="btn-prev">‹</button>
+
+      <div class="partners-track-wrap">
+        <div class="partners-track" id="partners-track">
+          {partners.map((p, i) => (
+            <div class="partners-slide" role="group" aria-label={`Categoría ${i+1} de ${partners.length}: ${p.categoria}`}
+                 id={`slide-${i}`}>
+              <p class="partners-slide__cat eyebrow-label" style="color:var(--color-charcoal);">{p.categoria}</p>
+              <div class="partners-slide__logos">
+                {p.categoria === 'Institución Anfitriona' && (
+                  <img src={`${baseUrl}/partners/udec-negro.png`}
+                       alt="Universidad de Concepción"
+                       width="200" height="75" loading="lazy" decoding="async"
+                       class="partners-logo"/>
+                )}
+                {p.categoria === 'Estratégico' && (
+                  <div class="partners-placeholder partners-placeholder--anami">
+                    <span class="display-black" style="font-size:1.2rem; color:var(--color-charcoal);">ANAMI Studio</span>
+                    <span style="font-size:0.7rem; color:rgba(35,35,35,0.6);">Desarrollo web & software</span>
+                  </div>
+                )}
+                {p.placeholder && (
+                  <div class="partners-placeholder">
+                    <span>Logo partner · <em>{p.categoria}</em></span>
+                    <span style="font-size:0.65rem; color:rgba(35,35,35,0.5);">Próximamente</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <button class="partners-next" aria-label="Categoría siguiente" id="btn-next">›</button>
+    </div>
+
+    <!-- Indicadores — grupo de botones (no tab pattern: no hay panels navegables) -->
+    <div class="partners-dots" role="group" aria-label="Navegar categorías de partners" id="partners-dots">
+      {partners.map((p, i) => (
+        <button class={`partners-dot${i === 0 ? ' partners-dot--active' : ''}`}
+                aria-label={p.categoria} data-idx={i} id={`dot-${i}`}
+                aria-pressed={i === 0 ? 'true' : 'false'}>
+        </button>
+      ))}
+    </div>
+    <!-- Live region para anuncios del carrusel (FINDING-10) -->
+    <div id="carousel-announce" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+
+    <!-- CTA auspiciar -->
+    <p class="s-partners__cta-text">
+      ¿Tu organización quiere ser parte?
+      <a href="#form-partner" class="text-ted-red s-partners__link">Conversemos →</a>
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S11 — CONTACTO
+     Fondo oscuro. Izq: datos + socials. Der: foto + cita.
+     ============================================================ -->
+<section id="contacto" class="s-contacto dark-section" aria-labelledby="h-contacto">
+  <div class="seccion-inner s-contacto__inner">
+
+    <!-- Col izquierda: datos -->
+    <div class="s-contacto__copy">
+      <p class="eyebrow-label">Contacto</p>
+      <h2 id="h-contacto" class="display-black s-contacto__h2">CONTACTO</h2>
+      <p class="s-contacto__subtitulo">¿Quieres ser parte de este viaje?</p>
+
+      <a href={`mailto:${evento.email}`} class="s-contacto__email headline-bold">
+        {evento.email}
+      </a>
+
+      <p class="s-contacto__redes-label">Síguenos en</p>
+      <div class="s-contacto__redes" role="list" aria-label="Redes sociales">
+        <!-- Instagram -->
+        <a href={`https://instagram.com/${evento.ig.replace('@', '')}`}
+           target="_blank" rel="noopener"
+           class="s-contacto__red" role="listitem"
+           aria-label="Instagram de TEDxBarrioUniversitario Women (abre en nueva pestaña)">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+          <span>{evento.ig}</span>
+        </a>
+        <!-- LinkedIn -->
+        <a href={`https://linkedin.com/company/${evento.linkedin}`}
+           target="_blank" rel="noopener"
+           class="s-contacto__red" role="listitem"
+           aria-label="LinkedIn de TEDxBarrioUniversitario Women (abre en nueva pestaña)">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.8">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+          <span>LinkedIn</span>
+        </a>
+        <!-- Flickr -->
+        <a href={`https://flickr.com/people/${evento.flickr}`}
+           target="_blank" rel="noopener"
+           class="s-contacto__red" role="listitem"
+           aria-label="Flickr de TEDxBarrioUniversitario Women (abre en nueva pestaña)">
+          <!-- Icono Flickr: dos círculos -->
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <circle cx="7" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="17" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+          <span>Flickr</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Col derecha: foto + cita -->
+    <div class="s-contacto__photo-col">
+      <div class="s-contacto__photo-wrap parallax-img">
+        <Image
+          src={imgContacto}
+          alt="Audiencia del evento TEDxBarrioUniversitario Women"
+          width={600}
+          height={400}
+          loading="lazy"
+          decoding="async"
+          class="s-contacto__photo-img"
+        />
+      </div>
+      <blockquote class="caja-lavanda s-contacto__cita" style="margin-top:1.25rem;">
+        <p>"Las grandes ideas comienzan con una conversación."</p>
+      </blockquote>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     ESTILOS de sección (complementan global.css y BaseLayout)
+     ============================================================ -->
 <style>
-/* ============================================================
-   LAYOUT BASE DE SECCIONES
-   ============================================================ */
-.seccion-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: clamp(56px, 8vw, 96px) clamp(16px, 5vw, 48px);
-}
-.seccion-dark  { background: var(--color-charcoal); }
-.seccion-light { background: var(--color-surface); }
 
-/* ============================================================
-   S1 — HERO
-   ============================================================ */
-.hero {
-  background: var(--color-surface);
-  min-height: 85vh;
-  display: flex;
-  align-items: center;
-}
-.hero__inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: clamp(48px, 8vw, 80px) clamp(16px, 5vw, 48px);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 5vw, 72px);
-  align-items: center;
-  width: 100%;
+/* ── UTILIDADES ─────────────────────────────────────────────── */
+.seccion-light  { background: var(--color-surface); }
+.seccion-inner  { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+.seccion-2col   { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+.text-ted-red   { color: var(--color-ted-red); }
+
+.flecha-roja {
+  color: var(--color-ted-red);
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.1em;
 }
 
-/* Texto rotado vertical */
-.hero__vertical-text {
-  position: absolute;
-  left: -14px;
-  top: 50%;
-  transform: rotate(-90deg) translateX(-50%);
-  transform-origin: left center;
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: 0.55rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(35,35,35,0.35);
-  white-space: nowrap;
-}
-.hero__copy { position: relative; }
-
-.hero__headline {
+/* ── S1 HERO ────────────────────────────────────────────────── */
+.s-hero {
+  position: relative;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
-  gap: 0;
-  margin: 0 0 16px;
+  overflow: hidden;
+  padding-top: 70px; /* compensar header fijo */
 }
-.hero__line-light,
-.hero__line-black {
+
+/* Foto full-bleed con gradiente oscuro izquierda→derecha */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.82) 0%,
+    rgba(0,0,0,0.65) 40%,
+    rgba(0,0,0,0.30) 70%,
+    rgba(0,0,0,0.10) 100%
+  );
+}
+.hero-bg__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   display: block;
-  font-size: clamp(3.5rem, 10vw, 6.5rem);
-  color: var(--color-charcoal);
+}
+
+/* Texto vertical BARRIO UNIVERSITARIO */
+.hero-vertical {
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-lr;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  z-index: 1;
   line-height: 1;
 }
 
-.hero__trajectory {
+/* Área de contenido tipográfico */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 3rem 2rem 5.5rem; /* izq mayor para dejar espacio al vertical text */
+}
+
+.hero-h1 {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.88;
+  gap: 0;
+  margin: 0;
+}
+.hero-h1__alzar,
+.hero-h1__el {
+  font-size: clamp(5rem, 12vw, 11rem);
+  color: rgba(255,255,255,0.95);
+}
+.hero-h1__vuelo {
+  font-size: clamp(6.5rem, 15vw, 14rem);
+  color: #ffffff;
+}
+
+/* ── COUNTDOWN ISLA FLOTANTE ─────────────────────────────────── */
+.cd-island-wrap {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  padding: 0 1.5rem;
+  margin-top: -4rem; /* solapa sobre el bottom del hero */
+}
+.cd-island {
+  background: #111;
+  border-radius: 20px;
+  padding: 1.75rem 2.5rem;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.55);
+}
+.cd-island__inner {
   display: flex;
   align-items: center;
-  gap: 4px;
-  margin-bottom: 16px;
+  justify-content: center;
+  gap: 1rem;
 }
-.hero__flecha { font-size: 2rem; }
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.countdown-label {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65); /* ~5.0:1 ✓ WCAG AA */
+  order: -1; /* etiqueta arriba del número */
+}
+.countdown-num {
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  color: #ffffff;
+  line-height: 1;
+  background: #1e1e1e;
+  border-radius: 8px;
+  padding: 0.2rem 0.75rem;
+  min-width: 2.5ch;
+  text-align: center;
+}
+.countdown-sep {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--color-ted-red);
+  align-self: flex-end;
+  padding-bottom: 0.2rem;
+  margin-top: 1.4rem; /* alinear con los números, bajo las etiquetas */
+}
 
-.hero__tagline {
+/* ── S2 EQUIPO ──────────────────────────────────────────────── */
+.s-equipo {
+  padding: var(--spacing-section) 0;
+  padding-top: 7rem; /* espacio para la isla countdown solapada */
+}
+
+/* Intro 2 columnas */
+.s-equipo__intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-bottom: 3.5rem;
+}
+.s-equipo__intro-left { /* vacío: solo organiza el grid */ }
+.s-equipo__eyebrow { margin-bottom: 0.5rem; }
+.s-equipo__titulo {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--color-charcoal);
+  margin-top: 0.25rem;
+  line-height: 0.95;
+}
+.s-equipo__desc {
+  color: rgba(35,35,35,0.78);
+  line-height: 1.7;
   font-size: 1rem;
-  color: rgba(35,35,35,0.75); /* era 0.6 → 3.5:1 falla → 0.75 = 4.8:1 ✓ WCAG AA */
-  margin: 0 0 24px;
-  max-width: 38ch;
-  line-height: 1.6;
-}
-
-.hero__chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 28px;
-}
-
-.hero__ctas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.hero__right {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-.hero__bp { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
-
-.hero__branding {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.hero__udec {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+}
+
+.equipo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1.25rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.equipo-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid rgba(35,35,35,0.12);
+  background: #fff;
+}
+.equipo-card__foto {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.equipo-card__info {
+  padding: 0.75rem 0.875rem;
+  background: #fff; /* blanco — no lavanda */
+  border-top: 1px solid rgba(35,35,35,0.08);
+}
+.equipo-card__nombre {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-charcoal);
+  margin: 0 0 3px;
+}
+.equipo-card__cargo {
+  font-size: 0.72rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: rgba(35,35,35,0.62);
+  font-family: var(--font-sans);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── S3 ¿QUÉ ES TEDx? ──────────────────────────────────────── */
+.s-que-es { padding: var(--spacing-section) 0; }
+.s-que-es__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.s-que-es__h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--color-charcoal);
+  margin: 0.5rem 0 1rem;
+}
+.s-que-es__flecha { margin-bottom: 1rem; font-size: 2rem; }
+.s-que-es__p {
+  color: rgba(35,35,35,0.8);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+  max-width: 48ch;
+}
+.s-que-es__links { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.5rem; }
+.s-que-es__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-charcoal);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: color 0.15s;
+}
+.s-que-es__link:hover { color: var(--color-ted-red); }
+.s-que-es__photo { position: relative; overflow: hidden; border-radius: 4px; }
+.s-que-es__photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
+/* ── S4 ¿POR QUÉ TEDxWOMEN? ──────────────────────────────── */
+.s-mujeres { padding: var(--spacing-section) 0; }
+.s-mujeres__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.s-mujeres__h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--color-charcoal);
+  margin: 0.5rem 0 1.25rem;
+}
+.s-mujeres__p {
+  color: rgba(35,35,35,0.8);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+  max-width: 46ch;
+}
+.s-mujeres__lista {
+  list-style: none; padding: 0; margin: 0 0 1.5rem;
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.s-mujeres__item {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 0.9rem; color: rgba(35,35,35,0.8); line-height: 1.5;
+}
+.s-mujeres__cita { font-style: italic; font-size: 0.95rem; }
+.s-mujeres__photo { position: relative; overflow: hidden; border-radius: 4px; }
+.s-mujeres__photo-img {
+  width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 4px;
+}
+
+/* ── S5 ALZAR EL VUELO (concepto) ──────────────────────────── */
+.s-concepto {
+  background: var(--color-charcoal);
+  padding: var(--spacing-section) 0 0;
+}
+.s-concepto__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+.s-concepto__h2 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  color: #ffffff;
+  line-height: 0.9;
+  margin: 0 0 1.5rem;
+}
+.s-concepto__sub {
+  color: rgba(255,255,255,0.65);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  max-width: 26ch;
+  line-height: 1.55;
+}
+.s-bp {
+  background: var(--color-lavanda);
+  margin-bottom: 1.5rem;
+}
+.s-bp__dest { text-align: right; }
+
+/* Avión SVG */
+.s-avion { padding: 0.5rem 0; }
+.s-avion__svg { width: 100%; max-width: 460px; height: auto; overflow: visible; }
+
+/* Franja inferior */
+.s-concepto__franja {
+  background: var(--color-ted-red);
+  padding: 1rem 1.5rem;
+  text-align: center;
+  overflow: hidden;
+}
+.s-concepto__franja-text {
+  color: #ffffff;
+  font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+  letter-spacing: 0.18em;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* ── S6 FICHA TÉCNICA ──────────────────────────────────────── */
+.s-ficha { padding: var(--spacing-section) 0; }
+.s-ficha__inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Polaroid */
+.polaroid {
+  background: #fff;
+  padding: 10px 10px 2.5rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  border-radius: 2px;
+  display: inline-block;
+}
+.polaroid__img { display: block; width: 100%; height: auto; }
+.polaroid__caption {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(35,35,35,0.65);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+.polaroid--rotate-left  { transform: rotate(-3deg); }
+.polaroid--rotate-right { transform: rotate(3deg); }
+
+.s-ficha__right { display: flex; flex-direction: column; gap: 1.25rem; }
+.s-ficha__h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--color-charcoal);
+  margin: 0.4rem 0 0;
+}
+.s-ficha__udec { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.s-ficha__udec-logo { height: 44px; width: auto; object-fit: contain; }
+.s-ficha__udec-label {
+  font-family: var(--font-display);
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
   color: rgba(35,35,35,0.6);
 }
 
-@media (max-width: 768px) {
-  .hero__inner { grid-template-columns: 1fr; }
-  .hero__right { order: -1; }
-  .hero__vertical-text { display: none; }
+/* Contadores */
+.s-ficha__counters {
+  display: flex; gap: 2rem; flex-wrap: wrap;
+  list-style: none; padding: 0; margin: 0.5rem 0;
 }
-
-/* ============================================================
-   S2 — ¿Qué es TEDx?
-   ============================================================ */
-.seccion-2col {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: clamp(32px, 5vw, 64px);
-  align-items: center;
-}
-@media (max-width: 640px) {
-  .seccion-2col { grid-template-columns: 1fr; }
-  .s2-logo-col { display: flex; gap: 16px; align-items: center; }
-}
-
-.s2-logo { width: 140px; height: auto; }
-.s2-trayectoria { display: block; margin-top: 8px; }
-
-.s2-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 24px;
-}
-.s2-pill {
-  background: rgba(175,181,219,0.12);
-  border-color: rgba(175,181,219,0.3);
-  color: rgba(255,255,255,0.85);
-}
-
-/* ============================================================
-   S3 — El concepto
-   ============================================================ */
-.s3-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 5vw, 64px);
-  align-items: start;
-}
-@media (max-width: 768px) {
-  .s3-layout { grid-template-columns: 1fr; }
-}
-
-.s3-h2 {
-  font-size: clamp(2rem, 5vw, 3rem);
+.counter-item { display: flex; flex-direction: column; align-items: flex-start; }
+.counter-num {
+  font-size: clamp(2.5rem, 6vw, 4rem);
   color: var(--color-charcoal);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  line-height: 1;
 }
-.s3-enfasis { color: var(--color-charcoal); }
-
-.s3-flecha {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 16px;
+.counter-label {
+  font-family: var(--font-display);
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(35,35,35,0.75); /* era 0.55 ~2.8:1 FALLA → 0.75 ~4.8:1 ✓ WCAG AA */
+  margin-top: 2px;
 }
 
-.s3-p {
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: rgba(35,35,35,0.78); /* era 0.72 → 4.2:1 falla → 0.78 = 4.6:1 ✓ WCAG AA */
-  margin: 0 0 16px;
+/* Temáticas */
+.s-ficha__tematicas-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 0.4rem;
 }
-.s3-cierre {
-  font-style: italic;
-  color: var(--color-charcoal);
-  font-weight: 600;
-}
-.s3-bp { margin-top: 24px; }
-
-/* ============================================================
-   S4 — ¿Por qué TEDxWomen?
-   ============================================================ */
-.s4-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 5vw, 64px);
-  align-items: start;
-}
-@media (max-width: 640px) {
-  .s4-layout { grid-template-columns: 1fr; }
+.s-ficha__tematicas-list li {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 0.88rem; color: rgba(35,35,35,0.8); line-height: 1.45;
 }
 
-.s4-cita { margin: 0 0 16px; }
-
-.s4-valores {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.s4-valores .pill-valor { width: 100%; }
-
-/* ============================================================
-   S5 — Ficha técnica
-   ============================================================ */
-.s5-layout {
+/* ── S7 AUSPICIADORES ─────────────────────────────────────── */
+.s-auspi { padding: var(--spacing-section) 0; background: var(--color-charcoal); }
+.s-auspi__inner {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: clamp(32px, 5vw, 64px);
-  align-items: center;
-}
-@media (max-width: 768px) {
-  .s5-layout { grid-template-columns: 1fr; }
-}
-
-.s5-dl {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px 32px;
-  margin: 0;
-}
-@media (max-width: 480px) {
-  .s5-dl { grid-template-columns: 1fr; }
-}
-
-.s5-dato dt { margin: 0; }
-.s5-dato dd { margin: 0; }
-.s5-numero  { font-size: 1.6rem; margin: 6px 0 0; display: block; }
-
-.s5-bp { min-width: 280px; box-shadow: 0 2px 24px rgba(0,0,0,0.15); }
-.s5-bp-wrap { flex-shrink: 0; }
-
-/* ============================================================
-   S6 — Auspiciadores
-   ============================================================ */
-.s6-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 5vw, 64px);
+  gap: 4rem;
   align-items: start;
 }
-@media (max-width: 768px) {
-  .s6-layout { grid-template-columns: 1fr; }
+.s-auspi__h2 {
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  color: #ffffff;
+  margin: 0.5rem 0 1.5rem;
+}
+.s-auspi__bullets { list-style: none; padding: 0; margin: 0 0 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.s-auspi__bullet {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.9rem; color: rgba(255,255,255,0.82); line-height: 1.55;
+}
+.s-auspi__check { color: var(--color-lavanda); font-size: 1rem; margin-top: 1px; }
+.s-auspi__cita { border-left: 3px solid var(--color-ted-red); padding-left: 1rem; }
+.s-auspi__cita-text {
+  font-size: 1.1rem; font-style: italic;
+  color: rgba(255,255,255,0.85); line-height: 1.55;
+}
+.s-auspi__polars { display: flex; flex-direction: column; gap: 0.25rem; max-width: 320px; }
+
+/* ── S8 BENEFICIOS ────────────────────────────────────────── */
+.s-beneficios { padding: var(--spacing-section) 0; }
+.s-beneficios__header { text-align: center; margin-bottom: 3rem; }
+.s-beneficios__h2 {
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  color: var(--color-charcoal);
+  margin-top: 0.5rem;
 }
 
-.s6-beneficios {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 24px;
+.beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+  margin-bottom: 3rem;
+}
+.beneficio-card {
+  position: relative;
+  padding: 2rem 1.5rem;
+  border: 1px solid rgba(35,35,35,0.1);
+  display: flex; flex-direction: column; gap: 0.75rem;
+}
+.beneficio-arrow {
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--color-surface);
+  z-index: 1;
+  color: var(--color-ted-red);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.beneficio-card__icon { font-size: 1.8rem; }
+.beneficio-card__titulo {
+  font-size: 0.82rem;
+  color: var(--color-charcoal);
+  letter-spacing: 0.06em;
+}
+.beneficio-card__texto {
+  font-size: 0.85rem;
+  color: rgba(35,35,35,0.7);
+  line-height: 1.55;
+}
+
+.s-beneficios__cta { text-align: center; margin-bottom: 3rem; }
+.s-beneficios__form { max-width: 700px; margin: 0 auto; }
+.s-beneficios__form-title {
+  font-size: 1.3rem; color: var(--color-charcoal); margin-bottom: 1.5rem; text-align: center;
+}
+
+.form-partner { display: flex; flex-direction: column; gap: 1rem; }
+.form-partner__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-partner__field { display: flex; flex-direction: column; gap: 0.35rem; }
+.form-partner__label {
+  font-family: var(--font-display);
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--color-charcoal);
+}
+.form-partner__input {
+  width: 100%;
+  background: #fff;
+  border: 1.5px solid rgba(35,35,35,0.2);
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--color-charcoal);
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+.form-partner__input::placeholder { color: rgba(35,35,35,0.4); }
+.form-partner__input:focus-visible {
+  outline: 2px solid var(--color-ted-red);
+  outline-offset: 1px;
+  border-color: var(--color-ted-red);
+}
+.form-partner__input:focus:not(:focus-visible) { outline: none; border-color: var(--color-ted-red); }
+.form-partner__textarea { resize: vertical; min-height: 100px; }
+
+/* ── S9 SPEAKERS ──────────────────────────────────────────── */
+.s-speakers { padding: var(--spacing-section) 0; }
+.s-speakers__header { text-align: center; margin-bottom: 3rem; }
+.s-speakers__h2 { font-size: clamp(1.8rem, 4vw, 3rem); color: var(--color-charcoal); margin: 0.5rem 0 0.75rem; }
+.s-speakers__sub { color: rgba(35,35,35,0.7); font-size: 1rem; }
+
+.s-speakers__layout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.s-speakers__photo-wrap {
+  position: relative;
+  display: inline-block;
+}
+.s-speakers__photo-img { display: block; border-radius: 4px; max-width: 380px; }
+.s-speakers__tu-nombre {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 0; right: 0;
+  text-align: center;
+  color: #fff;
+  font-size: 1.3rem;
+  letter-spacing: 0.12em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.s-speakers__quienes { margin-bottom: 2rem; }
+.s-speakers__quienes-h { font-size: 1.05rem; color: var(--color-charcoal); margin-bottom: 0.75rem; }
+.s-speakers__quienes-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.45rem; }
+.s-speakers__quienes-item {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 0.88rem; color: rgba(35,35,35,0.78); line-height: 1.5;
+}
+
+/* Proceso 3 etapas */
+.s-proceso { display: flex; flex-direction: column; gap: 0; margin-bottom: 2.5rem; position: relative; }
+.s-proceso__step {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding-bottom: 1.5rem; position: relative;
+}
+.s-proceso__step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 18px;
+  top: 36px;
+  width: 2px;
+  height: calc(100% - 20px);
+  background: rgba(35,35,35,0.12);
+}
+.s-proceso__num {
+  min-width: 36px; height: 36px;
+  background: var(--color-ted-red);
+  color: #fff;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 700;
+  flex-shrink: 0;
+}
+.s-proceso__content { padding-top: 4px; }
+.s-proceso__title { font-size: 0.9rem; color: var(--color-charcoal); margin: 0 0 0.25rem; }
+.s-proceso__desc { font-size: 0.82rem; color: rgba(35,35,35,0.65); line-height: 1.5; margin: 0; }
+
+/* Form speaker */
+.s-speakers__form-title { font-size: 1.2rem; color: var(--color-charcoal); margin-bottom: 0.25rem; }
+.s-speakers__form-sub { font-size: 0.88rem; color: rgba(35,35,35,0.6); margin-bottom: 1.25rem; }
+
+.form-speaker { display: flex; flex-direction: column; gap: 1rem; }
+.form-speaker__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-speaker__field { display: flex; flex-direction: column; gap: 0.35rem; }
+
+/* form-input ya está en global.css (dark) — sobreescribir para claro */
+.s-speakers .form-input {
+  background: #fff;
+  border: 1.5px solid rgba(35,35,35,0.2);
+  color: var(--color-charcoal);
+}
+.s-speakers .form-input::placeholder { color: rgba(35,35,35,0.4); }
+.s-speakers .form-input:focus-visible {
+  outline: 2px solid var(--color-ted-red);
+  border-color: var(--color-ted-red);
+}
+.s-speakers .form-label { color: var(--color-charcoal); }
+
+/* ── S10 PARTNERS ────────────────────────────────────────── */
+.s-partners { padding: var(--spacing-section) 0; }
+.s-partners__header { text-align: center; margin-bottom: 2.5rem; }
+.s-partners__h2 { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--color-charcoal); margin: 0.5rem 0 0.5rem; }
+.s-partners__sub { color: rgba(35,35,35,0.65); font-size: 0.95rem; }
+
+.partners-carousel {
+  display: flex; align-items: center; gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.partners-track-wrap {
+  flex: 1;
+  overflow: hidden;
+  border: 1.5px solid rgba(35,35,35,0.1);
+  border-radius: 4px;
+  min-height: 200px;
+}
+.partners-track {
+  display: flex;
+  transition: transform 0.35s ease;
+}
+.partners-slide {
+  flex: 0 0 100%;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 200px;
 }
-.s6-beneficio {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
+.partners-slide__cat { text-align: center; color: var(--color-charcoal); }
+.partners-slide__logos { display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+.partners-logo { height: 60px; width: auto; object-fit: contain; }
+.partners-placeholder {
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  border: 1.5px dashed rgba(35,35,35,0.2);
+  border-radius: 4px;
+  padding: 1.5rem 2.5rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(35,35,35,0.45);
 }
-.s6-icono { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
 
-.s6-nota {
-  font-size: 0.78rem;
-  color: rgba(35,35,35,0.75); /* era 0.45 → 1.7:1 FALLA → 0.75 = 4.8:1 ✓ WCAG AA */
-  line-height: 1.6;
-  border-left: 2px solid rgba(35,35,35,0.15);
-  padding-left: 12px;
-  margin: 0;
-  max-width: 48ch;
-}
-
-.s6-form-wrap {
+.partners-prev,
+.partners-next {
   background: var(--color-charcoal);
-  padding: 28px;
-  border-radius: 8px;
-  border: 1px solid rgba(175,181,219,0.15);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  width: 38px; height: 38px;
+  font-size: 1.4rem; line-height: 1;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s;
+  flex-shrink: 0;
 }
-.s6-form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.partners-prev:hover,
+.partners-next:hover { background: var(--color-ted-red); }
+.partners-prev:focus-visible,
+.partners-next:focus-visible { outline: 2px solid var(--color-ted-red); outline-offset: 2px; }
+
+.partners-dots {
+  display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 1.5rem;
 }
-.s6-submit { width: 100%; justify-content: center; }
-
-.form-group { display: flex; flex-direction: column; }
-
-/* ============================================================
-   S7 — Equipo
-   ============================================================ */
-.s7-header { margin-bottom: 36px; }
-.s7-titulo-wrap {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  margin-top: 8px;
+.partners-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(35,35,35,0.2);
+  border: none; padding: 0; cursor: pointer;
+  transition: background 0.15s;
 }
+.partners-dot--active,
+.partners-dot:hover { background: var(--color-ted-red); }
 
-.s7-grid {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
+.s-partners__cta-text { text-align: center; font-size: 0.9rem; color: rgba(35,35,35,0.7); }
+.s-partners__link {
+  font-family: var(--font-display); font-weight: 700; text-decoration: none;
+  letter-spacing: 0.04em;
 }
+.s-partners__link:hover { text-decoration: underline; }
 
-/* ============================================================
-   S8 — Speakers
-   ============================================================ */
-.s8-grid {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 48px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 12px;
-}
-
-.s8-cta {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(175,181,219,0.15);
-  border-radius: 8px;
-  padding: clamp(24px, 4vw, 40px);
-}
-
-.s8-form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.s8-form-row {
+/* ── S11 CONTACTO ─────────────────────────────────────────── */
+.s-contacto { padding: var(--spacing-section) 0; background: var(--color-charcoal); }
+.s-contacto__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 4rem;
+  align-items: start;
 }
-@media (max-width: 640px) {
-  .s8-form-row { grid-template-columns: 1fr; }
+.s-contacto__h2 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  color: #ffffff;
+  margin: 0.25rem 0 0.5rem;
 }
-
-.s8-form-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 24px;
-  flex-wrap: wrap;
-  margin-top: 4px;
-}
-
-.s8-criterios {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.72); /* era 0.5 → 3.3:1 FALLA → 0.72 = 5.4:1 ✓ WCAG AA */
+.s-contacto__subtitulo {
+  color: rgba(255,255,255,0.72);
+  font-size: 1rem;
+  margin: 0 0 1.5rem;
   font-family: var(--font-sans);
 }
-.s8-criterios li {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.s-contacto__email {
+  display: block;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  color: var(--color-lavanda);
+  text-decoration: none;
+  margin-bottom: 2rem;
+  word-break: break-all;
+}
+.s-contacto__email:hover { color: #fff; }
+.s-contacto__redes-label {
+  font-family: var(--font-display);
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); margin-bottom: 0.75rem;
+}
+.s-contacto__redes { display: flex; flex-direction: column; gap: 0.75rem; list-style: none; padding: 0; margin: 0; }
+.s-contacto__red {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+  color: rgba(255,255,255,0.82);
+  font-size: 0.9rem;
+  transition: color 0.15s;
+}
+.s-contacto__red:hover { color: var(--color-lavanda); }
+.s-contacto__red:focus-visible { outline: 2px solid var(--color-lavanda); outline-offset: 2px; border-radius: 2px; }
+
+.s-contacto__photo-img {
+  width: 100%; height: auto; object-fit: cover; border-radius: 4px; display: block;
+}
+.s-contacto__cita { font-style: italic; font-size: 0.92rem; }
+
+/* ── PARALLAX ────────────────────────────────────────────── */
+.parallax-img { overflow: hidden; }
+.parallax-img img { will-change: transform; }
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-inner             { grid-template-columns: 1fr; padding-top: 2.5rem; }
+  .hero-photo             { display: none; } /* ocultamos foto hero en móvil para dar espacio al texto */
+  .hero-countdown__inner  { gap: 0.6rem; }
+
+  .s-que-es__inner,
+  .s-mujeres__inner,
+  .s-concepto__inner,
+  .s-ficha__inner,
+  .s-auspi__inner,
+  .s-speakers__layout,
+  .s-contacto__inner { grid-template-columns: 1fr; gap: 2rem; }
+
+  .s-auspi__polars  { flex-direction: row; max-width: 100%; }
+  .beneficios-grid  { grid-template-columns: 1fr 1fr; }
+  .beneficio-arrow  { display: none; }
+
+  .form-partner__row,
+  .form-speaker__row { grid-template-columns: 1fr; }
+
+  .s-concepto__franja-text { white-space: normal; }
 }
 
-/* ============================================================
-   WCAG AA FIXES — Contraste texto en secciones oscuras
-   text-white/70 (3.7:1 FALLA) → mínimo /70 (5.4:1) — FINDING-07
-   ============================================================ */
-.s7-header p,
-.s7-header .text-white\/55 {
-  color: rgba(255,255,255,0.70) !important;
+@media (max-width: 768px) {
+  .s-equipo__intro { grid-template-columns: 1fr; gap: 1.25rem; }
+  .cd-island { border-radius: 12px; padding: 1.25rem 1rem; }
+  .cd-island__inner { gap: 0.5rem; }
 }
 
-/* S8 subtítulo speaker */
-.s8-sub {
-  color: rgba(255,255,255,0.70); /* era text-white/70 → 5.4:1 ✓ */
-  line-height: 1.6;
+@media (max-width: 600px) {
+  .equipo-grid      { grid-template-columns: repeat(2, 1fr); }
+  .beneficios-grid  { grid-template-columns: 1fr; }
+  .s-auspi__polars  { flex-direction: column; }
+  .s-ficha__counters { gap: 1.25rem; }
+  .countdown-num    { font-size: clamp(1.8rem, 8vw, 2.5rem); padding: 0.15rem 0.4rem; }
+  .countdown-sep    { font-size: clamp(1.2rem, 5vw, 2rem); }
+  .cd-island-wrap   { padding: 0 0.75rem; margin-top: -2.5rem; }
 }
 
-/* Nota de campos requeridos en formularios */
-.form-required-note {
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  color: rgba(175,181,219,0.85);  /* lavanda sobre charcoal ~4.8:1 ✓ */
-  margin: 4px 0 16px;
-}
 </style>
+
+
+<!-- ============================================================
+     JAVASCRIPT — Countdown, CountUp, Carrusel, Parallax
+     Todo bajo prefers-reduced-motion
+     ============================================================ -->
+<script>
+(function (): void {
+  'use strict'
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  /* ── COUNTDOWN ───────────────────────────────────────────── */
+  const TARGET = new Date('2026-12-04T09:00:00-03:00').getTime()
+  const cdDias  = document.getElementById('cd-dias')
+  const cdHoras = document.getElementById('cd-horas')
+  const cdMin   = document.getElementById('cd-min')
+  const cdSeg   = document.getElementById('cd-seg')
+
+  function pad(n: number): string { return String(n).padStart(2, '0') }
+
+  function tickCountdown(): void {
+    const diff = TARGET - Date.now()
+    if (diff <= 0) {
+      if (cdDias)  cdDias.textContent  = '00'
+      if (cdHoras) cdHoras.textContent = '00'
+      if (cdMin)   cdMin.textContent   = '00'
+      if (cdSeg)   cdSeg.textContent   = '00'
+      return
+    }
+    const days  = Math.floor(diff / 86400000)
+    const hours = Math.floor((diff % 86400000) / 3600000)
+    const mins  = Math.floor((diff % 3600000)  / 60000)
+    const secs  = Math.floor((diff % 60000)    / 1000)
+    if (cdDias)  cdDias.textContent  = String(days)
+    if (cdHoras) cdHoras.textContent = pad(hours)
+    if (cdMin)   cdMin.textContent   = pad(mins)
+    if (cdSeg)   cdSeg.textContent   = pad(secs)
+  }
+
+  if (prefersReduced) {
+    const remaining = Math.max(0, TARGET - Date.now())
+    const days = Math.floor(remaining / 86400000)
+    if (cdDias)  cdDias.textContent  = String(days)
+    if (cdHoras) cdHoras.textContent = '--'
+    if (cdMin)   cdMin.textContent   = '--'
+    if (cdSeg)   cdSeg.textContent   = '--'
+  } else {
+    tickCountdown()
+    setInterval(tickCountdown, 1000)
+  }
+
+  /* ── COUNT-UP COUNTERS ───────────────────────────────────── */
+  const counterEls = document.querySelectorAll<HTMLElement>('.js-counter')
+
+  const allCounters = Array.from(counterEls).map(el => ({
+    el,
+    target: parseInt(el.dataset.target ?? '0', 10),
+  }))
+
+  if (prefersReduced) {
+    allCounters.forEach(({ el, target }) => { el.textContent = String(target) })
+  } else {
+    const runCounter = (el: HTMLElement, target: number): void => {
+      const duration = 1200
+      const step = 16
+      const inc = Math.ceil(target / (duration / step))
+      let current = 0
+      const timer = setInterval(() => {
+        current = Math.min(current + inc, target)
+        el.textContent = String(current)
+        if (current >= target) clearInterval(timer)
+      }, step)
+    }
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return
+        const item = allCounters.find(c => c.el === entry.target)
+        if (item) {
+          runCounter(item.el, item.target)
+          obs.unobserve(item.el)
+        }
+      })
+    }, { threshold: 0.5 })
+
+    allCounters.forEach(({ el }) => obs.observe(el))
+  }
+
+  /* ── PARTNERS CAROUSEL ───────────────────────────────────── */
+  const track      = document.getElementById('partners-track')
+  const dotsEl     = document.getElementById('partners-dots')
+  const btnPrev    = document.getElementById('btn-prev')
+  const btnNext    = document.getElementById('btn-next')
+  const announceEl = document.getElementById('carousel-announce')
+
+  if (track && dotsEl && btnPrev && btnNext) {
+    let current = 0
+    const slides   = track.children.length
+    const slideEls = Array.from(track.children)
+    const dots     = dotsEl.querySelectorAll('.partners-dot')
+    let announceTimer: ReturnType<typeof setTimeout> | null = null
+
+    const goTo = (idx: number): void => {
+      current = (idx + slides) % slides
+      track.style.transform = `translateX(-${current * 100}%)`
+      dots.forEach((d, i) => {
+        d.classList.toggle('partners-dot--active', i === current)
+        d.setAttribute('aria-pressed', i === current ? 'true' : 'false')
+      })
+      if (announceEl) {
+        const label = slideEls[current]?.getAttribute('aria-label') ?? `Categoría ${current + 1} de ${slides}`
+        if (announceTimer !== null) clearTimeout(announceTimer)
+        announceEl.textContent = label
+        announceTimer = setTimeout(() => { announceEl.textContent = '' }, 2000)
+      }
+    }
+
+    btnPrev.addEventListener('click', () => goTo(current - 1))
+    btnNext.addEventListener('click', () => goTo(current + 1))
+    dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)))
+  }
+
+  /* ── PARALLAX (fotos grandes) ────────────────────────────── */
+  if (!prefersReduced && window.innerWidth > 768) {
+    const parallaxItems = document.querySelectorAll<HTMLElement>('.parallax-img img')
+    if (parallaxItems.length) {
+      let ticking = false
+      const onScroll = (): void => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            parallaxItems.forEach(img => {
+              const wrap = img.closest('.parallax-img')
+              if (!wrap) return
+              const rect    = wrap.getBoundingClientRect()
+              const centerY = rect.top + rect.height / 2
+              const offset  = (window.innerHeight / 2 - centerY) * 0.08
+              img.style.transform = `translateY(${offset}px)`
+            })
+            ticking = false
+          })
+          ticking = true
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true })
+    }
+  }
+
+  /* ── SCROLL REVEALS ──────────────────────────────────────── */
+  if (!prefersReduced) {
+    const revealEls = document.querySelectorAll<HTMLElement>(
+      '.equipo-card, .beneficio-card, .s-proceso__step, .s-auspi__bullet'
+    )
+    if (revealEls.length) {
+      const revObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement
+            el.style.opacity   = '1'
+            el.style.transform = 'translateY(0)'
+            revObs.unobserve(entry.target)
+          }
+        })
+      }, { threshold: 0.15 })
+
+      revealEls.forEach((el, i) => {
+        el.style.opacity    = '0'
+        el.style.transform  = 'translateY(24px)'
+        el.style.transition = `opacity 0.45s ease ${i * 0.05}s, transform 0.45s ease ${i * 0.05}s`
+        revObs.observe(el)
+      })
+    }
+  }
+
+})()
+</script>
+
+</BaseLayout>

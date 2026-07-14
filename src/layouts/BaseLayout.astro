@@ -51,55 +51,67 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
   <body>
     <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
 
+    <!-- Sentinel invisible al top: cuando sale del viewport el header se vuelve sólido -->
+    <div id="scroll-sentinel" aria-hidden="true" style="position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;"></div>
+
     <!-- ============================================================
-         HEADER — claro sticky con logo TEDx negro
+         HEADER — fixed, transparente sobre hero oscuro.
+         Al hacer scroll (sentinel sale de viewport) → fondo charcoal.
+         Nav: QUÉ ES TEDx · EVENTO · AUSPICIA · PARTNERS + POSTULAR rojo
          ============================================================ -->
-    <header class="site-header" role="banner">
+    <header class="site-header" id="site-header" role="banner">
       <div class="site-header__inner">
         <a href="#inicio" class="site-header__logo-link" aria-label="TEDxBarrioUniversitario Women — ir al inicio">
+          <!-- Blanco por defecto (sobre hero oscuro). Se cambia a negro/svg al hacer scroll via JS. -->
           <img
-            src={`${baseUrl}/logo-tedx-negro.svg`}
+            src={`${baseUrl}/logo-tedx-blanco.png`}
             alt="TEDxBarrioUniversitario Women"
             width="160"
-            height="50"
+            height="60"
             loading="eager"
             decoding="async"
+            id="header-logo"
             class="site-header__logo"
           />
         </a>
 
         <nav aria-label="Navegación principal" class="site-header__nav">
-          <a href="#que-es-tedx"   class="header-nav-link header-nav-wide">¿Qué es?</a>
-          <a href="#evento"        class="header-nav-link header-nav-wide">El evento</a>
-          <a href="#auspiciadores" class="header-nav-link">Auspicios</a>
           <a href="#equipo"        class="header-nav-link header-nav-wide">Equipo</a>
-          <a href="#speakers"      class="header-nav-link btn-primary"
-             aria-label="Postular como speaker al evento TEDx">
+          <a href="#que-es-tedx"   class="header-nav-link header-nav-wide">¿Qué es TEDx?</a>
+          <a href="#evento"        class="header-nav-link header-nav-wide">Evento</a>
+          <a href="#auspiciadores" class="header-nav-link header-nav-wide">Auspicios</a>
+          <a href="#partners"      class="header-nav-link header-nav-wide">Partners</a>
+          <a href="#contacto"      class="header-nav-link header-nav-wide">Contacto</a>
+          <a href="#speakers"      class="header-nav-link btn-header-cta"
+             aria-label="Postular como speaker al TEDxBarrioUniversitario Women 2026">
             Postular →
           </a>
         </nav>
       </div>
     </header>
 
-    <!-- WCAG 2.4.1: tabindex="-1" permite que el skip-link mueva el foco — FINDING-04 -->
+    <!-- WCAG 2.4.1: tabindex="-1" permite que el skip-link mueva el foco -->
     <main id="contenido-principal" tabindex="-1">
       <slot />
     </main>
 
     <!-- ============================================================
-         FOOTER — oscuro con logo TEDx blanco
+         FOOTER — oscuro charcoal + borde rojo superior
+         Columnas: Evento · Participar · Conoce más
+         Redes: IG · LinkedIn · Flickr
+         Crédito: Anami Studio
          ============================================================ -->
     <footer class="site-footer dark-section" role="contentinfo">
       <div class="site-footer__inner">
         <div class="site-footer__top">
 
-          <!-- Marca -->
+          <!-- Marca + redes -->
           <div class="site-footer__brand">
             <img
-              src={`${baseUrl}/logo-tedx-blanco.svg`}
+              src={`${baseUrl}/logo-tedx-blanco.png`}
               alt="TEDxBarrioUniversitario Women"
               width="160"
-              height="50"
+              height="60"
               loading="lazy"
               decoding="async"
               class="site-footer__logo"
@@ -107,46 +119,76 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
             <p class="site-footer__tagline">
               Ideas que conectan, voces que transforman.
             </p>
-            <div class="site-footer__social" role="list" aria-label="Redes sociales">
-              <!-- FINDING-21: visible text "IG" ocultado a AT → aria-label contiene el nombre completo -->
-              <a href="https://www.instagram.com/tedxbarriouniversitario"
-                 rel="noopener noreferrer" target="_blank"
-                 class="site-footer__social-link" role="listitem"
-                 aria-label="Instagram de TEDxBarrioUniversitario (abre en nueva pestaña)">
-                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-                <span aria-hidden="true">IG</span>
-              </a>
-              <a href="https://www.linkedin.com/company/tedxbarriouniversitario"
-                 rel="noopener noreferrer" target="_blank"
-                 class="site-footer__social-link" role="listitem"
-                 aria-label="LinkedIn de TEDxBarrioUniversitario (abre en nueva pestaña)">
-                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-                <span aria-hidden="true">LinkedIn</span>
-              </a>
-            </div>
+            <nav aria-label="Redes sociales de TEDxBarrioUniversitario">
+              <ul class="site-footer__social">
+                <li>
+                  <a href="https://www.instagram.com/tedxbarriouniversitario"
+                     rel="noopener noreferrer" target="_blank"
+                     class="site-footer__social-link"
+                     aria-label="Instagram de TEDxBarrioUniversitario (abre en nueva pestaña)">
+                    <!-- Instagram icon -->
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    <span>Instagram</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/company/tedxbarriouniversitario"
+                     rel="noopener noreferrer" target="_blank"
+                     class="site-footer__social-link"
+                     aria-label="LinkedIn de TEDxBarrioUniversitario (abre en nueva pestaña)">
+                    <!-- LinkedIn icon -->
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <span>LinkedIn</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.flickr.com/photos/tedxbarriouniversitario"
+                     rel="noopener noreferrer" target="_blank"
+                     class="site-footer__social-link"
+                     aria-label="Flickr de TEDxBarrioUniversitario (abre en nueva pestaña)">
+                    <!-- Flickr icon -->
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M5.334 6C2.39 6 0 8.39 0 11.334c0 2.942 2.39 5.332 5.334 5.332 2.942 0 5.332-2.39 5.332-5.332C10.666 8.39 8.276 6 5.334 6zm13.332 0c-2.942 0-5.332 2.39-5.332 5.334 0 2.942 2.39 5.332 5.332 5.332C21.61 16.666 24 14.276 24 11.334 24 8.39 21.61 6 18.666 6z"/>
+                    </svg>
+                    <span>Flickr</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
 
-          <!-- Evento -->
+          <!-- Columna: Evento -->
           <div>
-            <h3 class="site-footer__heading">El evento</h3>
+            <h3 class="site-footer__heading">Evento</h3>
             <ul class="site-footer__list">
               <li>04 Diciembre 2026</li>
               <li>09:00 — 13:00 hrs</li>
               <li>Universidad de Concepción</li>
+              <li>Auditorio <em style="opacity:0.6;">[por confirmar]</em></li>
               <li>Concepción, Chile</li>
             </ul>
           </div>
 
-          <!-- Links -->
+          <!-- Columna: Participar -->
           <div>
             <h3 class="site-footer__heading">Participar</h3>
             <ul class="site-footer__list">
               <li><a href="#auspiciadores" class="site-footer__link">Ser auspiciador</a></li>
-              <li><a href="#speakers" class="site-footer__link">Postular como speaker</a></li>
+              <li><a href="#speakers"      class="site-footer__link">Postular como speaker</a></li>
+              <li><a href="#partners"      class="site-footer__link">Ver nuestros partners</a></li>
+            </ul>
+          </div>
+
+          <!-- Columna: Conoce más -->
+          <div>
+            <h3 class="site-footer__heading">Conoce más</h3>
+            <ul class="site-footer__list">
+              <li><a href="#que-es-tedx" class="site-footer__link">¿Qué es TEDx?</a></li>
+              <li><a href="#tedxwomen" class="site-footer__link">¿Por qué TEDxWomen?</a></li>
               <li>
                 <a href="https://www.ted.com/tedx/events/69535"
                    target="_blank" rel="noopener noreferrer"
@@ -158,49 +200,99 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
             </ul>
           </div>
 
-          <!-- UdeC -->
-          <div>
-            <h3 class="site-footer__heading">Sede</h3>
-            <div class="site-footer__udec">
-              <!-- Escudo UdeC en SVG simple o texto -->
-              <p class="text-sm text-white/60 leading-relaxed">
-                Universidad de Concepción<br/>
-                Concepción, Biobío, Chile
-              </p>
-            </div>
-          </div>
-
         </div>
 
-        <!-- Bottom bar -->
+        <!-- Bottom bar: copyright + crédito Anami -->
         <div class="site-footer__bottom">
           <span>© {new Date().getFullYear()} TEDxBarrioUniversitario Women · Concepción, Chile</span>
-          <span class="text-white/40 text-xs">
+          <span class="text-white/40 text-xs hidden sm:block">
             Organizado de forma independiente bajo licencia TED. Las opiniones expresadas son exclusivas de sus organizadores y no representan a TED Conferences LLC.
           </span>
+          <a href="https://anami.cl"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="site-footer__anami-credit"
+             aria-label="Sitio web desarrollado por Anami Studio (abre en nueva pestaña)">
+            Sitio desarrollado por Anami Studio ↗
+          </a>
         </div>
       </div>
     </footer>
+
+    <!-- ============================================================
+         HEADER SCROLL-AWARE — IntersectionObserver sobre sentinel
+         Transparent sobre hero → charcoal al bajar
+         Logo blanco → negro; nav links blancos → charcoal
+         ============================================================ -->
+    <script>
+      (function(): void {
+        const headerMaybe = document.getElementById('site-header');
+        const logo        = document.getElementById('header-logo') as HTMLImageElement | null;
+        const sentinel    = document.getElementById('scroll-sentinel');
+        if (!headerMaybe || !sentinel) return;
+
+        /* Reasignamos a const no-nula para que TypeScript pueda inferir el tipo dentro de setScrolled */
+        const header   = headerMaybe as HTMLElement;
+        const navLinks = header.querySelectorAll('.header-nav-link:not(.btn-header-cta)');
+
+        function setScrolled(scrolled: boolean): void {
+          if (scrolled) {
+            header.classList.add('is-scrolled');
+            if (logo) {
+              logo.src = logo.src.replace('logo-tedx-blanco.png', 'logo-tedx-negro.png');
+            }
+            navLinks.forEach(function(l) { l.classList.add('nav-dark'); });
+          } else {
+            header.classList.remove('is-scrolled');
+            if (logo) {
+              logo.src = logo.src.replace('logo-tedx-negro.png', 'logo-tedx-blanco.png');
+            }
+            navLinks.forEach(function(l) { l.classList.remove('nav-dark'); });
+          }
+        }
+
+        // prefers-reduced-motion: sin transición de header
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) {
+          setScrolled(true);
+          return;
+        }
+
+        const observer = new IntersectionObserver(function(entries) {
+          setScrolled(!entries[0].isIntersecting);
+        }, { threshold: 0 });
+
+        observer.observe(sentinel);
+      })();
+    </script>
 
   </body>
 </html>
 
 <style>
 /* ============================================================
-   HEADER — claro sticky
+   HEADER — fixed, transparente por defecto (sobre hero oscuro)
+   .is-scrolled → fondo charcoal sólido
    ============================================================ */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 50;
-  background: #f7f7f7;
-  border-bottom: 1px solid rgba(35,35,35,0.12);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: transparent;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-header.is-scrolled {
+  background: var(--color-charcoal);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
 }
 
 .site-header__inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 10px clamp(16px, 4vw, 32px);
+  padding: 12px clamp(16px, 4vw, 32px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -226,40 +318,64 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
   gap: clamp(12px, 2vw, 20px);
 }
 
+/* Links en blanco por defecto (header transparente sobre oscuro) */
 .header-nav-link {
   font-family: var(--font-display);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-charcoal);
+  color: rgba(255,255,255,0.9);
   text-decoration: none;
-  padding: 10px 4px;
+  padding: 8px 4px;
   white-space: nowrap;
   transition: color 0.15s ease;
 }
+.header-nav-link:hover { color: #ffffff; }
 
-.header-nav-link:hover { color: var(--color-ted-red); }
+/* Al hacer scroll: links charcoal */
+.header-nav-link.nav-dark { color: rgba(255,255,255,0.85); }
+.header-nav-link.nav-dark:hover { color: #ffffff; }
 
 .header-nav-link:focus-visible {
-  outline: 2px solid var(--color-charcoal);
+  outline: 2px solid #ffffff;
   outline-offset: 3px;
   border-radius: 2px;
 }
 
-/* En móvil < 640px: ocultar nav wide, mostrar solo CTA */
+/* Botón rojo CTA */
+.btn-header-cta {
+  background: var(--color-ted-red);
+  color: #ffffff !important;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.15s ease;
+  white-space: nowrap;
+}
+.btn-header-cta:hover { background: var(--color-ted-red-dark); }
+.btn-header-cta:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--color-charcoal);
+}
+
+/* Responsive nav */
 @media (max-width: 639px) {
   .header-nav-wide { display: none !important; }
   .site-header__logo { height: 30px; }
 }
-
-/* En tablet 640-900: ocultar algunos nav */
 @media (max-width: 900px) {
   .header-nav-wide { display: none; }
 }
 
 /* ============================================================
-   FOOTER — dark charcoal
+   FOOTER — charcoal oscuro + borde rojo
    ============================================================ */
 .site-footer {
   background: var(--color-charcoal);
@@ -286,65 +402,61 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
   }
   .site-footer__brand { grid-column: 1 / -1; }
 }
-
 @media (max-width: 480px) {
   .site-footer__top { grid-template-columns: 1fr; }
 }
 
 .site-footer__logo {
-  height: 36px;
+  height: 40px;
   width: auto;
   display: block;
   margin-bottom: 14px;
-  /* Asegurar que el SVG sea blanco sobre dark */
   filter: brightness(0) invert(1);
 }
 
 .site-footer__tagline {
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.6;
-  color: rgba(255,255,255,0.75); /* era 0.55 = 3.0:1 FALLA → 0.75 = 5.4:1 ✓ WCAG AA */
+  color: rgba(255,255,255,0.75);
   max-width: 28ch;
   margin: 0 0 16px;
 }
 
 .site-footer__social {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .site-footer__social-link {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  color: rgba(255,255,255,0.55);
-  font-size: 0.75rem;
+  color: rgba(255,255,255,0.75);
+  font-size: 0.7rem;
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   text-decoration: none;
   text-transform: uppercase;
   padding: 5px 10px;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
   border-radius: 4px;
   transition: color 0.15s, border-color 0.15s;
 }
-.site-footer__social-link:hover {
-  color: #fff;
-  border-color: rgba(255,255,255,0.4);
-}
-.site-footer__social-link:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 2px;
-}
+.site-footer__social-link:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+.site-footer__social-link:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
 .site-footer__heading {
   font-family: var(--font-display);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.65); /* era 0.4 = 2.6:1 FALLA → 0.65 = 4.6:1 ✓ WCAG AA */
+  color: rgba(255,255,255,0.65);
   margin: 0 0 14px;
 }
 
@@ -380,9 +492,25 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
   flex-wrap: wrap;
   gap: 10px;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   font-size: 0.75rem;
-  color: rgba(255,255,255,0.65); /* era 0.4 → 2.4:1 FALLA → 0.65 = 4.6:1 ✓ WCAG AA */
+  color: rgba(255,255,255,0.65);
   font-family: var(--font-sans);
+}
+
+.site-footer__anami-credit {
+  color: rgba(255,255,255,0.4);
+  font-size: 0.7rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.site-footer__anami-credit:hover { color: rgba(255,255,255,0.75); }
+.site-footer__anami-credit:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 </style>

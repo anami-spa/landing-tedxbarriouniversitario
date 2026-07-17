@@ -141,16 +141,19 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
     />
   </div>
 
-  <!-- Texto vertical decorativo izquierda -->
-  <span class="hero-vertical" aria-hidden="true">BARRIO UNIVERSITARIO</span>
-
-  <!-- Contenido tipográfico principal -->
+  <!-- Contenido tipográfico: texto vertical + H1 en fila flex alineados al top -->
   <div class="hero-content">
-    <h1 class="hero-h1" aria-label="Alzar el vuelo — TEDx Women">
-      <span class="hero-h1__alzar display-light">ALZAR</span>
-      <span class="hero-h1__el display-light">EL</span>
-      <span class="hero-h1__vuelo display-black">VUELO</span>
-    </h1>
+    <div class="hero-title-row">
+      <div class="hero-vertical" aria-hidden="true">
+        <span>BARRIO</span>
+        <span>UNIVERSITARIO</span>
+      </div>
+      <h1 class="hero-h1" aria-label="Alzar el vuelo — TEDx Women">
+        <span class="hero-h1__alzar display-light">ALZAR</span>
+        <span class="hero-h1__el display-light">EL</span>
+        <span class="hero-h1__vuelo display-black">VUELO</span>
+      </h1>
+    </div>
   </div>
 
 </section>
@@ -968,23 +971,29 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   display: block;
 }
 
-/* Texto vertical BARRIO UNIVERSITARIO
-   vertical-rl + rotate(180deg) → lee de abajo↑arriba con BARRIO al pie,
-   idéntico al mockup. (vertical-lr + rotate producía orden invertido) */
+/* Fila con texto vertical + H1 en paralelo */
+.hero-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+/* BARRIO | UNIVERSITARIO — dos columnas verticales, top→bottom, misma altura que H1 */
 .hero-vertical {
-  position: absolute;
-  left: 1.2rem;
-  top: 50%;
-  transform: translateY(-50%) rotate(180deg);
-  writing-mode: vertical-rl;
+  writing-mode: vertical-lr; /* columnas de izq a der, chars de arriba abajo */
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.85rem;
+  /* font-size calibrado para que UNIVERSITARIO (13 chars × 1.28) ≈ altura del H1 */
+  font-size: clamp(1.1rem, 2.2vw, 1.9rem);
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.55);
-  z-index: 1;
   line-height: 1;
+  flex-shrink: 0;
+}
+/* Cada span = columna propia dentro del writing-mode */
+.hero-vertical span {
+  display: block;
 }
 
 /* Área de contenido tipográfico */
@@ -995,7 +1004,7 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem 3rem 2rem 5.5rem; /* izq mayor para dejar espacio al vertical text */
+  padding: 2rem 3rem;
 }
 
 .hero-h1 {

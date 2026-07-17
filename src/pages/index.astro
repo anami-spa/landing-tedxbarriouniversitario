@@ -349,65 +349,71 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 
 <!-- ============================================================
      S5 — ALZAR EL VUELO (concepto)
-     Fondo oscuro. Boarding pass + avión SVG animateMotion + franja.
+     Fondo oscuro. Título+copy 2-col, boarding pass fila completa, franja.
      ============================================================ -->
 <section id="concepto" class="s-concepto dark-section" aria-labelledby="h-concepto">
   <div class="seccion-inner s-concepto__inner">
 
-    <!-- Título grande vertical izq -->
+    <!-- Título izquierda con pesos mixtos -->
     <div class="s-concepto__title-col">
-      <h2 id="h-concepto" class="s-concepto__h2 display-black">
-        ALZAR<br/>EL<br/>VUELO
+      <h2 id="h-concepto" class="s-concepto__h2">
+        <span class="s-concepto__h2-l1 display-light">ALZAR</span>
+        <span class="s-concepto__h2-l2 display-light">EL</span>
+        <span class="s-concepto__h2-l3 display-black">VUELO</span>
       </h2>
-      <p class="s-concepto__sub">Una idea tiene el poder de cambiar la trayectoria de todo.</p>
     </div>
 
-    <!-- Boarding pass con avión -->
-    <div class="s-concepto__bp-col">
-
-      <!-- Boarding pass visual -->
-      <div class="boarding-pass s-bp" role="img"
-           aria-label="Vuelo directo: IDEA 09:00 AM hasta ACCIÓN 13:00 PM, viernes 04 de diciembre">
-        <div class="boarding-pass__col">
-          <span class="boarding-pass__label">Origen</span>
-          <span class="boarding-pass__valor">IDEA</span>
-          <span class="boarding-pass__hora mono-date">09:00 AM</span>
-          <span class="boarding-pass__hora">Vie 04 dic</span>
-        </div>
-        <div class="boarding-pass__divider">
-          <span class="boarding-pass__directo">Directo</span>
-        </div>
-        <div class="boarding-pass__col s-bp__dest">
-          <span class="boarding-pass__label">Destino</span>
-          <span class="boarding-pass__valor">ACCIÓN</span>
-          <span class="boarding-pass__hora mono-date">13:00 PM</span>
-          <span class="boarding-pass__hora">Vie 04 dic</span>
-        </div>
-      </div>
-
-      <!-- Avión SVG animateMotion -->
-      <div class="s-avion" aria-hidden="true">
-        <svg class="s-avion__svg" viewBox="0 0 460 80" width="460" height="80"
-             xmlns="http://www.w3.org/2000/svg">
-          <!-- Trayectoria punteada -->
-          <path id="flight-path" d="M10 65 Q120 10 250 35 Q350 55 450 20"
-                stroke="#afb5db" stroke-width="1.5" stroke-dasharray="6 4" fill="none"/>
-          <!-- Avión que sigue la trayectoria -->
-          <g id="avion-icon">
-            <animateMotion dur="5s" repeatCount="indefinite" rotate="auto">
-              <mpath href="#flight-path"/>
-            </animateMotion>
-            <!-- Silueta avión minimalista -->
-            <polygon points="0,-8 18,0 0,8 4,0" fill="#db0028"/>
-          </g>
-        </svg>
-      </div>
-
+    <!-- 4 párrafos oficiales columna derecha -->
+    <div class="s-concepto__copy-col">
+      <p class="s-concepto__p">Alzar el Vuelo es una invitación a salir de lo conocido, explorar nuevos horizontes y descubrir el poder que tienen las ideas para transformar personas, organizaciones y comunidades.</p>
+      <p class="s-concepto__p">En TEDxBarrioUniversitario Women, cada charla será una etapa de este viaje: un recorrido por experiencias, aprendizajes e historias que inspiran, desafían y movilizan a la acción.</p>
+      <p class="s-concepto__p">Porque cuando una idea encuentra el momento y el lugar para ser compartida, tiene el poder de trascender y cambiar realidades.</p>
+      <p class="s-concepto__p">Te invitamos a preparar tu despegue. <strong class="s-concepto__p-strong">El viaje comienza aquí.</strong></p>
     </div>
   </div>
 
-  <!-- Franja inferior -->
-  <div class="s-concepto__franja" aria-hidden="true">
+  <!-- Boarding pass + avión: fila ancho-completo debajo de las columnas -->
+  <div class="seccion-inner s-concepto__bp-row">
+    <div class="boarding-pass s-bp" role="img"
+         aria-label="Vuelo directo: IDEA 09:00 AM hasta ACCIÓN 13:00 PM, viernes 04 de diciembre">
+      <div class="boarding-pass__col">
+        <span class="boarding-pass__label">Origen</span>
+        <span class="boarding-pass__valor">IDEA</span>
+        <span class="boarding-pass__hora mono-date">09:00 AM</span>
+        <span class="boarding-pass__hora">Vie 04 dic</span>
+      </div>
+      <div class="boarding-pass__divider">
+        <span class="boarding-pass__directo">Directo</span>
+      </div>
+      <div class="boarding-pass__col s-bp__dest">
+        <span class="boarding-pass__label">Destino</span>
+        <span class="boarding-pass__valor">ACCIÓN</span>
+        <span class="boarding-pass__hora mono-date">13:00 PM</span>
+        <span class="boarding-pass__hora">Vie 04 dic</span>
+      </div>
+    </div>
+
+    <!-- Avión SVG animateMotion -->
+    <div class="s-avion" aria-hidden="true">
+      <svg class="s-avion__svg" viewBox="0 0 460 80" width="460" height="80"
+           xmlns="http://www.w3.org/2000/svg">
+        <!-- Trayectoria punteada -->
+        <path id="flight-path" d="M10 65 Q120 10 250 35 Q350 55 450 20"
+              stroke="#afb5db" stroke-width="1.5" stroke-dasharray="6 4" fill="none"/>
+        <!-- Avión que sigue la trayectoria -->
+        <g id="avion-icon">
+          <animateMotion dur="5s" repeatCount="indefinite" rotate="auto">
+            <mpath href="#flight-path"/>
+          </animateMotion>
+          <!-- Silueta avión minimalista -->
+          <polygon points="0,-8 18,0 0,8 4,0" fill="#db0028"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Franja inferior: sin aria-hidden (tagline con significado del docx) -->
+  <div class="s-concepto__franja">
     <p class="s-concepto__franja-text display-light">
       TODA GRAN TRANSFORMACIÓN COMIENZA CON UNA IDEA
     </p>
@@ -1284,23 +1290,38 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   gap: 3rem;
-  align-items: center;
+  align-items: start;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem 4rem;
+  padding: 0 1.5rem 2.5rem;
 }
 .s-concepto__h2 {
-  font-size: clamp(3rem, 8vw, 7rem);
+  display: flex;
+  flex-direction: column;
   color: #ffffff;
-  line-height: 0.9;
-  margin: 0 0 1.5rem;
+  line-height: 0.92;
+  margin: 0;
 }
-.s-concepto__sub {
-  color: rgba(255,255,255,0.65);
+.s-concepto__h2-l1 { font-size: clamp(2.6rem, 7vw, 6rem); letter-spacing: 0.12em; }
+.s-concepto__h2-l2 { font-size: clamp(2.6rem, 7vw, 6rem); letter-spacing: 0.12em; }
+.s-concepto__h2-l3 { font-size: clamp(2.8rem, 7.5vw, 6.5rem); letter-spacing: -0.01em; }
+.s-concepto__copy-col { padding-top: 0.5rem; }
+.s-concepto__p {
+  color: rgba(255,255,255,0.82);
   font-family: var(--font-sans);
-  font-size: 0.9rem;
-  max-width: 26ch;
-  line-height: 1.55;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+  max-width: 48ch;
+}
+.s-concepto__p:last-child { margin-bottom: 0; }
+.s-concepto__p-strong { color: #fff; font-weight: 700; }
+
+/* Boarding pass fila ancho-completo */
+.s-concepto__bp-row {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 1.5rem;
 }
 .s-bp {
   background: var(--color-lavanda);
@@ -1312,9 +1333,8 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 .s-avion { padding: 0.5rem 0; }
 .s-avion__svg { width: 100%; max-width: 460px; height: auto; overflow: visible; }
 
-/* Franja inferior */
+/* Franja inferior: sin fondo rojo — texto blanco sobre charcoal */
 .s-concepto__franja {
-  background: var(--color-ted-red);
   padding: 1rem 1.5rem;
   text-align: center;
   overflow: hidden;

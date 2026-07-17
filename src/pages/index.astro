@@ -295,56 +295,53 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 
 <!-- ============================================================
      S4 — ¿POR QUÉ TEDxWomen?
-     Fondo claro. Texto izquierda + foto derecha + cita lavanda.
+     Fondo claro + textura. Texto izquierda + polaroid derecho.
      ============================================================ -->
 <section id="tedxwomen" class="s-mujeres seccion-light texture-overlay" aria-labelledby="h-mujeres">
   <div class="seccion-inner s-mujeres__inner">
 
     <!-- Col izquierda: texto -->
     <div class="s-mujeres__copy">
-      <p class="eyebrow-label">¿Por qué?</p>
-      <h2 id="h-mujeres" class="display-black s-mujeres__h2">
-        ¿POR QUÉ <span class="text-ted-red">TEDxWOMEN</span>?
+      <h2 id="h-mujeres" class="s-mujeres__h2">
+        <span class="s-mujeres__h2-top display-light">¿POR QUÉ</span>
+        <span class="s-mujeres__h2-bottom display-black">TEDxWomen?</span>
       </h2>
 
       <p class="s-mujeres__p">
-        TEDxWomen es una iniciativa global que celebra y amplifica voces femeninas e ideas que
-        merecen ser escuchadas. En Concepción, el Barrio Universitario es el escenario perfecto
-        para que esas voces despeguen.
+        TEDxWomen No es un evento "sobre mujeres". Es un evento donde las mujeres son
+        protagonistas del cambio.
       </p>
-
-      <ul class="s-mujeres__lista" role="list">
-        {[
-          'Visibilizar el liderazgo femenino regional',
-          'Amplificar voces diversas e inclusivas',
-          'Impulsar conversaciones de equidad y pertenencia',
-          'Abrir nuevas formas de ver y habitar el mundo',
-        ].map(item => (
-          <li class="s-mujeres__item" role="listitem">
-            <span class="flecha-roja" aria-hidden="true">→</span>
-            {item}
-          </li>
-        ))}
-      </ul>
-
-      <!-- Cita lavanda -->
-      <blockquote class="caja-lavanda s-mujeres__cita">
-        <p>"Las ideas inspiran. El despegue las vuelve realidad."</p>
-      </blockquote>
+      <p class="s-mujeres__p">
+        Hoy enfrentamos desafíos urgentes relacionados con liderazgo, innovación, bienestar,
+        equidad de género y desarrollo sostenible.
+      </p>
+      <p class="s-mujeres__p">
+        Estamos convencidos que las ideas tienen el poder de abrir nuevas posibilidades y
+        movilizar acciones capaces de transformar realidades.
+      </p>
+      <p class="s-mujeres__p">
+        TEDxBarrioUniversitario Women nace para visibilizar nuevas voces, compartir experiencias
+        y generar conversaciones que inspiren cambios positivos desde la Región del Biobío hacia
+        el mundo.
+      </p>
     </div>
 
-    <!-- Col derecha: foto -->
-    <div class="s-mujeres__photo parallax-img">
+    <!-- Col derecha: foto full-bleed con encuadre de cámara -->
+    <figure class="s-mujeres__foto-wrap">
       <Image
         src={imgFotoSec02}
-        alt="Mujeres del equipo organizador TEDxBarrioUniversitario Women"
+        alt="Speaker TEDx en el escenario del Barrio Universitario"
         width={560}
-        height={840}
+        height={800}
         loading="lazy"
         decoding="async"
-        class="s-mujeres__photo-img"
+        class="s-mujeres__foto-bg"
       />
-    </div>
+      <div class="s-mujeres__foto-frame" aria-hidden="true"></div>
+      <figcaption class="s-mujeres__foto-cita">
+        "Las ideas inspiran.<br/>El despegue las vuelve realidad"
+      </figcaption>
+    </figure>
 
   </div>
 </section>
@@ -1219,9 +1216,18 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   align-items: center;
 }
 .s-mujeres__h2 {
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  display: flex;
+  flex-direction: column;
   color: var(--color-charcoal);
-  margin: 0.5rem 0 1.25rem;
+  line-height: 1;
+  margin: 0 0 1.5rem;
+}
+.s-mujeres__h2-top {
+  font-size: clamp(1.2rem, 2.4vw, 1.9rem);
+}
+.s-mujeres__h2-bottom {
+  font-size: clamp(2.6rem, 6vw, 4.5rem);
+  line-height: 0.9;
 }
 .s-mujeres__p {
   color: rgba(35,35,35,0.8);
@@ -1229,18 +1235,44 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   margin-bottom: 1rem;
   max-width: 46ch;
 }
-.s-mujeres__lista {
-  list-style: none; padding: 0; margin: 0 0 1.5rem;
-  display: flex; flex-direction: column; gap: 0.5rem;
+.s-mujeres__foto-wrap {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 480px;
+  margin: 0 auto;
 }
-.s-mujeres__item {
-  display: flex; align-items: flex-start; gap: 8px;
-  font-size: 0.9rem; color: rgba(35,35,35,0.8); line-height: 1.5;
+.s-mujeres__foto-bg {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
 }
-.s-mujeres__cita { font-style: italic; font-size: 0.95rem; }
-.s-mujeres__photo { position: relative; overflow: hidden; border-radius: 4px; }
-.s-mujeres__photo-img {
-  width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 4px;
+.s-mujeres__foto-frame {
+  position: absolute;
+  top: 6%;
+  left: 6%;
+  right: 6%;
+  bottom: 22%;
+  border: 3px solid rgba(255,255,255,0.88);
+  border-radius: 6px;
+  pointer-events: none;
+}
+.s-mujeres__foto-cita {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-style: italic;
+  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: #fff;
+  line-height: 1.3;
+  padding: 0.75rem 1rem 1rem;
+  background: rgba(0,0,0,0.45);
 }
 
 /* ── S5 ALZAR EL VUELO (concepto) ──────────────────────────── */

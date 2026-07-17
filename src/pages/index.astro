@@ -1086,7 +1086,15 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   margin-bottom: 3.5rem;
 }
 .s-equipo__intro-left { /* vacío: solo organiza el grid */ }
-.s-equipo__eyebrow { margin-bottom: 0.5rem; }
+.s-equipo__eyebrow {
+  margin-bottom: 0.5rem;
+  color: var(--color-charcoal);
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+.s-equipo__eyebrow .flecha-roja { font-size: 1.6em; line-height: 1; }
 .s-equipo__titulo {
   font-size: clamp(2rem, 5vw, 3.5rem);
   color: var(--color-charcoal);
@@ -1128,6 +1136,7 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   padding: 0.75rem 0.875rem;
   background: #fff; /* blanco — no lavanda */
   border-top: 1px solid rgba(35,35,35,0.08);
+  text-align: center;
 }
 .equipo-card__nombre {
   font-size: 0.82rem;

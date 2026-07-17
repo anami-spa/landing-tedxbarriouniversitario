@@ -978,9 +978,12 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   gap: 1rem;
 }
 
-/* BARRIO | UNIVERSITARIO — dos columnas verticales, top→bottom, misma altura que H1 */
+/* BARRIO | UNIVERSITARIO — flex row; writing-mode en cada span para orden predecible */
 .hero-vertical {
-  writing-mode: vertical-lr; /* columnas de izq a der, chars de arriba abajo */
+  display: flex;
+  align-items: flex-start;
+  gap: 0.3rem;
+  flex-shrink: 0;
   font-family: var(--font-display);
   font-weight: 700;
   /* font-size calibrado para que UNIVERSITARIO (13 chars × 1.28) ≈ altura del H1 */
@@ -989,11 +992,10 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   text-transform: uppercase;
   color: rgba(255,255,255,0.55);
   line-height: 1;
-  flex-shrink: 0;
 }
-/* Cada span = columna propia dentro del writing-mode */
+/* Cada span es un flex item con vertical-lr: top→bottom, orden BARRIO|UNIVERSITARIO */
 .hero-vertical span {
-  display: block;
+  writing-mode: vertical-lr;
 }
 
 /* Área de contenido tipográfico */

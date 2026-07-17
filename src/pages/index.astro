@@ -10,7 +10,6 @@ import imgEquipoPam  from '../assets/images/equipo-pamela.webp'
 import imgEquipoGab  from '../assets/images/equipo-gabriela.webp'
 import imgEquipoNat  from '../assets/images/equipo-natalie.webp'
 import imgEquipoCla  from '../assets/images/equipo-claudio.webp'
-import imgFotoSec01  from '../assets/images/foto-seccion-01.webp'
 import imgFotoSec02  from '../assets/images/foto-seccion-02.webp'
 import imgFicha      from '../assets/images/ficha-tecnica.webp'
 import imgAuspPolar  from '../assets/images/auspiciador-polaroid.webp'
@@ -236,32 +235,42 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 
 <!-- ============================================================
      S3 — ¿QUÉ ES TEDx?
-     Fondo claro. 2 cols: texto izquierda + foto derecha.
+     Fondo oscuro. 1 col: texto full + SVG curvo decorativo.
      ============================================================ -->
-<section id="que-es-tedx" class="s-que-es seccion-light" aria-labelledby="h-que-es">
-  <div class="seccion-inner s-que-es__inner">
+<section id="que-es-tedx" class="s-que-es dark-section" aria-labelledby="h-que-es">
 
-    <!-- Col izquierda: texto -->
-    <div class="s-que-es__copy">
-      <p class="eyebrow-label">¿Qué es?</p>
-      <h2 id="h-que-es" class="s-que-es__h2 display-black">
-        ¿QUÉ ES <span class="text-ted-red">TEDx</span>?
-      </h2>
+  <!-- Flecha curva punteada decorativa -->
+  <svg class="s-que-es__deco" aria-hidden="true" viewBox="0 0 600 300" preserveAspectRatio="xMaxYMin slice">
+    <path d="M620 10 C610 80 580 150 520 200 C460 250 360 270 20 255"
+          stroke="rgba(255,255,255,0.22)" stroke-width="1.5" stroke-dasharray="7 4" fill="none"/>
+    <polygon points="20,255 36,247 36,263" fill="#db0028"/>
+  </svg>
 
-      <!-- Flecha roja decorativa -->
-      <div class="s-que-es__flecha" aria-hidden="true">
-        <span class="flecha-roja">↗</span>
-      </div>
+  <div class="seccion-inner">
+    <h2 id="h-que-es" class="s-que-es__h2">
+      <span class="s-que-es__h2-top display-light">¿QUÉ ES</span>
+      <span class="s-que-es__h2-bottom display-black"><span class="text-ted-red">TEDx</span>?</span>
+    </h2>
 
+    <div class="s-que-es__body">
       <p class="s-que-es__p">
-        TEDx es un programa de eventos locales e independientes con charlas en vivo de alto
-        impacto, ideas innovadoras y disruptivas, y experiencias transformadoras. Organizado
-        íntegramente por voluntarios apasionados, sin fines políticos, religiosos ni
-        intereses comerciales externos.
+        TEDx es un programa oficial de TED, la plataforma de difusión de ideas más reconocida del
+        mundo. A través de una licencia oficial, permite organizar eventos independientes que
+        mantienen los mismos estándares de excelencia, calidad y curaduría que han convertido a TED
+        en un referente global.
       </p>
       <p class="s-que-es__p">
-        Cada charla TEDx nace de una sola idea poderosa que vale la pena compartir. Una idea
-        que conecta, desafía, abre perspectivas y moviliza a las personas hacia algo nuevo.
+        Cada charla TEDx tiene el potencial de trascender el escenario local y formar parte de una
+        conversación global, inspirando a miles de personas y comunidades alrededor del mundo.
+      </p>
+      <p class="s-que-es__p">
+        Más que una conferencia, TEDx reúne a líderes, científicos, emprendedores, académicos y
+        agentes de cambio para compartir ideas capaces de desafiar paradigmas y transformar
+        realidades.
+      </p>
+      <p class="s-que-es__p">
+        Ser parte de TEDxBarrioUniversitario Women es sumarse a una marca de prestigio internacional
+        que impulsa conversaciones con impacto local y proyección global.
       </p>
 
       <div class="s-que-es__links">
@@ -271,27 +280,15 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
           <span class="flecha-roja" aria-hidden="true">→</span>
           Evento oficial bajo licencia TEDx
         </a>
-        <a href="https://www.ted.com" target="_blank" rel="noopener" class="s-que-es__link"
-           aria-label="Ver más charlas en TED.com (abre en nueva pestaña)">
-          <span class="flecha-roja" aria-hidden="true">→</span>
-          Ver más charlas en TED.com ↗
+        <a href="https://www.ted.com/tedx/events/69535" target="_blank" rel="noopener"
+           class="s-que-es__link s-que-es__link--event"
+           aria-label="Ver evento en TED.com, TEDxBarrioUniversitario Women (abre en nueva pestaña)">
+          Ver evento en TED.com
+          <span aria-hidden="true"> → </span>
+          <span class="text-ted-red">TEDxBarrioUniversitario Women</span>
         </a>
       </div>
     </div>
-
-    <!-- Col derecha: foto -->
-    <div class="s-que-es__photo parallax-img">
-      <Image
-        src={imgFotoSec01}
-        alt="Pantalla con charla TEDx en vivo — audiencia atenta"
-        width={560}
-        height={840}
-        loading="lazy"
-        decoding="async"
-        class="s-que-es__photo-img"
-      />
-    </div>
-
   </div>
 </section>
 
@@ -1157,47 +1154,60 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 }
 
 /* ── S3 ¿QUÉ ES TEDx? ──────────────────────────────────────── */
-.s-que-es { padding: var(--spacing-section) 0; }
-.s-que-es__inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
+.s-que-es {
+  padding: var(--spacing-section) 0;
+  background: var(--color-charcoal);
+  position: relative;
+  overflow: hidden;
+}
+.s-que-es__deco {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55%;
+  max-width: 680px;
+  height: auto;
+  pointer-events: none;
 }
 .s-que-es__h2 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  color: var(--color-charcoal);
-  margin: 0.5rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  margin-bottom: 2.5rem;
+  line-height: 1;
 }
-.s-que-es__flecha { margin-bottom: 1rem; font-size: 2rem; }
+.s-que-es__h2-top {
+  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+  color: #fff;
+}
+.s-que-es__h2-bottom {
+  font-size: clamp(4rem, 10vw, 9rem);
+  color: #fff;
+  line-height: 0.88;
+}
+.s-que-es__body { max-width: 860px; }
 .s-que-es__p {
-  color: rgba(35,35,35,0.8);
+  color: rgba(255,255,255,0.82);
   line-height: 1.65;
   margin-bottom: 1rem;
-  max-width: 48ch;
 }
-.s-que-es__links { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.5rem; }
+.s-que-es__links { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem; }
 .s-que-es__link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--color-charcoal);
+  color: #fff;
   text-decoration: none;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.82rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  font-size: 0.9rem;
   transition: color 0.15s;
 }
 .s-que-es__link:hover { color: var(--color-ted-red); }
-.s-que-es__photo { position: relative; overflow: hidden; border-radius: 4px; }
-.s-que-es__photo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-radius: 4px;
+.s-que-es__link--event {
+  font-weight: 400;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
 }
 
 /* ── S4 ¿POR QUÉ TEDxWOMEN? ──────────────────────────────── */

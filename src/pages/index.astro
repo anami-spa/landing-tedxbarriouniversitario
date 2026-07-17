@@ -142,7 +142,7 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   </div>
 
   <!-- Texto vertical decorativo izquierda -->
-  <span class="hero-vertical" aria-hidden="true">BARRIO<br/>UNIVERSITARIO</span>
+  <span class="hero-vertical" aria-hidden="true">BARRIO UNIVERSITARIO</span>
 
   <!-- Contenido tipográfico principal -->
   <div class="hero-content">
@@ -968,13 +968,15 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   display: block;
 }
 
-/* Texto vertical BARRIO UNIVERSITARIO */
+/* Texto vertical BARRIO UNIVERSITARIO
+   vertical-rl + rotate(180deg) → lee de abajo↑arriba con BARRIO al pie,
+   idéntico al mockup. (vertical-lr + rotate producía orden invertido) */
 .hero-vertical {
   position: absolute;
   left: 1.2rem;
   top: 50%;
   transform: translateY(-50%) rotate(180deg);
-  writing-mode: vertical-lr;
+  writing-mode: vertical-rl;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 0.85rem;

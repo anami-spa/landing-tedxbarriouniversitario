@@ -52,12 +52,12 @@ const equipo = [
 ]
 
 const tematicas = [
-  'Liderazgo e identidad femenina',
-  'Innovación con propósito',
-  'Bienestar y salud mental',
-  'Emprendimiento y economía circular',
-  'Arte, cultura y transformación social',
-  'Educación y nuevas formas de aprender',
+  'Liderazgo femenino',
+  'Ciencia, tecnología y futuro (STEM)',
+  'Innovación y emprendimiento',
+  'Bienestar y calidad de vida',
+  'Equidad de género',
+  'Impacto social y sostenibilidad',
 ]
 
 const beneficios = [
@@ -84,9 +84,9 @@ const beneficios = [
 ]
 
 const procesoSpeaker = [
-  { num: '01', titulo: 'Postulación formulario', desc: 'Completa el formulario con tu idea y perfil.' },
-  { num: '02', titulo: 'Video presentación',     desc: 'Envía un video breve presentando tu idea.' },
-  { num: '03', titulo: 'Entrevista curatorial',  desc: 'El equipo editorial evalúa y selecciona.' },
+  { num: '01', titulo: 'Postulación formulario',              desc: 'Completa el formulario con tu idea y perfil.' },
+  { num: '02', titulo: 'Video presentación',                  desc: 'Envía un video breve presentando tu idea.' },
+  { num: '03', titulo: 'Entrevista con el equipo curatorial', desc: 'El equipo editorial evalúa y selecciona.' },
 ]
 
 const partners = [
@@ -431,7 +431,7 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 <section id="evento" class="s-ficha seccion-light" aria-labelledby="h-ficha">
   <div class="seccion-inner s-ficha__inner">
 
-    <!-- Columna izquierda: polaroid -->
+    <!-- Columna izquierda: polaroid + cita -->
     <div class="s-ficha__left">
       <div class="polaroid" aria-hidden="true">
         <Image
@@ -446,58 +446,67 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
         <div class="polaroid__caption">TEDxBarrioUniversitario Women 2026</div>
       </div>
       <blockquote class="caja-lavanda s-ficha__cita" style="margin-top:1.5rem;">
-        <p>"Cada idea que se comparte abre una puerta que antes nadie veía."</p>
+        <p>"Ideas capaces de cambiar perspectivas y generar acción"</p>
       </blockquote>
     </div>
 
-    <!-- Columna derecha: datos -->
+    <!-- Columna derecha: datos + temáticas -->
     <div class="s-ficha__right">
       <p class="eyebrow-label">El evento</p>
       <h2 id="h-ficha" class="display-black s-ficha__h2">
         FICHA TÉCNICA <span class="flecha-roja" aria-hidden="true">→</span>
       </h2>
 
-      <!-- Logo UdeC -->
-      <div class="s-ficha__udec">
-        <img src={`${baseUrl}/partners/udec-negro.png`} alt="Universidad de Concepción"
-             width="160" height="60" loading="lazy" decoding="async" class="s-ficha__udec-logo"/>
-        <p class="s-ficha__udec-label">Campus sede del evento</p>
-      </div>
-
-      <!-- Contadores count-up -->
-      <div class="s-ficha__counters" role="list" aria-label="Datos del evento">
-        <div class="counter-item" role="listitem">
-          <span class="counter-num mono-date js-counter"
-                data-target={evento.asistentes}
-                aria-label={`${evento.asistentes} personas asistentes`}>--</span>
-          <span class="counter-label">Personas</span>
-        </div>
-        <div class="counter-item" role="listitem">
-          <span class="counter-num mono-date js-counter"
-                data-target={evento.speakers}
-                aria-label={`${evento.speakers} speakers`}>--</span>
-          <span class="counter-label">Speakers</span>
-        </div>
-        <div class="counter-item" role="listitem">
-          <span class="counter-num mono-date js-counter"
-                data-target={evento.ideas}
-                aria-label={`${evento.ideas} día`}>--</span>
-          <span class="counter-label">Día</span>
-        </div>
-      </div>
-
       <!-- 6 Temáticas -->
       <div class="s-ficha__tematicas">
         <p class="s-ficha__tematicas-label eyebrow-label" style="color:var(--color-charcoal); margin-bottom:10px;">Temáticas</p>
-        <ul class="s-ficha__tematicas-list" role="list">
+        <ul class="s-ficha__tematicas-list">
           {tematicas.map(t => (
-            <li role="listitem">
+            <li>
               <span class="flecha-roja" aria-hidden="true">→</span> {t}
             </li>
           ))}
         </ul>
       </div>
 
+      <p class="s-ficha__desc">
+        Más que un evento, buscamos construir una experiencia que conecte personas con ideas
+        capaces de cambiar perspectivas y generar acción.
+      </p>
+    </div>
+  </div>
+
+  <!-- Franja inferior: Logo UdeC + contadores count-up -->
+  <div class="s-ficha__franja">
+    <div class="s-ficha__franja-inner">
+      <div class="s-ficha__franja-udec">
+        <img src={`${baseUrl}/partners/udec-negro.png`} alt="Universidad de Concepción"
+             width="160" height="60" loading="lazy" decoding="async" class="s-ficha__udec-logo"/>
+        <p class="s-ficha__udec-label">Campus sede del evento</p>
+      </div>
+      <div class="s-ficha__franja-sep" aria-hidden="true"></div>
+      <ul class="s-ficha__counters" aria-label="Datos del evento">
+        <li class="counter-item">
+          <span class="counter-num mono-date js-counter"
+                data-target={evento.asistentes}
+                aria-label={`${evento.asistentes} asistentes presenciales`}></span>
+          <span class="counter-label">Asistentes presenciales</span>
+        </li>
+        <li class="counter-item">
+          <span class="counter-num mono-date js-counter"
+                data-target={evento.speakers}
+                data-pad="2"
+                aria-label={`${evento.speakers} speakers seleccionados`}></span>
+          <span class="counter-label">Speakers seleccionados</span>
+        </li>
+        <li class="counter-item">
+          <span class="counter-num mono-date js-counter"
+                data-target={evento.ideas}
+                data-pad="2"
+                aria-label={`${evento.ideas} idea de alto impacto`}></span>
+          <span class="counter-label">Idea de alto impacto</span>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
@@ -516,17 +525,22 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
       <h2 id="h-auspi" class="display-black s-auspi__h2">
         ¿POR QUÉ SUMARSE<br/>COMO AUSPICIADOR?
       </h2>
-      <ul class="s-auspi__bullets" role="list">
+      <p class="s-auspi__intro">
+        Al convertirse en partner de TEDxBarrioUniversitario Women, su organización no solo
+        financia un evento — se integra a una plataforma de impacto con propósito real y
+        estará contribuyendo a:
+      </p>
+      <ul class="s-auspi__bullets">
         {[
-          'Visibilidad ante una audiencia comprometida con el cambio',
-          'Asociación directa con el ecosistema de ideas TED a nivel global',
-          'Presencia en comunicaciones digitales, impresos y señalética del evento',
-          'Acceso preferencial a la jornada y actividades de networking',
-          'Reconocimiento como organización que apuesta por el conocimiento',
-          'Reporte de impacto post-evento con métricas de alcance',
+          'Impulsar educación, cultura y pensamiento crítico',
+          'Promover liderazgo femenino y equidad de género',
+          'Inspirar nuevas generaciones',
+          'Potenciar innovación y desarrollo sostenible',
+          'Fortalecer el ecosistema regional',
+          'Generar impacto social positivo desde el Biobío',
         ].map(b => (
-          <li class="s-auspi__bullet" role="listitem">
-            <span class="flecha-roja s-auspi__check" aria-hidden="true">✓</span>
+          <li class="s-auspi__bullet">
+            <span class="flecha-roja" aria-hidden="true">→</span>
             {b}
           </li>
         ))}
@@ -534,9 +548,9 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 
       <blockquote class="s-auspi__cita">
         <p class="s-auspi__cita-text">
-          <span class="comilla-roja">"</span>
-          Las ideas necesitan un ecosistema que las impulse para despegar.
-          <span class="comilla-roja">"</span>
+          <span class="comilla-roja" aria-hidden="true">"</span>
+          Las ideas necesitan espacios para despegar.
+          <span class="comilla-roja" aria-hidden="true">"</span>
         </p>
       </blockquote>
     </div>
@@ -580,31 +594,41 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 <section id="beneficios" class="s-beneficios seccion-light texture-overlay" aria-labelledby="h-beneficios">
   <div class="seccion-inner">
 
+    <!-- Header 2 columnas: H2 izquierda · párrafo derecha -->
     <div class="s-beneficios__header">
-      <p class="eyebrow-label">Lo que obtendrá</p>
-      <h2 id="h-beneficios" class="display-black s-beneficios__h2">BENEFICIOS <span style="font-weight:300;">PARA SU ORGANIZACIÓN</span></h2>
+      <div class="s-beneficios__header-left">
+        <p class="eyebrow-label">Lo que obtendrá</p>
+        <h2 id="h-beneficios" class="display-black s-beneficios__h2">BENEFICIOS <span style="font-weight:300;">PARA SU ORGANIZACIÓN</span></h2>
+      </div>
+      <div class="s-beneficios__header-right">
+        <p class="s-beneficios__intro">
+          ¿Te gustaría ser parte de este viaje? Si tu organización comparte nuestro propósito
+          y quiere asociarse a una plataforma de prestigio internacional que promueve la
+          innovación, el conocimiento y la transformación social, nos encantaría conversar contigo.
+        </p>
+      </div>
     </div>
 
-    <div class="beneficios-grid" role="list">
+    <!-- Fila minimalista de beneficios -->
+    <ul class="beneficios-fila" aria-label="Beneficios para su organización">
       {beneficios.map((b, i) => (
-        <div class="beneficio-card" role="listitem">
+        <li class="beneficio-item">
+          <span class="flecha-roja beneficio-flecha" aria-hidden="true">→</span>
+          <span class="beneficio-nombre headline-bold">{b.titulo.toUpperCase()}</span>
           {i < beneficios.length - 1 && (
-            <span class="beneficio-arrow" aria-hidden="true">→</span>
+            <span class="beneficio-sep" aria-hidden="true"></span>
           )}
-          <div class="beneficio-card__icon" aria-hidden="true">{b.icono}</div>
-          <h3 class="beneficio-card__titulo headline-bold">{b.titulo.toUpperCase()}</h3>
-          <p class="beneficio-card__texto">{b.texto}</p>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
 
     <!-- CTA → form Formspree alianzas -->
     <div class="s-beneficios__cta">
       <a href="#form-partner" class="btn-primary">Quiero ser Partner →</a>
     </div>
 
-    <!-- Formulario de alianza -->
-    <div id="form-partner" class="s-beneficios__form">
+    <!-- Formulario de alianza (tabindex="-1" para foco desde CTA — a11y F-06) -->
+    <div id="form-partner" class="s-beneficios__form" tabindex="-1">
       <h3 class="s-beneficios__form-title headline-bold">Escríbenos para auspiciar</h3>
       <form
         action={`https://formspree.io/f/${FORMSPREE_ID}`}
@@ -680,15 +704,28 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
       <div class="s-speakers__info">
 
         <div class="s-speakers__quienes">
+          <p class="s-speakers__quienes-desc">
+            En TEDxBarrioUniversitario Women buscamos personas que compartan ideas capaces de
+            desafiar paradigmas, abrir nuevas conversaciones y generar un impacto positivo en
+            la sociedad.
+          </p>
+          <p class="s-speakers__quienes-desc">
+            No es necesario ser un conferencista profesional. Lo más importante es que tu idea
+            sea original, relevante y tenga el potencial de inspirar.
+          </p>
           <h3 class="headline-bold s-speakers__quienes-h">¿Quiénes pueden postular?</h3>
-          <ul class="s-speakers__quienes-list" role="list">
+          <p class="s-speakers__quienes-sub">
+            La convocatoria está abierta a personas mayores de 18 años con iniciativas relacionadas con:
+          </p>
+          <ul class="s-speakers__quienes-list">
             {[
-              'Cualquier persona con una idea poderosa que valga la pena compartir',
-              'No se requiere experiencia previa en conferencias o charlas',
-              'Hombres y mujeres que habiten o tengan vínculo con el Biobío',
-              'Charla máximo 15 minutos · 1 idea central · selección editorial independiente',
+              'Liderazgo femenino',
+              'Equidad de género e inclusión',
+              'Emprendimiento e innovación',
+              'Bienestar y calidad de vida',
+              'Impacto social y sostenibilidad',
             ].map(item => (
-              <li class="s-speakers__quienes-item" role="listitem">
+              <li class="s-speakers__quienes-item">
                 <span class="flecha-roja" aria-hidden="true">→</span> {item}
               </li>
             ))}
@@ -712,7 +749,8 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
         </div>
 
         <!-- Formulario speaker → Formspree -->
-        <div id="form-speaker" class="s-speakers__form">
+        <!-- tabindex="-1" permite foco programático desde CTA — a11y F-07 -->
+        <div id="form-speaker" class="s-speakers__form" tabindex="-1">
           <h3 class="s-speakers__form-title headline-bold">POSTULA COMO SPEAKER</h3>
           <p class="s-speakers__form-sub">¿Listo para alzar el vuelo con tu idea?</p>
           <form
@@ -773,6 +811,11 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
       <p class="eyebrow-label">Partners</p>
       <h2 id="h-partners" class="display-black s-partners__h2">NUESTROS PARTNERS</h2>
       <p class="s-partners__sub">Las grandes ideas necesitan grandes aliados.</p>
+      <p class="s-partners__desc">
+        TEDxBarrioUniversitario Women es posible gracias a instituciones, empresas y organizaciones
+        que creen en el poder de las ideas para transformar realidades. Agradecemos profundamente
+        a quienes han decidido sumarse a este viaje y hacerlo posible.
+      </p>
     </div>
 
     <!-- Carrusel -->
@@ -847,6 +890,10 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
       <p class="eyebrow-label">Contacto</p>
       <h2 id="h-contacto" class="display-black s-contacto__h2">CONTACTO</h2>
       <p class="s-contacto__subtitulo">¿Quieres ser parte de este viaje?</p>
+      <p class="s-contacto__intro">
+        Si deseas colaborar, convertirte en partner, postular como speaker o conocer más sobre
+        TEDxBarrioUniversitario Women, estaremos encantados de conversar contigo.
+      </p>
 
       <a href={`mailto:${evento.email}`} class="s-contacto__email headline-bold">
         {evento.email}
@@ -1361,7 +1408,7 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 }
 
 /* ── S6 FICHA TÉCNICA ──────────────────────────────────────── */
-.s-ficha { padding: var(--spacing-section) 0; }
+.s-ficha { padding: var(--spacing-section) 0 0; }
 .s-ficha__inner {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -1397,18 +1444,46 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   color: var(--color-charcoal);
   margin: 0.4rem 0 0;
 }
-.s-ficha__udec { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.s-ficha__desc {
+  font-size: 0.92rem;
+  color: rgba(35,35,35,0.75);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Franja inferior de contadores */
+.s-ficha__franja {
+  margin-top: 3rem;
+  border-top: 1.5px solid rgba(35,35,35,0.1);
+  padding: 2rem 0;
+  background: var(--color-surface);
+}
+.s-ficha__franja-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--px);
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.s-ficha__franja-udec { display: flex; flex-direction: column; gap: 0.4rem; }
 .s-ficha__udec-logo { height: 44px; width: auto; object-fit: contain; }
 .s-ficha__udec-label {
   font-family: var(--font-display);
   font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
   color: rgba(35,35,35,0.6);
 }
+.s-ficha__franja-sep {
+  width: 1px; height: 60px;
+  background: rgba(35,35,35,0.15);
+  flex-shrink: 0;
+}
 
-/* Contadores */
+/* Contadores (ahora dentro de <ul> en la franja) */
 .s-ficha__counters {
-  display: flex; gap: 2rem; flex-wrap: wrap;
-  list-style: none; padding: 0; margin: 0.5rem 0;
+  display: flex; gap: 2.5rem; flex-wrap: wrap;
+  list-style: none; padding: 0; margin: 0;
 }
 .counter-item { display: flex; flex-direction: column; align-items: flex-start; }
 .counter-num {
@@ -1419,7 +1494,7 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 .counter-label {
   font-family: var(--font-display);
   font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(35,35,35,0.75); /* era 0.55 ~2.8:1 FALLA → 0.75 ~4.8:1 ✓ WCAG AA */
+  color: rgba(35,35,35,0.75);
   margin-top: 2px;
 }
 
@@ -1446,12 +1521,15 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   color: #ffffff;
   margin: 0.5rem 0 1.5rem;
 }
+.s-auspi__intro {
+  font-size: 0.92rem; color: rgba(255,255,255,0.75); line-height: 1.6;
+  margin: 0 0 1.25rem;
+}
 .s-auspi__bullets { list-style: none; padding: 0; margin: 0 0 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
 .s-auspi__bullet {
   display: flex; align-items: flex-start; gap: 10px;
   font-size: 0.9rem; color: rgba(255,255,255,0.82); line-height: 1.55;
 }
-.s-auspi__check { color: var(--color-lavanda); font-size: 1rem; margin-top: 1px; }
 .s-auspi__cita { border-left: 3px solid var(--color-ted-red); padding-left: 1rem; }
 .s-auspi__cita-text {
   font-size: 1.1rem; font-style: italic;
@@ -1461,49 +1539,42 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 
 /* ── S8 BENEFICIOS ────────────────────────────────────────── */
 .s-beneficios { padding: var(--spacing-section) 0; }
-.s-beneficios__header { text-align: center; margin-bottom: 3rem; }
+.s-beneficios__header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: end;
+  margin-bottom: 2.5rem;
+}
 .s-beneficios__h2 {
   font-size: clamp(1.6rem, 4vw, 3rem);
   color: var(--color-charcoal);
   margin-top: 0.5rem;
 }
+.s-beneficios__intro {
+  font-size: 0.92rem; color: rgba(35,35,35,0.7); line-height: 1.65;
+}
 
-.beneficios-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
+/* Fila minimalista de beneficios */
+.beneficios-fila {
+  list-style: none; padding: 0; margin: 0 0 2.5rem;
+  display: flex; align-items: center; gap: 0; flex-wrap: wrap;
+  border-top: 1.5px solid rgba(35,35,35,0.1);
+  border-bottom: 1.5px solid rgba(35,35,35,0.1);
+}
+.beneficio-item {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 1.25rem 1.5rem;
+  flex: 1 1 auto;
   position: relative;
-  margin-bottom: 3rem;
 }
-.beneficio-card {
-  position: relative;
-  padding: 2rem 1.5rem;
-  border: 1px solid rgba(35,35,35,0.1);
-  display: flex; flex-direction: column; gap: 0.75rem;
-}
-.beneficio-arrow {
-  position: absolute;
-  right: -14px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--color-surface);
-  z-index: 1;
-  color: var(--color-ted-red);
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1;
-}
-.beneficio-card__icon { font-size: 1.8rem; }
-.beneficio-card__titulo {
-  font-size: 0.82rem;
+.beneficio-item:not(:last-child) { border-right: 1.5px solid rgba(35,35,35,0.1); }
+.beneficio-flecha { font-size: 1.1rem; flex-shrink: 0; }
+.beneficio-nombre {
+  font-size: 0.78rem; letter-spacing: 0.07em;
   color: var(--color-charcoal);
-  letter-spacing: 0.06em;
 }
-.beneficio-card__texto {
-  font-size: 0.85rem;
-  color: rgba(35,35,35,0.7);
-  line-height: 1.55;
-}
+.beneficio-sep { display: none; }
 
 .s-beneficios__cta { text-align: center; margin-bottom: 3rem; }
 .s-beneficios__form { max-width: 700px; margin: 0 auto; }
@@ -1569,7 +1640,13 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 }
 
 .s-speakers__quienes { margin-bottom: 2rem; }
-.s-speakers__quienes-h { font-size: 1.05rem; color: var(--color-charcoal); margin-bottom: 0.75rem; }
+.s-speakers__quienes-desc {
+  font-size: 0.88rem; color: rgba(35,35,35,0.72); line-height: 1.6; margin: 0 0 0.85rem;
+}
+.s-speakers__quienes-sub {
+  font-size: 0.85rem; color: rgba(35,35,35,0.65); line-height: 1.5; margin: 0 0 0.6rem;
+}
+.s-speakers__quienes-h { font-size: 1.05rem; color: var(--color-charcoal); margin-bottom: 0.5rem; margin-top: 1rem; }
 .s-speakers__quienes-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.45rem; }
 .s-speakers__quienes-item {
   display: flex; align-items: flex-start; gap: 8px;
@@ -1629,7 +1706,10 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 .s-partners { padding: var(--spacing-section) 0; }
 .s-partners__header { text-align: center; margin-bottom: 2.5rem; }
 .s-partners__h2 { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--color-charcoal); margin: 0.5rem 0 0.5rem; }
-.s-partners__sub { color: rgba(35,35,35,0.65); font-size: 0.95rem; }
+.s-partners__sub { color: rgba(35,35,35,0.65); font-size: 0.95rem; margin-bottom: 0.5rem; }
+.s-partners__desc {
+  font-size: 0.88rem; color: rgba(35,35,35,0.65); line-height: 1.65; max-width: 680px; margin: 0 auto;
+}
 
 .partners-carousel {
   display: flex; align-items: center; gap: 0.5rem;
@@ -1647,14 +1727,15 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   transition: transform 0.35s ease;
 }
 .partners-slide {
-  flex: 0 0 100%;
-  padding: 2rem;
+  flex: 0 0 100%;          /* móvil: 1 visible */
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  min-height: 200px;
+  min-height: 180px;
+  border-right: 1px solid rgba(35,35,35,0.08);
 }
 .partners-slide__cat { text-align: center; color: var(--color-charcoal); }
 .partners-slide__logos { display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
@@ -1670,7 +1751,7 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: rgba(35,35,35,0.45);
+  color: rgba(35,35,35,0.65); /* era 0.45 (~2.8:1 falla) → 0.65 (~4.8:1 ✓ WCAG AA) */
 }
 
 .partners-prev,
@@ -1726,8 +1807,11 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 .s-contacto__subtitulo {
   color: rgba(255,255,255,0.72);
   font-size: 1rem;
-  margin: 0 0 1.5rem;
+  margin: 0 0 0.75rem;
   font-family: var(--font-sans);
+}
+.s-contacto__intro {
+  font-size: 0.88rem; color: rgba(255,255,255,0.62); line-height: 1.6; margin: 0 0 1.5rem;
 }
 .s-contacto__email {
   display: block;
@@ -1741,7 +1825,7 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 .s-contacto__redes-label {
   font-family: var(--font-display);
   font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(255,255,255,0.55); margin-bottom: 0.75rem;
+  color: rgba(255,255,255,0.70); margin-bottom: 0.75rem; /* era 0.55 (~3.9:1 falla) → 0.70 (~5.2:1 ✓ WCAG AA) */
 }
 .s-contacto__redes { display: flex; flex-direction: column; gap: 0.75rem; list-style: none; padding: 0; margin: 0; }
 .s-contacto__red {
@@ -1764,6 +1848,16 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 .parallax-img img { will-change: transform; }
 
 /* ── RESPONSIVE ──────────────────────────────────────────── */
+/* Tablet → 3 slides visibles */
+@media (min-width: 640px) {
+  .partners-slide { flex: 0 0 33.333%; }
+}
+
+/* Desktop → 5 slides visibles a la vez */
+@media (min-width: 1024px) {
+  .partners-slide { flex: 0 0 20%; }
+}
+
 @media (max-width: 900px) {
   .hero-inner             { grid-template-columns: 1fr; padding-top: 2.5rem; }
   .hero-photo             { display: none; } /* ocultamos foto hero en móvil para dar espacio al texto */
@@ -1778,13 +1872,15 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   .s-contacto__inner { grid-template-columns: 1fr; gap: 2rem; }
 
   .s-auspi__polars  { flex-direction: row; max-width: 100%; }
-  .beneficios-grid  { grid-template-columns: 1fr 1fr; }
-  .beneficio-arrow  { display: none; }
+  .beneficio-item   { flex: 1 1 45%; border-right: none; border-bottom: 1px solid rgba(35,35,35,0.1); }
+  .s-beneficios__header { grid-template-columns: 1fr; gap: 1.25rem; }
 
   .form-partner__row,
   .form-speaker__row { grid-template-columns: 1fr; }
 
   .s-concepto__franja-text { white-space: normal; }
+
+  .s-ficha__franja-sep { display: none; }
 }
 
 @media (max-width: 768px) {
@@ -1794,13 +1890,14 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 }
 
 @media (max-width: 600px) {
-  .equipo-grid      { grid-template-columns: repeat(2, 1fr); }
-  .beneficios-grid  { grid-template-columns: 1fr; }
-  .s-auspi__polars  { flex-direction: column; }
-  .s-ficha__counters { gap: 1.25rem; }
-  .countdown-num    { font-size: clamp(1.8rem, 8vw, 2.5rem); padding: 0.15rem 0.4rem; }
-  .countdown-sep    { font-size: clamp(1.2rem, 5vw, 2rem); }
-  .cd-island-wrap   { padding: 0 0.75rem; margin-top: -2.5rem; }
+  .equipo-grid        { grid-template-columns: repeat(2, 1fr); }
+  .beneficio-item     { flex: 1 1 100%; }
+  .s-auspi__polars    { flex-direction: column; }
+  .s-ficha__counters  { gap: 1.25rem; }
+  .s-ficha__franja-inner { gap: 1.5rem; }
+  .countdown-num      { font-size: clamp(1.8rem, 8vw, 2.5rem); padding: 0.15rem 0.4rem; }
+  .countdown-sep      { font-size: clamp(1.2rem, 5vw, 2rem); }
+  .cd-island-wrap     { padding: 0 0.75rem; margin-top: -2.5rem; }
 }
 
 </style>
@@ -1862,19 +1959,23 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   const allCounters = Array.from(counterEls).map(el => ({
     el,
     target: parseInt(el.dataset.target ?? '0', 10),
+    pad:    parseInt(el.dataset.pad    ?? '0', 10),
   }))
 
+  const fmt = (n: number, pad: number) =>
+    pad > 0 ? String(n).padStart(pad, '0') : String(n)
+
   if (prefersReduced) {
-    allCounters.forEach(({ el, target }) => { el.textContent = String(target) })
+    allCounters.forEach(({ el, target, pad }) => { el.textContent = fmt(target, pad) })
   } else {
-    const runCounter = (el: HTMLElement, target: number): void => {
+    const runCounter = (el: HTMLElement, target: number, pad: number): void => {
       const duration = 1200
       const step = 16
       const inc = Math.ceil(target / (duration / step))
       let current = 0
       const timer = setInterval(() => {
         current = Math.min(current + inc, target)
-        el.textContent = String(current)
+        el.textContent = fmt(current, pad)
         if (current >= target) clearInterval(timer)
       }, step)
     }
@@ -1884,13 +1985,16 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
         if (!entry.isIntersecting) return
         const item = allCounters.find(c => c.el === entry.target)
         if (item) {
-          runCounter(item.el, item.target)
+          runCounter(item.el, item.target, item.pad)
           obs.unobserve(item.el)
         }
       })
     }, { threshold: 0.5 })
 
-    allCounters.forEach(({ el }) => obs.observe(el))
+    allCounters.forEach(({ el, pad }) => {
+      el.textContent = fmt(0, pad)
+      obs.observe(el)
+    })
   }
 
   /* ── PARTNERS CAROUSEL ───────────────────────────────────── */
@@ -1907,17 +2011,39 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
     const dots     = dotsEl.querySelectorAll('.partners-dot')
     let announceTimer: ReturnType<typeof setTimeout> | null = null
 
+    const getVisible = (): number => {
+      if (window.innerWidth >= 1024) return slides  // todos a la vez → sin nav
+      if (window.innerWidth >= 640)  return 3
+      return 1
+    }
+
+    const updateControls = (): void => {
+      const visible = getVisible()
+      const allVisible = visible >= slides
+      ;(btnPrev as HTMLElement).style.display = allVisible ? 'none' : ''
+      ;(btnNext as HTMLElement).style.display = allVisible ? 'none' : ''
+      dotsEl.style.display = allVisible ? 'none' : ''
+      if (allVisible) {
+        track.style.transform = 'translateX(0)'
+        current = 0
+      }
+    }
+
     const goTo = (idx: number): void => {
-      current = (idx + slides) % slides
-      track.style.transform = `translateX(-${current * 100}%)`
+      const visible = getVisible()
+      if (visible >= slides) return         // todos visibles, sin scroll
+      const maxPos = slides - visible
+      current = Math.max(0, Math.min((idx + slides) % slides, maxPos))
+      track.style.transform = `translateX(-${current * (100 / slides)}%)`
       dots.forEach((d, i) => {
         d.classList.toggle('partners-dot--active', i === current)
         d.setAttribute('aria-pressed', i === current ? 'true' : 'false')
       })
       if (announceEl) {
-        const label = slideEls[current]?.getAttribute('aria-label') ?? `Categoría ${current + 1} de ${slides}`
+        const visNames = slideEls.slice(current, current + visible)
+          .map(s => s.getAttribute('aria-label') ?? '').filter(Boolean).join(', ')
         if (announceTimer !== null) clearTimeout(announceTimer)
-        announceEl.textContent = label
+        announceEl.textContent = `Mostrando: ${visNames}`
         announceTimer = setTimeout(() => { announceEl.textContent = '' }, 2000)
       }
     }
@@ -1925,6 +2051,8 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
     btnPrev.addEventListener('click', () => goTo(current - 1))
     btnNext.addEventListener('click', () => goTo(current + 1))
     dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)))
+    window.addEventListener('resize', updateControls, { passive: true })
+    updateControls()
   }
 
   /* ── PARALLAX (fotos grandes) ────────────────────────────── */

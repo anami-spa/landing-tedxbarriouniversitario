@@ -27,3 +27,15 @@ Thumbs.db
 # Logs
 logs/
 *.log
+
+# Sesiones y herramientas de trabajo
+.playwright-mcp/
+.sessions/
+screenshots-review/
+
+# Screenshots de revisión (raíz)
+*.jpeg
+*.png
+
+# Material del cliente (PDFs, imágenes originales — no versionar)
+Material Web/

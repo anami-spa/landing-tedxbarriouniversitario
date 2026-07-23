@@ -84,7 +84,7 @@ const beneficios = [
 ]
 
 const procesoSpeaker = [
-  { num: '01', titulo: 'Postulación formulario',              desc: 'Completa el formulario con tu idea y perfil.' },
+  { num: '01', titulo: 'Postulación por correo',               desc: 'Envíanos tu idea y perfil a contacto@tedxbarriouniversitario.cl' },
   { num: '02', titulo: 'Video presentación',                  desc: 'Envía un video breve presentando tu idea.' },
   { num: '03', titulo: 'Entrevista con el equipo curatorial', desc: 'El equipo editorial evalúa y selecciona.' },
 ]
@@ -112,7 +112,6 @@ const seoEvent = {
   organizer: 'TEDxBarrioUniversitario Women',
 }
 
-const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 ---
 
 <BaseLayout
@@ -622,47 +621,11 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
       ))}
     </ul>
 
-    <!-- CTA → form Formspree alianzas -->
+    <!-- CTA directo por correo — el mockup WEB.pdf no tiene form inline -->
     <div class="s-beneficios__cta">
-      <a href="#form-partner" class="btn-primary">Quiero ser Partner →</a>
-    </div>
-
-    <!-- Formulario de alianza (tabindex="-1" para foco desde CTA — a11y F-06) -->
-    <div id="form-partner" class="s-beneficios__form" tabindex="-1">
-      <h3 class="s-beneficios__form-title headline-bold">Escríbenos para auspiciar</h3>
-      <form
-        action={`https://formspree.io/f/${FORMSPREE_ID}`}
-        method="POST"
-        class="form-partner"
-        aria-label="Formulario de solicitud de auspicio"
-      >
-        <input type="hidden" name="_tipo" value="partner"/>
-        <!-- Honeypot anti-spam WCAG 3.3.2 -->
-        <input type="text" name="_gotcha" tabindex="-1" aria-hidden="true"
-               style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;"/>
-
-        <div class="form-partner__row">
-          <div class="form-partner__field">
-            <label class="form-partner__label" for="p-nombre">Nombre y organización</label>
-            <input id="p-nombre" name="nombre" type="text" required
-                   placeholder="Ej. Cristian Sánchez · ANAMI Spa"
-                   class="form-partner__input" autocomplete="name"/>
-          </div>
-          <div class="form-partner__field">
-            <label class="form-partner__label" for="p-email">Correo electrónico</label>
-            <input id="p-email" name="email" type="email" required
-                   placeholder="contacto@suempresa.cl"
-                   class="form-partner__input" autocomplete="email"/>
-          </div>
-        </div>
-        <div class="form-partner__field">
-          <label class="form-partner__label" for="p-mensaje">¿Cómo le gustaría participar?</label>
-          <textarea id="p-mensaje" name="mensaje" rows="4" required
-                    placeholder="Cuéntenos sobre su organización y el tipo de auspicio que le interesa…"
-                    class="form-partner__input form-partner__textarea"></textarea>
-        </div>
-        <button type="submit" class="btn-primary">Enviar solicitud →</button>
-      </form>
+      <a href={`mailto:${evento.emailAlianzas}`} class="btn-primary">
+        Quiero ser Partner <span aria-hidden="true">→</span>
+      </a>
     </div>
 
   </div>
@@ -748,49 +711,11 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
           ))}
         </div>
 
-        <!-- Formulario speaker → Formspree -->
-        <!-- tabindex="-1" permite foco programático desde CTA — a11y F-07 -->
-        <div id="form-speaker" class="s-speakers__form" tabindex="-1">
-          <h3 class="s-speakers__form-title headline-bold">POSTULA COMO SPEAKER</h3>
-          <p class="s-speakers__form-sub">¿Listo para alzar el vuelo con tu idea?</p>
-          <form
-            action={`https://formspree.io/f/${FORMSPREE_ID}`}
-            method="POST"
-            class="form-speaker"
-            aria-label="Formulario de postulación como speaker"
-          >
-            <input type="hidden" name="_tipo" value="postulacion-speaker"/>
-            <input type="text" name="_gotcha" tabindex="-1" aria-hidden="true"
-                   style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;"/>
-
-            <div class="form-speaker__row">
-              <div class="form-speaker__field">
-                <label class="form-label" for="sp-nombre">Nombre completo</label>
-                <input id="sp-nombre" name="nombre" type="text" required
-                       placeholder="Tu nombre"
-                       class="form-input" autocomplete="name"/>
-              </div>
-              <div class="form-speaker__field">
-                <label class="form-label" for="sp-email">Correo electrónico</label>
-                <input id="sp-email" name="email" type="email" required
-                       placeholder="tu@correo.cl"
-                       class="form-input" autocomplete="email"/>
-              </div>
-            </div>
-            <div class="form-speaker__field">
-              <label class="form-label" for="sp-idea">Tu idea en una frase</label>
-              <input id="sp-idea" name="idea" type="text" required
-                     placeholder="Ej. Cómo el diseño regenerativo puede salvar el Biobío"
-                     class="form-input"/>
-            </div>
-            <div class="form-speaker__field">
-              <label class="form-label" for="sp-descripcion">Cuéntanos más sobre tu idea</label>
-              <textarea id="sp-descripcion" name="descripcion" rows="4" required
-                        placeholder="¿Por qué esta idea importa? ¿A quién le puede cambiar la perspectiva?"
-                        class="form-input" style="resize:vertical;"></textarea>
-            </div>
-            <button type="submit" class="btn-primary">POSTULA COMO SPEAKER →</button>
-          </form>
+        <!-- CTA directo por correo — el mockup WEB.pdf no tiene form inline -->
+        <div class="s-speakers__cta">
+          <a href={`mailto:${evento.email}`} class="btn-primary">
+            POSTULA COMO SPEAKER <span aria-hidden="true">→</span>
+          </a>
         </div>
 
       </div>
@@ -836,10 +761,10 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
                        class="partners-logo"/>
                 )}
                 {p.categoria === 'Estratégico' && (
-                  <div class="partners-placeholder partners-placeholder--anami">
-                    <span class="display-black" style="font-size:1.2rem; color:var(--color-charcoal);">ANAMI Studio</span>
-                    <span style="font-size:0.7rem; color:rgba(35,35,35,0.6);">Desarrollo web & software</span>
-                  </div>
+                  <img src={`${baseUrl}/partners/anami-negro.png`}
+                       alt="ANAMI Spa"
+                       width="200" height="75" loading="lazy" decoding="async"
+                       class="partners-logo"/>
                 )}
                 {p.placeholder && (
                   <div class="partners-placeholder">
@@ -871,7 +796,9 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
     <!-- CTA auspiciar -->
     <p class="s-partners__cta-text">
       ¿Tu organización quiere ser parte?
-      <a href="#form-partner" class="text-ted-red s-partners__link">Conversemos →</a>
+      <a href={`mailto:${evento.emailAlianzas}`} class="text-ted-red s-partners__link">
+        Conversemos <span aria-hidden="true">→</span>
+      </a>
     </p>
 
   </div>
@@ -1459,9 +1386,9 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   background: var(--color-surface);
 }
 .s-ficha__franja-inner {
-  max-width: var(--max-w);
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--px);
+  padding: 0 1.5rem;
   display: flex;
   align-items: center;
   gap: 3rem;
@@ -1577,39 +1504,6 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 .beneficio-sep { display: none; }
 
 .s-beneficios__cta { text-align: center; margin-bottom: 3rem; }
-.s-beneficios__form { max-width: 700px; margin: 0 auto; }
-.s-beneficios__form-title {
-  font-size: 1.3rem; color: var(--color-charcoal); margin-bottom: 1.5rem; text-align: center;
-}
-
-.form-partner { display: flex; flex-direction: column; gap: 1rem; }
-.form-partner__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.form-partner__field { display: flex; flex-direction: column; gap: 0.35rem; }
-.form-partner__label {
-  font-family: var(--font-display);
-  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--color-charcoal);
-}
-.form-partner__input {
-  width: 100%;
-  background: #fff;
-  border: 1.5px solid rgba(35,35,35,0.2);
-  border-radius: 4px;
-  padding: 10px 14px;
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  color: var(--color-charcoal);
-  transition: border-color 0.15s;
-  box-sizing: border-box;
-}
-.form-partner__input::placeholder { color: rgba(35,35,35,0.4); }
-.form-partner__input:focus-visible {
-  outline: 2px solid var(--color-ted-red);
-  outline-offset: 1px;
-  border-color: var(--color-ted-red);
-}
-.form-partner__input:focus:not(:focus-visible) { outline: none; border-color: var(--color-ted-red); }
-.form-partner__textarea { resize: vertical; min-height: 100px; }
 
 /* ── S9 SPEAKERS ──────────────────────────────────────────── */
 .s-speakers { padding: var(--spacing-section) 0; }
@@ -1681,26 +1575,7 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
 .s-proceso__title { font-size: 0.9rem; color: var(--color-charcoal); margin: 0 0 0.25rem; }
 .s-proceso__desc { font-size: 0.82rem; color: rgba(35,35,35,0.65); line-height: 1.5; margin: 0; }
 
-/* Form speaker */
-.s-speakers__form-title { font-size: 1.2rem; color: var(--color-charcoal); margin-bottom: 0.25rem; }
-.s-speakers__form-sub { font-size: 0.88rem; color: rgba(35,35,35,0.6); margin-bottom: 1.25rem; }
-
-.form-speaker { display: flex; flex-direction: column; gap: 1rem; }
-.form-speaker__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.form-speaker__field { display: flex; flex-direction: column; gap: 0.35rem; }
-
-/* form-input ya está en global.css (dark) — sobreescribir para claro */
-.s-speakers .form-input {
-  background: #fff;
-  border: 1.5px solid rgba(35,35,35,0.2);
-  color: var(--color-charcoal);
-}
-.s-speakers .form-input::placeholder { color: rgba(35,35,35,0.4); }
-.s-speakers .form-input:focus-visible {
-  outline: 2px solid var(--color-ted-red);
-  border-color: var(--color-ted-red);
-}
-.s-speakers .form-label { color: var(--color-charcoal); }
+.s-speakers__cta { margin-top: 2rem; }
 
 /* ── S10 PARTNERS ────────────────────────────────────────── */
 .s-partners { padding: var(--spacing-section) 0; }
@@ -1874,9 +1749,6 @@ const FORMSPREE_ID = import.meta.env.FORMSPREE_FORM_ID ?? 'xxxxxxxx'
   .s-auspi__polars  { flex-direction: row; max-width: 100%; }
   .beneficio-item   { flex: 1 1 45%; border-right: none; border-bottom: 1px solid rgba(35,35,35,0.1); }
   .s-beneficios__header { grid-template-columns: 1fr; gap: 1.25rem; }
-
-  .form-partner__row,
-  .form-speaker__row { grid-template-columns: 1fr; }
 
   .s-concepto__franja-text { white-space: normal; }
 

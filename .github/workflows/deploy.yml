@@ -46,7 +46,7 @@ jobs:
         continue-on-error: true  # no bloquea el deploy si Lighthouse falla
 
   # ============================================================
-  # JOB 2: Deploy a DirectAdmin / PremiumHosting via FTPS
+  # JOB 2: Deploy a DirectAdmin / PremiumHosting via rsync+SSH
   # Solo en push a main (no en PRs)
   # ============================================================
   deploy:
@@ -74,20 +74,26 @@ jobs:
           SITE_URL: ${{ secrets.SITE_URL }}
           PUBLIC_GA4_ID: ${{ secrets.PUBLIC_GA4_ID }}
 
-      - name: Install lftp
-        run: sudo apt-get install -y lftp
+      - name: Install sshpass + rsync
+        run: sudo apt-get install -y sshpass rsync
 
-      - name: Deploy via FTPS a public_html/
-        # SEGURIDAD: credenciales solo en env:, nunca en run: como literales.
-        # lftp lee FTP_USER y FTP_PASSWORD de env — no aparecen en logs.
+      - name: Configure SSH known_hosts
+        # Fingerprint fijo del servidor — evita StrictHostKeyChecking=no (MITM)
         env:
-          FTP_SERVER: ${{ secrets.DA_FTP_SERVER }}
-          FTP_USER: ${{ secrets.DA_FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.DA_FTP_PASSWORD }}
+          DA_SSH_KNOWN_HOSTS: ${{ secrets.DA_SSH_KNOWN_HOSTS }}
         run: |
-          lftp -u "$FTP_USER,$FTP_PASSWORD" \
-               -e "set ssl:verify-certificate no;
-                   set ftp:ssl-allow yes;
-                   mirror -R --delete --verbose dist/ public_html/;
-                   quit" \
-               "$FTP_SERVER"
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf "%s\n" "$DA_SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Deploy via rsync + SSH
+        # SEGURIDAD: SSHPASS en env:, nunca en argv. sshpass lee SSHPASS de entorno.
+        env:
+          SSH_HOST: ${{ secrets.DA_FTP_SERVER }}
+          SSH_USER: ${{ secrets.DA_FTP_USERNAME }}
+          SSHPASS: ${{ secrets.DA_FTP_PASSWORD }}
+        run: |
+          sshpass -e rsync -avz --delete \
+            -e "ssh -p 22" \
+            dist/ "$SSH_USER@$SSH_HOST:public_html/"

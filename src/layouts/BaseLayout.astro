@@ -238,15 +238,9 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
         function setScrolled(scrolled: boolean): void {
           if (scrolled) {
             header.classList.add('is-scrolled');
-            if (logo) {
-              logo.src = logo.src.replace('logo-tedx-blanco.png', 'logo-tedx-negro.png');
-            }
             navLinks.forEach(function(l) { l.classList.add('nav-dark'); });
           } else {
             header.classList.remove('is-scrolled');
-            if (logo) {
-              logo.src = logo.src.replace('logo-tedx-negro.png', 'logo-tedx-blanco.png');
-            }
             navLinks.forEach(function(l) { l.classList.remove('nav-dark'); });
           }
         }

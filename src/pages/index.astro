@@ -12,7 +12,6 @@ import imgEquipoNat  from '../assets/images/equipo-natalie.webp'
 import imgEquipoCla  from '../assets/images/equipo-claudio.webp'
 import imgFotoSec02  from '../assets/images/foto-seccion-02.webp'
 import imgFicha      from '../assets/images/ficha-tecnica.webp'
-import imgAuspPolar  from '../assets/images/auspiciador-polaroid.webp'
 import imgConvoca    from '../assets/images/convocatoria-speakers.webp'
 import imgContacto   from '../assets/images/contacto-01.webp'
 
@@ -432,7 +431,7 @@ const seoEvent = {
 
     <!-- Columna izquierda: polaroid + cita -->
     <div class="s-ficha__left">
-      <div class="polaroid" aria-hidden="true">
+      <div class="polaroid">
         <Image
           src={imgFicha}
           alt=""
@@ -442,18 +441,24 @@ const seoEvent = {
           decoding="async"
           class="polaroid__img"
         />
-        <div class="polaroid__caption">TEDxBarrioUniversitario Women 2026</div>
+        <p class="s-ficha__cita">"Ideas capaces de cambiar perspectivas y generar acción"</p>
       </div>
-      <blockquote class="caja-lavanda s-ficha__cita" style="margin-top:1.5rem;">
-        <p>"Ideas capaces de cambiar perspectivas y generar acción"</p>
-      </blockquote>
     </div>
 
     <!-- Columna derecha: datos + temáticas -->
     <div class="s-ficha__right">
-      <p class="eyebrow-label">El evento</p>
-      <h2 id="h-ficha" class="display-black s-ficha__h2">
-        FICHA TÉCNICA <span class="flecha-roja" aria-hidden="true">→</span>
+      <h2 id="h-ficha" class="s-ficha__h2">
+        <span class="s-ficha__h2-top display-light">FICHA</span>
+        <span class="s-ficha__h2-bottom display-black">
+          TÉCNICA
+          <svg class="s-ficha__flecha" viewBox="0 0 120 100" width="120" height="100"
+               fill="none" aria-hidden="true" focusable="false">
+            <path d="M 15 10 C 100 -5, 120 55, 55 95"
+                  stroke="#db0028" stroke-width="1.8" stroke-dasharray="5 4" stroke-linecap="round"/>
+            <polyline points="72,88 55,95 72,102"
+                      stroke="#db0028" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </span>
       </h2>
 
       <!-- 6 Temáticas -->
@@ -520,9 +525,9 @@ const seoEvent = {
 
     <!-- Col izquierda: texto -->
     <div class="s-auspi__copy">
-      <p class="eyebrow-label">¿Por qué sumarse?</p>
-      <h2 id="h-auspi" class="display-black s-auspi__h2">
-        ¿POR QUÉ SUMARSE<br/>COMO AUSPICIADOR?
+      <h2 id="h-auspi" class="s-auspi__h2">
+        <span class="s-auspi__h2-top display-light">¿POR QUÉ SUMARSE</span>
+        <span class="s-auspi__h2-bottom display-black">COMO AUSPICIADOR?</span>
       </h2>
       <p class="s-auspi__intro">
         Al convertirse en partner de TEDxBarrioUniversitario Women, su organización no solo
@@ -545,40 +550,32 @@ const seoEvent = {
         ))}
       </ul>
 
-      <blockquote class="s-auspi__cita">
-        <p class="s-auspi__cita-text">
-          <span class="comilla-roja" aria-hidden="true">"</span>
-          Las ideas necesitan espacios para despegar.
-          <span class="comilla-roja" aria-hidden="true">"</span>
-        </p>
-      </blockquote>
     </div>
 
-    <!-- Col derecha: 2 polaroids rotadas -->
+    <!-- Col derecha: 2 polaroids solapadas (decorativo) -->
     <div class="s-auspi__polars" aria-hidden="true">
-      <div class="polaroid polaroid--rotate-left">
+      <div class="polaroid polaroid--stack-back polaroid--tight">
         <Image
-          src={imgAuspPolar}
+          src={imgContacto}
           alt=""
-          width={340}
-          height={260}
+          width={240}
+          height={200}
           loading="lazy"
           decoding="async"
-          class="polaroid__img"
+          class="polaroid__img polaroid__img--cover"
         />
-        <div class="polaroid__caption">Alcance · Presencia · Impacto</div>
       </div>
-      <div class="polaroid polaroid--rotate-right" style="margin-top:1.5rem;">
+      <div class="polaroid polaroid--stack-front">
         <Image
-          src={imgAuspPolar}
+          src={imgFotoSec02}
           alt=""
-          width={340}
-          height={260}
+          width={300}
+          height={240}
           loading="lazy"
           decoding="async"
-          class="polaroid__img"
+          class="polaroid__img polaroid__img--cover"
         />
-        <div class="polaroid__caption">Ideas que conectan organizaciones</div>
+        <p class="polaroid__caption polaroid__caption--quote">"Las ideas necesitan espacios para despegar"</p>
       </div>
     </div>
 
@@ -605,6 +602,9 @@ const seoEvent = {
           y quiere asociarse a una plataforma de prestigio internacional que promueve la
           innovación, el conocimiento y la transformación social, nos encantaría conversar contigo.
         </p>
+        <a href={`mailto:${evento.emailAlianzas}`} class="btn-primary s-beneficios__btn">
+          Quiero ser Partner <span aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
 
@@ -621,13 +621,6 @@ const seoEvent = {
       ))}
     </ul>
 
-    <!-- CTA directo por correo — el mockup WEB.pdf no tiene form inline -->
-    <div class="s-beneficios__cta">
-      <a href={`mailto:${evento.emailAlianzas}`} class="btn-primary">
-        Quiero ser Partner <span aria-hidden="true">→</span>
-      </a>
-    </div>
-
   </div>
 </section>
 
@@ -636,12 +629,23 @@ const seoEvent = {
      S9 — CONVOCATORIA DE SPEAKERS
      Fondo mixto (claro). Silueta TU NOMBRE + proceso 3 etapas + form.
      ============================================================ -->
-<section id="speakers" class="s-speakers seccion-light" aria-labelledby="h-speakers">
+<section id="speakers" class="s-speakers dark-section" aria-labelledby="h-speakers">
   <div class="seccion-inner">
 
     <div class="s-speakers__header">
-      <p class="eyebrow-label">Convocatoria</p>
-      <h2 id="h-speakers" class="display-black s-speakers__h2">CONVOCATORIA DE SPEAKERS</h2>
+      <h2 id="h-speakers" class="s-speakers__h2">
+        <span class="s-speakers__h2-top display-light">CONVOCATORIA DE</span>
+        <span class="s-speakers__h2-bottom display-black">
+          SPEAKERS
+          <svg class="s-speakers__flecha" viewBox="0 0 120 100" width="120" height="100"
+               fill="none" aria-hidden="true" focusable="false">
+            <path d="M 105 10 C 20 -5, 0 55, 65 95"
+                  stroke="#db0028" stroke-width="1.8" stroke-dasharray="5 4" stroke-linecap="round"/>
+            <polyline points="48,88 65,95 48,102"
+                      stroke="#db0028" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </span>
+      </h2>
       <p class="s-speakers__sub">¿Tienes una idea que merece ser compartida?</p>
     </div>
 
@@ -1364,12 +1368,42 @@ const seoEvent = {
 }
 .polaroid--rotate-left  { transform: rotate(-3deg); }
 .polaroid--rotate-right { transform: rotate(3deg); }
+.polaroid--tight        { padding: 10px; }
 
 .s-ficha__right { display: flex; flex-direction: column; gap: 1.25rem; }
 .s-ficha__h2 {
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  display: flex;
+  flex-direction: column;
   color: var(--color-charcoal);
-  margin: 0.4rem 0 0;
+  margin: 0 0 0.25rem;
+  line-height: 1;
+}
+.s-ficha__h2-top {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  color: var(--color-charcoal);
+}
+.s-ficha__h2-bottom {
+  font-size: clamp(3rem, 8vw, 6rem);
+  color: var(--color-charcoal);
+  line-height: 0.9;
+  position: relative;
+  display: block;
+}
+.s-ficha__flecha {
+  position: absolute;
+  left: 100%;
+  top: -10px;
+  pointer-events: none;
+}
+.s-ficha__cita {
+  margin: 0.75rem 0 0;
+  padding: 0 0.25rem 0.5rem;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--color-charcoal);
+  line-height: 1.45;
 }
 .s-ficha__desc {
   font-size: 0.92rem;
@@ -1391,7 +1425,8 @@ const seoEvent = {
   padding: 0 1.5rem;
   display: flex;
   align-items: center;
-  gap: 3rem;
+  justify-content: space-between;
+  gap: 1.5rem;
   flex-wrap: wrap;
 }
 .s-ficha__franja-udec { display: flex; flex-direction: column; gap: 0.4rem; }
@@ -1407,22 +1442,34 @@ const seoEvent = {
   flex-shrink: 0;
 }
 
-/* Contadores (ahora dentro de <ul> en la franja) */
+/* Contadores distribuidos a lo ancho, número + label en fila */
 .s-ficha__counters {
-  display: flex; gap: 2.5rem; flex-wrap: wrap;
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  gap: 1.5rem;
+  flex-wrap: wrap;
   list-style: none; padding: 0; margin: 0;
 }
-.counter-item { display: flex; flex-direction: column; align-items: flex-start; }
+.counter-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.6rem;
+}
 .counter-num {
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   color: var(--color-charcoal);
   line-height: 1;
+  flex-shrink: 0;
 }
 .counter-label {
   font-family: var(--font-display);
   font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
   color: rgba(35,35,35,0.75);
-  margin-top: 2px;
+  text-align: left;
+  max-width: 6rem;
+  line-height: 1.3;
 }
 
 /* Temáticas */
@@ -1444,9 +1491,14 @@ const seoEvent = {
   align-items: start;
 }
 .s-auspi__h2 {
-  font-size: clamp(1.6rem, 4vw, 2.8rem);
-  color: #ffffff;
-  margin: 0.5rem 0 1.5rem;
+  display: flex; flex-direction: column;
+  color: #fff; margin: 0 0 1.5rem; line-height: 1;
+}
+.s-auspi__h2-top {
+  font-size: clamp(0.9rem, 1.8vw, 1.4rem); color: #fff;
+}
+.s-auspi__h2-bottom {
+  font-size: clamp(2rem, 5vw, 4rem); color: #fff; line-height: 0.9;
 }
 .s-auspi__intro {
   font-size: 0.92rem; color: rgba(255,255,255,0.75); line-height: 1.6;
@@ -1457,12 +1509,44 @@ const seoEvent = {
   display: flex; align-items: flex-start; gap: 10px;
   font-size: 0.9rem; color: rgba(255,255,255,0.82); line-height: 1.55;
 }
-.s-auspi__cita { border-left: 3px solid var(--color-ted-red); padding-left: 1rem; }
-.s-auspi__cita-text {
-  font-size: 1.1rem; font-style: italic;
-  color: rgba(255,255,255,0.85); line-height: 1.55;
+.s-auspi__polars {
+  position: relative;
+  width: 380px;
+  height: 480px;
+  flex-shrink: 0;
 }
-.s-auspi__polars { display: flex; flex-direction: column; gap: 0.25rem; max-width: 320px; }
+.polaroid--stack-back {
+  position: absolute;
+  width: 240px;
+  top: 0;
+  left: 0;
+  transform: rotate(-7deg);
+  z-index: 1;
+}
+.polaroid--stack-front {
+  position: absolute;
+  width: 290px;
+  bottom: 0;
+  right: 0;
+  transform: rotate(3deg);
+  z-index: 2;
+}
+.polaroid__img--cover {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+}
+.polaroid__caption--quote {
+  font-style: italic;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--color-charcoal);
+  text-align: center;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: 1.4;
+  padding: 0.25rem 0.5rem;
+}
 
 /* ── S8 BENEFICIOS ────────────────────────────────────────── */
 .s-beneficios { padding: var(--spacing-section) 0; }
@@ -1503,13 +1587,26 @@ const seoEvent = {
 }
 .beneficio-sep { display: none; }
 
-.s-beneficios__cta { text-align: center; margin-bottom: 3rem; }
+.s-beneficios__btn { display: inline-block; margin-top: 1.5rem; }
 
 /* ── S9 SPEAKERS ──────────────────────────────────────────── */
-.s-speakers { padding: var(--spacing-section) 0; }
-.s-speakers__header { text-align: center; margin-bottom: 3rem; }
-.s-speakers__h2 { font-size: clamp(1.8rem, 4vw, 3rem); color: var(--color-charcoal); margin: 0.5rem 0 0.75rem; }
-.s-speakers__sub { color: rgba(35,35,35,0.7); font-size: 1rem; }
+.s-speakers { padding: var(--spacing-section) 0; background: var(--color-charcoal); }
+.s-speakers__header { text-align: left; margin-bottom: 3rem; }
+.s-speakers__h2 {
+  display: flex; flex-direction: column;
+  color: #fff; margin: 0 0 0.75rem; line-height: 1;
+}
+.s-speakers__h2-top {
+  font-size: clamp(0.9rem, 1.8vw, 1.4rem); color: #fff;
+}
+.s-speakers__h2-bottom {
+  font-size: clamp(3rem, 8vw, 6rem); color: #fff;
+  line-height: 0.9; position: relative; display: block;
+}
+.s-speakers__flecha {
+  position: absolute; left: 100%; top: -10px; pointer-events: none;
+}
+.s-speakers__sub { color: rgba(255,255,255,0.9); font-weight: 700; font-size: 1rem; }
 
 .s-speakers__layout {
   display: grid;
@@ -1535,16 +1632,16 @@ const seoEvent = {
 
 .s-speakers__quienes { margin-bottom: 2rem; }
 .s-speakers__quienes-desc {
-  font-size: 0.88rem; color: rgba(35,35,35,0.72); line-height: 1.6; margin: 0 0 0.85rem;
+  font-size: 0.88rem; color: rgba(255,255,255,0.78); line-height: 1.6; margin: 0 0 0.85rem;
 }
 .s-speakers__quienes-sub {
-  font-size: 0.85rem; color: rgba(35,35,35,0.65); line-height: 1.5; margin: 0 0 0.6rem;
+  font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0 0 0.6rem;
 }
-.s-speakers__quienes-h { font-size: 1.05rem; color: var(--color-charcoal); margin-bottom: 0.5rem; margin-top: 1rem; }
+.s-speakers__quienes-h { font-size: 1.05rem; color: #fff; margin-bottom: 0.5rem; margin-top: 1rem; }
 .s-speakers__quienes-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.45rem; }
 .s-speakers__quienes-item {
   display: flex; align-items: flex-start; gap: 8px;
-  font-size: 0.88rem; color: rgba(35,35,35,0.78); line-height: 1.5;
+  font-size: 0.88rem; color: rgba(255,255,255,0.82); line-height: 1.5;
 }
 
 /* Proceso 3 etapas */
@@ -1560,7 +1657,7 @@ const seoEvent = {
   top: 36px;
   width: 2px;
   height: calc(100% - 20px);
-  background: rgba(35,35,35,0.12);
+  background: rgba(255,255,255,0.15);
 }
 .s-proceso__num {
   min-width: 36px; height: 36px;
@@ -1568,12 +1665,12 @@ const seoEvent = {
   color: #fff;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.7rem; font-weight: 700;
+  font-size: 1rem; font-weight: 700;
   flex-shrink: 0;
 }
 .s-proceso__content { padding-top: 4px; }
-.s-proceso__title { font-size: 0.9rem; color: var(--color-charcoal); margin: 0 0 0.25rem; }
-.s-proceso__desc { font-size: 0.82rem; color: rgba(35,35,35,0.65); line-height: 1.5; margin: 0; }
+.s-proceso__title { font-size: 0.9rem; color: #fff; margin: 0 0 0.25rem; }
+.s-proceso__desc { font-size: 0.82rem; color: rgba(255,255,255,0.65); line-height: 1.5; margin: 0; }
 
 .s-speakers__cta { margin-top: 2rem; }
 
@@ -1746,7 +1843,7 @@ const seoEvent = {
   .s-speakers__layout,
   .s-contacto__inner { grid-template-columns: 1fr; gap: 2rem; }
 
-  .s-auspi__polars  { flex-direction: row; max-width: 100%; }
+  .s-auspi__polars  { width: 100%; height: 340px; }
   .beneficio-item   { flex: 1 1 45%; border-right: none; border-bottom: 1px solid rgba(35,35,35,0.1); }
   .s-beneficios__header { grid-template-columns: 1fr; gap: 1.25rem; }
 
@@ -1764,7 +1861,9 @@ const seoEvent = {
 @media (max-width: 600px) {
   .equipo-grid        { grid-template-columns: repeat(2, 1fr); }
   .beneficio-item     { flex: 1 1 100%; }
-  .s-auspi__polars    { flex-direction: column; }
+  .s-auspi__polars    { width: 100%; height: 300px; }
+  .polaroid--stack-back  { width: 55%; }
+  .polaroid--stack-front { width: 58%; }
   .s-ficha__counters  { gap: 1.25rem; }
   .s-ficha__franja-inner { gap: 1.5rem; }
   .countdown-num      { font-size: clamp(1.8rem, 8vw, 2.5rem); padding: 0.15rem 0.4rem; }

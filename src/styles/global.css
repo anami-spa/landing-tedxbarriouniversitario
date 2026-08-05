@@ -139,6 +139,8 @@ body {
   line-height: 1.0;
   text-transform: uppercase;
 }
+/* Preserva minúsculas dentro de contextos text-transform:uppercase (ej: la x de TEDx) */
+.lc { text-transform: none; }
 .headline-bold {
   font-family: var(--font-display);
   font-weight: 700;

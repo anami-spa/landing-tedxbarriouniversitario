@@ -71,7 +71,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
 
         <nav aria-label="Navegación principal" class="site-header__nav">
           <a href="#equipo"        class="header-nav-link header-nav-wide">Equipo</a>
-          <a href="#que-es-tedx"   class="header-nav-link header-nav-wide">¿Qué es TEDx?</a>
+          <a href="#que-es-tedx"   class="header-nav-link header-nav-wide">¿Qué es TED<span class="lc">x</span>?</a>
           <a href="#evento"        class="header-nav-link header-nav-wide">Evento</a>
           <a href="#partners"      class="header-nav-link header-nav-wide">Partners</a>
           <a href="#contacto"      class="header-nav-link header-nav-wide">Contacto</a>
@@ -80,7 +80,38 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
             Postular →
           </a>
         </nav>
+
+        <!-- Hamburguesa: solo visible ≤639px -->
+        <button
+          id="burger-btn"
+          class="site-header__burger"
+          aria-label="Abrir menú de navegación"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+        </button>
       </div>
+
+      <!-- Panel móvil (oculto por defecto) -->
+      <nav
+        id="mobile-nav"
+        class="mobile-nav"
+        aria-label="Menú móvil"
+        hidden
+      >
+        <a href="#equipo"     class="mobile-nav__link" data-close-menu>Equipo</a>
+        <a href="#que-es-tedx" class="mobile-nav__link" data-close-menu>¿Qué es TED<span class="lc">x</span>?</a>
+        <a href="#evento"     class="mobile-nav__link" data-close-menu>Evento</a>
+        <a href="#partners"   class="mobile-nav__link" data-close-menu>Partners</a>
+        <a href="#contacto"   class="mobile-nav__link" data-close-menu>Contacto</a>
+        <a href="#speakers"   class="mobile-nav__link mobile-nav__link--cta" data-close-menu
+           aria-label="Postular como speaker al TEDxBarrioUniversitario Women 2026">
+          Postular →
+        </a>
+      </nav>
     </header>
 
     <!-- WCAG 2.4.1: tabindex="-1" permite que el skip-link mueva el foco -->
@@ -226,6 +257,85 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
     </footer>
 
 
+  <!-- Botón scroll-to-top -->
+  <button
+    id="btn-top"
+    class="btn-top"
+    aria-label="Volver al inicio de la página"
+    aria-hidden="true"
+    tabindex="-1"
+  >
+    <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M10 15V5M10 5L5 10M10 5L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('btn-top');
+      if (!btn) return;
+
+      function toggleBtn() {
+        var visible = window.scrollY > 400;
+        btn.classList.toggle('btn-top--visible', visible);
+        btn.setAttribute('aria-hidden', String(!visible));
+        btn.tabIndex = visible ? 0 : -1;
+      }
+
+      window.addEventListener('scroll', toggleBtn, { passive: true });
+      toggleBtn();
+
+      btn.addEventListener('click', function () {
+        var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: prefersReduced ? 'instant' : 'smooth' });
+      });
+    })();
+  </script>
+
+  <script>
+    /* ── Menú hamburguesa móvil ─────────────────────────────── */
+    (function () {
+      var burgerBtn = document.getElementById('burger-btn');
+      var mobileNav = document.getElementById('mobile-nav');
+      if (!burgerBtn || !mobileNav) return;
+
+      function openMenu() {
+        mobileNav.removeAttribute('hidden');
+        burgerBtn.setAttribute('aria-expanded', 'true');
+        burgerBtn.setAttribute('aria-label', 'Cerrar menú de navegación');
+      }
+
+      function closeMenu() {
+        mobileNav.setAttribute('hidden', '');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+        burgerBtn.setAttribute('aria-label', 'Abrir menú de navegación');
+      }
+
+      burgerBtn.addEventListener('click', function () {
+        burgerBtn.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+      });
+
+      /* Cerrar con Escape y devolver foco al botón */
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && burgerBtn.getAttribute('aria-expanded') === 'true') {
+          closeMenu();
+          burgerBtn.focus();
+        }
+      });
+
+      /* Cerrar al hacer click en cualquier link del panel */
+      mobileNav.querySelectorAll('[data-close-menu]').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      /* Cerrar automáticamente al pasar a desktop */
+      var mq = window.matchMedia('(min-width: 640px)');
+      mq.addEventListener('change', function (e) {
+        if (e.matches) closeMenu();
+      });
+    })();
+  </script>
+
   </body>
 </html>
 
@@ -313,11 +423,98 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
 /* Responsive nav */
 @media (max-width: 639px) {
   .header-nav-wide { display: none !important; }
-  .site-header__logo { height: 40px; }
+  .site-header__logo { height: 52px; }
+  /* Ocultar también el btn POSTULAR en la barra (aparece en el panel móvil) */
+  .site-header__nav .btn-header-cta { display: none !important; }
 }
-@media (max-width: 900px) {
-  .header-nav-wide { display: none; }
+/* Tablet 640–900px: links visibles, fuente y gaps reducidos */
+@media (min-width: 640px) and (max-width: 900px) {
+  .header-nav-link { font-size: 0.7rem; padding: 6px 2px; }
+  .btn-header-cta  { font-size: 0.7rem; padding: 6px 12px; }
+  .site-header__nav { gap: 8px; }
+  .site-header__logo { height: 44px; }
 }
+
+/* ── Hamburguesa ────────────────────────────────────────────── */
+.site-header__burger {
+  display: none; /* oculto en desktop/tablet */
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.burger-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-charcoal);
+  border-radius: 2px;
+  transition: transform 0.22s ease, opacity 0.22s ease;
+}
+/* Ícono X cuando el menú está abierto */
+.site-header__burger[aria-expanded="true"] .burger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.site-header__burger[aria-expanded="true"] .burger-bar:nth-child(2) {
+  opacity: 0;
+}
+.site-header__burger[aria-expanded="true"] .burger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 639px) {
+  .site-header__burger { display: flex; }
+}
+
+/* ── Panel de navegación móvil ─────────────────────────────── */
+.mobile-nav {
+  position: absolute;
+  top: 100%; /* pegar bajo el header */
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 1px solid rgba(35,35,35,0.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0 16px;
+}
+/* hidden attr controla visibilidad — el !important asegura que el CSS no lo anule */
+.mobile-nav[hidden] { display: none !important; }
+
+.mobile-nav__link {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+  text-decoration: none;
+  padding: 14px 24px;
+  border-bottom: 1px solid rgba(35,35,35,0.06);
+  transition: color 0.15s, background 0.15s;
+}
+.mobile-nav__link:last-child { border-bottom: none; }
+.mobile-nav__link:hover { color: var(--color-ted-red); background: rgba(219,0,40,0.04); }
+
+.mobile-nav__link--cta {
+  margin: 12px 24px 0;
+  padding: 12px 20px;
+  background: var(--color-ted-red);
+  color: #ffffff !important;
+  border-radius: 4px;
+  border-bottom: none;
+  text-align: center;
+}
+.mobile-nav__link--cta:hover { background: #b8001f; }
 
 /* ============================================================
    FOOTER — charcoal oscuro + borde rojo
@@ -457,5 +654,42 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
   outline: 2px solid #fff;
   outline-offset: 2px;
   border-radius: 2px;
+}
+
+/* ── Botón scroll-to-top ──────────────────────────────────── */
+.btn-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 200;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-ted-red, #db0028);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.15s ease;
+}
+.btn-top--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.btn-top:hover { background: #b8001f; }
+.btn-top:focus-visible {
+  outline: 2px solid var(--color-ted-red, #db0028);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(219,0,40,0.25);
+}
+@media (max-width: 639px) {
+  .btn-top { bottom: 1.25rem; right: 1.25rem; width: 42px; height: 42px; }
 }
 </style>

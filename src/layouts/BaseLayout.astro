@@ -51,26 +51,20 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
   <body>
     <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
 
-    <!-- Sentinel invisible al top: cuando sale del viewport el header se vuelve sólido -->
-    <div id="scroll-sentinel" aria-hidden="true" style="position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;"></div>
-
     <!-- ============================================================
-         HEADER — fixed, transparente sobre hero oscuro.
-         Al hacer scroll (sentinel sale de viewport) → fondo charcoal.
-         Nav: QUÉ ES TEDx · EVENTO · AUSPICIA · PARTNERS + POSTULAR rojo
+         HEADER — fixed, blanco sólido desde el inicio.
+         Nav: EQUIPO · QUÉ ES TEDx · EVENTO · PARTNERS · CONTACTO + POSTULAR rojo
          ============================================================ -->
     <header class="site-header" id="site-header" role="banner">
       <div class="site-header__inner">
         <a href="#inicio" class="site-header__logo-link" aria-label="TEDxBarrioUniversitario Women — ir al inicio">
-          <!-- Blanco por defecto (sobre hero oscuro). Se cambia a negro/svg al hacer scroll via JS. -->
           <img
-            src={`${baseUrl}/logo-tedx-blanco.png`}
+            src={`${baseUrl}/logo-tedx-negro.png`}
             alt="TEDxBarrioUniversitario Women"
             width="160"
             height="60"
             loading="eager"
             decoding="async"
-            id="header-logo"
             class="site-header__logo"
           />
         </a>
@@ -79,7 +73,6 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
           <a href="#equipo"        class="header-nav-link header-nav-wide">Equipo</a>
           <a href="#que-es-tedx"   class="header-nav-link header-nav-wide">¿Qué es TEDx?</a>
           <a href="#evento"        class="header-nav-link header-nav-wide">Evento</a>
-          <a href="#auspiciadores" class="header-nav-link header-nav-wide">Auspicios</a>
           <a href="#partners"      class="header-nav-link header-nav-wide">Partners</a>
           <a href="#contacto"      class="header-nav-link header-nav-wide">Contacto</a>
           <a href="#speakers"      class="header-nav-link btn-header-cta"
@@ -117,7 +110,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
               class="site-footer__logo"
             />
             <p class="site-footer__tagline">
-              Ideas que conectan, voces que transforman.
+              Alzar el vuelo
             </p>
             <nav aria-label="Redes sociales de TEDxBarrioUniversitario">
               <ul class="site-footer__social">
@@ -165,10 +158,9 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
           <div>
             <h3 class="site-footer__heading">Evento</h3>
             <ul class="site-footer__list">
-              <li>04 Diciembre 2026</li>
-              <li>09:00 — 13:00 hrs</li>
+              <li><a href="#concepto" class="site-footer__link">Alzar el vuelo</a></li>
+              <li>04 Dic 2026</li>
               <li>Universidad de Concepción</li>
-              <li>Auditorio <em style="opacity:0.6;">[por confirmar]</em></li>
               <li>Concepción, Chile</li>
             </ul>
           </div>
@@ -177,9 +169,23 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
           <div>
             <h3 class="site-footer__heading">Participar</h3>
             <ul class="site-footer__list">
-              <li><a href="#auspiciadores" class="site-footer__link">Ser auspiciador</a></li>
-              <li><a href="#speakers"      class="site-footer__link">Postular como speaker</a></li>
-              <li><a href="#partners"      class="site-footer__link">Ver nuestros partners</a></li>
+              <li><a href="#contacto" class="site-footer__link">Contacto</a></li>
+              <li>
+                <a href="https://docs.google.com/forms/d/1c1CFQSXlb-diJSRwZCDvsV5lzHA8y5p3zzs5atz7_YE/viewform"
+                   target="_blank" rel="noopener noreferrer"
+                   class="site-footer__link"
+                   aria-label="Quiero ser Partner — formulario (abre en nueva pestaña)">
+                  Quiero ser Partner ↗
+                </a>
+              </li>
+              <li>
+                <a href="https://docs.google.com/forms/d/15njQTb5kpHgN1O_7wST56SnzuHblA3rowGsJNlhyYu0/viewform"
+                   target="_blank" rel="noopener noreferrer"
+                   class="site-footer__link"
+                   aria-label="Postular como Speaker — formulario (abre en nueva pestaña)">
+                  Postular como Speaker ↗
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -193,8 +199,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
                 <a href="https://www.ted.com/tedx/events/69535"
                    target="_blank" rel="noopener noreferrer"
                    class="site-footer__link"
-                   aria-label="Evento oficial en TED.com (abre en nueva pestaña)">
-                  ted.com/tedx ↗
+                   aria-label="TEDxBarrioUniversitario Women en TED.com (abre en nueva pestaña)">
+                  TEDxBarrioUniversitario Women ↗
                 </a>
               </li>
             </ul>
@@ -219,54 +225,13 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
       </div>
     </footer>
 
-    <!-- ============================================================
-         HEADER SCROLL-AWARE — IntersectionObserver sobre sentinel
-         Transparent sobre hero → charcoal al bajar
-         Logo blanco → negro; nav links blancos → charcoal
-         ============================================================ -->
-    <script>
-      (function(): void {
-        const headerMaybe = document.getElementById('site-header');
-        const logo        = document.getElementById('header-logo') as HTMLImageElement | null;
-        const sentinel    = document.getElementById('scroll-sentinel');
-        if (!headerMaybe || !sentinel) return;
-
-        /* Reasignamos a const no-nula para que TypeScript pueda inferir el tipo dentro de setScrolled */
-        const header   = headerMaybe as HTMLElement;
-        const navLinks = header.querySelectorAll('.header-nav-link:not(.btn-header-cta)');
-
-        function setScrolled(scrolled: boolean): void {
-          if (scrolled) {
-            header.classList.add('is-scrolled');
-            navLinks.forEach(function(l) { l.classList.add('nav-dark'); });
-          } else {
-            header.classList.remove('is-scrolled');
-            navLinks.forEach(function(l) { l.classList.remove('nav-dark'); });
-          }
-        }
-
-        // prefers-reduced-motion: sin transición de header
-        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReduced) {
-          setScrolled(true);
-          return;
-        }
-
-        const observer = new IntersectionObserver(function(entries) {
-          setScrolled(!entries[0].isIntersecting);
-        }, { threshold: 0 });
-
-        observer.observe(sentinel);
-      })();
-    </script>
 
   </body>
 </html>
 
 <style>
 /* ============================================================
-   HEADER — fixed, transparente por defecto (sobre hero oscuro)
-   .is-scrolled → fondo charcoal sólido
+   HEADER — fixed, blanco sólido desde el inicio
    ============================================================ */
 .site-header {
   position: fixed;
@@ -274,13 +239,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
   left: 0;
   right: 0;
   z-index: 100;
-  background: transparent;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-}
-
-.site-header.is-scrolled {
-  background: var(--color-charcoal);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  background: #ffffff;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.08);
 }
 
 .site-header__inner {
@@ -312,30 +272,21 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
   gap: clamp(12px, 2vw, 20px);
 }
 
-/* Links en blanco por defecto (header transparente sobre oscuro) */
+/* Links charcoal sobre fondo blanco */
 .header-nav-link {
   font-family: var(--font-display);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.9);
+  color: var(--color-charcoal);
   text-decoration: none;
   padding: 8px 4px;
   white-space: nowrap;
   transition: color 0.15s ease;
 }
-.header-nav-link:hover { color: #ffffff; }
-
-/* Al hacer scroll: links charcoal */
-.header-nav-link.nav-dark { color: rgba(255,255,255,0.85); }
-.header-nav-link.nav-dark:hover { color: #ffffff; }
-
-.header-nav-link:focus-visible {
-  outline: 2px solid #ffffff;
-  outline-offset: 3px;
-  border-radius: 2px;
-}
+.header-nav-link:hover { color: var(--color-ted-red); }
+/* focus-visible: usa el ring global rojo (#db0028 sobre blanco = 3.4:1 WCAG AA ✓) */
 
 /* Botón rojo CTA */
 .btn-header-cta {

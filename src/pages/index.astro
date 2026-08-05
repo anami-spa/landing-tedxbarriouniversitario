@@ -11,6 +11,7 @@ import imgEquipoGab from "../assets/images/equipo-gabriela-polaroid.png";
 import imgEquipoNat from "../assets/images/equipo-natalie-polaroid.png";
 import imgEquipoCla from "../assets/images/equipo-claudio-polaroid.png";
 import imgFotoSec02 from "../assets/images/foto-seccion-02.webp";
+import imgMujerS4 from "../assets/images/s4-mujer.png";
 import imgFicha from "../assets/images/ficha-tecnica.webp";
 import imgConvoca from "../assets/images/convocatoria-speakers.webp";
 import imgAlzarVuelo01 from "../assets/images/alzar-vuelo-01.webp";
@@ -459,21 +460,30 @@ const seoEvent = {
         </p>
       </div>
 
-      <!-- Col derecha: foto full-bleed con encuadre de cámara -->
+      <!-- Col derecha: foto polaroid del diseñador + cita en área blanca -->
       <figure class="s-mujeres__foto-wrap">
-        <Image
-          src={imgFotoSec02}
-          alt="Speaker TEDx en el escenario del Barrio Universitario"
-          width={560}
-          height={800}
-          loading="lazy"
-          decoding="async"
-          class="s-mujeres__foto-bg"
-        />
-        <div class="s-mujeres__foto-frame" aria-hidden="true"></div>
-        <figcaption class="s-mujeres__foto-cita">
-          "Las ideas inspiran.<br />El despegue las vuelve realidad"
-        </figcaption>
+        <div class="s-mujeres__polaroid">
+          <Image
+            src={imgMujerS4}
+            alt="Speaker TEDx en el escenario del Barrio Universitario"
+            width={680}
+            height={775}
+            loading="lazy"
+            decoding="async"
+            class="s-mujeres__foto-bg"
+          />
+          <img
+            src="/s4-marco.png"
+            class="s-mujeres__foto-marco"
+            aria-hidden="true"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption class="s-mujeres__foto-cita">
+            "Las ideas inspiran.<br />El despegue las vuelve realidad"
+          </figcaption>
+        </div>
       </figure>
     </div>
   </section>
@@ -1655,43 +1665,44 @@ const seoEvent = {
       max-width: 46ch;
     }
     .s-mujeres__foto-wrap {
-      position: relative;
-      border-radius: 8px;
-      overflow: hidden;
       max-width: 480px;
       margin: 0 auto;
     }
+    .s-mujeres__polaroid {
+      position: relative;
+    }
     .s-mujeres__foto-bg {
       width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      object-position: center center;
       display: block;
     }
-    .s-mujeres__foto-frame {
+    .s-mujeres__foto-marco {
       position: absolute;
-      top: 6%;
-      left: 6%;
-      right: 6%;
-      bottom: 22%;
-      border: 3px solid rgba(255, 255, 255, 0.88);
-      border-radius: 6px;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
       pointer-events: none;
+      user-select: none;
     }
     .s-mujeres__foto-cita {
       position: absolute;
-      bottom: 0;
+      bottom: 8%;
       left: 0;
       right: 0;
+      height: 24%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       font-style: italic;
       font-weight: 700;
       font-family: var(--font-display);
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      color: #fff;
-      line-height: 1.3;
-      padding: 0.75rem 1rem 1rem;
-      background: rgba(0, 0, 0, 0.45);
+      font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+      color: var(--color-charcoal);
+      line-height: 1.35;
+      padding: 0 1.25rem;
+      z-index: 2;
+      pointer-events: none;
     }
 
     /* ── S5 ALZAR EL VUELO (concepto) ──────────────────────────── */

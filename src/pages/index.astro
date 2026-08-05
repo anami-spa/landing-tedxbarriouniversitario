@@ -13,7 +13,15 @@ import imgEquipoCla  from '../assets/images/equipo-claudio.webp'
 import imgFotoSec02  from '../assets/images/foto-seccion-02.webp'
 import imgFicha      from '../assets/images/ficha-tecnica.webp'
 import imgConvoca    from '../assets/images/convocatoria-speakers.webp'
-import imgContacto   from '../assets/images/contacto-01.webp'
+import imgAlzarVuelo01    from '../assets/images/alzar-vuelo-01.webp'
+import imgTedxOficial     from '../assets/images/tedx-oficial.webp'
+import imgIcoLinkedin     from '../assets/images/icono-linkedin.webp'
+import imgAuspiciador     from '../assets/images/auspiciador-polaroid.webp'
+import imgIcoIG           from '../assets/images/icono-ig.webp'
+import imgIcoIN           from '../assets/images/icono-in.webp'
+import imgIcoFKR          from '../assets/images/icono-fkr.webp'
+import imgContactoPolaroid from '../assets/images/contacto-polaroid.webp'
+import imgUdecNegro       from '../assets/images/udec-negro.webp'
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
 
@@ -42,12 +50,12 @@ const evento = {
 }
 
 const equipo = [
-  { nombre: 'Javiera Burgos',  cargo: 'Organizadora y Directora General',          img: imgEquipoJav, slug: 'javiera'  },
-  { nombre: 'Paula Cifuentes', cargo: 'Coorganizadora y Directora de Comunicaciones', img: imgEquipoPau, slug: 'paula' },
-  { nombre: 'Pamela Pérez',    cargo: 'Curaduría y Speaker Coach',                 img: imgEquipoPam, slug: 'pamela'  },
-  { nombre: 'Claudio Muñoz',   cargo: 'Coach y Consultor del Equipo Organizador',  img: imgEquipoCla, slug: 'claudio' },
-  { nombre: 'Gabriela Concha', cargo: 'Producción y Logística',                    img: imgEquipoGab, slug: 'gabriela'},
-  { nombre: 'Natalie Aguayo',  cargo: 'Directora Creativa',                        img: imgEquipoNat, slug: 'natalie' },
+  { nombre: 'Javiera Burgos',  cargo: 'Organizadora y Directora General',                    img: imgEquipoJav, slug: 'javiera',  linkedin: 'javieraburgosb'            },
+  { nombre: 'Paula Cifuentes', cargo: 'Directora de Comunicaciones',                          img: imgEquipoPau, slug: 'paula',    linkedin: 'paulacifuentes'            },
+  { nombre: 'Pamela Pérez',    cargo: 'Curaduría y Speaker Coach',                            img: imgEquipoPam, slug: 'pamela',   linkedin: 'pamelapereztoledo'         },
+  { nombre: 'Claudio Muñoz',   cargo: 'Alianzas Estratégicas y Coach de Equipo',              img: imgEquipoCla, slug: 'claudio',  linkedin: 'claudiomunozgarnica'       },
+  { nombre: 'Gabriela Concha', cargo: 'Producción y Logística',                               img: imgEquipoGab, slug: 'gabriela', linkedin: 'gabriela-concha-289a322a'  },
+  { nombre: 'Natalie Aguayo',  cargo: 'Directora Creativa',                                   img: imgEquipoNat, slug: 'natalie',  linkedin: 'natalie-aguayo-espinoza'   },
 ]
 
 const tematicas = [
@@ -83,17 +91,18 @@ const beneficios = [
 ]
 
 const procesoSpeaker = [
-  { num: '01', titulo: 'Postulación por correo',               desc: 'Envíanos tu idea y perfil a contacto@tedxbarriouniversitario.cl' },
-  { num: '02', titulo: 'Video presentación',                  desc: 'Envía un video breve presentando tu idea.' },
-  { num: '03', titulo: 'Entrevista con el equipo curatorial', desc: 'El equipo editorial evalúa y selecciona.' },
+  { num: '01', titulo: 'Completa el formulario',            desc: 'Postula con tu idea a través del formulario oficial de convocatoria.' },
+  { num: '02', titulo: 'Video presentación',                desc: 'Envía un video breve presentando tu idea y motivaciones.' },
+  { num: '03', titulo: 'Entrevista con el equipo curatorial', desc: 'El equipo editorial evalúa tu propuesta y toma contacto contigo.' },
 ]
 
 const partners = [
-  { categoria: 'Institución Anfitriona', logos: ['udec'], placeholder: false },
-  { categoria: 'Main',        logos: [], placeholder: true },
-  { categoria: 'Estratégico', logos: ['anami'], placeholder: false },
-  { categoria: 'Experiencia', logos: [], placeholder: true },
-  { categoria: 'Media',       logos: [], placeholder: true },
+  { categoria: 'Institución Anfitriona', logos: ['udec'],  placeholder: false },
+  { categoria: 'Main Partner',           logos: [],         placeholder: true  },
+  { categoria: 'Partner Estratégico',    logos: ['anami'],  placeholder: false },
+  { categoria: 'Partner Colaborador',    logos: [],         placeholder: true  },
+  { categoria: 'Partner Impulsor',       logos: [],         placeholder: true  },
+  { categoria: 'Partner Pyme',           logos: [],         placeholder: true  },
 ]
 
 const seoEvent = {
@@ -139,18 +148,24 @@ const seoEvent = {
     />
   </div>
 
-  <!-- Contenido tipográfico: texto vertical + H1 en fila flex alineados al top -->
+  <!-- Wordmark del diseñador: PNG fidelidad 1:1. H1 sr-only para a11y. -->
   <div class="hero-content">
+    <h1 class="sr-only">Alzar el vuelo — TEDxBarrioUniversitario Women 2026</h1>
     <div class="hero-title-row">
       <div class="hero-vertical" aria-hidden="true">
         <span>BARRIO</span>
         <span>UNIVERSITARIO</span>
       </div>
-      <h1 class="hero-h1" aria-label="Alzar el vuelo — TEDx Women">
-        <span class="hero-h1__alzar display-light">ALZAR</span>
-        <span class="hero-h1__el display-light">EL</span>
-        <span class="hero-h1__vuelo display-black">VUELO</span>
-      </h1>
+      <Image
+        src={imgAlzarVuelo01}
+        alt=""
+        width={700}
+        height={507}
+        loading="eager"
+        decoding="async"
+        class="hero-wordmark"
+        aria-hidden="true"
+      />
     </div>
   </div>
 
@@ -225,6 +240,16 @@ const seoEvent = {
           <div class="equipo-card__info">
             <p class="equipo-card__nombre headline-bold">{m.nombre}</p>
             <p class="equipo-card__cargo">{m.cargo}</p>
+            <a
+              href={`https://linkedin.com/in/${m.linkedin}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="equipo-card__linkedin"
+              aria-label={`LinkedIn de ${m.nombre} (abre en nueva pestaña)`}
+            >
+              <Image src={imgIcoLinkedin} alt="" width={16} height={16} aria-hidden="true" class="equipo-card__linkedin-ico" />
+              LinkedIn
+            </a>
           </div>
         </li>
       ))}
@@ -250,7 +275,16 @@ const seoEvent = {
   <div class="seccion-inner">
     <h2 id="h-que-es" class="s-que-es__h2">
       <span class="s-que-es__h2-top display-light">¿QUÉ ES</span>
-      <span class="s-que-es__h2-bottom display-black"><span class="text-ted-red">TEDx</span>?</span>
+      <span class="s-que-es__h2-bottom display-black">
+        <Image
+          src={imgTedxOficial}
+          alt="TEDx"
+          width={300}
+          height={113}
+          loading="lazy"
+          decoding="async"
+          class="s-que-es__logo-tedx"
+        />?</span>
     </h2>
 
     <div class="s-que-es__body">
@@ -376,11 +410,11 @@ const seoEvent = {
   <!-- Boarding pass + avión: fila ancho-completo debajo de las columnas -->
   <div class="seccion-inner s-concepto__bp-row">
     <div class="boarding-pass s-bp" role="img"
-         aria-label="Vuelo directo: IDEA 09:00 AM hasta ACCIÓN 13:00 PM, viernes 04 de diciembre">
+         aria-label="Vuelo directo: IDEA 09:00 HRS hasta ACCIÓN 13:00 HRS, viernes 04 de diciembre">
       <div class="boarding-pass__col">
         <span class="boarding-pass__label">Origen</span>
         <span class="boarding-pass__valor">IDEA</span>
-        <span class="boarding-pass__hora mono-date">09:00 AM</span>
+        <span class="boarding-pass__hora boarding-pass__hora--hrs mono-date">09:00 HRS</span>
         <span class="boarding-pass__hora">Vie 04 dic</span>
       </div>
       <div class="boarding-pass__divider">
@@ -389,7 +423,7 @@ const seoEvent = {
       <div class="boarding-pass__col s-bp__dest">
         <span class="boarding-pass__label">Destino</span>
         <span class="boarding-pass__valor">ACCIÓN</span>
-        <span class="boarding-pass__hora mono-date">13:00 PM</span>
+        <span class="boarding-pass__hora boarding-pass__hora--hrs mono-date">13:00 HRS</span>
         <span class="boarding-pass__hora">Vie 04 dic</span>
       </div>
     </div>
@@ -484,9 +518,8 @@ const seoEvent = {
   <div class="s-ficha__franja">
     <div class="s-ficha__franja-inner">
       <div class="s-ficha__franja-udec">
-        <img src={`${baseUrl}/partners/udec-negro.png`} alt="Universidad de Concepción"
-             width="160" height="60" loading="lazy" decoding="async" class="s-ficha__udec-logo"/>
-        <p class="s-ficha__udec-label">Campus sede del evento</p>
+        <Image src={imgUdecNegro} alt="Universidad de Concepción"
+             width={160} height={60} loading="lazy" decoding="async" class="s-ficha__udec-logo"/>
       </div>
       <div class="s-ficha__franja-sep" aria-hidden="true"></div>
       <ul class="s-ficha__counters" aria-label="Datos del evento">
@@ -517,117 +550,8 @@ const seoEvent = {
 
 
 <!-- ============================================================
-     S7 — ¿POR QUÉ SUMARSE COMO AUSPICIADOR?
-     Fondo oscuro. Bullets izquierda + 2 polaroids rotadas derecha.
-     ============================================================ -->
-<section id="auspiciadores" class="s-auspi dark-section" aria-labelledby="h-auspi">
-  <div class="seccion-inner s-auspi__inner">
-
-    <!-- Col izquierda: texto -->
-    <div class="s-auspi__copy">
-      <h2 id="h-auspi" class="s-auspi__h2">
-        <span class="s-auspi__h2-top display-light">¿POR QUÉ SUMARSE</span>
-        <span class="s-auspi__h2-bottom display-black">COMO AUSPICIADOR?</span>
-      </h2>
-      <p class="s-auspi__intro">
-        Al convertirse en partner de TEDxBarrioUniversitario Women, su organización no solo
-        financia un evento — se integra a una plataforma de impacto con propósito real y
-        estará contribuyendo a:
-      </p>
-      <ul class="s-auspi__bullets">
-        {[
-          'Impulsar educación, cultura y pensamiento crítico',
-          'Promover liderazgo femenino y equidad de género',
-          'Inspirar nuevas generaciones',
-          'Potenciar innovación y desarrollo sostenible',
-          'Fortalecer el ecosistema regional',
-          'Generar impacto social positivo desde el Biobío',
-        ].map(b => (
-          <li class="s-auspi__bullet">
-            <span class="flecha-roja" aria-hidden="true">→</span>
-            {b}
-          </li>
-        ))}
-      </ul>
-
-    </div>
-
-    <!-- Col derecha: 2 polaroids solapadas (decorativo) -->
-    <div class="s-auspi__polars" aria-hidden="true">
-      <div class="polaroid polaroid--stack-back polaroid--tight">
-        <Image
-          src={imgContacto}
-          alt=""
-          width={240}
-          height={200}
-          loading="lazy"
-          decoding="async"
-          class="polaroid__img polaroid__img--cover"
-        />
-      </div>
-      <div class="polaroid polaroid--stack-front">
-        <Image
-          src={imgFotoSec02}
-          alt=""
-          width={300}
-          height={240}
-          loading="lazy"
-          decoding="async"
-          class="polaroid__img polaroid__img--cover"
-        />
-        <p class="polaroid__caption polaroid__caption--quote">"Las ideas necesitan espacios para despegar"</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ============================================================
-     S8 — BENEFICIOS PARA SU ORGANIZACIÓN
-     Fondo claro. 4 en fila + CTA formulario.
-     ============================================================ -->
-<section id="beneficios" class="s-beneficios seccion-light texture-overlay" aria-labelledby="h-beneficios">
-  <div class="seccion-inner">
-
-    <!-- Header 2 columnas: H2 izquierda · párrafo derecha -->
-    <div class="s-beneficios__header">
-      <div class="s-beneficios__header-left">
-        <p class="eyebrow-label">Lo que obtendrá</p>
-        <h2 id="h-beneficios" class="display-black s-beneficios__h2">BENEFICIOS <span style="font-weight:300;">PARA SU ORGANIZACIÓN</span></h2>
-      </div>
-      <div class="s-beneficios__header-right">
-        <p class="s-beneficios__intro">
-          ¿Te gustaría ser parte de este viaje? Si tu organización comparte nuestro propósito
-          y quiere asociarse a una plataforma de prestigio internacional que promueve la
-          innovación, el conocimiento y la transformación social, nos encantaría conversar contigo.
-        </p>
-        <a href={`mailto:${evento.emailAlianzas}`} class="btn-primary s-beneficios__btn">
-          Quiero ser Partner <span aria-hidden="true">→</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Fila minimalista de beneficios -->
-    <ul class="beneficios-fila" aria-label="Beneficios para su organización">
-      {beneficios.map((b, i) => (
-        <li class="beneficio-item">
-          <span class="flecha-roja beneficio-flecha" aria-hidden="true">→</span>
-          <span class="beneficio-nombre headline-bold">{b.titulo.toUpperCase()}</span>
-          {i < beneficios.length - 1 && (
-            <span class="beneficio-sep" aria-hidden="true"></span>
-          )}
-        </li>
-      ))}
-    </ul>
-
-  </div>
-</section>
-
-
-<!-- ============================================================
-     S9 — CONVOCATORIA DE SPEAKERS
-     Fondo mixto (claro). Silueta TU NOMBRE + proceso 3 etapas + form.
+     S7 — CONVOCATORIA DE SPEAKERS
+     Fondo oscuro. Gráfico compuesto diseñador + proceso 3 etapas + CTA.
      ============================================================ -->
 <section id="speakers" class="s-speakers dark-section" aria-labelledby="h-speakers">
   <div class="seccion-inner">
@@ -651,20 +575,17 @@ const seoEvent = {
 
     <div class="s-speakers__layout">
 
-      <!-- Imagen silueta "TU NOMBRE" -->
+      <!-- Gráfico compuesto del diseñador: silueta + TU NOMBRE + datos -->
       <div class="s-speakers__photo">
-        <div class="s-speakers__photo-wrap">
-          <Image
-            src={imgConvoca}
-            alt="Silueta de speaker en el escenario — Tu nombre podría estar aquí"
-            width={420}
-            height={560}
-            loading="lazy"
-            decoding="async"
-            class="s-speakers__photo-img"
-          />
-          <div class="s-speakers__tu-nombre display-black" aria-hidden="true">TU NOMBRE</div>
-        </div>
+        <Image
+          src={imgConvoca}
+          alt="Convocatoria de speakers — silueta de una speaker en el escenario TEDxBarrioUniversitario Women"
+          width={420}
+          height={560}
+          loading="lazy"
+          decoding="async"
+          class="s-speakers__photo-img"
+        />
       </div>
 
       <!-- Info + proceso + form -->
@@ -715,10 +636,12 @@ const seoEvent = {
           ))}
         </div>
 
-        <!-- CTA directo por correo — el mockup WEB.pdf no tiene form inline -->
         <div class="s-speakers__cta">
-          <a href={`mailto:${evento.email}`} class="btn-primary">
-            POSTULA COMO SPEAKER <span aria-hidden="true">→</span>
+          <a href="https://docs.google.com/forms/d/15njQTb5kpHgN1O_7wST56SnzuHblA3rowGsJNlhyYu0/viewform"
+             target="_blank" rel="noopener noreferrer"
+             class="btn-primary"
+             aria-label="Postular como speaker — formulario (abre en nueva pestaña)">
+            POSTULAR COMO SPEAKER <span aria-hidden="true">→</span>
           </a>
         </div>
 
@@ -730,16 +653,17 @@ const seoEvent = {
 
 
 <!-- ============================================================
-     S10 — NUESTROS PARTNERS
-     Fondo claro. Carrusel 5 categorías.
+     S8 — NUESTROS PARTNERS
+     Fondo claro. Carrusel 6 categorías. Layout split header.
      ============================================================ -->
 <section id="partners" class="s-partners seccion-light texture-overlay" aria-labelledby="h-partners">
   <div class="seccion-inner">
 
-    <div class="s-partners__header">
-      <p class="eyebrow-label">Partners</p>
-      <h2 id="h-partners" class="display-black s-partners__h2">NUESTROS PARTNERS</h2>
-      <p class="s-partners__sub">Las grandes ideas necesitan grandes aliados.</p>
+    <div class="s-partners__header s-partners__header--split">
+      <div class="s-partners__header-left">
+        <h2 id="h-partners" class="display-black s-partners__h2">NUESTROS PARTNERS</h2>
+        <p class="s-partners__sub">Las grandes ideas necesitan grandes aliados.</p>
+      </div>
       <p class="s-partners__desc">
         TEDxBarrioUniversitario Women es posible gracias a instituciones, empresas y organizaciones
         que creen en el poder de las ideas para transformar realidades. Agradecemos profundamente
@@ -759,12 +683,12 @@ const seoEvent = {
               <p class="partners-slide__cat eyebrow-label" style="color:var(--color-charcoal);">{p.categoria}</p>
               <div class="partners-slide__logos">
                 {p.categoria === 'Institución Anfitriona' && (
-                  <img src={`${baseUrl}/partners/udec-negro.png`}
+                  <Image src={imgUdecNegro}
                        alt="Universidad de Concepción"
-                       width="200" height="75" loading="lazy" decoding="async"
+                       width={200} height={75} loading="lazy" decoding="async"
                        class="partners-logo"/>
                 )}
-                {p.categoria === 'Estratégico' && (
+                {p.categoria === 'Partner Estratégico' && (
                   <img src={`${baseUrl}/partners/anami-negro.png`}
                        alt="ANAMI Spa"
                        width="200" height="75" loading="lazy" decoding="async"
@@ -810,6 +734,105 @@ const seoEvent = {
 
 
 <!-- ============================================================
+     S9 — ¿POR QUÉ SUMARSE COMO AUSPICIADOR?
+     Fondo oscuro. Bullets izquierda + gráfico compuesto diseñador.
+     ============================================================ -->
+<section id="auspiciadores" class="s-auspi dark-section" aria-labelledby="h-auspi">
+  <div class="seccion-inner s-auspi__inner">
+
+    <!-- Col izquierda: texto -->
+    <div class="s-auspi__copy">
+      <h2 id="h-auspi" class="s-auspi__h2 s-auspi__h2--simple">
+        <span class="display-black">AUSPICIADOR</span>
+      </h2>
+      <p class="s-auspi__intro">
+        Al convertirse en partner de TEDxBarrioUniversitario Women, su organización no solo
+        financia un evento — se integra a una plataforma de impacto con propósito real y
+        estará contribuyendo a:
+      </p>
+      <ul class="s-auspi__bullets">
+        {[
+          'Impulsar educación, cultura y pensamiento crítico',
+          'Promover liderazgo femenino y equidad de género',
+          'Inspirar nuevas generaciones',
+          'Potenciar innovación y desarrollo sostenible',
+          'Fortalecer el ecosistema regional',
+          'Generar impacto social positivo desde el Biobío',
+        ].map(b => (
+          <li class="s-auspi__bullet">
+            <span class="flecha-roja" aria-hidden="true">→</span>
+            {b}
+          </li>
+        ))}
+      </ul>
+
+    </div>
+
+    <!-- Gráfico compuesto del diseñador: 2 polaroids -->
+    <div class="s-auspi__img-wrap">
+      <Image
+        src={imgAuspiciador}
+        alt="Auspiciador TEDxBarrioUniversitario Women — imagen decorativa"
+        width={600}
+        height={450}
+        loading="lazy"
+        decoding="async"
+        class="s-auspi__img"
+      />
+      <blockquote class="s-auspi__cita-grande">
+        <p>"Las ideas necesitan espacios para despegar"</p>
+      </blockquote>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S10 — BENEFICIOS PARA SU ORGANIZACIÓN
+     Fondo claro. 4 en fila + CTA formulario Google.
+     ============================================================ -->
+<section id="beneficios" class="s-beneficios seccion-light texture-overlay" aria-labelledby="h-beneficios">
+  <div class="seccion-inner">
+
+    <!-- Header 2 columnas: H2 izquierda · párrafo derecha -->
+    <div class="s-beneficios__header">
+      <div class="s-beneficios__header-left">
+        <h2 id="h-beneficios" class="display-black s-beneficios__h2">BENEFICIOS <span style="font-weight:300;">PARA SU ORGANIZACIÓN</span></h2>
+      </div>
+      <div class="s-beneficios__header-right">
+        <p class="s-beneficios__intro">
+          ¿Te gustaría ser parte de este viaje? Si tu organización comparte nuestro propósito
+          y quiere asociarse a una plataforma de prestigio internacional que promueve la
+          innovación, el conocimiento y la transformación social, nos encantaría conversar contigo.
+        </p>
+        <a href="https://docs.google.com/forms/d/1c1CFQSXlb-diJSRwZCDvsV5lzHA8y5p3zzs5atz7_YE/viewform"
+           target="_blank" rel="noopener noreferrer"
+           class="btn-primary s-beneficios__btn"
+           aria-label="Quiero ser Partner — formulario (abre en nueva pestaña)">
+          Quiero ser Partner <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Fila minimalista de beneficios -->
+    <ul class="beneficios-fila" aria-label="Beneficios para su organización">
+      {beneficios.map((b, i) => (
+        <li class="beneficio-item">
+          <span class="flecha-roja beneficio-flecha" aria-hidden="true">→</span>
+          <span class="beneficio-nombre headline-bold">{b.titulo.toUpperCase()}</span>
+          {i < beneficios.length - 1 && (
+            <span class="beneficio-sep" aria-hidden="true"></span>
+          )}
+        </li>
+      ))}
+    </ul>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
      S11 — CONTACTO
      Fondo oscuro. Izq: datos + socials. Der: foto + cita.
      ============================================================ -->
@@ -818,7 +841,6 @@ const seoEvent = {
 
     <!-- Col izquierda: datos -->
     <div class="s-contacto__copy">
-      <p class="eyebrow-label">Contacto</p>
       <h2 id="h-contacto" class="display-black s-contacto__h2">CONTACTO</h2>
       <p class="s-contacto__subtitulo">¿Quieres ser parte de este viaje?</p>
       <p class="s-contacto__intro">
@@ -837,12 +859,7 @@ const seoEvent = {
            target="_blank" rel="noopener"
            class="s-contacto__red" role="listitem"
            aria-label="Instagram de TEDxBarrioUniversitario Women (abre en nueva pestaña)">
-          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="1.8">
-            <rect x="2" y="2" width="20" height="20" rx="5"/>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-          </svg>
+          <Image src={imgIcoIG} alt="" width={32} height={32} aria-hidden="true" class="s-contacto__red-ico" />
           <span>{evento.ig}</span>
         </a>
         <!-- LinkedIn -->
@@ -850,12 +867,7 @@ const seoEvent = {
            target="_blank" rel="noopener"
            class="s-contacto__red" role="listitem"
            aria-label="LinkedIn de TEDxBarrioUniversitario Women (abre en nueva pestaña)">
-          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="1.8">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-            <rect x="2" y="9" width="4" height="12"/>
-            <circle cx="4" cy="4" r="2"/>
-          </svg>
+          <Image src={imgIcoIN} alt="" width={32} height={32} aria-hidden="true" class="s-contacto__red-ico" />
           <span>LinkedIn</span>
         </a>
         <!-- Flickr -->
@@ -863,11 +875,7 @@ const seoEvent = {
            target="_blank" rel="noopener"
            class="s-contacto__red" role="listitem"
            aria-label="Flickr de TEDxBarrioUniversitario Women (abre en nueva pestaña)">
-          <!-- Icono Flickr: dos círculos -->
-          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <circle cx="7" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/>
-            <circle cx="17" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/>
-          </svg>
+          <Image src={imgIcoFKR} alt="" width={32} height={32} aria-hidden="true" class="s-contacto__red-ico" />
           <span>Flickr</span>
         </a>
       </div>
@@ -877,10 +885,10 @@ const seoEvent = {
     <div class="s-contacto__photo-col">
       <div class="s-contacto__photo-wrap parallax-img">
         <Image
-          src={imgContacto}
-          alt="Audiencia del evento TEDxBarrioUniversitario Women"
+          src={imgContactoPolaroid}
+          alt="Imagen del evento TEDxBarrioUniversitario Women enmarcada en polaroid"
           width={600}
-          height={400}
+          height={678}
           loading="lazy"
           decoding="async"
           class="s-contacto__photo-img"
@@ -1002,6 +1010,13 @@ const seoEvent = {
 .hero-h1__vuelo {
   font-size: clamp(6.5rem, 15vw, 14rem);
   color: #ffffff;
+}
+
+/* Wordmark PNG del diseñador (ALZAR EL VUELO) */
+.hero-wordmark {
+  max-width: clamp(280px, 48vw, 650px);
+  height: auto;
+  display: block;
 }
 
 /* ── COUNTDOWN ISLA FLOTANTE ─────────────────────────────────── */
@@ -1146,6 +1161,22 @@ const seoEvent = {
   margin: 0;
   line-height: 1.4;
 }
+.equipo-card__linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  font-size: 0.65rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #afb5db;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.equipo-card__linkedin:hover { color: var(--color-charcoal); }
+.equipo-card__linkedin-ico { width: 16px; height: 16px; object-fit: contain; }
 
 /* ── S3 ¿QUÉ ES TEDx? ──────────────────────────────────────── */
 .s-que-es {
@@ -1178,6 +1209,14 @@ const seoEvent = {
   font-size: clamp(4rem, 10vw, 9rem);
   color: #fff;
   line-height: 0.88;
+}
+.s-que-es__logo-tedx {
+  display: inline-block;
+  vertical-align: bottom;
+  height: 0.88em;
+  width: auto;
+  filter: brightness(0) invert(1); /* blanco sobre fondo oscuro */
+  margin-right: 2px;
 }
 .s-que-es__body { max-width: 860px; }
 .s-que-es__p {
@@ -1265,7 +1304,7 @@ const seoEvent = {
   font-style: italic;
   font-weight: 700;
   font-family: var(--font-display);
-  font-size: 0.9rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   color: #fff;
   line-height: 1.3;
   padding: 0.75rem 1rem 1rem;
@@ -1324,6 +1363,12 @@ const seoEvent = {
 .s-avion { padding: 0.5rem 0; }
 .s-avion__svg { width: 100%; max-width: 460px; height: auto; overflow: visible; }
 
+.boarding-pass__hora--hrs {
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
 /* Franja inferior: sin fondo rojo — texto blanco sobre charcoal */
 .s-concepto__franja {
   padding: 1rem 1.5rem;
@@ -1332,7 +1377,7 @@ const seoEvent = {
 }
 .s-concepto__franja-text {
   color: #ffffff;
-  font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
   letter-spacing: 0.18em;
   margin: 0;
   white-space: nowrap;
@@ -1400,7 +1445,7 @@ const seoEvent = {
   padding: 0 0.25rem 0.5rem;
   font-style: italic;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
   text-align: center;
   color: var(--color-charcoal);
   line-height: 1.45;
@@ -1548,6 +1593,19 @@ const seoEvent = {
   padding: 0.25rem 0.5rem;
 }
 
+/* H2 auspiciador simplificado */
+.s-auspi__h2--simple { font-size: clamp(3rem, 8vw, 7rem); line-height: 0.9; }
+
+/* Imagen compuesta del diseñador (auspiciador) */
+.s-auspi__img-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 1.5rem; }
+.s-auspi__img { max-width: 520px; width: 100%; height: auto; border-radius: 4px; }
+.s-auspi__cita-grande {
+  font-style: italic; font-weight: 700; font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.4rem); color: rgba(255,255,255,0.88);
+  line-height: 1.4; text-align: right; max-width: 36ch; margin: 0; padding: 0;
+  border-left: none;
+}
+
 /* ── S8 BENEFICIOS ────────────────────────────────────────── */
 .s-beneficios { padding: var(--spacing-section) 0; }
 .s-beneficios__header {
@@ -1584,6 +1642,7 @@ const seoEvent = {
 .beneficio-nombre {
   font-size: 0.78rem; letter-spacing: 0.07em;
   color: var(--color-charcoal);
+  font-weight: 900;
 }
 .beneficio-sep { display: none; }
 
@@ -1763,6 +1822,20 @@ const seoEvent = {
 }
 .s-partners__link:hover { text-decoration: underline; }
 
+/* Layout split Partners: título izq + párrafo der */
+.s-partners__header--split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: end;
+  text-align: left;
+  margin-bottom: 2.5rem;
+}
+.s-partners__header-left { /* solo organiza el grid */ }
+
+/* Sin bordes en logos de partners */
+.partners-logo { border: none !important; }
+
 /* ── S11 CONTACTO ─────────────────────────────────────────── */
 .s-contacto { padding: var(--spacing-section) 0; background: var(--color-charcoal); }
 .s-contacto__inner {
@@ -1809,11 +1882,12 @@ const seoEvent = {
 }
 .s-contacto__red:hover { color: var(--color-lavanda); }
 .s-contacto__red:focus-visible { outline: 2px solid var(--color-lavanda); outline-offset: 2px; border-radius: 2px; }
+.s-contacto__red-ico { width: 32px; height: 32px; object-fit: contain; border-radius: 50%; }
 
 .s-contacto__photo-img {
   width: 100%; height: auto; object-fit: cover; border-radius: 4px; display: block;
 }
-.s-contacto__cita { font-style: italic; font-size: 0.92rem; }
+.s-contacto__cita { font-style: italic; font-size: clamp(1rem, 2.2vw, 1.25rem); }
 
 /* ── PARALLAX ────────────────────────────────────────────── */
 .parallax-img { overflow: hidden; }
@@ -1844,6 +1918,8 @@ const seoEvent = {
   .s-contacto__inner { grid-template-columns: 1fr; gap: 2rem; }
 
   .s-auspi__polars  { width: 100%; height: 340px; }
+  .s-auspi__img-wrap { align-items: center; }
+  .s-auspi__cita-grande { text-align: center; }
   .beneficio-item   { flex: 1 1 45%; border-right: none; border-bottom: 1px solid rgba(35,35,35,0.1); }
   .s-beneficios__header { grid-template-columns: 1fr; gap: 1.25rem; }
 
@@ -1856,6 +1932,7 @@ const seoEvent = {
   .s-equipo__intro { grid-template-columns: 1fr; gap: 1.25rem; }
   .cd-island { border-radius: 12px; padding: 1.25rem 1rem; }
   .cd-island__inner { gap: 0.5rem; }
+  .s-partners__header--split { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {

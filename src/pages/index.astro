@@ -151,7 +151,6 @@ const procesoSpeaker = [
 ];
 
 const partners = [
-  { categoria: "Institución Anfitriona", logos: ["udec"], placeholder: false },
   { categoria: "Main Partner", logos: [], placeholder: true },
   { categoria: "Partner Estratégico", logos: ["anami"], placeholder: false },
   { categoria: "Partner Colaborador", logos: [], placeholder: true },
@@ -878,6 +877,22 @@ const seoEvent = {
         </p>
       </div>
 
+      <!-- UdeC — Institución Anfitriona (bloque destacado, fuera del carrusel) -->
+      <div class="s-partners__anfitrion">
+        <Image
+          src={imgUdecNegro}
+          alt="Universidad de Concepción"
+          width={280}
+          height={105}
+          loading="lazy"
+          decoding="async"
+          class="s-partners__anfitrion-logo"
+        />
+        <p class="s-partners__anfitrion-label">
+          <span class="flecha-roja" aria-hidden="true">→</span> Institución Anfitriona
+        </p>
+      </div>
+
       <!-- Carrusel -->
       <div
         class="partners-carousel"
@@ -900,24 +915,7 @@ const seoEvent = {
                   aria-label={`Categoría ${i + 1} de ${partners.length}: ${p.categoria}`}
                   id={`slide-${i}`}
                 >
-                  <p
-                    class="partners-slide__cat eyebrow-label"
-                    style="color:var(--color-charcoal);"
-                  >
-                    {p.categoria}
-                  </p>
                   <div class="partners-slide__logos">
-                    {p.categoria === "Institución Anfitriona" && (
-                      <Image
-                        src={imgUdecNegro}
-                        alt="Universidad de Concepción"
-                        width={280}
-                        height={105}
-                        loading="lazy"
-                        decoding="async"
-                        class="partners-logo partners-logo--anfitrion"
-                      />
-                    )}
                     {p.categoria === "Partner Estratégico" && (
                       <img
                         src={`${baseUrl}/partners/anami-negro.png`}
@@ -940,6 +938,10 @@ const seoEvent = {
                       </div>
                     )}
                   </div>
+                  <p class="partners-slide__cat eyebrow-label">
+                    <span class="flecha-roja" aria-hidden="true">→</span>{" "}
+                    {p.categoria}
+                  </p>
                 </div>
               ))
             }
@@ -2395,6 +2397,28 @@ const seoEvent = {
       margin: 0 auto;
     }
 
+    /* Bloque UdeC standalone */
+    .s-partners__anfitrion {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0 0 2.5rem;
+    }
+    .s-partners__anfitrion-logo {
+      height: clamp(80px, 12vw, 130px);
+      width: auto;
+      object-fit: contain;
+    }
+    .s-partners__anfitrion-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      color: var(--color-ted-red);
+    }
+
     .partners-carousel {
       display: flex;
       align-items: center;
@@ -2422,9 +2446,15 @@ const seoEvent = {
       gap: 1rem;
       min-height: 180px;
     }
+    @media (min-width: 640px) {
+      .partners-slide { flex-basis: calc(100% / 3); }
+    }
+    @media (min-width: 1024px) {
+      .partners-slide { flex-basis: 20%; }
+    }
     .partners-slide__cat {
       text-align: center;
-      color: var(--color-charcoal);
+      color: var(--color-ted-red);
     }
     .partners-slide__logos {
       display: flex;

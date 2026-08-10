@@ -1150,7 +1150,7 @@ const seoEvent = {
           <a
             href={`https://instagram.com/${evento.ig.replace("@", "")}`}
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             class="s-contacto__red"
             role="listitem"
             aria-label="Instagram de TEDxBarrioUniversitario Women (abre en nueva pestaña)"
@@ -1158,8 +1158,8 @@ const seoEvent = {
             <Image
               src={imgIcoIG}
               alt=""
-              width={32}
-              height={32}
+              width={44}
+              height={44}
               aria-hidden="true"
               class="s-contacto__red-ico"
             />
@@ -1169,7 +1169,7 @@ const seoEvent = {
           <a
             href={`https://linkedin.com/company/${evento.linkedin}`}
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             class="s-contacto__red"
             role="listitem"
             aria-label="LinkedIn de TEDxBarrioUniversitario Women (abre en nueva pestaña)"
@@ -1177,8 +1177,8 @@ const seoEvent = {
             <Image
               src={imgIcoIN}
               alt=""
-              width={32}
-              height={32}
+              width={44}
+              height={44}
               aria-hidden="true"
               class="s-contacto__red-ico"
             />
@@ -1188,7 +1188,7 @@ const seoEvent = {
           <a
             href={`https://flickr.com/people/${evento.flickr}`}
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             class="s-contacto__red"
             role="listitem"
             aria-label="Flickr de TEDxBarrioUniversitario Women (abre en nueva pestaña)"
@@ -1196,8 +1196,8 @@ const seoEvent = {
             <Image
               src={imgIcoFKR}
               alt=""
-              width={32}
-              height={32}
+              width={44}
+              height={44}
               aria-hidden="true"
               class="s-contacto__red-ico"
             />
@@ -1211,7 +1211,7 @@ const seoEvent = {
         <figure class="s-contacto__polaroid-wrap parallax-img">
           <Image
             src={imgContactoFoto}
-            alt="Miembro del equipo TEDxBarrioUniversitario Women"
+            alt="Público aplaudiendo durante un evento TEDxBarrioUniversitario Women"
             width={600}
             height={800}
             loading="lazy"
@@ -2016,7 +2016,7 @@ const seoEvent = {
     /* ── S7 AUSPICIADORES ─────────────────────────────────────── */
     .s-auspi {
       padding: var(--spacing-section) 0;
-      background: var(--color-charcoal) url('/s9-fondo-desktop.png') center/cover no-repeat;
+      background: var(--color-charcoal) url('/s9-fondo-desktop.png') center bottom / cover no-repeat;
     }
     @media (max-width: 768px) {
       .s-auspi {
@@ -2663,32 +2663,36 @@ const seoEvent = {
     }
     .s-contacto__redes {
       display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
+      flex-direction: row;
+      gap: 1rem;
+      align-items: center;
       list-style: none;
       padding: 0;
       margin: 0;
     }
     .s-contacto__red {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
+      justify-content: center;
+      padding: 4px; /* toca área ≥ 52×52px (WCAG 2.5.5 AAA) */
       text-decoration: none;
       color: rgba(255, 255, 255, 0.82);
-      font-size: 0.9rem;
       transition: color 0.15s;
+    }
+    .s-contacto__red span {
+      display: none; /* oculto visualmente; nombre accesible en aria-label del <a> */
     }
     .s-contacto__red:hover {
       color: var(--color-lavanda);
     }
     .s-contacto__red:focus-visible {
       outline: 2px solid var(--color-lavanda);
-      outline-offset: 2px;
-      border-radius: 2px;
+      outline-offset: 4px;
+      border-radius: 50%;
     }
     .s-contacto__red-ico {
-      width: 32px;
-      height: 32px;
+      width: 44px;
+      height: 44px;
       object-fit: contain;
       border-radius: 50%;
     }

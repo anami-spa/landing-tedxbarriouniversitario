@@ -139,6 +139,8 @@ body {
   line-height: 1.0;
   text-transform: uppercase;
 }
+/* Preserva minúsculas dentro de contextos text-transform:uppercase (ej: la x de TEDx) */
+.lc { text-transform: none; }
 .headline-bold {
   font-family: var(--font-display);
   font-weight: 700;
@@ -265,11 +267,13 @@ body {
   color: var(--color-charcoal); /* era 0.55 → 6.5:1 ✓ WCAG AA */
 }
 .boarding-pass__valor {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 1rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
   color: var(--color-charcoal);
-  line-height: 1.2;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
 }
 .boarding-pass__hora {
   font-family: var(--font-mono);
@@ -287,15 +291,15 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: var(--color-lavanda);
-  padding: 3px 10px;
+  background: var(--color-charcoal);
+  padding: 4px 14px;
   font-family: var(--font-sans);
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--color-charcoal); /* era 0.55 → 6.5:1 ✓ WCAG AA */
-  border: 1px solid rgba(35,35,35,0.22);
+  color: #ffffff; /* blanco sobre #232323 = 15.1:1 ✓ WCAG AAA */
+  border: none;
   border-radius: 20px;
   white-space: nowrap;
 }

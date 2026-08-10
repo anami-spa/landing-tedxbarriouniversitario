@@ -2810,6 +2810,17 @@ const seoEvent = {
         gap: 2rem;
       }
 
+      /* Speakers: 2 columnas → 1 columna en móvil (foto arriba, info + botón abajo) */
+      .s-speakers__layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .s-speakers__photo-img {
+        max-width: 280px;
+        margin: 0 auto;
+        display: block;
+      }
+
       .s-auspi__polars {
         width: 100%;
         height: 340px;

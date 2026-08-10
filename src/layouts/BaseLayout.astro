@@ -422,10 +422,9 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
 
 /* Responsive nav */
 @media (max-width: 639px) {
-  .header-nav-wide { display: none !important; }
+  /* Ocultar el contenedor nav completo — no solo sus hijos — para que el burger no quede desplazado */
+  .site-header__nav { display: none !important; }
   .site-header__logo { height: 52px; }
-  /* Ocultar también el btn POSTULAR en la barra (aparece en el panel móvil) */
-  .site-header__nav .btn-header-cta { display: none !important; }
 }
 /* Tablet 640–900px: links visibles, fuente y gaps reducidos */
 @media (min-width: 640px) and (max-width: 900px) {
@@ -441,14 +440,19 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 40px;
-  height: 40px;
-  padding: 8px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
   background: none;
   border: none;
   cursor: pointer;
   border-radius: 4px;
   flex-shrink: 0;
+}
+.site-header__burger:focus-visible {
+  outline: 2px solid var(--color-ted-red);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(219, 0, 40, 0.2);
 }
 .burger-bar {
   display: block;
@@ -690,6 +694,6 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
   box-shadow: 0 0 0 4px rgba(219,0,40,0.25);
 }
 @media (max-width: 639px) {
-  .btn-top { bottom: 1.25rem; right: 1.25rem; width: 42px; height: 42px; }
+  .btn-top { bottom: 1.25rem; right: 1.25rem; width: 44px; height: 44px; }
 }
 </style>

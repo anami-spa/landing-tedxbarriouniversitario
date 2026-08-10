@@ -739,33 +739,24 @@ const seoEvent = {
           <span class="s-speakers__h2-top display-light">CONVOCATORIA DE</span>
           <span class="s-speakers__h2-bottom display-black">
             SPEAKERS
-            <svg
-              class="s-speakers__flecha"
-              viewBox="0 0 120 100"
-              width="120"
-              height="100"
-              fill="none"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                d="M 105 10 C 20 -5, 0 55, 65 95"
-                stroke="#db0028"
-                stroke-width="1.8"
-                stroke-dasharray="5 4"
-                stroke-linecap="round"></path>
-              <polyline
-                points="48,88 65,95 48,102"
-                stroke="#db0028"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                fill="none"></polyline>
-            </svg>
           </span>
         </h2>
         <p class="s-speakers__sub">
           ¿TIENES UNA IDEA QUE MERECE SER COMPARTIDA?
+        </p>
+      </div>
+
+      <div class="s-speakers__intro">
+        <p class="s-speakers__quienes-desc">
+          En TEDxBarrioUniversitario Women buscamos personas que compartan
+          ideas capaces de desafiar paradigmas, abrir nuevas conversaciones
+          y generar un impacto positivo en la sociedad.
+        </p>
+        <p class="s-speakers__quienes-desc">
+          No buscamos únicamente historias personales o discursos
+          motivacionales. Buscamos ideas, aprendizajes y experiencias que
+          inviten a la audiencia a Alzar el Vuelo y mirar el mundo desde
+          una nueva perspectiva.
         </p>
       </div>
 
@@ -786,17 +777,6 @@ const seoEvent = {
         <!-- Info + proceso + form -->
         <div class="s-speakers__info">
           <div class="s-speakers__quienes">
-            <p class="s-speakers__quienes-desc">
-              En TEDxBarrioUniversitario Women buscamos personas que compartan
-              ideas capaces de desafiar paradigmas, abrir nuevas conversaciones
-              y generar un impacto positivo en la sociedad.
-            </p>
-            <p class="s-speakers__quienes-desc">
-              No buscamos únicamente historias personales o discursos
-              motivacionales. Buscamos ideas, aprendizajes y experiencias que
-              inviten a la audiencia a Alzar el Vuelo y mirar el mundo desde
-              una nueva perspectiva.
-            </p>
             <h3 class="headline-bold s-speakers__quienes-h">
               ¿QUIÉNES PUEDEN POSTULAR?
             </h3>
@@ -2251,11 +2231,9 @@ const seoEvent = {
       position: relative;
       display: block;
     }
-    .s-speakers__flecha {
-      position: absolute;
-      left: 100%;
-      top: -10px;
-      pointer-events: none;
+    .s-speakers__intro {
+      max-width: 70ch;
+      margin: 0 0 2.5rem;
     }
     .s-speakers__sub {
       color: rgba(255, 255, 255, 0.9);

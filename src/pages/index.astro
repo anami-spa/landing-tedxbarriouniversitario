@@ -1039,24 +1039,20 @@ const seoEvent = {
 
       <!-- Gráfico compuesto del diseñador -->
       <div class="s-auspi__img-wrap">
-        <Image
-          src={imgAuspiciador}
-          alt="Auspiciador TEDxBarrioUniversitario Women — imagen decorativa"
-          width={600}
-          height={450}
-          loading="lazy"
-          decoding="async"
-          class="s-auspi__img"
-        />
-        <img
-          src={`${baseUrl}/s9-flecha.png`}
-          alt=""
-          aria-hidden="true"
-          class="s-auspi__flecha"
-        />
-        <blockquote class="s-auspi__cita-grande">
-          <p>"Las ideas necesitan espacios para despegar"</p>
-        </blockquote>
+        <div class="s-auspi__polaroid">
+          <Image
+            src={imgAuspiciador}
+            alt="Auspiciador TEDxBarrioUniversitario Women — imagen decorativa"
+            width={600}
+            height={450}
+            loading="lazy"
+            decoding="async"
+            class="s-auspi__img"
+          />
+          <blockquote class="s-auspi__cita-grande">
+            <p>"Las ideas necesitan espacios para despegar"</p>
+          </blockquote>
+        </div>
       </div>
     </div>
   </section>
@@ -2121,30 +2117,35 @@ const seoEvent = {
       align-items: flex-end;
       gap: 1.5rem;
     }
+    .s-auspi__polaroid {
+      position: relative;
+      max-width: 520px;
+      width: 100%;
+      margin-left: auto;
+    }
     .s-auspi__img {
       max-width: 520px;
       width: 100%;
       height: auto;
       border-radius: 4px;
-    }
-    .s-auspi__flecha {
       display: block;
-      max-width: 80px;
-      height: auto;
-      align-self: flex-start;
     }
     .s-auspi__cita-grande {
-      font-style: italic;
-      font-weight: 700;
-      font-family: var(--font-display);
-      font-size: clamp(1rem, 2.5vw, 1.4rem);
-      color: rgba(255, 255, 255, 0.88);
-      line-height: 1.4;
-      text-align: right;
-      max-width: 36ch;
+      position: absolute;
+      left: 30%;
+      right: 16%;
+      top: 72%;
       margin: 0;
       padding: 0;
       border-left: none;
+      text-align: center;
+      color: var(--color-charcoal);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 700;
+      font-size: clamp(0.72rem, 1.5vw, 1rem);
+      line-height: 1.22;
+      transform: rotate(3deg);
     }
 
     /* ── S8 BENEFICIOS ────────────────────────────────────────── */
@@ -2752,8 +2753,11 @@ const seoEvent = {
       .s-auspi__img-wrap {
         align-items: center;
       }
+      .s-auspi__polaroid {
+        margin-left: 0;
+      }
       .s-auspi__cita-grande {
-        text-align: center;
+        font-size: clamp(0.65rem, 3.5vw, 0.9rem);
       }
       .beneficio-item {
         flex: 1 1 45%;

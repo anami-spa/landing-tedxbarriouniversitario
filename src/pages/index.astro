@@ -2777,17 +2777,34 @@ const seoEvent = {
         gap: 0.6rem;
       }
 
-      .s-que-es__inner,
-      .s-mujeres__inner,
-      .s-concepto__inner,
-      .s-ficha__inner,
-      .s-auspi__inner,
-      .s-speakers__layout,
+      /* S11 CONTACTO: fondo móvil propio */
       .s-contacto {
         background:
           linear-gradient(180deg, rgba(20, 20, 20, 0.84), rgba(20, 20, 20, 0.60)),
           url("/s11-fondo-mobile.webp") center / cover no-repeat;
       }
+
+      /* Secciones de 2 columnas → 1 columna en móvil */
+      .s-mujeres__inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .s-concepto__inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .s-ficha__inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      /* Ficha técnica: heading antes del polaroid en móvil (mejora secuencia visual) */
+      .s-ficha__right {
+        order: -1;
+      }
+      .s-ficha__polaroid-wrap {
+        max-width: 280px;
+      }
+
       .s-contacto__inner {
         grid-template-columns: 1fr;
         gap: 2rem;

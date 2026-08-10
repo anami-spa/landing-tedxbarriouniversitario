@@ -1008,8 +1008,9 @@ const seoEvent = {
     <div class="seccion-inner s-auspi__inner">
       <!-- Col izquierda: texto -->
       <div class="s-auspi__copy">
-        <h2 id="h-auspi" class="s-auspi__h2 s-auspi__h2--simple">
-          <span class="display-black">AUSPICIADOR</span>
+        <h2 id="h-auspi" class="s-auspi__h2">
+          <span class="s-auspi__h2-top display-light">¿POR QUÉ SUMARSE COMO</span>
+          <span class="s-auspi__h2-bottom display-black">AUSPICIADOR?</span>
         </h2>
         <p class="s-auspi__intro">
           Al convertirse en partner de TEDxBarrioUniversitario Women, su
@@ -1070,17 +1071,18 @@ const seoEvent = {
       <!-- Header 2 columnas: H2 izquierda · párrafo derecha -->
       <div class="s-beneficios__header">
         <div class="s-beneficios__header-left">
-          <h2 id="h-beneficios" class="display-black s-beneficios__h2">
-            BENEFICIOS <span style="font-weight:300;">PARA SU ORGANIZACIÓN</span
-            >
+          <h2 id="h-beneficios" class="s-beneficios__h2">
+            <span class="s-beneficios__h2-top display-black">BENEFICIOS</span>
+            <span class="s-beneficios__h2-sub display-light">PARA SU ORGANIZACIÓN</span>
           </h2>
         </div>
         <div class="s-beneficios__header-right">
+          <p class="s-beneficios__pregunta">¿Te gustaría ser parte de este viaje?</p>
           <p class="s-beneficios__intro">
-            ¿Te gustaría ser parte de este viaje? Si tu organización comparte
-            nuestro propósito y quiere asociarse a una plataforma de prestigio
-            internacional que promueve la innovación, el conocimiento y la
-            transformación social, nos encantaría conversar contigo.
+            Si tu organización comparte nuestro propósito y quiere asociarse a
+            una plataforma de prestigio internacional que promueve la innovación,
+            el conocimiento y la transformación social, nos encantaría conversar
+            contigo.
           </p>
           <a
             href="https://docs.google.com/forms/d/1c1CFQSXlb-diJSRwZCDvsV5lzHA8y5p3zzs5atz7_YE/viewform"
@@ -1089,7 +1091,7 @@ const seoEvent = {
             class="btn-primary s-beneficios__btn"
             aria-label="Quiero ser Partner — formulario (abre en nueva pestaña)"
           >
-            Quiero ser Partner <span aria-hidden="true">→</span>
+            QUIERO SER PARTNER <span aria-hidden="true">→</span>
           </a>
         </div>
       </div>
@@ -2134,18 +2136,25 @@ const seoEvent = {
       position: absolute;
       left: 30%;
       right: 16%;
-      top: 72%;
+      bottom: 8%;
+      height: 20%;
       margin: 0;
       padding: 0;
       border-left: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       color: var(--color-charcoal);
       font-family: var(--font-display);
       font-style: italic;
       font-weight: 700;
-      font-size: clamp(0.72rem, 1.5vw, 1rem);
-      line-height: 1.22;
+      font-size: clamp(0.7rem, 1.4vw, 0.95rem);
+      line-height: 1.2;
       transform: rotate(3deg);
+    }
+    .s-auspi__cita-grande p {
+      margin: 0;
     }
 
     /* ── S8 BENEFICIOS ────────────────────────────────────────── */
@@ -2160,14 +2169,37 @@ const seoEvent = {
       margin-bottom: 2.5rem;
     }
     .s-beneficios__h2 {
-      font-size: clamp(1.6rem, 4vw, 3rem);
+      display: flex;
+      flex-direction: column;
+      line-height: 0.9;
+      margin-top: 0.25rem;
+      margin-bottom: 0;
+    }
+    .s-beneficios__h2-top {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
       color: var(--color-charcoal);
-      margin-top: 0.5rem;
+      line-height: 0.88;
+    }
+    .s-beneficios__h2-sub {
+      font-size: clamp(0.85rem, 2vw, 1.25rem);
+      color: var(--color-charcoal);
+      letter-spacing: 0.02em;
+      margin-top: 0.3rem;
+    }
+    .s-beneficios__pregunta {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1rem, 2.2vw, 1.35rem);
+      text-transform: uppercase;
+      color: var(--color-charcoal);
+      margin: 0 0 0.75rem;
+      line-height: 1.15;
     }
     .s-beneficios__intro {
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       color: rgba(35, 35, 35, 0.7);
       line-height: 1.65;
+      margin: 0 0 1rem;
     }
 
     /* Fila minimalista de beneficios */
@@ -2193,10 +2225,11 @@ const seoEvent = {
       flex-shrink: 0;
     }
     .beneficio-nombre {
-      font-size: 0.78rem;
-      letter-spacing: 0.07em;
+      font-size: clamp(0.78rem, 1.3vw, 0.95rem);
+      letter-spacing: 0.06em;
       color: var(--color-charcoal);
       font-weight: 900;
+      font-family: var(--font-display);
     }
     .beneficio-sep {
       display: none;
@@ -2578,7 +2611,12 @@ const seoEvent = {
     /* ── S11 CONTACTO ─────────────────────────────────────────── */
     .s-contacto {
       padding: var(--spacing-section) 0;
-      background: var(--color-charcoal);
+      background:
+        linear-gradient(90deg,
+          rgba(20, 20, 20, 0.88) 0%,
+          rgba(20, 20, 20, 0.52) 45%,
+          rgba(20, 20, 20, 0.18) 100%),
+        url("/s11-fondo-desktop.webp") center / cover no-repeat;
     }
     .s-contacto__inner {
       display: grid;
@@ -2741,6 +2779,11 @@ const seoEvent = {
       .s-ficha__inner,
       .s-auspi__inner,
       .s-speakers__layout,
+      .s-contacto {
+        background:
+          linear-gradient(180deg, rgba(20, 20, 20, 0.84), rgba(20, 20, 20, 0.60)),
+          url("/s11-fondo-mobile.webp") center / cover no-repeat;
+      }
       .s-contacto__inner {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -2757,7 +2800,7 @@ const seoEvent = {
         margin-left: 0;
       }
       .s-auspi__cita-grande {
-        font-size: clamp(0.65rem, 3.5vw, 0.9rem);
+        font-size: clamp(0.65rem, 3.2vw, 0.88rem);
       }
       .beneficio-item {
         flex: 1 1 45%;

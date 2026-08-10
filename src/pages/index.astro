@@ -564,15 +564,15 @@ const seoEvent = {
       <div class="s-avion" aria-hidden="true">
         <svg
           class="s-avion__svg"
-          viewBox="0 0 460 80"
-          width="460"
-          height="80"
+          viewBox="0 0 1200 110"
+          width="1200"
+          height="110"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <!-- Trayectoria punteada -->
+          <!-- Trayectoria punteada — onda ancha de dos lomos que sangra por ambos bordes -->
           <path
             id="flight-path"
-            d="M10 65 Q120 10 250 35 Q350 55 450 20"
+            d="M-60 80 Q160 18 430 52 Q690 86 940 46 Q1090 22 1260 44"
             stroke="#afb5db"
             stroke-width="1.5"
             stroke-dasharray="6 4"
@@ -1793,7 +1793,6 @@ const seoEvent = {
     }
     .s-avion__svg {
       width: 100%;
-      max-width: 460px;
       height: auto;
       overflow: visible;
     }
@@ -1958,7 +1957,7 @@ const seoEvent = {
       gap: 0.4rem;
     }
     .s-ficha__udec-logo {
-      height: 44px;
+      height: clamp(3.5rem, 7vw, 5.25rem);
       width: auto;
       object-fit: contain;
     }

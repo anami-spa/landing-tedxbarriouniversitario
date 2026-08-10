@@ -22,6 +22,7 @@ import imgIcoIG from "../assets/images/icono-ig.webp";
 import imgIcoIN from "../assets/images/icono-in.webp";
 import imgIcoFKR from "../assets/images/icono-fkr.webp";
 import imgContactoPolaroid from "../assets/images/contacto-polaroid.webp";
+import imgContactoFoto from "../assets/images/contacto-foto.webp";
 import imgUdecNegro from "../assets/images/udec-negro.webp";
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -764,7 +765,7 @@ const seoEvent = {
           </span>
         </h2>
         <p class="s-speakers__sub">
-          ¿Tienes una idea que merece ser compartida?
+          ¿TIENES UNA IDEA QUE MERECE SER COMPARTIDA?
         </p>
       </div>
 
@@ -791,16 +792,17 @@ const seoEvent = {
               y generar un impacto positivo en la sociedad.
             </p>
             <p class="s-speakers__quienes-desc">
-              No es necesario ser un conferencista profesional. Lo más
-              importante es que tu idea sea original, relevante y tenga el
-              potencial de inspirar.
+              No buscamos únicamente historias personales o discursos
+              motivacionales. Buscamos ideas, aprendizajes y experiencias que
+              inviten a la audiencia a Alzar el Vuelo y mirar el mundo desde
+              una nueva perspectiva.
             </p>
             <h3 class="headline-bold s-speakers__quienes-h">
-              ¿Quiénes pueden postular?
+              ¿QUIÉNES PUEDEN POSTULAR?
             </h3>
             <p class="s-speakers__quienes-sub">
-              La convocatoria está abierta a personas mayores de 18 años con
-              iniciativas relacionadas con:
+              La convocatoria está abierta a personas mayores de 18 años que
+              desarrollen iniciativas relacionadas con:
             </p>
             <ul class="s-speakers__quienes-list">
               {
@@ -820,6 +822,11 @@ const seoEvent = {
                 ))
               }
             </ul>
+            <p class="s-speakers__quienes-desc" style="margin-top:0.85rem;">
+              No es necesario ser un conferencista profesional. Lo más
+              importante es que tu idea sea original, relevante y tenga el
+              potencial de inspirar.
+            </p>
           </div>
 
           <!-- Proceso 3 etapas -->
@@ -846,6 +853,9 @@ const seoEvent = {
           </div>
 
           <div class="s-speakers__cta">
+            <p class="s-speakers__cta-label">
+              ¿LIST@ PARA ALZAR EL VUELO CON TU IDEA?
+            </p>
             <a
               href="https://docs.google.com/forms/d/15njQTb5kpHgN1O_7wST56SnzuHblA3rowGsJNlhyYu0/viewform"
               target="_blank"
@@ -921,11 +931,11 @@ const seoEvent = {
                       <Image
                         src={imgUdecNegro}
                         alt="Universidad de Concepción"
-                        width={200}
-                        height={75}
+                        width={280}
+                        height={105}
                         loading="lazy"
                         decoding="async"
-                        class="partners-logo"
+                        class="partners-logo partners-logo--anfitrion"
                       />
                     )}
                     {p.categoria === "Partner Estratégico" && (
@@ -1045,7 +1055,7 @@ const seoEvent = {
         </ul>
       </div>
 
-      <!-- Gráfico compuesto del diseñador: 2 polaroids -->
+      <!-- Gráfico compuesto del diseñador -->
       <div class="s-auspi__img-wrap">
         <Image
           src={imgAuspiciador}
@@ -1055,6 +1065,12 @@ const seoEvent = {
           loading="lazy"
           decoding="async"
           class="s-auspi__img"
+        />
+        <img
+          src={`${baseUrl}/s9-flecha.png`}
+          alt=""
+          aria-hidden="true"
+          class="s-auspi__flecha"
         />
         <blockquote class="s-auspi__cita-grande">
           <p>"Las ideas necesitan espacios para despegar"</p>
@@ -1210,25 +1226,28 @@ const seoEvent = {
         </div>
       </div>
 
-      <!-- Col derecha: foto + cita -->
+      <!-- Col derecha: polaroid foto + marco + cita -->
       <div class="s-contacto__photo-col">
-        <div class="s-contacto__photo-wrap parallax-img">
+        <figure class="s-contacto__polaroid-wrap parallax-img">
           <Image
-            src={imgContactoPolaroid}
-            alt="Imagen del evento TEDxBarrioUniversitario Women enmarcada en polaroid"
+            src={imgContactoFoto}
+            alt="Miembro del equipo TEDxBarrioUniversitario Women"
             width={600}
-            height={678}
+            height={800}
             loading="lazy"
             decoding="async"
-            class="s-contacto__photo-img"
+            class="s-contacto__foto"
           />
-        </div>
-        <blockquote
-          class="caja-lavanda s-contacto__cita"
-          style="margin-top:1.25rem;"
-        >
-          <p>"Las grandes ideas comienzan con una conversación."</p>
-        </blockquote>
+          <img
+            src={`${baseUrl}/s11-marco-desktop.png`}
+            alt=""
+            aria-hidden="true"
+            class="s-contacto__marco"
+          />
+          <figcaption class="s-contacto__cita-polaroid">
+            "Las grandes ideas comienzan con una conversación."
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -2014,7 +2033,12 @@ const seoEvent = {
     /* ── S7 AUSPICIADORES ─────────────────────────────────────── */
     .s-auspi {
       padding: var(--spacing-section) 0;
-      background: var(--color-charcoal);
+      background: var(--color-charcoal) url('/s9-fondo-desktop.png') center/cover no-repeat;
+    }
+    @media (max-width: 768px) {
+      .s-auspi {
+        background-image: url('/s9-fondo-mobile.png');
+      }
     }
     .s-auspi__inner {
       display: grid;
@@ -2118,6 +2142,12 @@ const seoEvent = {
       height: auto;
       border-radius: 4px;
     }
+    .s-auspi__flecha {
+      display: block;
+      max-width: 80px;
+      height: auto;
+      align-self: flex-start;
+    }
     .s-auspi__cita-grande {
       font-style: italic;
       font-weight: 700;
@@ -2163,8 +2193,6 @@ const seoEvent = {
       align-items: center;
       gap: 0;
       flex-wrap: wrap;
-      border-top: 1.5px solid rgba(35, 35, 35, 0.1);
-      border-bottom: 1.5px solid rgba(35, 35, 35, 0.1);
     }
     .beneficio-item {
       display: flex;
@@ -2173,9 +2201,6 @@ const seoEvent = {
       padding: 1.25rem 1.5rem;
       flex: 1 1 auto;
       position: relative;
-    }
-    .beneficio-item:not(:last-child) {
-      border-right: 1.5px solid rgba(35, 35, 35, 0.1);
     }
     .beneficio-flecha {
       font-size: 1.1rem;
@@ -2355,6 +2380,14 @@ const seoEvent = {
     .s-speakers__cta {
       margin-top: 2rem;
     }
+    .s-speakers__cta-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 0.04em;
+      margin-bottom: 1rem;
+    }
 
     /* ── S10 PARTNERS ────────────────────────────────────────── */
     .s-partners {
@@ -2408,7 +2441,6 @@ const seoEvent = {
       justify-content: center;
       gap: 1rem;
       min-height: 180px;
-      border-right: 1px solid rgba(35, 35, 35, 0.08);
     }
     .partners-slide__cat {
       text-align: center;
@@ -2425,6 +2457,9 @@ const seoEvent = {
       height: 60px;
       width: auto;
       object-fit: contain;
+    }
+    .partners-logo--anfitrion {
+      height: 90px;
     }
     .partners-placeholder {
       display: flex;
@@ -2609,16 +2644,41 @@ const seoEvent = {
       border-radius: 50%;
     }
 
-    .s-contacto__photo-img {
+    /* Polaroid S11: foto + marco overlay + figcaption */
+    .s-contacto__polaroid-wrap {
+      position: relative;
+      display: block;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .s-contacto__foto {
       width: 100%;
       height: auto;
-      object-fit: cover;
-      border-radius: 4px;
       display: block;
+      object-fit: cover;
     }
-    .s-contacto__cita {
+    .s-contacto__marco {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      pointer-events: none;
+    }
+    .s-contacto__cita-polaroid {
+      position: absolute;
+      bottom: 8%;
+      left: 10%;
+      right: 10%;
+      height: 24%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-style: italic;
-      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      font-size: clamp(0.78rem, 1.8vw, 1rem);
+      color: var(--color-charcoal);
+      text-align: center;
+      line-height: 1.35;
     }
 
     /* ── PARALLAX ────────────────────────────────────────────── */
@@ -2687,8 +2747,6 @@ const seoEvent = {
       }
       .beneficio-item {
         flex: 1 1 45%;
-        border-right: none;
-        border-bottom: 1px solid rgba(35, 35, 35, 0.1);
       }
       .s-beneficios__header {
         grid-template-columns: 1fr;

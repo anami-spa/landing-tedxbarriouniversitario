@@ -9,7 +9,7 @@ import imgEquipoPau from "../assets/images/equipo-paula-polaroid.png";
 import imgEquipoPam from "../assets/images/equipo-pamela-polaroid.png";
 import imgEquipoGab from "../assets/images/equipo-gabriela-polaroid.png";
 import imgEquipoNat from "../assets/images/equipo-natalie-polaroid.png";
-import imgEquipoCla from "../assets/images/equipo-claudio-polaroid.png";
+import imgEquipoCla from "../assets/images/equipo-claudio.png";
 import imgFotoSec02 from "../assets/images/foto-seccion-02.webp";
 import imgMujerS4 from "../assets/images/s4-mujer.png";
 import imgFicha from "../assets/images/ficha-mujer.webp";
@@ -23,7 +23,6 @@ import imgIcoIN from "../assets/images/icono-in.webp";
 import imgIcoFKR from "../assets/images/icono-fkr.webp";
 import imgContactoPolaroid from "../assets/images/contacto-polaroid.webp";
 import imgContactoFoto from "../assets/images/contacto-foto.webp";
-import imgUdecNegro from "../assets/images/udec-negro.webp";
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -682,11 +681,11 @@ const seoEvent = {
     <div class="s-ficha__franja">
       <div class="s-ficha__franja-inner">
         <div class="s-ficha__franja-udec">
-          <Image
-            src={imgUdecNegro}
+          <img
+            src={`${baseUrl}/partners/udec-negro.svg`}
             alt="Universidad de Concepción"
-            width={160}
-            height={60}
+            width="160"
+            height="60"
             loading="lazy"
             decoding="async"
             class="s-ficha__udec-logo"
@@ -879,11 +878,11 @@ const seoEvent = {
 
       <!-- UdeC — Institución Anfitriona (bloque destacado, fuera del carrusel) -->
       <div class="s-partners__anfitrion">
-        <Image
-          src={imgUdecNegro}
+        <img
+          src={`${baseUrl}/partners/udec-negro.svg`}
           alt="Universidad de Concepción"
-          width={280}
-          height={105}
+          width="280"
+          height="105"
           loading="lazy"
           decoding="async"
           class="s-partners__anfitrion-logo"
@@ -1206,7 +1205,7 @@ const seoEvent = {
         </div>
       </div>
 
-      <!-- Col derecha: polaroid foto + marco + cita -->
+      <!-- Col derecha: polaroid foto + marco (visible solo en móvil, oculto en escritorio) -->
       <div class="s-contacto__photo-col">
         <figure class="s-contacto__polaroid-wrap parallax-img">
           <Image
@@ -1224,12 +1223,16 @@ const seoEvent = {
             aria-hidden="true"
             class="s-contacto__marco"
           />
-          <figcaption class="s-contacto__cita-polaroid">
+          <figcaption class="s-contacto__cita-fig">
             "Las grandes ideas comienzan con una conversación."
           </figcaption>
         </figure>
       </div>
     </div>
+    <!-- Cita escritorio: sobre el polaroid horneado en fondo-contacto-desktop.png -->
+    <p class="s-contacto__cita-polaroid">
+      "Las grandes ideas comienzan con una conversación."
+    </p>
   </section>
 
   <!-- ============================================================
@@ -1333,7 +1336,8 @@ const seoEvent = {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 2rem 3rem;
+      /* #2 — padding-inline = mismo clamp que .site-header__inner para alinear lema con logo */
+      padding: 2rem clamp(16px, 4vw, 32px);
     }
 
     .hero-h1 {
@@ -1479,6 +1483,7 @@ const seoEvent = {
     .equipo-card {
       display: flex;
       flex-direction: column;
+      height: 100%; /* estira al alto de la celda grid (la más alta del row) */
       overflow: visible;
       border-radius: 0;
       border: none;
@@ -1490,6 +1495,7 @@ const seoEvent = {
       object-fit: cover;
       object-position: center top;
       display: block;
+      flex-shrink: 0; /* la foto no se encoge aunque sobre espacio */
     }
     .equipo-card__nombre-zona {
       padding: 0.35rem 0.75rem 0.4rem;
@@ -1505,6 +1511,7 @@ const seoEvent = {
       line-height: 1.2;
     }
     .equipo-card__cargo {
+      flex: 1; /* ocupa el espacio sobrante → todas las cards tienen el mismo alto */
       padding: 0.45rem 0.75rem 0.6rem;
       font-size: 0.68rem;
       font-weight: 400;
@@ -1515,6 +1522,7 @@ const seoEvent = {
       margin: 0;
       line-height: 1.35;
       background: #fff;
+      text-align: center;
     }
     .equipo-card__linkedin {
       display: flex;
@@ -1582,8 +1590,8 @@ const seoEvent = {
       color: rgba(255, 255, 255, 0.9);
       line-height: 1.65;
       margin-bottom: 1rem;
-      font-weight: 700;
-      font-family: var(--font-display);
+      font-weight: 400;
+      font-family: var(--font-sans);
     }
     .s-que-es__links {
       display: flex;
@@ -2116,17 +2124,17 @@ const seoEvent = {
     .s-auspi__img-wrap {
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
+      align-items: flex-start; /* polaroid en la parte alta de la columna → expone la flecha del fondo en la zona inferior */
       gap: 1.5rem;
     }
     .s-auspi__polaroid {
       position: relative;
-      max-width: 520px;
+      max-width: 440px; /* reducido de 520px para no tapar la zona de la flecha del fondo */
       width: 100%;
       margin-left: auto;
     }
     .s-auspi__img {
-      max-width: 520px;
+      max-width: 440px;
       width: 100%;
       height: auto;
       border-radius: 4px;
@@ -2134,12 +2142,13 @@ const seoEvent = {
     }
     .s-auspi__cita-grande {
       position: absolute;
-      left: 30%;
-      right: 16%;
-      bottom: 8%;
-      height: 20%;
+      left: 28%; /* más inset → caja más angosta → permite salto a 2 líneas */
+      right: 6%;
+      bottom: 5%;
+      height: auto;
+      min-height: 14%;
       margin: 0;
-      padding: 0;
+      padding: 0.25rem 0;
       border-left: none;
       display: flex;
       align-items: center;
@@ -2149,8 +2158,8 @@ const seoEvent = {
       font-family: var(--font-display);
       font-style: italic;
       font-weight: 700;
-      font-size: clamp(0.7rem, 1.4vw, 0.95rem);
-      line-height: 1.2;
+      font-size: clamp(0.80rem, 1.55vw, 1.0rem);
+      line-height: 1.4;
       transform: rotate(3deg);
     }
     .s-auspi__cita-grande p {
@@ -2165,7 +2174,7 @@ const seoEvent = {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
-      align-items: end;
+      align-items: start;
       margin-bottom: 2.5rem;
     }
     .s-beneficios__h2 {
@@ -2210,14 +2219,15 @@ const seoEvent = {
       display: flex;
       align-items: center;
       gap: 0;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
     }
     .beneficio-item {
       display: flex;
       align-items: center;
       gap: 0.5rem;
       padding: 1.25rem 1.5rem;
-      flex: 1 1 auto;
+      flex: 1 1 0;
+      min-width: 0;
       position: relative;
     }
     .beneficio-flecha {
@@ -2225,8 +2235,8 @@ const seoEvent = {
       flex-shrink: 0;
     }
     .beneficio-nombre {
-      font-size: clamp(0.78rem, 1.3vw, 0.95rem);
-      letter-spacing: 0.06em;
+      font-size: clamp(1.1rem, 2vw, 1.4rem); /* aumentado — nombres de beneficio más legibles */
+      letter-spacing: 0.04em;
       color: var(--color-charcoal);
       font-weight: 900;
       font-family: var(--font-display);
@@ -2450,7 +2460,7 @@ const seoEvent = {
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-size: 0.8rem;
-      color: var(--color-ted-red);
+      color: var(--color-charcoal);
     }
 
     .partners-carousel {
@@ -2488,7 +2498,7 @@ const seoEvent = {
     }
     .partners-slide__cat {
       text-align: center;
-      color: var(--color-ted-red);
+      color: var(--color-charcoal);
     }
     .partners-slide__logos {
       display: flex;
@@ -2564,9 +2574,10 @@ const seoEvent = {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: rgba(35, 35, 35, 0.2);
+      background: rgba(35, 35, 35, 0.45); /* ≥3:1 sobre #f7f7f7 (WCAG 1.4.11) */
       border: none;
-      padding: 0;
+      padding: 6px; /* área táctil 20px sin cambiar visual */
+      box-sizing: content-box;
       cursor: pointer;
       transition: background 0.15s;
     }
@@ -2610,19 +2621,23 @@ const seoEvent = {
 
     /* ── S11 CONTACTO ─────────────────────────────────────────── */
     .s-contacto {
-      padding: var(--spacing-section) 0;
+      position: relative;
+      min-height: clamp(440px, 50vw, 780px);
       background:
         linear-gradient(90deg,
           rgba(20, 20, 20, 0.88) 0%,
-          rgba(20, 20, 20, 0.72) 45%,
-          rgba(20, 20, 20, 0.22) 100%),
-        url("/s11-fondo-desktop.webp") center / cover no-repeat;
+          rgba(20, 20, 20, 0.72) 40%,
+          rgba(20, 20, 20, 0.08) 68%,
+          transparent 100%),
+        url("/fondo-contacto-desktop.png") center / cover no-repeat;
     }
     .s-contacto__inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
-      align-items: start;
+      align-items: center;
+      padding-top: var(--spacing-section);
+      padding-bottom: var(--spacing-section);
     }
     .s-contacto__h2 {
       font-size: clamp(2.5rem, 6vw, 5rem);
@@ -2697,7 +2712,10 @@ const seoEvent = {
       border-radius: 50%;
     }
 
-    /* Polaroid S11: foto + marco overlay + figcaption */
+    /* S11 col derecha: polaroid DOM (se muestra solo en móvil; escritorio usa fondo horneado) */
+    .s-contacto__photo-col {
+      display: none;
+    }
     .s-contacto__polaroid-wrap {
       position: relative;
       display: block;
@@ -2718,7 +2736,7 @@ const seoEvent = {
       object-fit: fill;
       pointer-events: none;
     }
-    .s-contacto__cita-polaroid {
+    .s-contacto__cita-fig {
       position: absolute;
       bottom: 8%;
       left: 10%;
@@ -2732,6 +2750,26 @@ const seoEvent = {
       color: var(--color-charcoal);
       text-align: center;
       line-height: 1.35;
+    }
+
+    /* Cita S11 escritorio: texto sobre el polaroid horneado en fondo-contacto-desktop.png */
+    .s-contacto__cita-polaroid {
+      position: absolute;
+      /* polaroid en fondo-contacto-desktop.png: ~57–89% horizontal, zona blanca ~70–90% vertical */
+      bottom: 14%;
+      left: 57%;
+      right: 11%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-style: italic;
+      font-size: clamp(0.85rem, 1.9vw, 1.15rem);
+      color: var(--color-charcoal);
+      text-align: center;
+      line-height: 1.4;
+      pointer-events: none;
+      z-index: 1;
+      margin: 0;
     }
 
     /* ── PARALLAX ────────────────────────────────────────────── */
@@ -2777,11 +2815,19 @@ const seoEvent = {
         gap: 0.6rem;
       }
 
-      /* S11 CONTACTO: fondo móvil propio */
+      /* S11 CONTACTO móvil: fondo oscuro limpio, polaroid DOM visible debajo del texto */
       .s-contacto {
         background:
           linear-gradient(180deg, rgba(20, 20, 20, 0.84), rgba(20, 20, 20, 0.60)),
           url("/s11-fondo-mobile.webp") center / cover no-repeat;
+      }
+      /* Mostrar polaroid DOM (oculto en escritorio) */
+      .s-contacto__photo-col {
+        display: block;
+      }
+      /* Ocultar cita de escritorio; el figure tiene su propia figcaption */
+      .s-contacto__cita-polaroid {
+        display: none;
       }
 
       /* Secciones de 2 columnas → 1 columna en móvil */
@@ -2825,14 +2871,23 @@ const seoEvent = {
         width: 100%;
         height: 340px;
       }
+      /* Auspiciador: apila columnas en móvil — texto arriba, imagen abajo */
+      .s-auspi__inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
       .s-auspi__img-wrap {
         align-items: center;
       }
       .s-auspi__polaroid {
         margin-left: 0;
+        max-width: 100%;
       }
       .s-auspi__cita-grande {
         font-size: clamp(0.65rem, 3.2vw, 0.88rem);
+      }
+      .beneficios-fila {
+        flex-wrap: wrap;
       }
       .beneficio-item {
         flex: 1 1 45%;
@@ -2901,6 +2956,17 @@ const seoEvent = {
       .cd-island-wrap {
         padding: 0 0.75rem;
         margin-top: -2.5rem;
+      }
+      /* #10 — Textos más grandes en móvil */
+      .s-que-es__p {
+        font-size: 1rem;
+      }
+      .beneficio-nombre {
+        font-size: 1rem;
+        letter-spacing: 0.03em;
+      }
+      .s-auspi__bullet {
+        font-size: 1rem;
       }
     }
   </style>

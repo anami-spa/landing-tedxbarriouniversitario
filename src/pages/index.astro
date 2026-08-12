@@ -1050,7 +1050,7 @@ const seoEvent = {
             class="s-auspi__img"
           />
           <blockquote class="s-auspi__cita-grande">
-            <p>"Las ideas necesitan espacios para despegar"</p>
+            <p>"Las ideas necesitan<br>espacios para despegar"</p>
           </blockquote>
         </div>
       </div>
@@ -2024,18 +2024,13 @@ const seoEvent = {
     /* ── S7 AUSPICIADORES ─────────────────────────────────────── */
     .s-auspi {
       padding: var(--spacing-section) 0;
-      background: var(--color-charcoal) url('/s9-fondo-desktop.png') center bottom / cover no-repeat;
-    }
-    @media (max-width: 768px) {
-      .s-auspi {
-        background-image: url('/s9-fondo-mobile.png');
-      }
+      background: var(--color-charcoal);
     }
     .s-auspi__inner {
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: 1fr 1.4fr;
       gap: 4rem;
-      align-items: start;
+      align-items: center;
     }
     .s-auspi__h2 {
       display: flex;
@@ -2124,17 +2119,15 @@ const seoEvent = {
     .s-auspi__img-wrap {
       display: flex;
       flex-direction: column;
-      align-items: flex-start; /* polaroid en la parte alta de la columna → expone la flecha del fondo en la zona inferior */
+      align-items: center;
       gap: 1.5rem;
     }
     .s-auspi__polaroid {
       position: relative;
-      max-width: 440px; /* reducido de 520px para no tapar la zona de la flecha del fondo */
+      max-width: 740px;
       width: 100%;
-      margin-left: auto;
     }
     .s-auspi__img {
-      max-width: 440px;
       width: 100%;
       height: auto;
       border-radius: 4px;

@@ -59,13 +59,24 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
       <div class="site-header__inner">
         <a href="#inicio" class="site-header__logo-link" aria-label="TEDxBarrioUniversitario Women — ir al inicio">
           <img
-            src={`${baseUrl}/logo-tedx-negro.png`}
-            alt="TEDxBarrioUniversitario Women"
+            src={`${baseUrl}/logo-tedx-blanco.png`}
+            alt=""
             width="160"
             height="60"
             loading="eager"
             decoding="async"
-            class="site-header__logo"
+            class="site-header__logo site-header__logo--blanco"
+            aria-hidden="true"
+          />
+          <img
+            src={`${baseUrl}/logo-tedx-negro.png`}
+            alt=""
+            width="160"
+            height="60"
+            loading="eager"
+            decoding="async"
+            class="site-header__logo site-header__logo--negro"
+            aria-hidden="true"
           />
         </a>
 
@@ -271,6 +282,19 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
   </button>
 
   <script>
+    /* ── Header transparente → blanco al hacer scroll ───────── */
+    (function () {
+      var header = document.getElementById('site-header');
+      if (!header) return;
+      function updateHeader() {
+        header.classList.toggle('site-header--scrolled', window.scrollY > 40);
+      }
+      window.addEventListener('scroll', updateHeader, { passive: true });
+      updateHeader();
+    })();
+  </script>
+
+  <script>
     (function () {
       var btn = document.getElementById('btn-top');
       if (!btn) return;
@@ -341,7 +365,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
 
 <style>
 /* ============================================================
-   HEADER — fixed, blanco sólido desde el inicio
+   HEADER — fixed, transparente inicial → blanco al hacer scroll
    ============================================================ */
 .site-header {
   position: fixed;
@@ -349,6 +373,11 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
   left: 0;
   right: 0;
   z-index: 100;
+  background: transparent;
+  box-shadow: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.site-header--scrolled {
   background: #ffffff;
   box-shadow: 0 1px 8px rgba(0,0,0,0.08);
 }
@@ -375,6 +404,11 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
   width: auto;
   display: block;
 }
+/* Logos: blanco visible por defecto; negro visible al hacer scroll.
+   Estas reglas van DESPUÉS de display:block para ganar por orden en cascada. */
+.site-header__logo--negro { display: none; }
+.site-header--scrolled .site-header__logo--blanco { display: none; }
+.site-header--scrolled .site-header__logo--negro { display: block; }
 
 .site-header__nav {
   display: flex;
@@ -382,21 +416,22 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
   gap: clamp(12px, 2vw, 20px);
 }
 
-/* Links charcoal sobre fondo blanco */
+/* Links blancos sobre fondo transparente → charcoal al hacer scroll */
 .header-nav-link {
   font-family: var(--font-display);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-charcoal);
+  color: rgba(255, 255, 255, 0.92);
   text-decoration: none;
   padding: 8px 4px;
   white-space: nowrap;
   transition: color 0.15s ease;
 }
-.header-nav-link:hover { color: var(--color-ted-red); }
-/* focus-visible: usa el ring global rojo (#db0028 sobre blanco = 3.4:1 WCAG AA ✓) */
+.header-nav-link:hover { color: #ffffff; }
+.site-header--scrolled .header-nav-link { color: var(--color-charcoal); }
+.site-header--scrolled .header-nav-link:hover { color: var(--color-ted-red); }
 
 /* Botón rojo CTA */
 .btn-header-cta {
@@ -452,16 +487,20 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
 .site-header__burger:focus-visible {
   outline: 2px solid var(--color-ted-red);
   outline-offset: 3px;
-  box-shadow: 0 0 0 5px rgba(219, 0, 40, 0.2);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.85);
+}
+.site-header--scrolled .site-header__burger:focus-visible {
+  box-shadow: 0 0 0 5px rgba(35, 35, 35, 0.25);
 }
 .burger-bar {
   display: block;
   width: 22px;
   height: 2px;
-  background: var(--color-charcoal);
+  background: #ffffff;
   border-radius: 2px;
-  transition: transform 0.22s ease, opacity 0.22s ease;
+  transition: transform 0.22s ease, opacity 0.22s ease, background 0.3s ease;
 }
+.site-header--scrolled .burger-bar { background: var(--color-charcoal); }
 /* Ícono X cuando el menú está abierto */
 .site-header__burger[aria-expanded="true"] .burger-bar:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
@@ -645,7 +684,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
 }
 
 .site-footer__anami-credit {
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.55); /* mínimo 4.5:1 sobre charcoal #232323 */
   font-size: 0.7rem;
   font-family: var(--font-display);
   font-weight: 400;
@@ -689,9 +728,9 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
 }
 .btn-top:hover { background: #b8001f; }
 .btn-top:focus-visible {
-  outline: 2px solid var(--color-ted-red, #db0028);
-  outline-offset: 3px;
-  box-shadow: 0 0 0 4px rgba(219,0,40,0.25);
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--color-charcoal);
 }
 @media (max-width: 639px) {
   .btn-top { bottom: 1.25rem; right: 1.25rem; width: 44px; height: 44px; }

@@ -150,7 +150,7 @@ const procesoSpeaker = [
 ];
 
 const partners = [
-  { categoria: "Main Partner", logos: [], placeholder: true },
+  { categoria: "Institución Anfitriona", logos: ["udec"], placeholder: false },
   { categoria: "Partner Estratégico", logos: ["anami"], placeholder: false },
   { categoria: "Partner Colaborador", logos: [], placeholder: true },
   { categoria: "Partner Impulsor", logos: [], placeholder: true },
@@ -372,7 +372,7 @@ const seoEvent = {
             loading="lazy"
             decoding="async"
             class="s-que-es__logo-tedx"
-          />?</span
+          /><span class="s-que-es__signo-final">?</span></span
         >
       </h2>
 
@@ -876,22 +876,6 @@ const seoEvent = {
         </p>
       </div>
 
-      <!-- UdeC — Institución Anfitriona (bloque destacado, fuera del carrusel) -->
-      <div class="s-partners__anfitrion">
-        <img
-          src={`${baseUrl}/partners/udec-negro.svg`}
-          alt="Universidad de Concepción"
-          width="280"
-          height="105"
-          loading="lazy"
-          decoding="async"
-          class="s-partners__anfitrion-logo"
-        />
-        <p class="s-partners__anfitrion-label">
-          <span class="flecha-roja" aria-hidden="true">→</span> Institución Anfitriona
-        </p>
-      </div>
-
       <!-- Carrusel -->
       <div
         class="partners-carousel"
@@ -915,6 +899,17 @@ const seoEvent = {
                   id={`slide-${i}`}
                 >
                   <div class="partners-slide__logos">
+                    {p.categoria === "Institución Anfitriona" && (
+                      <img
+                        src={`${baseUrl}/partners/udec-negro.svg`}
+                        alt="Universidad de Concepción"
+                        width="280"
+                        height="110"
+                        loading="lazy"
+                        decoding="async"
+                        class="partners-logo partners-logo--anfitrion"
+                      />
+                    )}
                     {p.categoria === "Partner Estratégico" && (
                       <img
                         src={`${baseUrl}/partners/anami-negro.png`}
@@ -953,6 +948,17 @@ const seoEvent = {
           id="btn-next">›</button
         >
       </div>
+
+      <!-- Botón pausa/reproducción autoplay (WCAG 2.2.2) -->
+      <button
+        class="partners-pause"
+        id="btn-pause-carousel"
+        aria-label="Pausar rotación automática del carrusel"
+        aria-pressed="false"
+        type="button"
+      >
+        <span aria-hidden="true">⏸</span>
+      </button>
 
       <!-- Indicadores — grupo de botones (no tab pattern: no hay panels navegables) -->
       <div
@@ -1583,6 +1589,11 @@ const seoEvent = {
       width: auto;
       margin-right: 2px;
     }
+    .s-que-es__signo-final {
+      font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+      vertical-align: bottom;
+      line-height: 1;
+    }
     .s-que-es__body {
       max-width: 860px;
     }
@@ -1701,7 +1712,7 @@ const seoEvent = {
       font-style: italic;
       font-weight: 700;
       font-family: var(--font-display);
-      font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
       color: var(--color-charcoal);
       line-height: 1.35;
       padding: 0 1.25rem;
@@ -2135,11 +2146,11 @@ const seoEvent = {
     }
     .s-auspi__cita-grande {
       position: absolute;
-      left: 28%; /* más inset → caja más angosta → permite salto a 2 líneas */
+      left: 22%; /* ampliado vs 28%: texto más grande necesita más ancho para no romper en 3 líneas */
       right: 6%;
-      bottom: 5%;
+      bottom: 3%; /* bajado vs 5%: da más margen vertical hacia arriba dentro de la zona blanca */
       height: auto;
-      min-height: 14%;
+      min-height: 18%;
       margin: 0;
       padding: 0.25rem 0;
       border-left: none;
@@ -2151,8 +2162,8 @@ const seoEvent = {
       font-family: var(--font-display);
       font-style: italic;
       font-weight: 700;
-      font-size: clamp(0.80rem, 1.55vw, 1.0rem);
-      line-height: 1.4;
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+      line-height: 1.35;
       transform: rotate(3deg);
     }
     .s-auspi__cita-grande p {
@@ -2224,8 +2235,10 @@ const seoEvent = {
       position: relative;
     }
     .beneficio-flecha {
-      font-size: 1.1rem;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 900;
       flex-shrink: 0;
+      line-height: 1;
     }
     .beneficio-nombre {
       font-size: clamp(1.1rem, 2vw, 1.4rem); /* aumentado — nombres de beneficio más legibles */
@@ -2434,28 +2447,6 @@ const seoEvent = {
       margin: 0 auto;
     }
 
-    /* Bloque UdeC standalone */
-    .s-partners__anfitrion {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.6rem;
-      margin: 0 0 2.5rem;
-    }
-    .s-partners__anfitrion-logo {
-      height: clamp(80px, 12vw, 130px);
-      width: auto;
-      object-fit: contain;
-    }
-    .s-partners__anfitrion-label {
-      font-family: var(--font-display);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.8rem;
-      color: var(--color-charcoal);
-    }
-
     .partners-carousel {
       display: flex;
       align-items: center;
@@ -2471,15 +2462,17 @@ const seoEvent = {
     }
     .partners-track {
       display: flex;
+      width: 100%; /* necesario para que calc(100%/N) en slides sea relativo al wrap */
       transition: transform 0.35s ease;
     }
     .partners-slide {
       flex: 0 0 100%; /* móvil: 1 visible */
+      min-width: 0; /* evita que contenido ancho fuerce el slide más allá del flex-basis */
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between; /* empuja el label de categoría al fondo */
       gap: 1rem;
       min-height: 180px;
     }
@@ -2493,12 +2486,16 @@ const seoEvent = {
       text-align: center;
       color: var(--color-charcoal);
     }
+    .partners-slide__cat .flecha-roja {
+      font-size: 1.6em; /* más grande y visible que la flecha global (1.1em) */
+    }
     .partners-slide__logos {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 1.5rem;
       flex-wrap: wrap;
+      min-height: 120px; /* alinea logos de distintas alturas (UdeC 110px, ANAMI 60px) */
     }
     .partners-logo {
       height: 60px;
@@ -2506,7 +2503,7 @@ const seoEvent = {
       object-fit: contain;
     }
     .partners-logo--anfitrion {
-      height: 90px;
+      height: 110px;
     }
     .partners-placeholder {
       display: flex;
@@ -2553,6 +2550,28 @@ const seoEvent = {
     }
     .partners-prev:focus-visible,
     .partners-next:focus-visible {
+      outline: 2px solid var(--color-ted-red);
+      outline-offset: 2px;
+    }
+
+    .partners-pause {
+      background: var(--color-charcoal);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      width: 38px;
+      height: 38px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s;
+      margin: 0 auto;
+    }
+    .partners-pause:hover { background: var(--color-ted-red); }
+    .partners-pause:focus-visible {
       outline: 2px solid var(--color-ted-red);
       outline-offset: 2px;
     }
@@ -2714,6 +2733,7 @@ const seoEvent = {
       display: block;
       max-width: 380px;
       margin: 0 auto;
+      background: #fff;
     }
     .s-contacto__foto {
       width: 100%;
@@ -2739,7 +2759,9 @@ const seoEvent = {
       align-items: center;
       justify-content: center;
       font-style: italic;
-      font-size: clamp(0.78rem, 1.8vw, 1rem);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
       color: var(--color-charcoal);
       text-align: center;
       line-height: 1.35;
@@ -2749,17 +2771,20 @@ const seoEvent = {
     .s-contacto__cita-polaroid {
       position: absolute;
       /* polaroid en fondo-contacto-desktop.png: ~57–89% horizontal, zona blanca ~70–90% vertical */
-      bottom: 14%;
+      /* centrado en la franja blanca del polaroid (~10–30% desde abajo → centro ~20%) */
+      bottom: 18%;
       left: 57%;
       right: 11%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-style: italic;
-      font-size: clamp(0.85rem, 1.9vw, 1.15rem);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
       color: var(--color-charcoal);
       text-align: center;
-      line-height: 1.4;
+      line-height: 1.35;
       pointer-events: none;
       z-index: 1;
       margin: 0;
@@ -3132,6 +3157,60 @@ const seoEvent = {
         dots.forEach((d, i) => d.addEventListener("click", () => goTo(i)));
         window.addEventListener("resize", updateControls, { passive: true });
         updateControls();
+
+        /* ── AUTOPLAY (WCAG 2.2.2: pausa en hover, foco y botón explícito) ── */
+        const btnPause = document.getElementById("btn-pause-carousel") as HTMLButtonElement | null;
+        let autoPaused = false;
+        let autoTimer: ReturnType<typeof setInterval> | null = null;
+
+        const startAuto = (): void => {
+          if (autoPaused || prefersReduced) return;
+          if (getVisible() >= slides) return; // todos visibles en desktop → sin efecto
+          if (autoTimer !== null) return;
+          autoTimer = setInterval(() => goTo(current + 1), 4000);
+        };
+        const stopAuto = (): void => {
+          if (autoTimer !== null) { clearInterval(autoTimer); autoTimer = null; }
+        };
+
+        // Botón pausa/play persistente (WCAG 2.2.2)
+        if (btnPause) {
+          btnPause.addEventListener("click", () => {
+            autoPaused = !autoPaused;
+            if (autoPaused) {
+              stopAuto();
+              btnPause.setAttribute("aria-pressed", "true");
+              btnPause.setAttribute("aria-label", "Reanudar rotación automática del carrusel");
+              const ico = btnPause.querySelector("span");
+              if (ico) ico.textContent = "▶";
+            } else {
+              btnPause.setAttribute("aria-pressed", "false");
+              btnPause.setAttribute("aria-label", "Pausar rotación automática del carrusel");
+              const ico = btnPause.querySelector("span");
+              if (ico) ico.textContent = "⏸";
+              startAuto();
+            }
+          });
+        }
+
+        // Pausa temporal en hover / foco del teclado
+        const carouselEl = document.querySelector(".partners-carousel") as HTMLElement | null;
+        carouselEl?.addEventListener("mouseenter", stopAuto);
+        carouselEl?.addEventListener("focusin", stopAuto);
+        carouselEl?.addEventListener("mouseleave", () => { if (!autoPaused) startAuto(); });
+        carouselEl?.addEventListener("focusout", (e: FocusEvent) => {
+          if (!carouselEl.contains(e.relatedTarget as Node | null) && !autoPaused) startAuto();
+        });
+
+        // Ocultar botón pausa junto con prev/next cuando todos los slides son visibles
+        const origUpdateControls = updateControls;
+        // Extender updateControls para incluir btnPause
+        window.addEventListener("resize", () => {
+          if (btnPause) btnPause.style.display = getVisible() >= slides ? "none" : "";
+        }, { passive: true });
+        if (btnPause) btnPause.style.display = getVisible() >= slides ? "none" : "";
+
+        startAuto();
       }
 
       /* ── PARALLAX (fotos grandes) ────────────────────────────── */

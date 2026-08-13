@@ -949,6 +949,17 @@ const seoEvent = {
         >
       </div>
 
+      <!-- Botón pausa/reproducción autoplay (WCAG 2.2.2) -->
+      <button
+        class="partners-pause"
+        id="btn-pause-carousel"
+        aria-label="Pausar rotación automática del carrusel"
+        aria-pressed="false"
+        type="button"
+      >
+        <span aria-hidden="true">⏸</span>
+      </button>
+
       <!-- Indicadores — grupo de botones (no tab pattern: no hay panels navegables) -->
       <div
         class="partners-dots"
@@ -2477,6 +2488,7 @@ const seoEvent = {
       justify-content: center;
       gap: 1.5rem;
       flex-wrap: wrap;
+      min-height: 120px; /* alinea logos de distintas alturas (UdeC 110px, ANAMI 60px) */
     }
     .partners-logo {
       height: 60px;
@@ -2531,6 +2543,28 @@ const seoEvent = {
     }
     .partners-prev:focus-visible,
     .partners-next:focus-visible {
+      outline: 2px solid var(--color-ted-red);
+      outline-offset: 2px;
+    }
+
+    .partners-pause {
+      background: var(--color-charcoal);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      width: 38px;
+      height: 38px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s;
+      margin: 0 auto;
+    }
+    .partners-pause:hover { background: var(--color-ted-red); }
+    .partners-pause:focus-visible {
       outline: 2px solid var(--color-ted-red);
       outline-offset: 2px;
     }
@@ -3115,6 +3149,60 @@ const seoEvent = {
         dots.forEach((d, i) => d.addEventListener("click", () => goTo(i)));
         window.addEventListener("resize", updateControls, { passive: true });
         updateControls();
+
+        /* ── AUTOPLAY (WCAG 2.2.2: pausa en hover, foco y botón explícito) ── */
+        const btnPause = document.getElementById("btn-pause-carousel") as HTMLButtonElement | null;
+        let autoPaused = false;
+        let autoTimer: ReturnType<typeof setInterval> | null = null;
+
+        const startAuto = (): void => {
+          if (autoPaused || prefersReduced) return;
+          if (getVisible() >= slides) return; // todos visibles en desktop → sin efecto
+          if (autoTimer !== null) return;
+          autoTimer = setInterval(() => goTo(current + 1), 4000);
+        };
+        const stopAuto = (): void => {
+          if (autoTimer !== null) { clearInterval(autoTimer); autoTimer = null; }
+        };
+
+        // Botón pausa/play persistente (WCAG 2.2.2)
+        if (btnPause) {
+          btnPause.addEventListener("click", () => {
+            autoPaused = !autoPaused;
+            if (autoPaused) {
+              stopAuto();
+              btnPause.setAttribute("aria-pressed", "true");
+              btnPause.setAttribute("aria-label", "Reanudar rotación automática del carrusel");
+              const ico = btnPause.querySelector("span");
+              if (ico) ico.textContent = "▶";
+            } else {
+              btnPause.setAttribute("aria-pressed", "false");
+              btnPause.setAttribute("aria-label", "Pausar rotación automática del carrusel");
+              const ico = btnPause.querySelector("span");
+              if (ico) ico.textContent = "⏸";
+              startAuto();
+            }
+          });
+        }
+
+        // Pausa temporal en hover / foco del teclado
+        const carouselEl = document.querySelector(".partners-carousel") as HTMLElement | null;
+        carouselEl?.addEventListener("mouseenter", stopAuto);
+        carouselEl?.addEventListener("focusin", stopAuto);
+        carouselEl?.addEventListener("mouseleave", () => { if (!autoPaused) startAuto(); });
+        carouselEl?.addEventListener("focusout", (e: FocusEvent) => {
+          if (!carouselEl.contains(e.relatedTarget as Node | null) && !autoPaused) startAuto();
+        });
+
+        // Ocultar botón pausa junto con prev/next cuando todos los slides son visibles
+        const origUpdateControls = updateControls;
+        // Extender updateControls para incluir btnPause
+        window.addEventListener("resize", () => {
+          if (btnPause) btnPause.style.display = getVisible() >= slides ? "none" : "";
+        }, { passive: true });
+        if (btnPause) btnPause.style.display = getVisible() >= slides ? "none" : "";
+
+        startAuto();
       }
 
       /* ── PARALLAX (fotos grandes) ────────────────────────────── */

@@ -151,7 +151,6 @@ const procesoSpeaker = [
 
 const partners = [
   { categoria: "Institución Anfitriona", logos: ["udec"], placeholder: false },
-  { categoria: "Main Partner", logos: [], placeholder: true },
   { categoria: "Partner Estratégico", logos: ["anami"], placeholder: false },
   { categoria: "Partner Colaborador", logos: [], placeholder: true },
   { categoria: "Partner Impulsor", logos: [], placeholder: true },
@@ -905,7 +904,7 @@ const seoEvent = {
                         src={`${baseUrl}/partners/udec-negro.svg`}
                         alt="Universidad de Concepción"
                         width="280"
-                        height="105"
+                        height="110"
                         loading="lazy"
                         decoding="async"
                         class="partners-logo partners-logo--anfitrion"
@@ -2455,7 +2454,7 @@ const seoEvent = {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between; /* empuja el label de categoría al fondo */
       gap: 1rem;
       min-height: 180px;
     }
@@ -2463,11 +2462,14 @@ const seoEvent = {
       .partners-slide { flex-basis: calc(100% / 3); }
     }
     @media (min-width: 1024px) {
-      .partners-slide { flex-basis: calc(100% / 6); }
+      .partners-slide { flex-basis: 20%; }
     }
     .partners-slide__cat {
       text-align: center;
       color: var(--color-charcoal);
+    }
+    .partners-slide__cat .flecha-roja {
+      font-size: 1.6em; /* más grande y visible que la flecha global (1.1em) */
     }
     .partners-slide__logos {
       display: flex;
@@ -2482,7 +2484,7 @@ const seoEvent = {
       object-fit: contain;
     }
     .partners-logo--anfitrion {
-      height: 90px;
+      height: 110px;
     }
     .partners-placeholder {
       display: flex;
@@ -2765,7 +2767,7 @@ const seoEvent = {
     /* Desktop → 5 slides visibles a la vez */
     @media (min-width: 1024px) {
       .partners-slide {
-        flex: 0 0 calc(100% / 6);
+        flex: 0 0 20%;
       }
     }
 

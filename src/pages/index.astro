@@ -1701,7 +1701,7 @@ const seoEvent = {
       font-style: italic;
       font-weight: 700;
       font-family: var(--font-display);
-      font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
       color: var(--color-charcoal);
       line-height: 1.35;
       padding: 0 1.25rem;
@@ -2135,11 +2135,11 @@ const seoEvent = {
     }
     .s-auspi__cita-grande {
       position: absolute;
-      left: 28%; /* más inset → caja más angosta → permite salto a 2 líneas */
+      left: 22%; /* ampliado vs 28%: texto más grande necesita más ancho para no romper en 3 líneas */
       right: 6%;
-      bottom: 5%;
+      bottom: 3%; /* bajado vs 5%: da más margen vertical hacia arriba dentro de la zona blanca */
       height: auto;
-      min-height: 14%;
+      min-height: 18%;
       margin: 0;
       padding: 0.25rem 0;
       border-left: none;
@@ -2151,8 +2151,8 @@ const seoEvent = {
       font-family: var(--font-display);
       font-style: italic;
       font-weight: 700;
-      font-size: clamp(0.80rem, 1.55vw, 1.0rem);
-      line-height: 1.4;
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+      line-height: 1.35;
       transform: rotate(3deg);
     }
     .s-auspi__cita-grande p {
@@ -2739,7 +2739,9 @@ const seoEvent = {
       align-items: center;
       justify-content: center;
       font-style: italic;
-      font-size: clamp(0.78rem, 1.8vw, 1rem);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
       color: var(--color-charcoal);
       text-align: center;
       line-height: 1.35;
@@ -2749,17 +2751,20 @@ const seoEvent = {
     .s-contacto__cita-polaroid {
       position: absolute;
       /* polaroid en fondo-contacto-desktop.png: ~57–89% horizontal, zona blanca ~70–90% vertical */
-      bottom: 14%;
+      /* centrado en la franja blanca del polaroid (~10–30% desde abajo → centro ~20%) */
+      bottom: 18%;
       left: 57%;
       right: 11%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-style: italic;
-      font-size: clamp(0.85rem, 1.9vw, 1.15rem);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
       color: var(--color-charcoal);
       text-align: center;
-      line-height: 1.4;
+      line-height: 1.35;
       pointer-events: none;
       z-index: 1;
       margin: 0;

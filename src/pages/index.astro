@@ -212,7 +212,7 @@ const seoEvent = {
           src={imgAlzarVuelo01}
           alt=""
           width={700}
-          height={507}
+          height={475}
           loading="eager"
           decoding="async"
           class="hero-wordmark"
@@ -1295,6 +1295,12 @@ const seoEvent = {
       inset: 0;
       z-index: 0;
     }
+    /* Desktop: alejar la foto de fondo (s-hero overflow:hidden recorta el exceso) */
+    @media (min-width: 901px) {
+      .hero-bg {
+        inset: -1%;
+      } /* subir/bajar este % para más o menos zoom */
+    }
     .hero-bg::after {
       content: "";
       position: absolute;
@@ -1350,6 +1356,9 @@ const seoEvent = {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      width: 100%;
+      max-width: 1400px; /* igual que .site-header__inner — alinea en >1400px */
+      margin-inline: auto; /* centra el bloque igual que el header */
       /* #2 — padding-inline = mismo clamp que .site-header__inner para alinear lema con logo */
       padding: 2rem clamp(16px, 4vw, 32px);
     }

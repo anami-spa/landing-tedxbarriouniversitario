@@ -562,39 +562,41 @@ const seoEvent = {
         </div>
       </div>
 
-      <!-- Avión SVG animateMotion -->
-      <div class="s-avion" aria-hidden="true">
-        <svg
-          class="s-avion__svg"
-          viewBox="0 0 1200 110"
-          width="1200"
-          height="110"
-          xmlns="http://www.w3.org/2000/svg"
+      <!-- Avión animado — WebM VP9 alfa (Chrome/FF/Edge) + GIF fallback (Safari) -->
+      <div class="s-avion">
+        <!-- Contenedor decorativo aria-hidden; el botón de pausa es hermano (WCAG 2.2.2) -->
+        <div class="s-avion__anim" aria-hidden="true">
+          <video
+            id="avion-video"
+            class="s-avion__media"
+            autoplay
+            muted
+            loop
+            playsinline
+            tabindex="-1"
+            poster="/avion-poster.png"
+          >
+            <source src="/avion.webm" type="video/webm" />
+          </video>
+          <!-- Fallback para Safari (no soporta VP9 alpha) — gestionado por JS -->
+          <img
+            id="avion-fallback"
+            class="s-avion__media"
+            src="/avion-fallback.gif"
+            alt=""
+            hidden
+          />
+        </div>
+        <!-- Botón pausa accesible — fuera del aria-hidden para que AT lo anuncie (WCAG 2.2.2) -->
+        <button
+          type="button"
+          id="btn-pause-avion"
+          class="s-avion__pause"
+          aria-label="Pausar animación del avión"
+          aria-pressed="false"
         >
-          <!-- Trayectoria punteada — onda ancha de dos lomos que sangra por ambos bordes -->
-          <path
-            id="flight-path"
-            d="M-60 80 Q160 18 430 52 Q690 86 940 46 Q1090 22 1260 44"
-            stroke="#afb5db"
-            stroke-width="1.5"
-            stroke-dasharray="6 4"
-            fill="none"></path>
-          <!-- Avión que sigue la trayectoria -->
-          <g id="avion-icon">
-            <animateMotion
-              dur="6s"
-              repeatCount="indefinite"
-              rotate="auto"
-              calcMode="spline"
-              keyTimes="0;0.5;1"
-              keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"
-            >
-              <mpath href="#flight-path"></mpath>
-            </animateMotion>
-            <!-- Silueta avión minimalista -->
-            <polygon points="0,-8 18,0 0,8 4,0" fill="#db0028"></polygon>
-          </g>
-        </svg>
+          <span aria-hidden="true">⏸</span>
+        </button>
       </div>
     </div>
 
@@ -1792,14 +1794,62 @@ const seoEvent = {
       text-align: right;
     }
 
-    /* Avión SVG */
+    /* Avión animado — WebM VP9 + GIF fallback */
     .s-avion {
+      position: relative;
       padding: 0.5rem 0;
     }
-    .s-avion__svg {
+    .s-avion__anim {
+      line-height: 0; /* eliminar espacio inline bajo el video */
+    }
+    .s-avion__media {
       width: 100%;
       height: auto;
-      overflow: visible;
+      display: block;
+    }
+    /* Botón pausa discreto (WCAG 2.2.2) — opaco solo al hover/foco */
+    .s-avion__pause {
+      position: absolute;
+      bottom: 0.35rem;
+      right: 0.35rem;
+      width: 30px;
+      height: 30px;
+      border: none;
+      border-radius: 4px;
+      background: rgba(35, 35, 35, 0.35);
+      color: #fff;
+      opacity: 0.4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition:
+        opacity 0.2s,
+        background 0.15s;
+    }
+    .s-avion__pause:hover,
+    .s-avion__pause:focus-visible {
+      opacity: 1;
+      background: var(--color-ted-red);
+    }
+    .s-avion__pause:focus-visible {
+      outline: 2px solid var(--color-ted-red);
+      outline-offset: 2px;
+    }
+    /* Móvil: zoom/recorte para que el avión se vea más grande.
+       object-position: left — la animación siempre empieza desde el borde izquierdo,
+       el avión entra por la izquierda y viaja hacia la derecha. */
+    @media (max-width: 768px) {
+      .s-avion__anim {
+        height: 80px;
+        overflow: hidden;
+      }
+      .s-avion__media {
+        height: 80px;
+        object-fit: cover;
+        object-position: left center;
+      }
     }
 
     .boarding-pass__hora--hrs {
@@ -3027,6 +3077,75 @@ const seoEvent = {
       const prefersReduced = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
       ).matches;
+
+      /* ── AVIÓN ANIMADO (WCAG 2.2.2) ─────────────────────────── */
+      const avionVideo = document.getElementById(
+        "avion-video",
+      ) as HTMLVideoElement | null;
+      const avionFallback = document.getElementById(
+        "avion-fallback",
+      ) as HTMLImageElement | null;
+      const btnPauseAvion = document.getElementById(
+        "btn-pause-avion",
+      ) as HTMLButtonElement | null;
+      let avionUsesGif = false;
+
+      if (avionVideo) {
+        if (prefersReduced) {
+          // Reduced-motion: mostrar solo el poster estático
+          avionVideo.pause();
+          if (btnPauseAvion) btnPauseAvion.hidden = true;
+        } else {
+          const supportsVP9 =
+            avionVideo.canPlayType('video/webm; codecs="vp9"') !== "";
+          if (supportsVP9) {
+            avionVideo.play().catch(() => {});
+          } else {
+            // Safari: ocultar video (muestra poster), mostrar GIF animado
+            avionUsesGif = true;
+            avionVideo.style.display = "none";
+            if (avionFallback) avionFallback.hidden = false;
+          }
+
+          // Botón pausa/play persistente (WCAG 2.2.2)
+          if (btnPauseAvion) {
+            btnPauseAvion.addEventListener("click", () => {
+              const pressed =
+                btnPauseAvion.getAttribute("aria-pressed") === "true";
+              const nowPaused = !pressed;
+              const ico = btnPauseAvion.querySelector("span");
+              btnPauseAvion.setAttribute("aria-pressed", String(nowPaused));
+
+              if (nowPaused) {
+                btnPauseAvion.setAttribute(
+                  "aria-label",
+                  "Reanudar animación del avión",
+                );
+                if (ico) ico.textContent = "▶";
+                if (avionUsesGif) {
+                  // GIF: ocultar GIF → video muestra el poster
+                  if (avionFallback) avionFallback.hidden = true;
+                  avionVideo.style.display = "";
+                } else {
+                  avionVideo.pause();
+                }
+              } else {
+                btnPauseAvion.setAttribute(
+                  "aria-label",
+                  "Pausar animación del avión",
+                );
+                if (ico) ico.textContent = "⏸";
+                if (avionUsesGif) {
+                  avionVideo.style.display = "none";
+                  if (avionFallback) avionFallback.hidden = false;
+                } else {
+                  avionVideo.play().catch(() => {});
+                }
+              }
+            });
+          }
+        }
+      }
 
       /* ── COUNTDOWN ───────────────────────────────────────────── */
       const TARGET = new Date("2026-12-04T09:00:00-03:00").getTime();

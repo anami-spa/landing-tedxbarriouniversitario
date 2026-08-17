@@ -12,12 +12,12 @@ import imgEquipoNat from "../assets/images/equipo-natalie-polaroid.png";
 import imgEquipoCla from "../assets/images/equipo-claudio.png";
 import imgFotoSec02 from "../assets/images/foto-seccion-02.webp";
 import imgMujerS4 from "../assets/images/s4-mujer.png";
-import imgFicha from "../assets/images/ficha-mujer.webp";
+import imgFicha from "../assets/images/ficha-mujer-05.webp";
 import imgConvoca from "../assets/images/convocatoria-speakers.webp";
 import imgAlzarVuelo01 from "../assets/images/alzar-vuelo-01.webp";
 import imgTedxOficial from "../assets/images/tedx-logo-oficial.png";
 import imgIcoLinkedin from "../assets/images/icono-linkedin.webp";
-import imgAuspiciador from "../assets/images/auspiciador-polaroid.webp";
+import imgAuspiciador from "../assets/images/auspiciador-02.webp";
 import imgIcoIG from "../assets/images/icono-ig.webp";
 import imgIcoIN from "../assets/images/icono-in.webp";
 import imgIcoFKR from "../assets/images/icono-fkr.webp";
@@ -611,19 +611,11 @@ const seoEvent = {
             <Image
               src={imgFicha}
               alt="Speaker TEDxBarrioUniversitario Women en el escenario"
-              width={480}
-              height={545}
+              width={450}
+              height={512}
               loading="lazy"
               decoding="async"
               class="s-ficha__polaroid-foto"
-            />
-            <img
-              src="/s6-marco.png"
-              class="s-ficha__polaroid-marco"
-              aria-hidden="true"
-              alt=""
-              loading="lazy"
-              decoding="async"
             />
             <figcaption class="s-ficha__cita">
               "Ideas capaces de cambiar perspectivas y generar acción"
@@ -1045,20 +1037,20 @@ const seoEvent = {
 
       <!-- Gráfico compuesto del diseñador -->
       <div class="s-auspi__img-wrap">
-        <div class="s-auspi__polaroid">
+        <figure class="s-auspi__polaroid" aria-hidden="true">
           <Image
             src={imgAuspiciador}
-            alt="Auspiciador TEDxBarrioUniversitario Women — imagen decorativa"
+            alt=""
             width={600}
             height={450}
             loading="lazy"
             decoding="async"
             class="s-auspi__img"
           />
-          <blockquote class="s-auspi__cita-grande">
-            <p>"Las ideas necesitan<br>espacios para despegar"</p>
-          </blockquote>
-        </div>
+          <figcaption class="s-auspi__cita">
+            "Las ideas necesitan espacios para despegar"
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -1904,29 +1896,21 @@ const seoEvent = {
     .s-ficha__polaroid-wrap { max-width: 360px; margin: 0 auto; }
     .s-ficha__polaroid { position: relative; }
     .s-ficha__polaroid-foto { width: 100%; display: block; }
-    .s-ficha__polaroid-marco {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: fill;
-      pointer-events: none;
-      user-select: none;
-    }
     .s-ficha__cita {
       position: absolute;
-      bottom: 8%;
-      left: 0; right: 0;
-      height: 24%;
+      bottom: 19%;
+      left: 17%;
+      right: 17%;
+      height: 15%;
       display: flex; align-items: center; justify-content: center;
       text-align: center;
       font-style: italic;
       font-weight: 700;
       font-family: var(--font-display);
-      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+      font-size: clamp(0.72rem, 1.5vw, 0.85rem);
       color: var(--color-charcoal);
-      line-height: 1.35;
-      padding: 0 1rem;
+      line-height: 1.3;
+      padding: 0;
       z-index: 2;
       pointer-events: none;
     }
@@ -2137,6 +2121,8 @@ const seoEvent = {
       position: relative;
       max-width: 740px;
       width: 100%;
+      margin: 0;
+      padding: 0;
     }
     .s-auspi__img {
       width: 100%;
@@ -2144,16 +2130,14 @@ const seoEvent = {
       border-radius: 4px;
       display: block;
     }
-    .s-auspi__cita-grande {
+    .s-auspi__cita {
       position: absolute;
-      left: 22%; /* ampliado vs 28%: texto más grande necesita más ancho para no romper en 3 líneas */
-      right: 6%;
-      bottom: 3%; /* bajado vs 5%: da más margen vertical hacia arriba dentro de la zona blanca */
-      height: auto;
-      min-height: 18%;
+      left: 21%;
+      right: 16%;
+      bottom: 4%;
+      height: 22%;
       margin: 0;
-      padding: 0.25rem 0;
-      border-left: none;
+      padding: 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -2162,12 +2146,10 @@ const seoEvent = {
       font-family: var(--font-display);
       font-style: italic;
       font-weight: 700;
-      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+      font-size: clamp(0.82rem, 1.5vw, 0.96rem);
       line-height: 1.35;
-      transform: rotate(3deg);
-    }
-    .s-auspi__cita-grande p {
-      margin: 0;
+      z-index: 2;
+      pointer-events: none;
     }
 
     /* ── S8 BENEFICIOS ────────────────────────────────────────── */
@@ -2901,8 +2883,8 @@ const seoEvent = {
         margin-left: 0;
         max-width: 100%;
       }
-      .s-auspi__cita-grande {
-        font-size: clamp(0.65rem, 3.2vw, 0.88rem);
+      .s-auspi__cita {
+        display: none;
       }
       .beneficios-fila {
         flex-wrap: wrap;

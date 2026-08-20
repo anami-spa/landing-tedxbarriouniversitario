@@ -161,6 +161,7 @@ const partners = [
   {
     categoria: "Partner Colaborador",
     logos: [
+      { src: "anami-negro.png", alt: "ANAMI Spa", tipo: "normal" },
       { src: "empoderadas.svg", alt: "Empoderadas", tipo: "normal" },
       { src: "kine-rehabilita.svg", alt: "Kine Rehabilita", tipo: "normal" },
     ],
@@ -177,6 +178,10 @@ const partners = [
     ],
   },
 ];
+
+const partnerSlides = partners.flatMap((p) =>
+  p.logos.map((logo) => ({ ...logo, categoria: p.categoria }))
+);
 
 const seoEvent = {
   name: "TEDxBarrioUniversitario Women 2026 — Alzar el vuelo",
@@ -912,36 +917,27 @@ const seoEvent = {
         <div class="partners-track-wrap">
           <div class="partners-track" id="partners-track">
             {
-              partners.map((p, i) => (
+              partnerSlides.map((slide, i) => (
                 <div
                   class="partners-slide"
                   role="group"
-                  aria-label={`Categoría ${i + 1} de ${partners.length}: ${p.categoria}`}
+                  aria-label={`Partner ${i + 1} de ${partnerSlides.length}`}
                   id={`slide-${i}`}
                 >
-                  <div class={`partners-slide__logos${p.logos.length > 1 ? " partners-slide__logos--multi" : ""}`}>
-                    {p.logos.map((logo) => (
-                      <div class="partners-logo-item">
-                        <img
-                          src={`${baseUrl}/partners/${logo.src}`}
-                          alt={logo.alt}
-                          width="212"
-                          height="140"
-                          loading="lazy"
-                          decoding="async"
-                          class={`partners-logo${logo.tipo === "anfitrion" ? " partners-logo--anfitrion" : ""}`}
-                        />
-                        {p.logos.length > 1 && (
-                          <span class="partners-logo-nombre" aria-hidden="true">{logo.alt}</span>
-                        )}
-                      </div>
-                    ))}
+                  <div class="partners-slide__logos">
+                    <img
+                      src={`${baseUrl}/partners/${slide.src}`}
+                      alt={slide.alt}
+                      width="212"
+                      height="140"
+                      loading="lazy"
+                      decoding="async"
+                      class={`partners-logo${slide.tipo === "anfitrion" ? " partners-logo--anfitrion" : ""}`}
+                    />
                   </div>
                   <p class="partners-slide__cat eyebrow-label">
-                    <span class="flecha-roja" aria-hidden="true">
-                      →
-                    </span>{" "}
-                    {p.categoria}
+                    <span class="flecha-roja" aria-hidden="true">→</span>{" "}
+                    {slide.categoria}
                   </p>
                 </div>
               ))
@@ -971,14 +967,14 @@ const seoEvent = {
       <div
         class="partners-dots"
         role="group"
-        aria-label="Navegar categorías de partners"
+        aria-label="Navegar partners"
         id="partners-dots"
       >
         {
-          partners.map((p, i) => (
+          partnerSlides.map((slide, i) => (
             <button
               class={`partners-dot${i === 0 ? " partners-dot--active" : ""}`}
-              aria-label={p.categoria}
+              aria-label={`${slide.alt} — ${slide.categoria}, partner ${i + 1} de ${partnerSlides.length}`}
               data-idx={i}
               id={`dot-${i}`}
               aria-pressed={i === 0 ? "true" : "false"}
@@ -2580,17 +2576,6 @@ const seoEvent = {
       gap: 1rem;
       flex-wrap: wrap;
     }
-    .partners-slide__logos--multi {
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .partners-logo-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.35rem;
-      min-width: 0;
-    }
     .partners-logo {
       height: 90px;
       width: auto;
@@ -2600,12 +2585,6 @@ const seoEvent = {
     .partners-logo--anfitrion {
       height: 90px;
       max-width: 200px;
-    }
-    .partners-logo-nombre {
-      font-size: 0.68rem;
-      color: rgba(35, 35, 35, 0.80);
-      text-align: center;
-      line-height: 1.2;
     }
     @media (max-width: 639px) {
       .partners-logo {
@@ -3281,7 +3260,7 @@ const seoEvent = {
         let announceTimer: ReturnType<typeof setTimeout> | null = null;
 
         const getVisible = (): number => {
-          if (window.innerWidth >= 1024) return slides; // todos a la vez → sin nav
+          if (window.innerWidth >= 1024) return Math.min(slides, 5);
           if (window.innerWidth >= 640) return 3;
           return 1;
         };
@@ -3309,11 +3288,13 @@ const seoEvent = {
             d.setAttribute("aria-pressed", i === current ? "true" : "false");
           });
           if (announceEl) {
-            const visNames = slideEls
-              .slice(current, current + visible)
-              .map((s) => s.getAttribute("aria-label") ?? "")
-              .filter(Boolean)
-              .join(", ");
+            const firstImg = slideEls[current]?.querySelector("img");
+            const lastEl = slideEls[Math.min(current + visible - 1, slides - 1)];
+            const lastImg = lastEl?.querySelector("img");
+            const visNames =
+              visible >= 2
+                ? `${firstImg?.alt ?? ""} a ${lastImg?.alt ?? ""}`
+                : (firstImg?.alt ?? "");
             if (announceTimer !== null) clearTimeout(announceTimer);
             announceEl.textContent = `Mostrando: ${visNames}`;
             announceTimer = setTimeout(() => {

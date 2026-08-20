@@ -179,9 +179,16 @@ const partners = [
   },
 ];
 
-const partnerSlides = partners.flatMap((p) =>
-  p.logos.map((logo) => ({ ...logo, categoria: p.categoria }))
-);
+const partnerSlides = [
+  { src: "udec-negro.svg",      alt: "Universidad de Concepción",          tipo: "anfitrion", categoria: "Institución Anfitriona" },
+  { src: "anami-negro.png",     alt: "ANAMI Spa",                           tipo: "normal",    categoria: "Partner Colaborador"   },
+  { src: "linac.svg",           alt: "LINAC",                               tipo: "normal",    categoria: "Partner Estratégico"   },
+  { src: "empoderadas.svg",     alt: "Empoderadas",                         tipo: "normal",    categoria: "Partner Colaborador"   },
+  { src: "kine-rehabilita.svg", alt: "Kine Rehabilita",                     tipo: "normal",    categoria: "Partner Colaborador"   },
+  { src: "vic-udec.svg",        alt: "Vinculación Universidad de Concepción", tipo: "normal",  categoria: "Partner Impulsor"      },
+  { src: "grafitto.svg",        alt: "Grafitto",                            tipo: "normal",    categoria: "Partner Pyme"          },
+  { src: "sistemico.svg",       alt: "Sistémico",                           tipo: "normal",    categoria: "Partner Pyme"          },
+];
 
 const seoEvent = {
   name: "TEDxBarrioUniversitario Women 2026 — Alzar el vuelo",

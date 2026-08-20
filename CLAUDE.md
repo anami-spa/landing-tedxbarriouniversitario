@@ -43,7 +43,7 @@ Textura concreto al 18% de opacidad: clase `.texture-overlay` → `textura-concr
 | 7 | ¿POR QUÉ SUMARSE COMO AUSPICIADOR? (2 polaroids rotadas) | Oscuro |
 | 8 | BENEFICIOS — 4 en fila + form Formspree alianzas | Claro + textura |
 | 9 | CONVOCATORIA SPEAKERS — silueta + proceso 3 etapas + form | Claro |
-| 10 | NUESTROS PARTNERS — carrusel 5 categorías | Claro + textura |
+| 10 | NUESTROS PARTNERS — carrusel 8 logos (1 por slide) | Claro + textura |
 | 11 | CONTACTO — email + socials + foto | Oscuro |
 | 12 | Footer | Oscuro (en BaseLayout.astro) |
 
@@ -84,11 +84,14 @@ Ver `.env.example`. Mínimo necesario:
 ## Deploy
 
 - **Staging:** GitHub Pages → `https://anami-spa.github.io/landing-tedxbarriouniversitario/`
+  - Se despliega automáticamente en cada push a `main` vía `.github/workflows/gh-pages.yml`.
 - **Producción:** DirectAdmin/PremiumHosting → `https://tedxbarriouniversitario.cl`
   - Servidor: DA006 PRO · IP `147.124.195.34`
   - Usuario DA: `tedxbarr` (clave en `~/.openclaw/openclaw.json["tedxbarriouniversitario"]`)
-  - Método: `astro build` → subir `dist/` a `public_html` vía SSH/FTPS
-  - **Deploy a producción SOLO con OK explícito de Cristian.**
+  - **Deploy automático** en cada push a `main` vía `.github/workflows/deploy.yml` (rsync SSH).
+  - Secrets en GitHub: `SITE_URL`, `PUBLIC_GA4_ID`, `DA_FTP_SERVER`, `DA_FTP_USERNAME`, `DA_FTP_PASSWORD`, `DA_SSH_KNOWN_HOSTS`.
+  - **Flujo correcto:** rama → PR → merge a `main` → CI/CD despliega solo.
+  - Deploy manual rsync solo como emergencia si CI/CD falla (credenciales en openclaw.json).
 
 ## Seguridad
 
@@ -105,13 +108,19 @@ Ver `.env.example`. Mínimo necesario:
 - **Imágenes**: `IMG/` → `src/assets/images/*.webp` (convertidas con sharp).
 - **Logos**: `LOGOS/` → `public/partners/` (TEDx Blanco/Negro/Rojo + UdeC Blanco/Negro).
 
+## S10 Partners — arquitectura actual (ago-2026)
+
+`partnerSlides` = array explícito ordenado en `src/pages/index.astro` (~línea 182).
+**1 logo por slide**, 8 slides totales. Orden: UdeC → ANAMI → LINAC → Empoderadas → Kine → Vinculación UdeC → Grafitto → Sistémico.
+Desktop: 5 visibles + flechas. Tablet: 3. Móvil: 1. Logos en `public/partners/`.
+
 ## Pendientes de Contenido (no bloquean el build)
 
-1. `FORMSPREE_FORM_ID` definitivo (provisionar cuenta Formspree)
+1. `FORMSPREE_FORM_ID` definitivo (formularios alianzas y speakers no funcionan)
 2. Correos del dominio (`contacto@`, `alianzas@`) — provisionar en DirectAdmin
 3. Nombre exacto del auditorio
-4. Logos partners Main / Experiencia / Media (hoy placeholder)
-5. Logo UdeC vectorial si lo hay (hoy PNG 800×300)
+4. ~~Logos partners~~ ✅ integrados y en producción (ago-2026)
+5. Logo UdeC vectorial si lo hay (hoy SVG funcional)
 6. Handles LinkedIn confirmados del equipo
 7. Rotar clave DirectAdmin tras primer login
 

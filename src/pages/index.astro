@@ -150,11 +150,32 @@ const procesoSpeaker = [
 ];
 
 const partners = [
-  { categoria: "Institución Anfitriona", logos: ["udec"], placeholder: false },
-  { categoria: "Partner Estratégico", logos: ["anami"], placeholder: false },
-  { categoria: "Partner Colaborador", logos: [], placeholder: true },
-  { categoria: "Partner Impulsor", logos: [], placeholder: true },
-  { categoria: "Partner Pyme", logos: [], placeholder: true },
+  {
+    categoria: "Institución Anfitriona",
+    logos: [{ src: "udec-negro.svg", alt: "Universidad de Concepción", tipo: "anfitrion" }],
+  },
+  {
+    categoria: "Partner Estratégico",
+    logos: [{ src: "linac.svg", alt: "LINAC", tipo: "normal" }],
+  },
+  {
+    categoria: "Partner Colaborador",
+    logos: [
+      { src: "empoderadas.svg", alt: "Empoderadas", tipo: "normal" },
+      { src: "kine-rehabilita.svg", alt: "Kine Rehabilita", tipo: "normal" },
+    ],
+  },
+  {
+    categoria: "Partner Impulsor",
+    logos: [{ src: "vic-udec.svg", alt: "Vinculación Universidad de Concepción", tipo: "normal" }],
+  },
+  {
+    categoria: "Partner Pyme",
+    logos: [
+      { src: "grafitto.svg", alt: "Grafitto", tipo: "normal" },
+      { src: "sistemico.svg", alt: "Sistémico", tipo: "normal" },
+    ],
+  },
 ];
 
 const seoEvent = {
@@ -898,39 +919,23 @@ const seoEvent = {
                   aria-label={`Categoría ${i + 1} de ${partners.length}: ${p.categoria}`}
                   id={`slide-${i}`}
                 >
-                  <div class="partners-slide__logos">
-                    {p.categoria === "Institución Anfitriona" && (
-                      <img
-                        src={`${baseUrl}/partners/udec-negro.svg`}
-                        alt="Universidad de Concepción"
-                        width="280"
-                        height="110"
-                        loading="lazy"
-                        decoding="async"
-                        class="partners-logo partners-logo--anfitrion"
-                      />
-                    )}
-                    {p.categoria === "Partner Estratégico" && (
-                      <img
-                        src={`${baseUrl}/partners/anami-negro.png`}
-                        alt="ANAMI Spa"
-                        width="200"
-                        height="75"
-                        loading="lazy"
-                        decoding="async"
-                        class="partners-logo"
-                      />
-                    )}
-                    {p.placeholder && (
-                      <div class="partners-placeholder">
-                        <span>
-                          Logo partner · <em>{p.categoria}</em>
-                        </span>
-                        <span style="font-size:0.65rem; color:rgba(35,35,35,0.5);">
-                          Próximamente
-                        </span>
+                  <div class={`partners-slide__logos${p.logos.length > 1 ? " partners-slide__logos--multi" : ""}`}>
+                    {p.logos.map((logo) => (
+                      <div class="partners-logo-item">
+                        <img
+                          src={`${baseUrl}/partners/${logo.src}`}
+                          alt={logo.alt}
+                          width="212"
+                          height="140"
+                          loading="lazy"
+                          decoding="async"
+                          class={`partners-logo${logo.tipo === "anfitrion" ? " partners-logo--anfitrion" : ""}`}
+                        />
+                        {p.logos.length > 1 && (
+                          <span class="partners-logo-nombre" aria-hidden="true">{logo.alt}</span>
+                        )}
                       </div>
-                    )}
+                    ))}
                   </div>
                   <p class="partners-slide__cat eyebrow-label">
                     <span class="flecha-roja" aria-hidden="true">
@@ -2543,11 +2548,11 @@ const seoEvent = {
     .partners-slide {
       flex: 0 0 100%; /* móvil: 1 visible */
       min-width: 0; /* evita que contenido ancho fuerce el slide más allá del flex-basis */
-      padding: 1.5rem;
+      padding: 1.5rem 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between; /* empuja el label de categoría al fondo */
+      justify-content: center; /* logos y etiqueta agrupados al centro */
       gap: 1rem;
       min-height: 180px;
     }
@@ -2572,38 +2577,45 @@ const seoEvent = {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1.5rem;
+      gap: 1rem;
       flex-wrap: wrap;
-      min-height: 120px; /* alinea logos de distintas alturas (UdeC 110px, ANAMI 60px) */
     }
-    .partners-logo {
-      height: 60px;
-      width: auto;
-      object-fit: contain;
+    .partners-slide__logos--multi {
+      flex-direction: column;
+      gap: 1rem;
     }
-    .partners-logo--anfitrion {
-      height: 110px;
-    }
-    .partners-placeholder {
+    .partners-logo-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.4rem;
-      border: 1.5px dashed rgba(35, 35, 35, 0.2);
-      border-radius: 4px;
-      padding: 1.5rem 2.5rem;
+      gap: 0.35rem;
+      min-width: 0;
+    }
+    .partners-logo {
+      height: 90px;
+      width: auto;
+      max-width: 200px;
+      object-fit: contain;
+    }
+    .partners-logo--anfitrion {
+      height: 90px;
+      max-width: 200px;
+    }
+    .partners-logo-nombre {
+      font-size: 0.68rem;
+      color: rgba(35, 35, 35, 0.80);
       text-align: center;
-      font-family: var(--font-display);
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: rgba(
-        35,
-        35,
-        35,
-        0.65
-      ); /* era 0.45 (~2.8:1 falla) → 0.65 (~4.8:1 ✓ WCAG AA) */
+      line-height: 1.2;
+    }
+    @media (max-width: 639px) {
+      .partners-logo {
+        height: 62px;
+        max-width: 150px;
+      }
+      .partners-logo--anfitrion {
+        height: 62px;
+        max-width: 150px;
+      }
     }
 
     .partners-prev,

@@ -181,8 +181,8 @@ const partners = [
 
 const partnerSlides = [
   { src: "udec-negro.svg",      alt: "Universidad de Concepción",          tipo: "anfitrion", categoria: "Institución Anfitriona" },
-  { src: "anami-negro.png",     alt: "ANAMI Spa",                           tipo: "normal",    categoria: "Partner Colaborador"   },
   { src: "linac.svg",           alt: "LINAC",                               tipo: "normal",    categoria: "Partner Estratégico"   },
+  { src: "anami-negro.png",     alt: "ANAMI Spa",                           tipo: "normal",    categoria: "Partner Colaborador"   },
   { src: "empoderadas.svg",     alt: "Empoderadas",                         tipo: "normal",    categoria: "Partner Colaborador"   },
   { src: "kine-rehabilita.svg", alt: "Kine Rehabilita",                     tipo: "normal",    categoria: "Partner Colaborador"   },
   { src: "vic-udec.svg",        alt: "Vinculación Universidad de Concepción", tipo: "normal",  categoria: "Partner Impulsor"      },
@@ -2928,6 +2928,12 @@ const seoEvent = {
       .s-contacto__photo-col {
         display: block;
       }
+      /* El marco PNG tiene ~95/2002px transparentes en la parte superior.
+         padding-top empuja la foto al área de contenido, dejando el fondo
+         blanco de la figura visible bajo esa zona transparente del marco. */
+      .s-contacto__polaroid-wrap {
+        padding-top: 22px;
+      }
       /* Ocultar cita de escritorio; el figure tiene su propia figcaption */
       .s-contacto__cita-polaroid {
         display: none;
@@ -3289,7 +3295,7 @@ const seoEvent = {
           if (visible >= slides) return; // todos visibles, sin scroll
           const maxPos = slides - visible;
           current = Math.max(0, Math.min((idx + slides) % slides, maxPos));
-          track.style.transform = `translateX(-${current * (100 / slides)}%)`;
+          track.style.transform = `translateX(-${current * (100 / visible)}%)`;
           dots.forEach((d, i) => {
             d.classList.toggle("partners-dot--active", i === current);
             d.setAttribute("aria-pressed", i === current ? "true" : "false");

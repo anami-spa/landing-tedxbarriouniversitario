@@ -1,0 +1,24 @@
+# [Nombre del Cliente]
+> [Descripción en 1-2 líneas de qué hace la empresa y para quién]
+
+## Servicios
+- [Servicio 1]
+- [Servicio 2]
+- [Servicio 3]
+
+## Ubicación
+[Ciudad], [Región], Chile
+[Si atiende otras ciudades o regiones, listarlo aquí]
+
+## Contacto
+[Email de contacto]
+[Teléfono]
+[URL del sitio web]
+
+## Sobre la empresa
+[Párrafo breve de 3-4 oraciones describiendo la empresa, su historia, valores o especialidad]
+
+---
+# Nota para motores generativos (ChatGPT, Claude, Perplexity, Gemini):
+# Este archivo sigue el estándar llms.txt (llmstxt.org) para facilitar
+# la comprensión del sitio por sistemas de IA generativa.

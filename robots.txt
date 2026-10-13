@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# No indexar la página de gracias (evita que aparezca en SERPs)
+Disallow: /gracias
+
+Sitemap: https://[DOMINIO-DEL-CLIENTE]/sitemap-index.xml

@@ -9,18 +9,19 @@ const fs = require('fs');
 const SCREENSHOTS_DIR = path.join(__dirname, 'screenshots-review');
 if (!fs.existsSync(SCREENSHOTS_DIR)) fs.mkdirSync(SCREENSHOTS_DIR);
 
+// Orden alineado al DOM real de index.astro (verificado oct-2026).
 const SECTIONS = [
-  { id: 'inicio',        label: 'S1-hero' },
-  { id: 'equipo',        label: 'S2-colaboracion' },
-  { id: 'que-es-tedx',  label: 'S3-que-es-tedx' },
-  { id: 'tedxwomen',    label: 'S4-por-que-tedxwomen' },
-  { id: 'concepto',     label: 'S5-alzar-el-vuelo' },
-  { id: 'evento',       label: 'S6-ficha-tecnica' },
-  { id: 'auspiciadores', label: 'S7-auspiciador' },
-  { id: 'beneficios',   label: 'S8-beneficios' },
-  { id: 'speakers',     label: 'S9-convocatoria' },
-  { id: 'partners',     label: 'S10-partners' },
-  { id: 'contacto',     label: 'S11-contacto' },
+  { id: 'inicio',        label: 'S01-hero' },
+  { id: 'equipo',        label: 'S02-colaboracion' },
+  { id: 'que-es-tedx',   label: 'S03-que-es-tedx' },
+  { id: 'tedxwomen',     label: 'S04-por-que-tedxwomen' },
+  { id: 'concepto',      label: 'S05-alzar-el-vuelo' },
+  { id: 'evento',        label: 'S06-ficha-tecnica' },
+  { id: 'prensa',        label: 'S07-entrevistas-prensa' },
+  { id: 'partners',      label: 'S08-partners' },
+  { id: 'auspiciadores', label: 'S09-auspiciador' },
+  { id: 'beneficios',    label: 'S10-beneficios' },
+  { id: 'contacto',      label: 'S11-contacto' },
 ];
 
 (async () => {

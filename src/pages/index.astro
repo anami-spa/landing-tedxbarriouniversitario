@@ -13,7 +13,6 @@ import imgEquipoCla from "../assets/images/equipo-claudio.png";
 import imgFotoSec02 from "../assets/images/foto-seccion-02.webp";
 import imgMujerS4 from "../assets/images/s4-mujer.png";
 import imgFicha from "../assets/images/ficha-mujer-05.webp";
-import imgConvoca from "../assets/images/convocatoria-speakers.webp";
 import imgAlzarVuelo01 from "../assets/images/alzar-vuelo-01.webp";
 import imgTedxOficial from "../assets/images/tedx-logo-oficial.png";
 import imgIcoLinkedin from "../assets/images/icono-linkedin.webp";
@@ -23,6 +22,12 @@ import imgIcoIN from "../assets/images/icono-in.webp";
 import imgIcoFKR from "../assets/images/icono-fkr.webp";
 import imgContactoPolaroid from "../assets/images/contacto-polaroid.webp";
 import imgContactoFoto from "../assets/images/contacto-foto.webp";
+import imgPrensa01 from "../assets/images/prensa-01-radio-udec.webp";
+import imgPrensa02 from "../assets/images/prensa-02-radio-agricultura.webp";
+import imgPrensa03 from "../assets/images/prensa-03-radio-florencia.webp";
+import imgPrensa04 from "../assets/images/prensa-04-nota-radio-udec.webp";
+import imgPrensa05 from "../assets/images/prensa-05-nota-medios-udec.webp";
+import imgPrensa06 from "../assets/images/prensa-06-tvu.webp";
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -131,63 +136,84 @@ const beneficios = [
   },
 ];
 
-const procesoSpeaker = [
+// Entrevistas y prensa — fuente de verdad. 6 piezas, grid 3/2/1 cols.
+// `tipo` es el texto del chip superpuesto. URL de TVU pendiente de Javiera (oct-2026).
+const prensa = [
   {
-    num: "01",
-    titulo: "Completa el formulario",
-    desc: "Postula con tu idea a través del formulario oficial de convocatoria.",
+    img: imgPrensa01,
+    tipo: "ENTREVISTA",
+    medio: "RADIO UDEC",
+    bajada: "Estuvimos en Radio UdeC conversando sobre TEDx Barrio Universitario Women.",
+    alt: "Integrantes del equipo TEDxBarrioUniversitario Women durante la entrevista en Radio UdeC",
+    url: "https://www.youtube.com/watch?v=4-_BUfGp-JY&t=2286s",
   },
   {
-    num: "02",
-    titulo: "Video presentación",
-    desc: "Envía un video breve presentando tu idea y motivaciones.",
+    img: imgPrensa02,
+    tipo: "ENTREVISTA",
+    medio: "RADIO AGRICULTURA",
+    bajada: "TEDx Barrio Universitario Women: talento e ideas que inspiran.",
+    alt: "Javiera Burgos en entrevista radial sobre TEDxBarrioUniversitario Women",
+    url: "https://www.youtube.com/watch?v=2fX9jodKSTc",
   },
   {
-    num: "03",
-    titulo: "Entrevista con el equipo curatorial",
-    desc: "El equipo editorial evalúa tu propuesta y toma contacto contigo.",
+    img: imgPrensa03,
+    tipo: "PODCAST",
+    medio: "RADIO FLORENCIA",
+    bajada: "Concepción se prepara para TEDx.",
+    alt: "Equipo TEDxBarrioUniversitario Women en el podcast de Radio Florencia",
+    url: "https://youtu.be/f5DYHJt1vLM?si=wXiHPb1un94Uho7R",
+  },
+  {
+    img: imgPrensa04,
+    tipo: "NOTA DE PRENSA",
+    medio: "RADIO UDEC",
+    bajada: "Charlas TEDx llegarán al Barrio Universitario en diciembre.",
+    alt: "Presentación de TEDxBarrioUniversitario Women en Radio UdeC",
+    url: "https://www.radioudec.cl/charlas-tedx-llegaran-al-barrio-universitario/",
+  },
+  {
+    img: imgPrensa05,
+    tipo: "NOTA DE PRENSA",
+    medio: "MEDIOS UDEC",
+    bajada:
+      "TEDxBarrioUniversitario Women articula alianzas en el Biobío para impulsar nuevas ideas desde la región.",
+    alt: "Equipo TEDxBarrioUniversitario Women junto a autoridades de la Universidad de Concepción",
+    url: "https://noticias.udec.cl/tedxbarriouniversitario-women-articula-alianzas-en-el-biobio-para-impulsar-nuevas-ideas-desde-la-region/",
+  },
+  {
+    img: imgPrensa06,
+    tipo: "ENTREVISTA",
+    medio: "TVU",
+    bajada: "Participamos en el matinal Siempre Juntos de TVU.",
+    alt: "Entrevista al equipo TEDxBarrioUniversitario Women en el matinal de TVU",
+    url: undefined as string | undefined, // ⚠️ pendiente — Javiera no envió el link (oct-2026)
   },
 ];
 
-const partners = [
-  {
-    categoria: "Institución Anfitriona",
-    logos: [{ src: "udec-negro.svg", alt: "Universidad de Concepción", tipo: "anfitrion" }],
-  },
-  {
-    categoria: "Partner Estratégico",
-    logos: [{ src: "linac.svg", alt: "LINAC", tipo: "normal" }],
-  },
-  {
-    categoria: "Partner Colaborador",
-    logos: [
-      { src: "anami-negro.png", alt: "ANAMI Spa", tipo: "normal" },
-      { src: "empoderadas.svg", alt: "Empoderadas", tipo: "normal" },
-      { src: "kine-rehabilita.svg", alt: "Kine Rehabilita", tipo: "normal" },
-    ],
-  },
-  {
-    categoria: "Partner Impulsor",
-    logos: [{ src: "vic-udec.svg", alt: "Vinculación Universidad de Concepción", tipo: "normal" }],
-  },
-  {
-    categoria: "Partner Pyme",
-    logos: [
-      { src: "grafitto.svg", alt: "Grafitto", tipo: "normal" },
-      { src: "sistemico.svg", alt: "Sistémico", tipo: "normal" },
-    ],
-  },
-];
-
-const partnerSlides = [
-  { src: "udec-negro.svg",      alt: "Universidad de Concepción",          tipo: "anfitrion", categoria: "Institución Anfitriona" },
-  { src: "linac.svg",           alt: "LINAC",                               tipo: "normal",    categoria: "Partner Estratégico"   },
-  { src: "Logos-Partners_Anami_Colaborador.svg", alt: "ANAMI Spa",          tipo: "normal",    categoria: "Partner Colaborador"   },
-  { src: "empoderadas.svg",     alt: "Empoderadas",                         tipo: "normal",    categoria: "Partner Colaborador"   },
-  { src: "kine-rehabilita.svg", alt: "Kine Rehabilita",                     tipo: "normal",    categoria: "Partner Colaborador"   },
-  { src: "vic-udec.svg",        alt: "Vinculación Universidad de Concepción", tipo: "normal",  categoria: "Partner Impulsor"      },
-  { src: "grafitto.svg",        alt: "Grafitto",                            tipo: "normal",    categoria: "Partner Pyme"          },
-  { src: "sistemico.svg",       alt: "Sistémico",                           tipo: "normal",    categoria: "Partner Pyme"          },
+// Partners — fuente de verdad. 14 logos, 1 por slide (lista final Nata, set v3 a color).
+// `url`: opcional. Sin url → el logo se renderiza sin enlace, no rompe el layout.
+// `tipo: "anfitrion"` solo afecta el tamaño del logo (.partners-logo--anfitrion).
+const partnerSlides: {
+  src: string;
+  alt: string;
+  tipo: "anfitrion" | "normal";
+  categoria: string;
+  url?: string;
+}[] = [
+  { src: "udec.svg",              alt: "Universidad de Concepción",             tipo: "anfitrion", categoria: "Institución Anfitriona", url: "https://www.udec.cl/" },
+  { src: "linac.svg",             alt: "LINAC",                                  tipo: "normal",    categoria: "Partner Estratégico",    url: "https://somoslinac.cl/" },
+  { src: "camanchaca.svg",        alt: "Camanchaca",                             tipo: "normal",    categoria: "Partner Estratégico",    url: "https://www.camanchaca.cl/" },
+  { src: "tvu.webp",              alt: "TVU",                                    tipo: "normal",    categoria: "Partner Estratégico",    url: "https://www.tvu.cl/" },
+  { src: "cmas.svg",              alt: "CMAS",                                   tipo: "normal",    categoria: "Partner Estratégico",    url: "https://cmas.cl/" },
+  { src: "anami.svg",             alt: "ANAMI Spa",                              tipo: "normal",    categoria: "Partner Colaborador",    url: "https://anami.cl/" },
+  { src: "empoderadas.svg",       alt: "Empoderadas",                            tipo: "normal",    categoria: "Partner Colaborador",    url: "https://empoderadasmedio.cl/" },
+  { src: "kine-rehabilita.svg",   alt: "Kine Rehabilita",                        tipo: "normal",    categoria: "Partner Colaborador",    url: "https://kinerehabilita.cl/" },
+  { src: "florencia-digital.svg", alt: "Florencia Digital",                      tipo: "normal",    categoria: "Partner Colaborador",    url: "https://radioflorencia.cl/" },
+  { src: "pimagen.svg",           alt: "PImagen",                                tipo: "normal",    categoria: "Partner Colaborador" }, // ⚠️ URL pendiente — Javiera (oct-2026)
+  { src: "casa-endless.webp",     alt: "Casa Endless",                           tipo: "normal",    categoria: "Partner Impulsor",       url: "https://casaendless.cl/" },
+  { src: "vic-udec.svg",          alt: "Vinculación Universidad de Concepción",  tipo: "normal",    categoria: "Partner Impulsor" }, // ⚠️ URL pendiente — Javiera (oct-2026)
+  { src: "grafitto.svg",          alt: "Grafitto",                               tipo: "normal",    categoria: "Partner Pyme",            url: "https://www.grafitto.cl/" },
+  { src: "sistemico.svg",         alt: "Sistémico",                              tipo: "normal",    categoria: "Partner Pyme" }, // ⚠️ URL pendiente — Javiera (oct-2026)
 ];
 
 const seoEvent = {
@@ -758,127 +784,74 @@ const seoEvent = {
   </section>
 
   <!-- ============================================================
-     S7 — CONVOCATORIA DE SPEAKERS
-     Fondo oscuro. Gráfico compuesto diseñador + proceso 3 etapas + CTA.
+     S7 — ENTREVISTAS Y PRENSA
+     Fondo oscuro. Header + flecha punteada deco + grid 6 tarjetas
+     enlazadas a medios externos (3/2/1 cols).
      ============================================================ -->
-  <section
-    id="speakers"
-    class="s-speakers dark-section"
-    aria-labelledby="h-speakers"
-  >
+  <section id="prensa" class="s-prensa dark-section" aria-labelledby="h-prensa">
+    <img
+      src={`${baseUrl}/s3-flecha.png`}
+      class="s-prensa__deco"
+      aria-hidden="true"
+      alt=""
+      loading="lazy"
+      decoding="async"
+    />
+
     <div class="seccion-inner">
-      <div class="s-speakers__header">
-        <h2 id="h-speakers" class="s-speakers__h2">
-          <span class="s-speakers__h2-top display-light">CONVOCATORIA DE</span>
-          <span class="s-speakers__h2-bottom display-black"> SPEAKERS </span>
+      <div class="s-prensa__header">
+        <h2 id="h-prensa" class="s-prensa__h2">
+          <span class="s-prensa__h2-top display-light">ENTREVISTAS Y</span>
+          <span class="s-prensa__h2-bottom display-black">PRENSA</span>
         </h2>
-        <p class="s-speakers__sub">
-          ¿TIENES UNA IDEA QUE MERECE SER COMPARTIDA?
+        <p class="s-prensa__sub">Las ideas crecen cuando se comparten.</p>
+        <p class="s-prensa__desc">
+          En este espacio reunimos entrevistas, conversaciones y columnas de
+          opinión que amplifican las voces, ideas y propósito de
+          TEDxBarrioUniversitario Women 2026, llevando «Alzar el Vuelo» más
+          allá del escenario.
         </p>
       </div>
 
-      <div class="s-speakers__intro">
-        <p class="s-speakers__quienes-desc">
-          En TEDxBarrioUniversitario Women buscamos personas que compartan ideas
-          capaces de desafiar paradigmas, abrir nuevas conversaciones y generar
-          un impacto positivo en la sociedad.
-        </p>
-        <p class="s-speakers__quienes-desc">
-          No buscamos únicamente historias personales o discursos
-          motivacionales. Buscamos ideas, aprendizajes y experiencias que
-          inviten a la audiencia a Alzar el Vuelo y mirar el mundo desde una
-          nueva perspectiva.
-        </p>
-      </div>
-
-      <div class="s-speakers__layout">
-        <!-- Gráfico compuesto del diseñador: silueta + TU NOMBRE + datos -->
-        <div class="s-speakers__photo">
-          <Image
-            src={imgConvoca}
-            alt="Convocatoria de speakers — silueta de una speaker en el escenario TEDxBarrioUniversitario Women"
-            width={420}
-            height={560}
-            loading="lazy"
-            decoding="async"
-            class="s-speakers__photo-img"
-          />
-        </div>
-
-        <!-- Info + proceso + form -->
-        <div class="s-speakers__info">
-          <div class="s-speakers__quienes">
-            <h3 class="headline-bold s-speakers__quienes-h">
-              ¿QUIÉNES PUEDEN POSTULAR?
-            </h3>
-            <p class="s-speakers__quienes-sub">
-              La convocatoria está abierta a personas mayores de 18 años que
-              desarrollen iniciativas relacionadas con:
-            </p>
-            <ul class="s-speakers__quienes-list">
-              {
-                [
-                  "Liderazgo femenino",
-                  "Equidad de género e inclusión",
-                  "Emprendimiento e innovación",
-                  "Bienestar y calidad de vida",
-                  "Impacto social y sostenibilidad",
-                ].map((item) => (
-                  <li class="s-speakers__quienes-item">
-                    <span class="flecha-roja" aria-hidden="true">
-                      →
-                    </span>{" "}
-                    {item}
-                  </li>
-                ))
-              }
-            </ul>
-            <p class="s-speakers__quienes-desc" style="margin-top:0.85rem;">
-              No es necesario ser un conferencista profesional. Lo más
-              importante es que tu idea sea original, relevante y tenga el
-              potencial de inspirar.
-            </p>
-          </div>
-
-          <!-- Proceso 3 etapas -->
-          <div
-            class="s-proceso"
-            aria-label="Proceso de postulación en 3 etapas"
-          >
-            {
-              procesoSpeaker.map((e, i) => (
-                <div class="s-proceso__step">
-                  <div class="s-proceso__num mono-date" aria-hidden="true">
-                    {e.num}
-                  </div>
-                  <div class="s-proceso__content">
-                    <h4 class="s-proceso__title headline-bold">{e.titulo}</h4>
-                    <p class="s-proceso__desc">{e.desc}</p>
-                  </div>
-                  {i < procesoSpeaker.length - 1 && (
-                    <div class="s-proceso__connector" aria-hidden="true" />
-                  )}
-                </div>
-              ))
-            }
-          </div>
-
-          <div class="s-speakers__cta">
-            <p class="s-speakers__cta-label">
-              ¿LIST@ PARA ALZAR EL VUELO CON TU IDEA?
-            </p>
-            <a
-              href="https://docs.google.com/forms/d/15njQTb5kpHgN1O_7wST56SnzuHblA3rowGsJNlhyYu0/viewform"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-primary"
-              aria-label="Postular como speaker — formulario (abre en nueva pestaña)"
-            >
-              POSTULAR COMO SPEAKER <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-      </div>
+      <ul class="prensa-grid">
+        {
+          prensa.map((item) => {
+            const Tag = item.url ? "a" : "div";
+            const linkAttrs = item.url
+              ? { href: item.url, target: "_blank", rel: "noopener noreferrer" }
+              : {};
+            return (
+              <li class="prensa-card">
+                <Tag class="prensa-card__link" {...linkAttrs}>
+                  <span class="prensa-card__media">
+                    <Image
+                      src={item.img}
+                      alt=""
+                      width={640}
+                      height={440}
+                      loading="lazy"
+                      decoding="async"
+                      sizes="(min-width: 1024px) 373px, (min-width: 640px) 50vw, 100vw"
+                      class="prensa-card__img"
+                    />
+                    <span class="prensa-card__fade" aria-hidden="true" />
+                    <span class="prensa-card__chip">
+                      {item.tipo} <span aria-hidden="true">→</span>
+                    </span>
+                  </span>
+                  <span class="prensa-card__body">
+                    <span class="prensa-card__medio headline-bold">
+                      {item.medio}
+                    </span>
+                    <span class="prensa-card__bajada">{item.bajada}</span>
+                    {item.url && <span class="sr-only">(abre en nueva pestaña)</span>}
+                  </span>
+                </Tag>
+              </li>
+            );
+          })
+        }
+      </ul>
     </div>
   </section>
 
@@ -924,30 +897,44 @@ const seoEvent = {
         <div class="partners-track-wrap">
           <div class="partners-track" id="partners-track">
             {
-              partnerSlides.map((slide, i) => (
-                <div
-                  class="partners-slide"
-                  role="group"
-                  aria-label={`Partner ${i + 1} de ${partnerSlides.length}`}
-                  id={`slide-${i}`}
-                >
-                  <div class="partners-slide__logos">
-                    <img
-                      src={`${baseUrl}/partners/${slide.src}`}
-                      alt={slide.alt}
-                      width="212"
-                      height="140"
-                      loading="lazy"
-                      decoding="async"
-                      class={`partners-logo${slide.tipo === "anfitrion" ? " partners-logo--anfitrion" : ""}`}
-                    />
+              partnerSlides.map((slide, i) => {
+                const LogoTag = slide.url ? "a" : "div";
+                const logoLinkAttrs = slide.url
+                  ? {
+                      href: slide.url,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      "aria-label": `${slide.alt} — ${slide.categoria} (abre en nueva pestaña)`,
+                    }
+                  : {};
+                return (
+                  <div
+                    class="partners-slide"
+                    role="group"
+                    aria-label={`Partner ${i + 1} de ${partnerSlides.length}`}
+                    data-nombre={slide.alt}
+                    id={`slide-${i}`}
+                  >
+                    <div class="partners-slide__logos">
+                      <LogoTag class="partners-logo-link" {...logoLinkAttrs}>
+                        <img
+                          src={`${baseUrl}/partners/${slide.src}`}
+                          alt={slide.url ? "" : slide.alt}
+                          width="240"
+                          height="140"
+                          loading="lazy"
+                          decoding="async"
+                          class={`partners-logo${slide.tipo === "anfitrion" ? " partners-logo--anfitrion" : ""}`}
+                        />
+                      </LogoTag>
+                    </div>
+                    <p class="partners-slide__cat eyebrow-label">
+                      <span class="flecha-roja" aria-hidden="true">→</span>{" "}
+                      {slide.categoria}
+                    </p>
                   </div>
-                  <p class="partners-slide__cat eyebrow-label">
-                    <span class="flecha-roja" aria-hidden="true">→</span>{" "}
-                    {slide.categoria}
-                  </p>
-                </div>
-              ))
+                );
+              })
             }
           </div>
         </div>
@@ -1153,7 +1140,7 @@ const seoEvent = {
         <h2 id="h-contacto" class="display-black s-contacto__h2">CONTACTO</h2>
         <p class="s-contacto__subtitulo">¿Quieres ser parte de este viaje?</p>
         <p class="s-contacto__intro">
-          Si deseas colaborar, convertirte en partner, postular como speaker o
+          Si deseas colaborar, convertirte en partner, invitarnos a tu medio o
           conocer más sobre TEDxBarrioUniversitario Women, estaremos encantados
           de conversar contigo.
         </p>
@@ -2339,169 +2326,188 @@ const seoEvent = {
       margin-top: 1.5rem;
     }
 
-    /* ── S9 SPEAKERS ──────────────────────────────────────────── */
-    .s-speakers {
+    /* ── S7 ENTREVISTAS Y PRENSA ──────────────────────────────── */
+    .s-prensa {
       padding: var(--spacing-section) 0;
       background: var(--color-charcoal);
+      position: relative;
+      overflow: hidden;
     }
-    .s-speakers__header {
+    /* s3-flecha.png = flecha roja + punteado blanco (variante fondo oscuro) */
+    .s-prensa__deco {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 45%;
+      max-width: 360px;
+      height: auto;
+      pointer-events: none;
+      user-select: none;
+    }
+    .s-prensa__header {
+      position: relative; /* por encima de la flecha deco */
       text-align: left;
+      max-width: 760px;
       margin-bottom: 3rem;
     }
-    .s-speakers__h2 {
+    .s-prensa__h2 {
       display: flex;
       flex-direction: column;
       color: #fff;
-      margin: 0 0 0.75rem;
+      margin: 0 0 1rem;
       line-height: 1;
     }
-    .s-speakers__h2-top {
+    .s-prensa__h2-top {
       font-size: clamp(0.9rem, 1.8vw, 1.4rem);
       color: #fff;
     }
-    .s-speakers__h2-bottom {
+    .s-prensa__h2-bottom {
       font-size: clamp(3rem, 8vw, 6rem);
       color: #fff;
       line-height: 0.9;
-      position: relative;
       display: block;
     }
-    .s-speakers__intro {
-      margin: 0 0 2.5rem;
-    }
-    .s-speakers__sub {
-      color: rgba(255, 255, 255, 0.9);
+    .s-prensa__sub {
+      color: #fff;
       font-weight: 700;
       font-size: 1rem;
+      margin: 0 0 0.75rem;
     }
-
-    .s-speakers__layout {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-    .s-speakers__photo-wrap {
-      position: relative;
-      display: inline-block;
-    }
-    .s-speakers__photo-img {
-      display: block;
-      border-radius: 4px;
-      max-width: 380px;
-    }
-    .s-speakers__tu-nombre {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 0;
-      right: 0;
-      text-align: center;
-      color: #fff;
-      font-size: 1.3rem;
-      letter-spacing: 0.12em;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    }
-
-    .s-speakers__quienes {
-      margin-bottom: 2rem;
-    }
-    .s-speakers__quienes-desc {
+    .s-prensa__desc {
       font-size: 0.88rem;
-      color: rgba(255, 255, 255, 0.78);
-      line-height: 1.6;
-      margin: 0 0 0.85rem;
+      color: rgba(255, 255, 255, 0.78); /* 10.2:1 sobre #232323 */
+      line-height: 1.65;
+      margin: 0;
     }
-    .s-speakers__quienes-sub {
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.65);
-      line-height: 1.5;
-      margin: 0 0 0.6rem;
-    }
-    .s-speakers__quienes-h {
-      font-size: 1.05rem;
-      color: #fff;
-      margin-bottom: 0.5rem;
-      margin-top: 1rem;
-    }
-    .s-speakers__quienes-list {
+
+    /* Grid 1 col → 2 cols (≥640) → 3 cols (≥1024) */
+    .prensa-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
       list-style: none;
       padding: 0;
       margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
+      position: relative;
     }
-    .s-speakers__quienes-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      font-size: 0.88rem;
-      color: rgba(255, 255, 255, 0.82);
-      line-height: 1.5;
+    @media (min-width: 640px) {
+      .prensa-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .prensa-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
-    /* Proceso 3 etapas */
-    .s-proceso {
+    .prensa-card {
+      display: flex;
+      height: 100%;
+    }
+    .prensa-card__link {
       display: flex;
       flex-direction: column;
-      gap: 0;
-      margin-bottom: 2.5rem;
-      position: relative;
+      width: 100%;
+      text-decoration: none;
+      color: inherit;
+      background: #1a1a1a;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
-    .s-proceso__step {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      padding-bottom: 1.5rem;
-      position: relative;
+    a.prensa-card__link:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-ted-red);
     }
-    .s-proceso__step:not(:last-child)::after {
-      content: "";
+    a.prensa-card__link:focus-visible {
+      outline: 2px solid var(--color-ted-red);
+      outline-offset: 3px;
+    }
+
+    .prensa-card__media {
+      position: relative;
+      display: block;
+      aspect-ratio: 16 / 11; /* 640x440 — reserva el box, cero CLS */
+      overflow: hidden;
+      background: #111;
+    }
+    .prensa-card__img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    a.prensa-card__link:hover .prensa-card__img {
+      transform: scale(1.04);
+    }
+    /* Degradado decorativo: funde la foto con el bloque de texto.
+       No hay texto encima salvo el chip, que lleva fondo sólido. */
+    .prensa-card__fade {
       position: absolute;
-      left: 18px;
-      top: 36px;
-      width: 2px;
-      height: calc(100% - 20px);
-      background: rgba(255, 255, 255, 0.15);
+      inset: 0;
+      display: block;
+      pointer-events: none;
+      background: linear-gradient(
+        to bottom,
+        rgba(26, 26, 26, 0) 45%,
+        rgba(26, 26, 26, 0.55) 78%,
+        rgba(26, 26, 26, 0.95) 100%
+      );
     }
-    .s-proceso__num {
-      min-width: 36px;
-      height: 36px;
-      background: var(--color-ted-red);
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
+    .prensa-card__chip {
+      position: absolute;
+      left: 0.875rem;
+      bottom: 0.875rem;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    .s-proceso__content {
-      padding-top: 4px;
-    }
-    .s-proceso__title {
-      font-size: 0.9rem;
+      gap: 6px;
+      background: var(--color-ted-red); /* sólido → contraste calculable */
       color: #fff;
-      margin: 0 0 0.25rem;
-    }
-    .s-proceso__desc {
-      font-size: 0.82rem;
-      color: rgba(255, 255, 255, 0.65);
-      line-height: 1.5;
-      margin: 0;
-    }
-
-    .s-speakers__cta {
-      margin-top: 2rem;
-    }
-    .s-speakers__cta-label {
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: clamp(0.85rem, 1.8vw, 1.05rem);
-      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 2px;
+    }
+
+    .prensa-card__body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      flex: 1; /* todas las tarjetas del row igualan altura */
+      padding: 1rem 1.125rem 1.25rem;
+    }
+    .prensa-card__medio {
+      display: block;
+      font-size: 1rem;
+      color: #fff;
       letter-spacing: 0.04em;
-      margin-bottom: 1rem;
+    }
+    .prensa-card__bajada {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.72); /* 8.7:1 sobre #1a1a1a */
+      line-height: 1.5;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .prensa-card__link,
+      .prensa-card__img {
+        transition: none;
+      }
+      a.prensa-card__link:hover {
+        transform: none;
+      }
+      a.prensa-card__link:hover .prensa-card__img {
+        transform: none;
+      }
     }
 
     /* ── S10 PARTNERS ────────────────────────────────────────── */
@@ -2582,6 +2588,20 @@ const seoEvent = {
       justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
+    }
+    .partners-logo-link {
+      display: block;
+      line-height: 0;
+      border-radius: 2px;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    a.partners-logo-link:hover {
+      opacity: 0.72;
+      transform: translateY(-2px);
+    }
+    a.partners-logo-link:focus-visible {
+      outline: 2px solid var(--color-ted-red);
+      outline-offset: 4px;
     }
     .partners-logo {
       height: 90px;
@@ -2965,15 +2985,11 @@ const seoEvent = {
         gap: 2rem;
       }
 
-      /* Speakers: 2 columnas → 1 columna en móvil (foto arriba, info + botón abajo) */
-      .s-speakers__layout {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      .s-speakers__photo-img {
-        max-width: 280px;
-        margin: 0 auto;
-        display: block;
+      /* Prensa: la flecha deco compite con el header en pantallas chicas */
+      .s-prensa__deco {
+        width: 62%;
+        max-width: 240px;
+        opacity: 0.45;
       }
 
       .s-auspi__polars {
@@ -3288,6 +3304,15 @@ const seoEvent = {
             track.style.transform = "translateX(0)";
             current = 0;
           }
+          // Con N slides y "visible" visibles, los dots más allá de maxPos no
+          // corresponden a ninguna posición alcanzable por goTo() — se ocultan
+          // en vez de dejarlos como botones muertos (14 slides / 5 visibles = 4 vivos tras maxPos).
+          const maxPos = Math.max(0, slides - visible);
+          dots.forEach((d, i) => {
+            const dead = i > maxPos;
+            (d as HTMLElement).hidden = dead;
+            d.toggleAttribute("disabled", dead);
+          });
         };
 
         const goTo = (idx: number): void => {
@@ -3301,13 +3326,16 @@ const seoEvent = {
             d.setAttribute("aria-pressed", i === current ? "true" : "false");
           });
           if (announceEl) {
-            const firstImg = slideEls[current]?.querySelector("img");
-            const lastEl = slideEls[Math.min(current + visible - 1, slides - 1)];
-            const lastImg = lastEl?.querySelector("img");
+            // Los logos enlazados llevan alt="" (el nombre accesible vive en el <a>),
+            // así que el nombre del partner se lee de data-nombre del slide, no de img.alt.
+            const firstName =
+              (slideEls[current] as HTMLElement)?.dataset.nombre ?? "";
+            const lastEl = slideEls[
+              Math.min(current + visible - 1, slides - 1)
+            ] as HTMLElement | undefined;
+            const lastName = lastEl?.dataset.nombre ?? "";
             const visNames =
-              visible >= 2
-                ? `${firstImg?.alt ?? ""} a ${lastImg?.alt ?? ""}`
-                : (firstImg?.alt ?? "");
+              visible >= 2 ? `${firstName} a ${lastName}` : firstName;
             if (announceTimer !== null) clearTimeout(announceTimer);
             announceEl.textContent = `Mostrando: ${visNames}`;
             announceTimer = setTimeout(() => {
@@ -3431,7 +3459,7 @@ const seoEvent = {
       /* ── SCROLL REVEALS ──────────────────────────────────────── */
       if (!prefersReduced) {
         const revealEls = document.querySelectorAll<HTMLElement>(
-          ".equipo-card, .beneficio-card, .s-proceso__step, .s-auspi__bullet",
+          ".equipo-card, .beneficio-card, .prensa-card, .s-auspi__bullet",
         );
         if (revealEls.length) {
           const revObs = new IntersectionObserver(

@@ -53,7 +53,10 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
 
     <!-- ============================================================
          HEADER — fixed, blanco sólido desde el inicio.
-         Nav: EQUIPO · QUÉ ES TEDx · EVENTO · PARTNERS · CONTACTO + POSTULAR rojo
+         Nav: EQUIPO · QUÉ ES TEDx · EVENTO · PRENSA · PARTNERS + CONTACTO rojo
+         ⚠️ Provisional (oct-2026): el CTA rojo apuntaba a #speakers (sección
+         eliminada). Pasó a #contacto mientras Javiera confirma si prefiere
+         sacarlo del todo. Ver CLAUDE.md § Pendientes de Contenido.
          ============================================================ -->
     <header class="site-header" id="site-header" role="banner">
       <div class="site-header__inner">
@@ -84,12 +87,9 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
           <a href="#equipo"        class="header-nav-link header-nav-wide">Equipo</a>
           <a href="#que-es-tedx"   class="header-nav-link header-nav-wide">¿Qué es TED<span class="lc">x</span>?</a>
           <a href="#evento"        class="header-nav-link header-nav-wide">Evento</a>
+          <a href="#prensa"        class="header-nav-link header-nav-wide">Prensa</a>
           <a href="#partners"      class="header-nav-link header-nav-wide">Partners</a>
-          <a href="#contacto"      class="header-nav-link header-nav-wide">Contacto</a>
-          <a href="#speakers"      class="header-nav-link btn-header-cta"
-             aria-label="Postular como speaker al TEDxBarrioUniversitario Women 2026">
-            Postular →
-          </a>
+          <a href="#contacto"      class="header-nav-link btn-header-cta">Contacto</a>
         </nav>
 
         <!-- Hamburguesa: solo visible ≤639px -->
@@ -116,12 +116,9 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
         <a href="#equipo"     class="mobile-nav__link" data-close-menu>Equipo</a>
         <a href="#que-es-tedx" class="mobile-nav__link" data-close-menu>¿Qué es TED<span class="lc">x</span>?</a>
         <a href="#evento"     class="mobile-nav__link" data-close-menu>Evento</a>
+        <a href="#prensa"     class="mobile-nav__link" data-close-menu>Prensa</a>
         <a href="#partners"   class="mobile-nav__link" data-close-menu>Partners</a>
-        <a href="#contacto"   class="mobile-nav__link" data-close-menu>Contacto</a>
-        <a href="#speakers"   class="mobile-nav__link mobile-nav__link--cta" data-close-menu
-           aria-label="Postular como speaker al TEDxBarrioUniversitario Women 2026">
-          Postular →
-        </a>
+        <a href="#contacto"   class="mobile-nav__link mobile-nav__link--cta" data-close-menu>Contacto</a>
       </nav>
     </header>
 

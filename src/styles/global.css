@@ -342,25 +342,6 @@ body {
 }
 .comilla-roja { color: var(--color-ted-red); font-style: normal; }
 
-/* Speaker placeholder */
-.speaker-placeholder {
-  border: 1.5px dashed rgba(175,181,219,0.35);
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 1.5rem 1rem;
-  color: rgba(255,255,255,0.65); /* era 0.3 = 2.2:1 FALLA → 0.65 = 4.6:1 ✓ WCAG AA */
-  font-size: 0.72rem;
-  text-align: center;
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  min-height: 150px;
-}
-
 /* Chip info */
 .chip-info {
   display: inline-flex;

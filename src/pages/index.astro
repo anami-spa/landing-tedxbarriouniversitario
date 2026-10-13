@@ -1866,6 +1866,20 @@ const seoEvent = {
       color: var(--color-charcoal);
     }
 
+    /* Móvil: el badge "Directo" se centra en la línea divisoria, que a su vez
+       se centra respecto a TODA la columna (label+valor+hora+fecha). En
+       desktop el texto no se envuelve y no se nota; en móvil el centro
+       geométrico cae sobre la hora y la tapa (medido: 16.9px de overlap a
+       390px). Se sube el badge y se reduce su padding vertical para que
+       quede con aire respecto a label y hora en el espacio angosto
+       disponible entre ambos. */
+    @media (max-width: 639px) {
+      .boarding-pass__directo {
+        padding: 2px 12px;
+        transform: translate(-50%, calc(-50% - 18px));
+      }
+    }
+
     /* Franja inferior: sin fondo rojo — texto blanco sobre charcoal */
     .s-concepto__franja {
       padding: 1.25rem 1.5rem 2.75rem;

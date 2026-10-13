@@ -30,22 +30,25 @@ Imágenes: `astro:assets` `<Image>` (WebP srcset automático, lazy por defecto).
 
 Textura concreto al 18% de opacidad: clase `.texture-overlay` → `textura-concreto.webp` en `public/`.
 
-## Secciones (index.astro) — orden canónico WEB.pdf
+## Secciones (index.astro) — orden real del DOM (verificado oct-2026, `id` de cada `<section>`)
 
-| # | Sección | Fondo |
-|---|---------|-------|
-| 1 | Hero "Alzar el vuelo" + countdown | Oscuro (charcoal) |
-| 2 | EN COLABORACIÓN (equipo 6 headshots) | Claro + textura |
-| 3 | ¿QUÉ ES TEDx? (2 cols: texto + foto) | Claro |
-| 4 | ¿POR QUÉ TEDxWomen? (texto + foto) | Claro + textura |
-| 5 | ALZAR EL VUELO — boarding pass + avión SVG | Oscuro |
-| 6 | FICHA TÉCNICA — polaroid + contadores + temáticas | Claro |
-| 7 | ¿POR QUÉ SUMARSE COMO AUSPICIADOR? (2 polaroids rotadas) | Oscuro |
-| 8 | BENEFICIOS — 4 en fila + form Formspree alianzas | Claro + textura |
-| 9 | CONVOCATORIA SPEAKERS — silueta + proceso 3 etapas + form | Claro |
-| 10 | NUESTROS PARTNERS — carrusel 5 categorías | Claro + textura |
-| 11 | CONTACTO — email + socials + foto | Oscuro |
-| 12 | Footer | Oscuro (en BaseLayout.astro) |
+| # | `id` | Sección | Fondo |
+|---|------|---------|-------|
+| 1 | `inicio` | Hero "Alzar el vuelo" + countdown | Oscuro (charcoal) |
+| 2 | `equipo` | EN COLABORACIÓN (equipo 6 headshots) | Claro + textura |
+| 3 | `que-es-tedx` | ¿QUÉ ES TEDx? (2 cols: texto + foto) | Claro |
+| 4 | `tedxwomen` | ¿POR QUÉ TEDxWomen? (texto + foto) | Claro + textura |
+| 5 | `concepto` | ALZAR EL VUELO — boarding pass + avión SVG | Oscuro |
+| 6 | `evento` | FICHA TÉCNICA — polaroid + contadores + temáticas | Claro |
+| 7 | `prensa` | ENTREVISTAS Y PRENSA — grid 6 tarjetas enlazadas a medios | Oscuro |
+| 8 | `partners` | NUESTROS PARTNERS — carrusel 14 logos (1 por slide, con enlace externo) | Claro + textura |
+| 9 | `auspiciadores` | ¿POR QUÉ SUMARSE COMO AUSPICIADOR? (2 polaroids rotadas) | Oscuro |
+| 10 | `beneficios` | BENEFICIOS — 4 en fila + form Formspree alianzas | Claro + textura |
+| 11 | `contacto` | CONTACTO — email + socials + foto | Oscuro |
+| 12 | — | Footer | Oscuro (en BaseLayout.astro) |
+
+> La "Convocatoria de Speakers" que ocupaba el slot 7 se eliminó oct-2026 (pedido Javiera) y
+> fue reemplazada por "Entrevistas y Prensa" en el mismo lugar del DOM.
 
 ## Animaciones JS (inline `<script>`)
 
@@ -53,16 +56,19 @@ Textura concreto al 18% de opacidad: clase `.texture-overlay` → `textura-concr
 - **Count-up counters**: `IntersectionObserver` threshold 0.5. Lee `data-target` del DOM.
 - **Avión SVG**: `animateMotion` + `<mpath href="#flight-path">`, `dur="5s"`.
 - **Parallax**: `requestAnimationFrame` sobre `.parallax-img img`, solo >768px, off en `reduced-motion`.
-- **Scroll reveals**: `IntersectionObserver` + `opacity/translateY` con delay staggered.
-- **Carrusel partners**: botones prev/next + dots, soporte teclado (ArrowLeft/Right).
+- **Scroll reveals**: `IntersectionObserver` + `opacity/translateY` con delay staggered. Selector:
+  `.equipo-card, .beneficio-card, .prensa-card, .s-auspi__bullet`.
+- **Carrusel partners**: botones prev/next + dots + botón pausa, sin soporte de teclado por flechas.
 - Todo bajo `prefers-reduced-motion: reduce` (anulado o estático).
 
 ## Formularios
 
 Formspree `FORMSPREE_FORM_ID` (env var). Campo oculto `_tipo` discrimina destino:
 - `partner` → alianzas@tedxbarriouniversitario.cl
-- `postulacion-speaker` → contacto@tedxbarriouniversitario.cl
-- Honeypot `_gotcha` en ambos.
+- Honeypot `_gotcha`.
+
+> El formulario de postulación de speakers se eliminó oct-2026 junto con `#speakers`. El link
+> al Google Form sigue en el footer (no tocado — fuera del pedido del cliente).
 
 ## Variables de Entorno
 
@@ -110,10 +116,14 @@ Ver `.env.example`. Mínimo necesario:
 1. `FORMSPREE_FORM_ID` definitivo (provisionar cuenta Formspree)
 2. Correos del dominio (`contacto@`, `alianzas@`) — provisionar en DirectAdmin
 3. Nombre exacto del auditorio
-4. Logos partners Main / Experiencia / Media (hoy placeholder)
-5. Logo UdeC vectorial si lo hay (hoy PNG 800×300)
+4. ~~Logos partners~~ ✅ integrados (ago-2026), actualizados a set v3 color — 14 logos (oct-2026)
+5. Logo UdeC vectorial si lo hay (hoy SVG funcional)
 6. Handles LinkedIn confirmados del equipo
 7. Rotar clave DirectAdmin tras primer login
+8. **URL de la entrevista en TVU** (`#prensa`) — pendiente de Javiera
+9. **URLs de PImagen, VIC-UdeC y Sistémico** (`#partners`) — pendiente de Javiera
+10. Confirmar destino del CTA rojo del header (quedó provisionalmente en `#contacto`)
+11. Confirmar si "Prensa" queda en el nav (hecho provisionalmente) o solo por scroll
 
 ## AGENTS.md — regla de sincronización
 

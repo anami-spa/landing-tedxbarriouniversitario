@@ -28,6 +28,8 @@ import imgPrensa03 from "../assets/images/prensa-03-radio-florencia.webp";
 import imgPrensa04 from "../assets/images/prensa-04-nota-radio-udec.webp";
 import imgPrensa05 from "../assets/images/prensa-05-nota-medios-udec.webp";
 import imgPrensa06 from "../assets/images/prensa-06-tvu.webp";
+import imgPrensa07 from "../assets/images/prensa-07-nota-udec-nov.webp";
+import imgPrensa08 from "../assets/images/prensa-08-redes-2026.webp";
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -136,7 +138,7 @@ const beneficios = [
   },
 ];
 
-// Entrevistas y prensa — fuente de verdad. 6 piezas, grid 3/2/1 cols.
+// Entrevistas y prensa — fuente de verdad. 8 piezas, grid 3/2/1 cols.
 // `tipo` es el texto del chip superpuesto. URL de TVU pendiente de Javiera (oct-2026).
 const prensa = [
   {
@@ -187,6 +189,23 @@ const prensa = [
     bajada: "Participamos en el matinal Siempre Juntos de TVU.",
     alt: "Entrevista al equipo TEDxBarrioUniversitario Women en el matinal de TVU",
     url: undefined as string | undefined, // ⚠️ pendiente — Javiera no envió el link (oct-2026)
+  },
+  {
+    img: imgPrensa07,
+    tipo: "NOTA DE PRENSA",
+    medio: "MEDIOS UDEC",
+    bajada:
+      "TEDxBarrioUniversitario Women 2026 prepara su primera edición en el Biobío con ideas y experiencias que transforman.",
+    alt: "Equipo TEDxBarrioUniversitario Women lanzando aviones de papel rojos en el lanzamiento de la edición 2026",
+    url: "https://noticias.udec.cl/tedxbarriouniversitario-women-2026-prepara-su-primera-edicion-en-el-biobio-con-ideas-y-experiencias-que-transforman/",
+  },
+  {
+    img: imgPrensa08,
+    tipo: "ENTREVISTA",
+    medio: "FLORENCIA DIGITAL",
+    bajada: "Javiera Burgos habla de TEDxBarrio Universitario Women en la cobertura especial de Redes 2026.",
+    alt: "Javiera Burgos entrevistada por Florencia Digital en la cobertura de Redes 2026, Rueda de negocios Biobío",
+    url: "https://www.youtube.com/watch?v=4vO7JpXLOKw",
   },
 ];
 

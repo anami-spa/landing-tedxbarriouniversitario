@@ -1,6 +1,7 @@
 ---
 import SEO from '../components/SEO.astro'
 import '../styles/global.css'
+import { entradas } from '../config/entradas'
 
 export interface Props {
   title: string
@@ -53,10 +54,10 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
 
     <!-- ============================================================
          HEADER — fixed, blanco sólido desde el inicio.
-         Nav: EQUIPO · QUÉ ES TEDx · EVENTO · PRENSA · PARTNERS + CONTACTO rojo
-         ⚠️ Provisional (oct-2026): el CTA rojo apuntaba a #speakers (sección
-         eliminada). Pasó a #contacto mientras Javiera confirma si prefiere
-         sacarlo del todo. Ver CLAUDE.md § Pendientes de Contenido.
+         Nav: EQUIPO · QUÉ ES TEDx · EVENTO · SPEAKERS · PRENSA · PARTNERS + botón rojo
+         "Compra tu entrada" (nov-2026, urgencia de la preventa; enlace en
+         src/config/entradas.ts). "Contacto" salió del menú de escritorio (decisión de
+         Cristian 17-nov): sigue en el footer y en el menú móvil.
          ============================================================ -->
     <header class="site-header" id="site-header" role="banner">
       <div class="site-header__inner">
@@ -90,7 +91,16 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
           <a href="#speakers"      class="header-nav-link header-nav-wide">Speakers</a>
           <a href="#prensa"        class="header-nav-link header-nav-wide">Prensa</a>
           <a href="#partners"      class="header-nav-link header-nav-wide">Partners</a>
-          <a href="#contacto"      class="header-nav-link btn-header-cta">Contacto</a>
+          <a
+            href={entradas.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="header-nav-link btn-header-cta"
+            aria-label={`${entradas.label} (abre en nueva pestaña)`}
+          >
+            <span class="cta-largo">{entradas.label}</span>
+            <span class="cta-corto" aria-hidden="true">{entradas.labelCorto}</span>
+          </a>
         </nav>
 
         <!-- Hamburguesa: solo visible ≤639px -->
@@ -120,7 +130,15 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
         <a href="#speakers"   class="mobile-nav__link" data-close-menu>Speakers</a>
         <a href="#prensa"     class="mobile-nav__link" data-close-menu>Prensa</a>
         <a href="#partners"   class="mobile-nav__link" data-close-menu>Partners</a>
-        <a href="#contacto"   class="mobile-nav__link mobile-nav__link--cta" data-close-menu>Contacto</a>
+        <a href="#contacto"   class="mobile-nav__link" data-close-menu>Contacto</a>
+        <a
+          href={entradas.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mobile-nav__link mobile-nav__link--cta"
+          aria-label={`${entradas.label} (abre en nueva pestaña)`}
+          data-close-menu
+        >{entradas.label}</a>
       </nav>
     </header>
 
@@ -448,6 +466,13 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
   white-space: nowrap;
 }
 .btn-header-cta:hover { background: var(--color-ted-red-dark); }
+/* "Compra tu entrada" es ~80px más ancho que el antiguo "Contacto": en pantallas medianas
+   se muestra "Entradas" para que el menú no se desborde. */
+.btn-header-cta .cta-corto { display: none; }
+@media (max-width: 1099px) {
+  .btn-header-cta .cta-largo { display: none; }
+  .btn-header-cta .cta-corto { display: inline; }
+}
 .btn-header-cta:focus-visible {
   outline: 2px solid #ffffff;
   outline-offset: 2px;

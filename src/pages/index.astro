@@ -494,7 +494,7 @@ const seoEvent = {
       aria-label="Pausar rotación automática del carrusel principal"
     >
       <svg class="hero-pause__ico hero-pause__ico--pause" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><rect x="5" y="4" width="5" height="16" rx="1" fill="currentColor"/><rect x="14" y="4" width="5" height="16" rx="1" fill="currentColor"/></svg>
-      <svg class="hero-pause__ico hero-pause__ico--play" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false" hidden><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5Z" fill="currentColor"/></svg>
+      <svg class="hero-pause__ico hero-pause__ico--play" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5Z" fill="currentColor"/></svg>
     </button>
   </div>
   <div id="hero-live" class="sr-only" aria-live="polite"></div>
@@ -1824,7 +1824,9 @@ const seoEvent = {
       border-left: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: 0 999px 999px 0;
     }
-    .hero-pause__ico[hidden] {
+    /* El ícono visible sigue a aria-pressed: pausar muestra "play" y viceversa */
+    .hero-pause[aria-pressed="false"] .hero-pause__ico--play,
+    .hero-pause[aria-pressed="true"] .hero-pause__ico--pause {
       display: none;
     }
     /* Móvil: a la izquierda para no tapar a la oradora del banner */
@@ -3854,12 +3856,6 @@ const seoEvent = {
                 ? "Reanudar rotación automática del carrusel principal"
                 : "Pausar rotación automática del carrusel principal",
             );
-            heroPause
-              .querySelector(".hero-pause__ico--pause")
-              ?.toggleAttribute("hidden", heroPaused);
-            heroPause
-              .querySelector(".hero-pause__ico--play")
-              ?.toggleAttribute("hidden", !heroPaused);
             if (heroPaused) heroStop();
             else heroStart();
           });

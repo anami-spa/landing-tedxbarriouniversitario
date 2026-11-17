@@ -34,14 +34,15 @@ Textura concreto al 18% de opacidad: clase `.texture-overlay` → `textura-concr
 
 | # | `id` | Sección | Fondo |
 |---|------|---------|-------|
-| 1 | `inicio` | Hero "Alzar el vuelo" + countdown | Oscuro (charcoal) |
+| 1 | `inicio` | Hero carrusel de 2 slides ("Alzar el vuelo" + banner de venta de entradas) y countdown | Oscuro (charcoal) |
 | 2 | `equipo` | EN COLABORACIÓN (equipo 6 headshots) | Claro + textura |
 | 3 | `que-es-tedx` | ¿QUÉ ES TEDx? (2 cols: texto + foto) | Claro |
 | 4 | `tedxwomen` | ¿POR QUÉ TEDxWomen? (texto + foto) | Claro + textura |
 | 5 | `concepto` | ALZAR EL VUELO — boarding pass + avión SVG | Oscuro |
 | 6 | `evento` | FICHA TÉCNICA — polaroid + contadores + temáticas | Claro |
-| 7 | `prensa` | ENTREVISTAS Y PRENSA — grid 6 tarjetas enlazadas a medios | Oscuro |
-| 8 | `partners` | NUESTROS PARTNERS — carrusel 14 logos (1 por slide, con enlace externo) | Claro + textura |
+| 6b | `speakers` | LAS VOCES QUE NOS INVITAN A ALZAR EL VUELO — 6 speakers (nov-2026, tras la Ficha Técnica) | Banda oscura + claro con textura |
+| 7 | `prensa` | ENTREVISTAS Y PRENSA — grid 10 tarjetas enlazadas a medios | Oscuro |
+| 8 | `partners` | NUESTROS PARTNERS — carrusel 29 logos (1 por slide, con enlace externo si hay URL) | Claro + textura |
 | 9 | `auspiciadores` | ¿POR QUÉ SUMARSE COMO AUSPICIADOR? (2 polaroids rotadas) | Oscuro |
 | 10 | `beneficios` | BENEFICIOS — 4 en fila + form Formspree alianzas | Claro + textura |
 | 11 | `contacto` | CONTACTO — email + socials + foto | Oscuro |
@@ -58,7 +59,9 @@ Textura concreto al 18% de opacidad: clase `.texture-overlay` → `textura-concr
 - **Parallax**: `requestAnimationFrame` sobre `.parallax-img img`, solo >768px, off en `reduced-motion`.
 - **Scroll reveals**: `IntersectionObserver` + `opacity/translateY` con delay staggered. Selector:
   `.equipo-card, .beneficio-card, .prensa-card, .s-auspi__bullet`.
-- **Carrusel partners**: botones prev/next + dots + botón pausa, sin soporte de teclado por flechas.
+- **Carrusel del hero**: 2 slides apilados en una celda de grid (el alto lo manda el hero original). Rota cada 7 s; puntos + pausa (WCAG 2.2.2); sin rotación con `prefers-reduced-motion`. Script propio `#hero-carousel`.
+- **Speakers**: bio recortada a 3 líneas con botón "ver más" (`aria-expanded`).
+- **Carrusel partners**: botones prev/next + dots + botón pausa, sin soporte de teclado por flechas. Los dots hacen salto de línea (29 logos).
 - Todo bajo `prefers-reduced-motion: reduce` (anulado o estático).
 
 ## Formularios
@@ -121,7 +124,10 @@ Ver `.env.example`. Mínimo necesario:
 6. Handles LinkedIn confirmados del equipo
 7. Rotar clave DirectAdmin tras primer login
 8. **URL de la entrevista en TVU** (`#prensa`) — pendiente de Javiera
-9. **URLs de PImagen, VIC-UdeC y Sistémico** (`#partners`) — pendiente de Javiera
+9. **URLs de PImagen, VIC-UdeC, Sistémico, Lotería, Bar Callejón y los 13 partners nuevos de nov-2026** (`#partners`) — pendiente de Nata/Javiera
+12. **Banner de entradas**: su arte dice "hasta el 22 de noviembre"; quitar el slide o reemplazar la imagen al vencer la preventa. El texto y el botón están horneados en la imagen: todo el banner es el enlace (`entradas.url` en `index.astro`).
+13. **Paulina Saravia** figura "por confirmar" (doc de Nata) y su foto es una silueta provisional (`speaker-paulina-saravia.webp`).
+14. Categorías de partners (nov-2026): Anfitriona = UdeC; Oficial = Camanchaca y Lotería; Estratégico = Bar Callejón; Colaborador = todos los demás.
 10. Confirmar destino del CTA rojo del header (quedó provisionalmente en `#contacto`)
 11. Confirmar si "Prensa" queda en el nav (hecho provisionalmente) o solo por scroll
 

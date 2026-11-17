@@ -30,6 +30,18 @@ import imgPrensa05 from "../assets/images/prensa-05-nota-medios-udec.webp";
 import imgPrensa06 from "../assets/images/prensa-06-tvu.webp";
 import imgPrensa07 from "../assets/images/prensa-07-nota-udec-nov.webp";
 import imgPrensa08 from "../assets/images/prensa-08-redes-2026.webp";
+import imgPrensa09 from "../assets/images/prensa-09-tvu-especial.webp";
+import imgPrensa10 from "../assets/images/prensa-10-diario-concepcion.webp";
+import imgBannerDesktop from "../assets/images/banner-entradas-1920x840.webp";
+import imgBannerDesktopSm from "../assets/images/banner-entradas-1600x700.webp";
+import imgBannerTablet from "../assets/images/banner-entradas-1600x1067.webp";
+import imgBannerMovil from "../assets/images/banner-entradas-400x876.webp";
+import imgSpkCamila from "../assets/images/speaker-camila-beltran.webp";
+import imgSpkFrancisca from "../assets/images/speaker-francisca-werlinger.webp";
+import imgSpkHans from "../assets/images/speaker-hans-contreras.webp";
+import imgSpkOctavio from "../assets/images/speaker-octavio-enriquez.webp";
+import imgSpkHumberto from "../assets/images/speaker-humberto-almonacid.webp";
+import imgSpkPaulina from "../assets/images/speaker-paulina-saravia.webp";
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -138,7 +150,71 @@ const beneficios = [
   },
 ];
 
-// Entrevistas y prensa — fuente de verdad. 8 piezas, grid 3/2/1 cols.
+// Banner de venta de entradas (slide 2 del hero). El texto, el precio y el botón
+// vienen horneados en la imagen del diseñador (Nata, 15-nov-2026): el enlace va
+// sobre toda la pieza y `alt` repite su contenido. ⚠️ La imagen dice "hasta el
+// 22 de noviembre": al vencer la preventa hay que reemplazarla o quitar el slide.
+const entradas = {
+  url: "https://evenia.cl/alzar-el-vuelo/c4fc7146-95b5-4840-87a9-9534d5c7cfd1",
+  alt: "¡Preventa activa! No te quedes fuera, es momento de alzar el vuelo. Compra tu entrada. Precio especial preventa: $15.000, hasta el 22 de noviembre.",
+};
+
+// Speakers 2026 — fuente de verdad (ACTUALIZACION DE CONTENIDO SITIO WEB.docx, Nata 15-nov-2026).
+// `red`: red social del enlace (ícono). Sin `url` no se muestra ícono.
+const speakers = [
+  {
+    nombre: "Camila Beltrán",
+    img: imgSpkCamila,
+    rol: "Ingeniera | Data Scientist | Mujeres STEM",
+    bio: "Ingeniera y Data Scientist, con experiencia en tecnología, innovación y análisis de datos. Su trayectoria refleja el talento y el potencial de las mujeres en áreas STEM, contribuyendo a desafiar estereotipos y abrir nuevos espacios en la industria tecnológica. Su propósito es impulsar una mayor participación femenina en la ciencia y la tecnología, derribando barreras e inspirando a nuevas generaciones de mujeres a desarrollar su potencial y acceder a nuevas oportunidades.",
+    url: "https://www.linkedin.com/in/cbeltrans/",
+    red: "LinkedIn",
+  },
+  {
+    nombre: "Francisca Werlinger",
+    img: imgSpkFrancisca,
+    rol: "Académica e investigadora | Mujeres en la ciencia",
+    bio: "Doctora en Química, académica e investigadora de la Universidad de Concepción, especializada en química sostenible, innovación y economía circular. Actualmente lidera el Bachillerato en Ciencias e Innovación de la UdeC y cuenta con experiencia en investigación y colaboración científica internacional. Su propósito es impulsar una ciencia que transforme desafíos en oportunidades, promoviendo la innovación y abriendo nuevos caminos para las futuras generaciones de mujeres científicas.",
+    url: "https://www.linkedin.com/in/dra-francisca-werlinger-936308b7/",
+    red: "LinkedIn",
+  },
+  {
+    nombre: "Hans Contreras",
+    img: imgSpkHans,
+    rol: "Docente | Divulgador educativo | Innovación en educación",
+    bio: "Profesor, conferencista y reconocido divulgador educativo chileno, especializado en innovación pedagógica, inteligencia artificial y tecnologías aplicadas a la enseñanza. Su experiencia en educación pública rural lo ha llevado a compartir sus metodologías en universidades, congresos y encuentros internacionales. Con una comunidad digital de más de 500 mil seguidores, su propósito es transformar la educación a través de la creatividad, la tecnología y nuevas oportunidades de aprendizaje para todos.",
+    url: "https://www.instagram.com/profehans_/",
+    red: "Instagram",
+  },
+  {
+    nombre: "Octavio Enriquez Lorca",
+    img: imgSpkOctavio,
+    rol: "Médico Cirujano | Académico",
+    bio: "Médico cirujano, especialista en cirugía torácica y cardiovascular, con una destacada trayectoria en medicina, docencia y liderazgo académico. Exdecano de la Facultad de Medicina de la Universidad de Concepción y exvicerrector de la Universidad Andrés Bello. Actualmente preside el Tribunal Nacional de Ética del Colegio Médico de Chile y desempeña funciones directivas en la Red Iberoamericana de Envejecimiento Activo y Saludable (RIES-GAUDIUM). Su propósito es promover una sociedad donde todos podamos envejecer con dignidad, plenitud y oportunidades, derribando los prejuicios asociados a la edad.",
+    url: undefined as string | undefined, // sin enlace en el documento de Nata
+    red: "LinkedIn",
+  },
+  {
+    nombre: "Humberto Almonacid",
+    img: imgSpkHumberto,
+    rol: "Ingeniero | Máster Coach | Escritor",
+    bio: "Ingeniero mecánico, Máster Coach, consultor estratégico y escritor, autor de ocho libros sobre productividad, liderazgo y alto rendimiento. Con más de 15 años desarrollando e investigando metodologías de productividad, es creador del enfoque Productividad Dinámica, que integra la gestión del tiempo, la energía y las prioridades con el bienestar personal y organizacional. Su propósito es transformar nuestra manera de trabajar y vivir, demostrando que alcanzar grandes resultados no significa hacer más, sino avanzar con sentido, equilibrio y bienestar.",
+    url: "https://www.linkedin.com/in/halmonacida/",
+    red: "LinkedIn",
+  },
+  {
+    // ⚠️ "por confirmar" en el documento de Nata. La foto es una silueta provisional:
+    // reemplazar `speaker-paulina-saravia.webp` cuando llegue la definitiva.
+    nombre: "Paulina Saravia",
+    img: imgSpkPaulina,
+    rol: "Terapeuta ocupacional | Turismo inclusivo | Accesibilidad universal",
+    bio: "Terapeuta ocupacional, activista por la inclusión y la accesibilidad universal, con trayectoria en turismo adaptado, ecoterapia y experiencias de conexión con la naturaleza. Ha desarrollado iniciativas de formación y asesoría en inclusión, promoviendo espacios más accesibles para personas con discapacidad. Reconocida por su liderazgo en inclusión y no discriminación, su propósito es derribar barreras, inspirar a las personas a atreverse a explorar nuevos caminos y demostrar que las oportunidades de descubrir el mundo deben estar al alcance de todos.",
+    url: "https://www.linkedin.com/in/paulina-saravia-pe%C3%B1a-24a15a223/",
+    red: "LinkedIn",
+  },
+];
+
+// Entrevistas y prensa — fuente de verdad. 10 piezas, grid 3/2/1 cols.
 // `tipo` es el texto del chip superpuesto. URL de TVU pendiente de Javiera (oct-2026).
 const prensa = [
   {
@@ -191,9 +267,27 @@ const prensa = [
     url: undefined as string | undefined, // ⚠️ pendiente — Javiera no envió el link (oct-2026)
   },
   {
+    img: imgPrensa09,
+    tipo: "ENTREVISTA",
+    medio: "TVU",
+    bajada:
+      "Especial TEDx en TVU: «Talento que nace en la región». Speakers: Francisca Werlinger y Hans Contreras.",
+    alt: "Hans Contreras y Francisca Werlinger entrevistados en el Especial TEDx de TVU",
+    url: "https://www.youtube.com/live/gKemrwYfeMw?si=Rm06QnJqdIbg_a9p",
+  },
+  {
+    img: imgPrensa10,
+    tipo: "COLUMNA DE OPINIÓN",
+    medio: "DIARIO CONCEPCIÓN",
+    bajada:
+      "¿Por qué las mujeres de regiones no están en los escenarios de ideas? Por Javiera Burgos, Directora General.",
+    alt: "Javiera Burgos, directora general de TEDxBarrioUniversitario Women, autora de la columna de opinión",
+    url: "https://www.diarioconcepcion.cl/opinion/2026/10/20/mujeres-regiones-escenarios-ideas-visibilidad.html",
+  },
+  {
     img: imgPrensa07,
     tipo: "NOTA DE PRENSA",
-    medio: "MEDIOS UDEC",
+    medio: "NOTICIAS UDEC",
     bajada:
       "TEDxBarrioUniversitario Women 2026 prepara su primera edición en el Biobío con ideas y experiencias que transforman.",
     alt: "Equipo TEDxBarrioUniversitario Women lanzando aviones de papel rojos en el lanzamiento de la edición 2026",
@@ -201,15 +295,15 @@ const prensa = [
   },
   {
     img: imgPrensa08,
-    tipo: "ENTREVISTA",
-    medio: "FLORENCIA DIGITAL",
-    bajada: "Javiera Burgos habla de TEDxBarrio Universitario Women en la cobertura especial de Redes 2026.",
-    alt: "Javiera Burgos entrevistada por Florencia Digital en la cobertura de Redes 2026, Rueda de negocios Biobío",
+    tipo: "PODCAST",
+    medio: "RADIO FLORENCIA",
+    bajada: "REDES 2026: Cuenta regresiva para TEDxBarrio Universitario 2026.",
+    alt: "Equipo de TEDxBarrioUniversitario Women junto a Radio Florencia en la cobertura de Redes 2026",
     url: "https://www.youtube.com/watch?v=4vO7JpXLOKw",
   },
 ];
 
-// Partners — fuente de verdad. 14 logos, 1 por slide (lista final Nata, set v3 a color).
+// Partners — fuente de verdad. 29 logos, 1 por slide (nov-2026: categorías Oficial/Estratégico/Colaborador según Nata).
 // `url`: opcional. Sin url → el logo se renderiza sin enlace, no rompe el layout.
 // `tipo: "anfitrion"` solo afecta el tamaño del logo (.partners-logo--anfitrion).
 const partnerSlides: {
@@ -220,19 +314,35 @@ const partnerSlides: {
   url?: string;
 }[] = [
   { src: "udec.svg",              alt: "Universidad de Concepción",             tipo: "anfitrion", categoria: "Institución Anfitriona", url: "https://www.udec.cl/" },
-  { src: "linac.svg",             alt: "LINAC",                                  tipo: "normal",    categoria: "Partner Estratégico",    url: "https://somoslinac.cl/" },
-  { src: "camanchaca.svg",        alt: "Camanchaca",                             tipo: "normal",    categoria: "Partner Estratégico",    url: "https://www.camanchaca.cl/" },
-  { src: "tvu.webp",              alt: "TVU",                                    tipo: "normal",    categoria: "Partner Estratégico",    url: "https://www.tvu.cl/" },
-  { src: "cmas.svg",              alt: "CMAS",                                   tipo: "normal",    categoria: "Partner Estratégico",    url: "https://cmas.cl/" },
+  { src: "camanchaca.svg",        alt: "Camanchaca",                             tipo: "normal",    categoria: "Partner Oficial",        url: "https://www.camanchaca.cl/" },
+  { src: "loteria.svg",           alt: "Lotería de Concepción",                  tipo: "normal",    categoria: "Partner Oficial" }, // ⚠️ URL pendiente (nov-2026)
+  { src: "bar-callejon.svg",      alt: "Bar Callejón",                           tipo: "normal",    categoria: "Partner Estratégico" }, // ⚠️ URL pendiente (nov-2026)
+  { src: "linac.svg",             alt: "LINAC",                                  tipo: "normal",    categoria: "Partner Colaborador",    url: "https://somoslinac.cl/" },
+  { src: "tvu.webp",              alt: "TVU",                                    tipo: "normal",    categoria: "Partner Colaborador",    url: "https://www.tvu.cl/" },
+  { src: "cmas.svg",              alt: "CMAS",                                   tipo: "normal",    categoria: "Partner Colaborador",    url: "https://cmas.cl/" },
   { src: "anami.svg",             alt: "ANAMI Spa",                              tipo: "normal",    categoria: "Partner Colaborador",    url: "https://anami.cl/" },
   { src: "empoderadas.svg",       alt: "Empoderadas",                            tipo: "normal",    categoria: "Partner Colaborador",    url: "https://empoderadasmedio.cl/" },
   { src: "kine-rehabilita.svg",   alt: "Kine Rehabilita",                        tipo: "normal",    categoria: "Partner Colaborador",    url: "https://kinerehabilita.cl/" },
   { src: "florencia-digital.svg", alt: "Florencia Digital",                      tipo: "normal",    categoria: "Partner Colaborador",    url: "https://radioflorencia.cl/" },
   { src: "pimagen.svg",           alt: "PImagen",                                tipo: "normal",    categoria: "Partner Colaborador" }, // ⚠️ URL pendiente — Javiera (oct-2026)
-  { src: "casa-endless.webp",     alt: "Casa Endless",                           tipo: "normal",    categoria: "Partner Impulsor",       url: "https://casaendless.cl/" },
-  { src: "vic-udec.svg",          alt: "Vinculación Universidad de Concepción",  tipo: "normal",    categoria: "Partner Impulsor" }, // ⚠️ URL pendiente — Javiera (oct-2026)
-  { src: "grafitto.svg",          alt: "Grafitto",                               tipo: "normal",    categoria: "Partner Pyme",            url: "https://www.grafitto.cl/" },
-  { src: "sistemico.svg",         alt: "Sistémico",                              tipo: "normal",    categoria: "Partner Pyme" }, // ⚠️ URL pendiente — Javiera (oct-2026)
+  { src: "casa-endless.webp",     alt: "Casa Endless",                           tipo: "normal",    categoria: "Partner Colaborador",    url: "https://casaendless.cl/" },
+  { src: "vic-udec.svg",          alt: "Vinculación Universidad de Concepción",  tipo: "normal",    categoria: "Partner Colaborador" }, // ⚠️ URL pendiente — Javiera (oct-2026)
+  { src: "grafitto.svg",          alt: "Grafitto",                               tipo: "normal",    categoria: "Partner Colaborador",    url: "https://www.grafitto.cl/" },
+  { src: "sistemico.svg",         alt: "Sistémico",                              tipo: "normal",    categoria: "Partner Colaborador" }, // ⚠️ URL pendiente — Javiera (oct-2026)
+  // ── Nuevos (nov-2026). ⚠️ Sin URL: Natalie no las envió; agregar `url` cuando lleguen.
+  { src: "amar.svg",              alt: "Amar Impresos",                          tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "banzo.svg",             alt: "Banzo Estudio Creativo",                 tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "boreal.svg",            alt: "Boreal",                                 tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "ghosh.svg",             alt: "Ghosh",                                  tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "hg.webp",               alt: "Hansel & Gretel (H&G)",                  tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "maca-tazon.svg",        alt: "Tazón de Aromas (Maca Tazón)",           tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "maca-tiznado.svg",      alt: "Maca Tiznado Pastelería",                tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "casa-luthier.webp",     alt: "Casa Luthier",                           tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "emprendidas.webp",      alt: "Emprendidas",                            tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "h-celestial.webp",      alt: "Hidratación Celestial by Ana Jara",      tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "manada.webp",           alt: "Manada, experiencias caninas profesionales", tipo: "normal", categoria: "Partner Colaborador" },
+  { src: "pettra.webp",           alt: "Wyndham — Pettra Hoteles",               tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "pti.webp",              alt: "PTI Vinos del Biobío",                   tipo: "normal",    categoria: "Partner Colaborador" },
 ];
 
 const seoEvent = {
@@ -262,6 +372,19 @@ const seoEvent = {
      S1 — HERO OSCURO "Alzar el vuelo"
      Foto full-bleed fondo. Texto vertical izquierda. Countdown inferior.
      ============================================================ -->
+  <div
+    id="hero-carousel"
+    class="hero-carousel"
+    role="region"
+    aria-roledescription="carousel"
+    aria-label="Destacados del evento"
+  >
+  <div
+    class="hero-slide hero-slide--active"
+    role="group"
+    aria-roledescription="slide"
+    aria-label="1 de 2"
+  >
   <section
     id="inicio"
     class="s-hero dark-section"
@@ -299,6 +422,83 @@ const seoEvent = {
       </div>
     </div>
   </section>
+  </div>
+
+  <!-- Slide 2: banner de venta de entradas (preventa). Todo el banner es el enlace. -->
+  <div
+    class="hero-slide hero-slide--banner"
+    role="group"
+    aria-roledescription="slide"
+    aria-label="2 de 2"
+    aria-hidden="true"
+    inert
+  >
+    <a
+      class="hero-banner-link"
+      href={entradas.url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <picture>
+        <source
+          media="(max-width: 640px)"
+          srcset={imgBannerMovil.src}
+          width={imgBannerMovil.width}
+          height={imgBannerMovil.height}
+        />
+        <source
+          media="(max-width: 1023px)"
+          srcset={imgBannerTablet.src}
+          width={imgBannerTablet.width}
+          height={imgBannerTablet.height}
+        />
+        <source
+          srcset={`${imgBannerDesktopSm.src} 1600w, ${imgBannerDesktop.src} 1920w`}
+          sizes="100vw"
+          width={imgBannerDesktop.width}
+          height={imgBannerDesktop.height}
+        />
+        <img
+          src={imgBannerDesktop.src}
+          alt={entradas.alt}
+          width={imgBannerDesktop.width}
+          height={imgBannerDesktop.height}
+          loading="lazy"
+          decoding="async"
+          fetchpriority="low"
+          class="hero-banner-img"
+        />
+      </picture>
+      <span class="sr-only">(abre en nueva pestaña)</span>
+    </a>
+  </div>
+
+  <div class="hero-controls" role="group" aria-label="Controles del carrusel principal">
+    <button
+      type="button"
+      class="hero-dot hero-dot--active"
+      aria-label="Ver diapositiva 1 de 2: Alzar el vuelo"
+      aria-current="true"
+    ></button>
+    <button
+      type="button"
+      class="hero-dot"
+      aria-label="Ver diapositiva 2 de 2: Preventa activa"
+      aria-current="false"
+    ></button>
+    <button
+      type="button"
+      id="hero-pause"
+      class="hero-pause"
+      aria-pressed="false"
+      aria-label="Pausar rotación automática del carrusel principal"
+    >
+      <svg class="hero-pause__ico hero-pause__ico--pause" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><rect x="5" y="4" width="5" height="16" rx="1" fill="currentColor"/><rect x="14" y="4" width="5" height="16" rx="1" fill="currentColor"/></svg>
+      <svg class="hero-pause__ico hero-pause__ico--play" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false" hidden><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5Z" fill="currentColor"/></svg>
+    </button>
+  </div>
+  <div id="hero-live" class="sr-only" aria-live="polite"></div>
+  </div>
 
   <!-- ============================================================
      COUNTDOWN — Isla flotante solapada entre S1 y S2
@@ -799,6 +999,108 @@ const seoEvent = {
           </li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     SPEAKERS 2026 — después de la Ficha Técnica (pedido Nata, 15-nov-2026)
+     Banda oscura arriba (título) que baja hasta el 70% de las primeras fotos;
+     lo demás sobre fondo claro con textura. Fotos con la "X" roja incluida.
+     ============================================================ -->
+  <section
+    id="speakers"
+    class="s-speakers texture-overlay"
+    aria-labelledby="h-speakers"
+  >
+    <img
+      src={`${baseUrl}/s3-flecha.png`}
+      class="s-speakers__deco"
+      aria-hidden="true"
+      alt=""
+      loading="lazy"
+      decoding="async"
+    />
+
+    <div class="seccion-inner">
+      <div class="s-speakers__header">
+        <h2 id="h-speakers" class="s-speakers__h2">
+          <span class="s-speakers__h2-top display-light"
+            >LAS VOCES QUE NOS INVITAN A</span
+          >
+          <span class="s-speakers__h2-bottom display-black">ALZAR EL VUELO</span>
+        </h2>
+        <p class="s-speakers__sub">Conoce a nuestros Speakers 2026</p>
+        <p class="s-speakers__desc">
+          Detrás de cada gran idea hay una historia, una experiencia y una voz
+          capaz de inspirar nuevas perspectivas.
+        </p>
+        <p class="s-speakers__desc">
+          En esta edición, reunimos a destacados profesionales y referentes de
+          distintas disciplinas, quienes compartirán conocimientos,
+          experiencias e ideas que desafían lo establecido, abren nuevas
+          oportunidades y nos invitan a transformar la inspiración en acción.
+        </p>
+        <p class="s-speakers__desc">
+          Descubre las voces que serán parte de este viaje.
+        </p>
+      </div>
+
+      <ul class="speakers-grid">
+        {
+          speakers.map((s, i) => (
+            <li class="speaker-card">
+              <div class="speaker-card__photo">
+                <Image
+                  src={s.img}
+                  alt=""
+                  width={900}
+                  height={1000}
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(min-width: 1024px) 373px, (min-width: 640px) 50vw, 100vw"
+                  class="speaker-card__img"
+                />
+              </div>
+              <h3 class="speaker-card__name">{s.nombre}</h3>
+              <div class="speaker-card__panel">
+                <div class="speaker-card__role-row">
+                  {s.url && (
+                    <a
+                      class="speaker-card__social"
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${s.red} de ${s.nombre} (abre en nueva pestaña)`}
+                    >
+                      <Image
+                        src={s.red === "Instagram" ? imgIcoIG : imgIcoIN}
+                        alt=""
+                        width={56}
+                        height={58}
+                        loading="lazy"
+                      />
+                    </a>
+                  )}
+                  <p class="speaker-card__role">{s.rol}</p>
+                </div>
+                <p class="speaker-card__bio" id={`bio-speaker-${i}`}>
+                  {s.bio}
+                </p>
+                <button
+                  type="button"
+                  class="speaker-card__toggle"
+                  aria-expanded="false"
+                  aria-controls={`bio-speaker-${i}`}
+                  aria-label={`Ver biografía completa de ${s.nombre}`}
+                  hidden
+                >
+                  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 
@@ -1399,6 +1701,147 @@ const seoEvent = {
       max-width: clamp(280px, 48vw, 650px);
       height: auto;
       display: block;
+    }
+
+    /* ── HERO CARRUSEL (slide 1 = hero original, slide 2 = banner de entradas) ──
+       Los slides se apilan en la misma celda del grid: el alto lo manda el hero
+       original (88svh), así que al rotar no se mueve nada de lo que hay debajo. */
+    .hero-carousel {
+      position: relative;
+      display: grid;
+      background: #000;
+    }
+    .hero-slide {
+      grid-area: 1 / 1;
+      min-width: 0;
+      transition:
+        opacity 0.6s ease,
+        visibility 0.6s;
+    }
+    .hero-slide:not(.hero-slide--active) {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .hero-slide--banner {
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+    .hero-banner-link {
+      position: absolute;
+      inset: 0;
+      display: block;
+    }
+    .hero-banner-link:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: -8px;
+    }
+    .hero-banner-link picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .hero-banner-img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 62% center; /* en pantallas angostas recorta la izquierda, no el texto */
+    }
+    /* Tablet: el arte es apaisado (3:2) y el hero es casi cuadrado. Se muestra
+       completo sobre el negro del banner en vez de recortar la oradora o el texto. */
+    @media (min-width: 641px) and (max-width: 1023px) {
+      .hero-banner-img {
+        object-fit: contain;
+        object-position: center;
+      }
+    }
+    /* Móvil: la isla del countdown solapa 4rem del borde inferior del hero y taparía
+       el precio. El banner se muestra completo en el área libre y sus bordes se
+       difuminan al negro para que no se vea el corte de la cortina. */
+    @media (max-width: 640px) {
+      .hero-banner-link {
+        inset: 0 0 4.5rem 0;
+      }
+      .hero-banner-img {
+        object-fit: contain;
+        object-position: center;
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+        mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+      }
+    }
+
+    /* Controles: píldora bajo el header, arriba a la derecha (no tapa el CTA ni el precio) */
+    .hero-controls {
+      position: absolute;
+      z-index: 6;
+      top: 84px;
+      right: clamp(16px, 4vw, 32px);
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(17, 17, 17, 0.78);
+    }
+    .hero-dot,
+    .hero-pause {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      color: #fff;
+    }
+    .hero-dot::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.55);
+      transition: width 0.2s ease, background 0.2s ease;
+    }
+    .hero-dot--active::before {
+      width: 20px;
+      background: #fff;
+    }
+    .hero-dot:hover::before {
+      background: #fff;
+    }
+    .hero-dot:focus-visible,
+    .hero-pause:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 1px;
+      border-radius: 999px;
+    }
+    .hero-pause {
+      margin-left: 2px;
+      border-left: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 0 999px 999px 0;
+    }
+    .hero-pause__ico[hidden] {
+      display: none;
+    }
+    /* Móvil: a la izquierda para no tapar a la oradora del banner */
+    @media (max-width: 640px) {
+      .hero-controls {
+        left: 16px;
+        right: auto;
+        top: 80px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-slide {
+        transition: none;
+      }
+      .hero-dot::before {
+        transition: none;
+      }
     }
 
     /* ── COUNTDOWN ISLA FLOTANTE ─────────────────────────────────── */
@@ -2360,6 +2803,207 @@ const seoEvent = {
     }
 
     /* ── S7 ENTREVISTAS Y PRENSA ──────────────────────────────── */
+    /* ── SPEAKERS ───────────────────────────────────────────────────
+       La banda oscura NO es un bloque aparte: es un pseudo-elemento de la foto de la
+       primera tarjeta (100vw de ancho, hasta el 70% de su alto, hacia arriba hasta el
+       borde de la sección). Así baja justo hasta donde diseñó Nata sin importar el
+       ancho ni cuántas columnas haya. Va con z-index:-1 dentro de .seccion-inner,
+       sobre la textura y bajo el título y las fotos. */
+    .s-speakers {
+      padding: var(--spacing-section) 0;
+      background: var(--color-surface);
+      overflow: hidden;
+    }
+    .s-speakers__deco {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 45%;
+      max-width: 360px;
+      height: auto;
+      pointer-events: none;
+      user-select: none;
+      z-index: 2;
+    }
+    .s-speakers__header {
+      position: relative;
+      max-width: 760px;
+      margin-bottom: 2.5rem;
+    }
+    .s-speakers__h2 {
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+      margin: 0 0 1.75rem;
+      line-height: 1;
+    }
+    .s-speakers__h2-top {
+      font-size: clamp(0.9rem, 1.8vw, 1.4rem);
+      color: #fff;
+    }
+    .s-speakers__h2-bottom {
+      font-size: clamp(3rem, 8vw, 6rem);
+      color: #fff;
+      line-height: 0.9;
+      display: block;
+    }
+    .s-speakers__sub {
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      margin: 0 0 1rem;
+    }
+    .s-speakers__desc {
+      color: rgba(255, 255, 255, 0.82); /* 10.9:1 sobre #232323 */
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin: 0 0 0.9rem;
+    }
+
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem 1.5rem;
+      align-items: start; /* al abrir una bio no se estiran las tarjetas vecinas */
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      position: relative;
+    }
+    @media (min-width: 640px) {
+      .speakers-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .speakers-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .speaker-card {
+      display: flex;
+      flex-direction: column;
+    }
+    .speaker-card__photo {
+      position: relative;
+      aspect-ratio: 9 / 10; /* 900x1000 — reserva el box, cero CLS */
+    }
+    .speaker-card:first-child .speaker-card__photo::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: -100vw; /* la tarjeta nunca está a más de 100vw del borde: 200vw cubre todo el ancho */
+      width: 200vw;
+      top: -3000px;
+      bottom: 30%;
+      background: var(--color-charcoal);
+      pointer-events: none;
+    }
+    .speaker-card__img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .speaker-card__name {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      padding: 0.7rem 1rem;
+      background: var(--color-charcoal);
+      color: #fff;
+      text-align: center;
+      font-family: var(--font-display);
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      line-height: 1.1;
+      border-radius: 12px 12px 0 0;
+    }
+    .speaker-card__panel {
+      padding: 1.1rem 1.25rem 0.5rem;
+      background: #e4e4e4;
+      color: var(--color-charcoal);
+      border-radius: 0 0 12px 12px;
+    }
+    .speaker-card__role-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      min-height: 2.5rem; /* reserva 2 líneas: las tarjetas de una fila quedan parejas */
+    }
+    .speaker-card__social {
+      flex: none;
+      display: block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+    .speaker-card__social img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .speaker-card__social:focus-visible {
+      outline: 2px solid var(--color-ted-red);
+      outline-offset: 2px;
+    }
+    .speaker-card__role {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+    .speaker-card__bio {
+      margin: 0.9rem 0 0;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: #333; /* 9.4:1 sobre #e4e4e4 */
+    }
+    /* La bio solo se recorta si hay JS (así el botón "ver más" siempre existe) */
+    .speaker-card.is-collapsible .speaker-card__bio:not(.is-open) {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      overflow: hidden;
+    }
+    .speaker-card__toggle {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 0.15rem;
+      padding: 0.45rem;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      color: var(--color-charcoal);
+    }
+    .speaker-card__toggle[hidden] {
+      display: none;
+    }
+    .speaker-card__toggle svg {
+      transition: transform 0.2s ease;
+    }
+    .speaker-card__toggle[aria-expanded="true"] svg {
+      transform: rotate(180deg);
+    }
+    .speaker-card__toggle:focus-visible {
+      outline: 2px solid var(--color-ted-red);
+      outline-offset: -2px;
+      border-radius: 6px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .speaker-card__toggle svg {
+        transition: none;
+      }
+    }
+
     .s-prensa {
       padding: var(--spacing-section) 0;
       background: var(--color-charcoal);
@@ -2710,6 +3354,7 @@ const seoEvent = {
 
     .partners-dots {
       display: flex;
+      flex-wrap: wrap; /* con 29 logos los puntos no caben en una línea en tablet/móvil */
       justify-content: center;
       gap: 0.5rem;
       margin-bottom: 1.5rem;
@@ -3142,6 +3787,112 @@ const seoEvent = {
       const prefersReduced = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
       ).matches;
+
+      /* ── HERO CARRUSEL: hero + banner de entradas (WCAG 2.2.2) ─── */
+      const heroCarousel = document.getElementById("hero-carousel");
+      if (heroCarousel) {
+        const heroSlides = Array.from(
+          heroCarousel.querySelectorAll<HTMLElement>(".hero-slide"),
+        );
+        const heroDots = Array.from(
+          heroCarousel.querySelectorAll<HTMLButtonElement>(".hero-dot"),
+        );
+        const heroPause = document.getElementById(
+          "hero-pause",
+        ) as HTMLButtonElement | null;
+        const heroLive = document.getElementById("hero-live");
+        let heroIdx = 0;
+        let heroPaused = false;
+        let heroTimer: ReturnType<typeof setInterval> | null = null;
+
+        const heroShow = (n: number, announce: boolean): void => {
+          heroIdx = (n + heroSlides.length) % heroSlides.length;
+          heroSlides.forEach((s, i) => {
+            const on = i === heroIdx;
+            s.classList.toggle("hero-slide--active", on);
+            s.toggleAttribute("inert", !on);
+            s.setAttribute("aria-hidden", String(!on));
+          });
+          heroDots.forEach((d, i) => {
+            d.classList.toggle("hero-dot--active", i === heroIdx);
+            d.setAttribute("aria-current", String(i === heroIdx));
+          });
+          if (announce && heroLive) {
+            heroLive.textContent = `Diapositiva ${heroIdx + 1} de ${heroSlides.length}`;
+          }
+        };
+
+        const heroStop = (): void => {
+          if (heroTimer !== null) {
+            clearInterval(heroTimer);
+            heroTimer = null;
+          }
+        };
+        const heroStart = (): void => {
+          if (heroPaused || prefersReduced || heroTimer !== null) return;
+          heroTimer = setInterval(() => heroShow(heroIdx + 1, false), 7000);
+        };
+
+        heroDots.forEach((d, i) =>
+          d.addEventListener("click", () => {
+            heroShow(i, true);
+            heroStop();
+            heroStart(); // reinicia la cuenta para no saltar justo después del clic
+          }),
+        );
+
+        if (prefersReduced) {
+          // Sin rotación automática: no hay nada que pausar, se navega con los puntos
+          if (heroPause) heroPause.hidden = true;
+        } else if (heroPause) {
+          heroPause.addEventListener("click", () => {
+            heroPaused = !heroPaused;
+            heroPause.setAttribute("aria-pressed", String(heroPaused));
+            heroPause.setAttribute(
+              "aria-label",
+              heroPaused
+                ? "Reanudar rotación automática del carrusel principal"
+                : "Pausar rotación automática del carrusel principal",
+            );
+            heroPause
+              .querySelector(".hero-pause__ico--pause")
+              ?.toggleAttribute("hidden", heroPaused);
+            heroPause
+              .querySelector(".hero-pause__ico--play")
+              ?.toggleAttribute("hidden", !heroPaused);
+            if (heroPaused) heroStop();
+            else heroStart();
+          });
+        }
+
+        // Pausa temporal con el mouse encima o el foco del teclado dentro
+        heroCarousel.addEventListener("mouseenter", heroStop);
+        heroCarousel.addEventListener("focusin", heroStop);
+        heroCarousel.addEventListener("mouseleave", heroStart);
+        heroCarousel.addEventListener("focusout", (e: FocusEvent) => {
+          if (!heroCarousel.contains(e.relatedTarget as Node | null)) heroStart();
+        });
+
+        heroStart();
+      }
+
+      /* ── SPEAKERS: biografía recortada + botón "ver más" ──────── */
+      document
+        .querySelectorAll<HTMLElement>(".speaker-card")
+        .forEach((card) => {
+          const toggle = card.querySelector<HTMLButtonElement>(
+            ".speaker-card__toggle",
+          );
+          const bio = card.querySelector<HTMLElement>(".speaker-card__bio");
+          if (!toggle || !bio) return;
+          card.classList.add("is-collapsible");
+          toggle.hidden = false;
+          toggle.addEventListener("click", () => {
+            const open = toggle.getAttribute("aria-expanded") === "true";
+            toggle.setAttribute("aria-expanded", String(!open));
+            bio.classList.toggle("is-open", !open);
+          });
+        });
 
       /* ── AVIÓN ANIMADO (WCAG 2.2.2) ─────────────────────────── */
       const avionVideo = document.getElementById(

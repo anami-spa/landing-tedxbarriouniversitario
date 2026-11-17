@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { entradas } from "../config/entradas";
 
 // Imágenes procesadas por astro:assets (WebP, srcset automático)
 import imgHero from "../assets/images/hero-01.webp";
@@ -149,15 +150,6 @@ const beneficios = [
       "Conecta con una audiencia selecta de personas movilizadas por ideas y propósito.",
   },
 ];
-
-// Banner de venta de entradas (slide 2 del hero). El texto, el precio y el botón
-// vienen horneados en la imagen del diseñador (Nata, 15-nov-2026): el enlace va
-// sobre toda la pieza y `alt` repite su contenido. ⚠️ La imagen dice "hasta el
-// 22 de noviembre": al vencer la preventa hay que reemplazarla o quitar el slide.
-const entradas = {
-  url: "https://evenia.cl/alzar-el-vuelo/c4fc7146-95b5-4840-87a9-9534d5c7cfd1",
-  alt: "¡Preventa activa! No te quedes fuera, es momento de alzar el vuelo. Compra tu entrada. Precio especial preventa: $15.000, hasta el 22 de noviembre.",
-};
 
 // Speakers 2026 — fuente de verdad (ACTUALIZACION DE CONTENIDO SITIO WEB.docx, Nata 15-nov-2026).
 // `red`: red social del enlace (ícono). Sin `url` no se muestra ícono.
@@ -372,66 +364,24 @@ const seoEvent = {
      S1 — HERO OSCURO "Alzar el vuelo"
      Foto full-bleed fondo. Texto vertical izquierda. Countdown inferior.
      ============================================================ -->
+  <!-- H1 fuera del carrusel: el slide del hero original queda oculto (inert) mientras
+       el banner está activo, y la página no puede quedarse sin H1 para lectores de pantalla. -->
+  <h1 class="sr-only">Alzar el vuelo — TEDxBarrioUniversitario Women 2026</h1>
+
   <div
     id="hero-carousel"
     class="hero-carousel"
+    data-banner-hasta={entradas.bannerHasta}
     role="region"
     aria-roledescription="carousel"
     aria-label="Destacados del evento"
   >
+  <!-- Slide 1: banner de venta de entradas (preventa). Todo el banner es el enlace. -->
   <div
-    class="hero-slide hero-slide--active"
+    class="hero-slide hero-slide--banner hero-slide--active"
     role="group"
     aria-roledescription="slide"
     aria-label="1 de 2"
-  >
-  <section
-    id="inicio"
-    class="s-hero dark-section"
-    aria-label="Inicio — Alzar el vuelo"
-  >
-    <!-- Foto de fondo full-bleed con gradiente oscuro -->
-    <div class="hero-bg" aria-hidden="true">
-      <Image
-        src={imgHero}
-        alt=""
-        width={1600}
-        height={1000}
-        loading="eager"
-        decoding="async"
-        class="hero-bg__img"
-      />
-    </div>
-
-    <!-- Wordmark del diseñador: PNG fidelidad 1:1. H1 sr-only para a11y. -->
-    <div class="hero-content">
-      <h1 class="sr-only">
-        Alzar el vuelo — TEDxBarrioUniversitario Women 2026
-      </h1>
-      <div class="hero-title-row">
-        <Image
-          src={imgAlzarVuelo01}
-          alt=""
-          width={700}
-          height={475}
-          loading="eager"
-          decoding="async"
-          class="hero-wordmark"
-          aria-hidden="true"
-        />
-      </div>
-    </div>
-  </section>
-  </div>
-
-  <!-- Slide 2: banner de venta de entradas (preventa). Todo el banner es el enlace. -->
-  <div
-    class="hero-slide hero-slide--banner"
-    role="group"
-    aria-roledescription="slide"
-    aria-label="2 de 2"
-    aria-hidden="true"
-    inert
   >
     <a
       class="hero-banner-link"
@@ -460,12 +410,12 @@ const seoEvent = {
         />
         <img
           src={imgBannerDesktop.src}
-          alt={entradas.alt}
+          alt={entradas.bannerAlt}
           width={imgBannerDesktop.width}
           height={imgBannerDesktop.height}
-          loading="lazy"
+          loading="eager"
           decoding="async"
-          fetchpriority="low"
+          fetchpriority="high"
           class="hero-banner-img"
         />
       </picture>
@@ -473,17 +423,63 @@ const seoEvent = {
     </a>
   </div>
 
+  <!-- Slide 2: hero original "Alzar el vuelo" (sin cambios; el H1 ahora vive arriba) -->
+  <div
+    class="hero-slide"
+    role="group"
+    aria-roledescription="slide"
+    aria-label="2 de 2"
+    aria-hidden="true"
+    inert
+  >
+  <section
+    id="inicio"
+    class="s-hero dark-section"
+    aria-label="Inicio — Alzar el vuelo"
+  >
+    <!-- Foto de fondo full-bleed con gradiente oscuro -->
+    <div class="hero-bg" aria-hidden="true">
+      <Image
+        src={imgHero}
+        alt=""
+        width={1600}
+        height={1000}
+        loading="eager"
+        fetchpriority="low"
+        decoding="async"
+        class="hero-bg__img"
+      />
+    </div>
+
+    <!-- Wordmark del diseñador: PNG fidelidad 1:1. -->
+    <div class="hero-content">
+      <div class="hero-title-row">
+        <Image
+          src={imgAlzarVuelo01}
+          alt=""
+          width={700}
+          height={475}
+          loading="eager"
+          decoding="async"
+          class="hero-wordmark"
+          aria-hidden="true"
+        />
+      </div>
+    </div>
+  </section>
+  </div>
+
   <div class="hero-controls" role="group" aria-label="Controles del carrusel principal">
     <button
       type="button"
       class="hero-dot hero-dot--active"
-      aria-label="Ver diapositiva 1 de 2: Alzar el vuelo"
+      aria-label="Ver diapositiva 1 de 2: Preventa activa"
       aria-current="true"
     ></button>
     <button
       type="button"
       class="hero-dot"
-      aria-label="Ver diapositiva 2 de 2: Preventa activa"
+      aria-label="Ver diapositiva 2 de 2: Alzar el vuelo"
       aria-current="false"
     ></button>
     <button
@@ -499,6 +495,34 @@ const seoEvent = {
   </div>
   <div id="hero-live" class="sr-only" aria-live="polite"></div>
   </div>
+  <!-- Caducidad del banner: se ejecuta en línea, antes del primer pintado, para que quien
+       entre después de `bannerHasta` nunca vea el precio vencido. Deja solo el hero original. -->
+  <script is:inline>
+    (function () {
+      var c = document.getElementById("hero-carousel");
+      if (!c) return;
+      var hasta = Date.parse(c.getAttribute("data-banner-hasta") || "");
+      if (!hasta || Date.now() <= hasta) return;
+      var b = c.querySelector(".hero-slide--banner");
+      var ctrl = c.querySelector(".hero-controls");
+      var live = c.querySelector("#hero-live");
+      var resto = c.querySelector(".hero-slide:not(.hero-slide--banner)");
+      if (b) b.remove();
+      if (ctrl) ctrl.remove();
+      if (live) live.remove();
+      if (resto) {
+        resto.classList.add("hero-slide--active");
+        resto.removeAttribute("inert");
+        resto.removeAttribute("aria-hidden");
+        resto.removeAttribute("aria-label");
+        resto.removeAttribute("aria-roledescription");
+        resto.removeAttribute("role");
+      }
+      c.removeAttribute("role");
+      c.removeAttribute("aria-roledescription");
+      c.removeAttribute("aria-label");
+    })();
+  </script>
 
   <!-- ============================================================
      COUNTDOWN — Isla flotante solapada entre S1 y S2
@@ -3792,7 +3816,8 @@ const seoEvent = {
 
       /* ── HERO CARRUSEL: hero + banner de entradas (WCAG 2.2.2) ─── */
       const heroCarousel = document.getElementById("hero-carousel");
-      if (heroCarousel) {
+      // Con un solo slide (banner caducado, ver script en línea del hero) no hay nada que rotar
+      if (heroCarousel && heroCarousel.querySelectorAll(".hero-slide").length > 1) {
         const heroSlides = Array.from(
           heroCarousel.querySelectorAll<HTMLElement>(".hero-slide"),
         );

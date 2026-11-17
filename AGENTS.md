@@ -34,7 +34,7 @@ Textura concreto al 18% de opacidad: clase `.texture-overlay` → `textura-concr
 
 | # | `id` | Sección | Fondo |
 |---|------|---------|-------|
-| 1 | `inicio` | Hero carrusel de 2 slides ("Alzar el vuelo" + banner de venta de entradas) y countdown | Oscuro (charcoal) |
+| 1 | `inicio` | Hero carrusel de 2 slides (banner de venta de entradas primero + "Alzar el vuelo") y countdown | Oscuro (charcoal) |
 | 2 | `equipo` | EN COLABORACIÓN (equipo 6 headshots) | Claro + textura |
 | 3 | `que-es-tedx` | ¿QUÉ ES TEDx? (2 cols: texto + foto) | Claro |
 | 4 | `tedxwomen` | ¿POR QUÉ TEDxWomen? (texto + foto) | Claro + textura |
@@ -125,10 +125,10 @@ Ver `.env.example`. Mínimo necesario:
 7. Rotar clave DirectAdmin tras primer login
 8. **URL de la entrevista en TVU** (`#prensa`) — pendiente de Javiera
 9. **URLs de PImagen, VIC-UdeC, Sistémico, Lotería, Bar Callejón y los 13 partners nuevos de nov-2026** (`#partners`) — pendiente de Nata/Javiera
-12. **Banner de entradas**: su arte dice "hasta el 22 de noviembre"; quitar el slide o reemplazar la imagen al vencer la preventa. El texto y el botón están horneados en la imagen: todo el banner es el enlace (`entradas.url` en `index.astro`).
+12. **Banner de entradas** (slide 1, desde 17-nov): su arte dice "hasta el 22 de noviembre" y se retira solo (`bannerHasta` en `src/config/entradas.ts`, script en línea bajo el carrusel). El texto y el botón están horneados en la imagen: todo el banner es el enlace. El `<h1>` vive fuera del carrusel (a11y). Si se extiende la preventa, cambiar `bannerHasta` y el arte.
 13. **Paulina Saravia** figura "por confirmar" (doc de Nata) y su foto es una silueta provisional (`speaker-paulina-saravia.webp`).
 14. Categorías de partners (nov-2026): Anfitriona = UdeC; Oficial = Camanchaca y Lotería; Estratégico = Bar Callejón; Colaborador = todos los demás.
-10. Confirmar destino del CTA rojo del header (quedó provisionalmente en `#contacto`)
+10. ~~CTA rojo del header~~ ✅ desde 17-nov es "Compra tu entrada" → Evenia (`src/config/entradas.ts`). "Contacto" salió del menú de escritorio (sigue en footer y menú móvil).
 11. Confirmar si "Prensa" queda en el nav (hecho provisionalmente) o solo por scroll
 
 ## AGENTS.md — regla de sincronización

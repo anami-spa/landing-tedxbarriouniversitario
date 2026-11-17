@@ -34,7 +34,7 @@ Textura concreto al 18% de opacidad: clase `.texture-overlay` → `textura-concr
 
 | # | `id` | Sección | Fondo |
 |---|------|---------|-------|
-| 1 | `inicio` | Hero carrusel de 2 slides: "Alzar el vuelo" + banner de venta de entradas, y countdown | Oscuro (charcoal) |
+| 1 | `inicio` | Hero carrusel de 2 slides: banner de venta de entradas (primero) + "Alzar el vuelo", y countdown | Oscuro (charcoal) |
 | 2 | `equipo` | EN COLABORACIÓN (equipo 6 headshots) | Claro + textura |
 | 3 | `que-es-tedx` | ¿QUÉ ES TEDx? (2 cols: texto + foto) | Claro |
 | 4 | `tedxwomen` | ¿POR QUÉ TEDxWomen? (texto + foto) | Claro + textura |
@@ -127,16 +127,21 @@ Ver `.env.example`. Mínimo necesario:
 
 ## Hero: banner de venta de entradas (nov-2026)
 
-Slide 2 del hero = banner del diseñador (Nata) en `src/assets/images/banner-entradas-*.webp`:
+Slide 1 del hero (desde 17-nov-2026, aprobado por Nata) = banner del diseñador en `src/assets/images/banner-entradas-*.webp`:
 4 artes (1920×840 y 1600×700 escritorio, 1600×1067 tablet, 400×876 móvil) servidos con
 `<picture>`. **El texto, el precio y el botón "Compra tu entrada" vienen horneados en la imagen**:
 todo el banner es un `<a>` a `entradas.url` (Evenia) y el `alt` repite el contenido.
-Constante `entradas` en el frontmatter de `index.astro`.
+**Fuente única del enlace, textos y fecha de caducidad: `src/config/entradas.ts`** (la usan el banner y el botón del menú).
+- El `<h1>` (sr-only) vive **fuera** del carrusel: el slide del hero original queda `inert`/`aria-hidden` mientras el banner está activo y, dentro de él, la página se quedaba sin H1 para lectores de pantalla.
+- El banner es el LCP: `loading="eager"` + `fetchpriority="high"`; la foto del hero original va con `fetchpriority="low"`.
 - Escritorio `object-fit: cover` (`62% center`); tablet `contain` sobre negro (arte 3:2 vs hero
   casi cuadrado); móvil `contain` en el área sobre la isla del countdown (que solapa 4rem del
   hero y tapaba el precio) con bordes difuminados al negro.
-- ⚠️ **La imagen dice "hasta el 22 de noviembre"**: al vencer la preventa hay que quitar el slide
-  (borrar el `<div class="hero-slide hero-slide--banner">` y los controles) o reemplazar el arte.
+- **Caducidad automática**: la imagen dice "hasta el 22 de noviembre". Un `<script is:inline>` justo bajo el carrusel (corre antes del primer pintado) retira el slide del banner, los puntos y la pausa cuando `Date.now() > bannerHasta` (`entradas.ts`, 22-nov-2026 23:59 -03:00) y deja solo el hero original. Probado con fecha pasada. Si se extiende la preventa, cambiar `bannerHasta` **y** reemplazar el arte.
+
+## Menú: botón "Compra tu entrada" (nov-2026)
+
+El botón rojo del header (antes "Contacto") apunta a `entradas.url` (Evenia, pestaña nueva) con texto "Compra tu entrada" (≥1100 px) / "Entradas" (640–1099 px, para que el menú no se desborde). **"Contacto" salió del menú de escritorio** (decisión de Cristian, 17-nov); sigue en el footer y en el menú móvil como enlace normal, justo antes del botón rojo. El botón no caduca. Pendiente opcional: botón "Entradas" visible en la barra móvil (hoy solo dentro de la hamburguesa) y evento GA4 de clic.
 
 ## Speakers (nov-2026)
 
@@ -204,12 +209,11 @@ correspondía a ningún logo real y generaba CLS al pintar.
 8. **URL de la entrevista en TVU** (`#prensa`, tarjeta 6, el matinal) — pendiente de Javiera
 9. **URLs de PImagen, VIC-UdeC, Sistémico, Lotería, Bar Callejón y los 13 partners nuevos de
    nov-2026** (`#partners`, logos sin link) — pendiente de Nata/Javiera
-12. **Quitar o reemplazar el banner de entradas** al vencer la preventa (22-nov-2026)
+12. ~~Quitar el banner al vencer la preventa~~ ✅ se retira solo el 22-nov (`bannerHasta`). Pendiente: confirmar con Javiera si la venta sigue después a precio normal (el botón del menú no caduca)
 13. **Foto definitiva de Paulina Saravia** y confirmar que participa (figura "por confirmar")
 14. Confirmar si el "Especial TEDx en TVU" (nov) se suma a la tarjeta del matinal de TVU (hoy se
     sumaron las dos) y el contador "8 speakers" de la Ficha vs. los 6 publicados
-10. Confirmar destino del CTA rojo del header ("Postular →" apuntaba a `#speakers`, eliminada;
-    quedó provisionalmente en `#contacto` — ver `BaseLayout.astro` comentario de cabecera)
+10. ~~CTA rojo del header~~ ✅ desde 17-nov-2026 es "Compra tu entrada" → Evenia (aprobado por Nata)
 11. Confirmar si se agrega "Prensa" al nav (hecho provisionalmente) o si la sección queda solo
     descubrible por scroll. "Speakers" se agregó al nav en nov-2026 (así sale en el diseño de Nata).
 

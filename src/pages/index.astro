@@ -4099,7 +4099,11 @@ const seoEvent = {
           const visible = getVisible();
           if (visible >= slides) return; // todos visibles, sin scroll
           const maxPos = slides - visible;
-          current = Math.max(0, Math.min((idx + slides) % slides, maxPos));
+          // Pasar del final vuelve al inicio y retroceder desde el inicio va al final.
+          // (Antes el módulo + clamp dejaba "siguiente" y el autoplay clavados en la última posición.)
+          if (idx > maxPos) idx = 0;
+          else if (idx < 0) idx = maxPos;
+          current = idx;
           track.style.transform = `translateX(-${current * (100 / visible)}%)`;
           dots.forEach((d, i) => {
             d.classList.toggle("partners-dot--active", i === current);

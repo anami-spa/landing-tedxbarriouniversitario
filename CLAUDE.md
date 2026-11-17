@@ -180,8 +180,6 @@ los demás — LINAC, TVU y CMAS bajaron de Estratégico; Casa Endless, VIC-UdeC
 Sistémico dejaron "Impulsor"/"Pyme"). Orden: ese mismo; los nuevos van al final.
 Desktop: 5 visibles + flechas. Tablet: 3. Móvil: 1. Con 29 logos los puntos (`.partners-dots`)
 hacen salto de línea (`flex-wrap`): en móvil quedan en 3 filas.
-⚠️ Preexistente: "siguiente" en la última posición no vuelve al inicio (el autoplay se queda
-en el final); "anterior" desde el inicio sí salta al final.
 
 Logos en `public/partners/`, casi todos SVG optimizados con `svgo --multipass`. Excepción:
 `casa-endless.webp` y `tvu.webp` — sus SVG de origen eran un `<image>` PNG en base64

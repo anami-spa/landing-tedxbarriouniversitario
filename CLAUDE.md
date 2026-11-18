@@ -1,7 +1,7 @@
 # landing-tedxbarriouniversitario
 
 Landing page estática para **TEDxBarrioUniversitario Women 2026** — "Alzar el vuelo".
-Evento: 04 Dic 2026 · 09:00–13:00 · Universidad de Concepción.
+Evento: 04 Dic 2026 · 08:00–14:00 · Auditorio Jaime Baeza, Universidad de Concepción (Victoria 490). Horario y auditorio según Nata, 18-nov-2026.
 
 **Derivado de:** `anami-landing-starter` (metodología ANAMI de sitios web estáticos).
 **Cliente:** TEDxBarrioUniversitario Women — Javiera Burgos (organizadora y directora general).
@@ -38,15 +38,18 @@ Textura concreto al 18% de opacidad: clase `.texture-overlay` → `textura-concr
 | 2 | `equipo` | EN COLABORACIÓN (equipo 6 headshots) | Claro + textura |
 | 3 | `que-es-tedx` | ¿QUÉ ES TEDx? (2 cols: texto + foto) | Claro |
 | 4 | `tedxwomen` | ¿POR QUÉ TEDxWomen? (texto + foto) | Claro + textura |
-| 5 | `concepto` | ALZAR EL VUELO — boarding pass + avión SVG | Oscuro |
-| 6 | `evento` | FICHA TÉCNICA — polaroid + contadores + temáticas | Claro |
-| 6b | `speakers` | LAS VOCES QUE NOS INVITAN A ALZAR EL VUELO — 6 speakers (nov-2026, después de la Ficha Técnica) | Banda oscura + claro con textura |
-| 7 | `prensa` | ENTREVISTAS Y PRENSA — grid 10 tarjetas enlazadas a medios | Oscuro |
+| 5 | `speakers` | LAS VOCES QUE NOS INVITAN A ALZAR EL VUELO — 6 speakers (ocupa desde 18-nov-2026 el lugar de "Alzar el vuelo", antes de la Ficha) | Banda oscura + claro con textura |
+| 6 | `evento` | FICHA TÉCNICA — polaroid + fecha/lugar + temáticas + contadores (6 speakers) | Claro |
+| 7 | `prensa` | ENTREVISTAS Y PRENSA — grid de 10 tarjetas, se ven 6 y un botón ↓ despliega las otras 4 | Oscuro |
 | 8 | `partners` | NUESTROS PARTNERS — carrusel 29 logos (1 por slide, con enlace externo si hay URL) | Claro + textura |
 | 9 | `auspiciadores` | ¿POR QUÉ SUMARSE COMO AUSPICIADOR? (2 polaroids rotadas) | Oscuro |
 | 10 | `beneficios` | BENEFICIOS — 4 en fila + form Formspree alianzas | Claro + textura |
 | 11 | `contacto` | CONTACTO — email + socials + foto | Oscuro |
 | 12 | — | Footer | Oscuro (en BaseLayout.astro) |
+
+> La sección "ALZAR EL VUELO" (`#concepto`: boarding pass + avión animado + franja) se eliminó el
+> 18-nov-2026 por pedido de Nata, junto con sus assets (`avion.webm/.gif/-poster.png`) y su script.
+> El git history la conserva. El menú queda Speakers → Evento; el footer apunta a `#evento` ("Ficha técnica").
 
 > La "Convocatoria de Speakers" que ocupaba el slot 7 se eliminó oct-2026 (pedido Javiera) y
 > fue reemplazada por "Entrevistas y Prensa" en el mismo lugar del DOM, conservando la
@@ -56,7 +59,6 @@ Textura concreto al 18% de opacidad: clase `.texture-overlay` → `textura-concr
 
 - **Countdown**: `setInterval` 1s sobre `2026-12-04T09:00:00-03:00`. Texto estático accesible en `<span class="sr-only">`.
 - **Count-up counters**: `IntersectionObserver` threshold 0.5. Lee `data-target` del DOM.
-- **Avión SVG**: `animateMotion` + `<mpath href="#flight-path">`, `dur="5s"`.
 - **Parallax**: `requestAnimationFrame` sobre `.parallax-img img`, solo >768px, off en `reduced-motion`.
 - **Scroll reveals**: `IntersectionObserver` + `opacity/translateY` con delay staggered.
   Selector: `.equipo-card, .beneficio-card, .prensa-card, .s-auspi__bullet`.
@@ -64,6 +66,7 @@ Textura concreto al 18% de opacidad: clase `.texture-overlay` → `textura-concr
   original, así que rotar no mueve nada). Rota solo cada 7 s; puntos + botón pausa (WCAG 2.2.2);
   se detiene con hover/foco; con `prefers-reduced-motion` no rota y se oculta el botón pausa.
   Script propio (`#hero-carousel`), independiente del de partners.
+- **Prensa**: se ven 6 tarjetas; `.prensa-toggle` (borde rojo, chevron) despliega las demás (`.prensa-card--extra`, `aria-expanded`). Sin JS se ven las 10.
 - **Speakers**: bio recortada a 3 líneas con botón "ver más" (`aria-expanded`). Sin JS se ve completa.
 - **Carrusel partners**: botones prev/next + dots + botón pausa (WCAG 2.2.2). Sin soporte de
   teclado por flechas (ArrowLeft/Right) — los dots y botones sí son focuseables y accionables
@@ -153,7 +156,7 @@ incluida). La banda oscura superior es un pseudo-elemento de la foto de la prime
 Sin `url` no se muestra ícono (Octavio Enriquez). Hans Contreras usa Instagram, no LinkedIn.
 ⚠️ **Paulina Saravia figura "por confirmar" en el documento de Nata** y su foto es una silueta
 provisional (`speaker-paulina-saravia.webp`): reemplazar cuando llegue.
-Nota: el contador de la Ficha Técnica dice 8 speakers; aquí hay 6 (faltan por anunciar).
+El contador de la Ficha Técnica dice 6 speakers (corregido 18-nov-2026).
 
 ## S07 Prensa — arquitectura (oct-2026; 10 piezas desde nov-2026)
 
@@ -201,7 +204,7 @@ correspondía a ningún logo real y generaba CLS al pintar.
 
 1. `FORMSPREE_FORM_ID` definitivo (formulario de alianzas no funciona)
 2. Correos del dominio (`contacto@`, `alianzas@`) — provisionar en DirectAdmin
-3. Nombre exacto del auditorio
+3. ~~Nombre exacto del auditorio~~ ✅ Auditorio Jaime Baeza, Victoria 490 (Nata, 18-nov-2026)
 4. ~~Logos partners~~ ✅ integrados y en producción (ago-2026), actualizados a set v3 color (oct-2026)
 5. Logo UdeC vectorial si lo hay (hoy SVG funcional)
 6. Handles LinkedIn confirmados del equipo
@@ -212,7 +215,7 @@ correspondía a ningún logo real y generaba CLS al pintar.
 12. ~~Quitar el banner al vencer la preventa~~ ✅ se retira solo el 22-nov (`bannerHasta`). Pendiente: confirmar con Javiera si la venta sigue después a precio normal (el botón del menú no caduca)
 13. **Foto definitiva de Paulina Saravia** y confirmar que participa (figura "por confirmar")
 14. Confirmar si el "Especial TEDx en TVU" (nov) se suma a la tarjeta del matinal de TVU (hoy se
-    sumaron las dos) y el contador "8 speakers" de la Ficha vs. los 6 publicados
+    sumaron las dos). El contador de la Ficha ya dice 6 (18-nov-2026)
 10. ~~CTA rojo del header~~ ✅ desde 17-nov-2026 es "Compra tu entrada" → Evenia (aprobado por Nata)
 11. Confirmar si se agrega "Prensa" al nav (hecho provisionalmente) o si la sección queda solo
     descubrible por scroll. "Speakers" se agregó al nav en nov-2026 (así sale en el diseño de Nata).

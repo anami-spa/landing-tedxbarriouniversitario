@@ -1,7 +1,7 @@
 # landing-tedxbarriouniversitario
 
 Landing page estática para **TEDxBarrioUniversitario Women 2026** — "Alzar el vuelo".
-Evento: 04 Dic 2026 · 08:00–14:00 · Auditorio Jaime Baeza, Universidad de Concepción (Victoria 490). Horario y auditorio según Nata, 18-nov-2026.
+Evento: 04 Dic 2026 · 08:30–14:00 · Auditorio Jaime Baeza, Universidad de Concepción (Victoria 490). Horario y auditorio según Nata, 18-nov-2026.
 
 **Derivado de:** `anami-landing-starter` (metodología ANAMI de sitios web estáticos).
 **Cliente:** TEDxBarrioUniversitario Women — Javiera Burgos (organizadora y directora general).

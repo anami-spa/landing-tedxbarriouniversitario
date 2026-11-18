@@ -54,11 +54,12 @@ const evento = {
   nombre: "TEDxBarrioUniversitario Women 2026",
   tema: "Alzar el vuelo",
   fecha: "04 de Diciembre, 2026",
-  horario: "09:00 — 13:00",
+  horario: "08:30 — 14:00",
   lugar: "Universidad de Concepción",
-  auditorio: "Auditorio [por confirmar]",
+  auditorio: "Auditorio Jaime Baeza",
+  direccion: "Victoria 490, Concepción",
   ciudad: "Concepción, Chile",
-  speakers: 8,
+  speakers: 6,
   asistentes: 100,
   ideas: 1,
   url: "https://www.ted.com/tedx/events/69535",
@@ -67,7 +68,7 @@ const evento = {
   ig: "@tedxbarriouniversitario",
   linkedin: "tedxbarriouniversitario",
   flickr: "tedxbarriouniversitario",
-  countdown: "2026-12-04T09:00:00-03:00",
+  countdown: "2026-12-04T08:30:00-03:00",
 };
 
 const equipo = [
@@ -340,13 +341,13 @@ const partnerSlides: {
 const seoEvent = {
   name: "TEDxBarrioUniversitario Women 2026 — Alzar el vuelo",
   description:
-    "Evento TEDx independiente en la Universidad de Concepción. 8 charlas en vivo sobre ideas que transforman. 4 de diciembre de 2026.",
-  startDate: "2026-12-04T09:00:00-03:00",
-  endDate: "2026-12-04T13:00:00-03:00",
+    "Evento TEDx independiente en la Universidad de Concepción. 6 charlas en vivo sobre ideas que transforman. 4 de diciembre de 2026.",
+  startDate: "2026-12-04T08:30:00-03:00",
+  endDate: "2026-12-04T14:00:00-03:00",
   url: "https://tedxbarriouniversitario.cl",
   location: {
-    name: "Universidad de Concepción",
-    address: "Campus UdeC",
+    name: "Auditorio Jaime Baeza, Universidad de Concepción",
+    address: "Victoria 490",
     city: "Concepción",
     country: "CL",
   },
@@ -356,7 +357,7 @@ const seoEvent = {
 
 <BaseLayout
   title="TEDxBarrioUniversitario Women 2026 · Alzar el vuelo"
-  description="8 charlas que inspiran. 4 de diciembre de 2026 · Universidad de Concepción · Ideas que conectan, voces que transforman."
+  description="6 charlas que inspiran. 4 de diciembre de 2026 · Universidad de Concepción · Ideas que conectan, voces que transforman."
   ogImage="/og-tedx.jpg"
   event={seoEvent}
 >
@@ -530,7 +531,7 @@ const seoEvent = {
   <div class="cd-island-wrap">
     <div class="cd-island" role="timer" aria-label="Cuenta regresiva al evento">
       <span class="sr-only"
-        >El evento es el 4 de diciembre de 2026 a las 09:00 hrs.</span
+        >El evento es el 4 de diciembre de 2026 a las 08:30 hrs.</span
       >
       <div class="cd-island__inner" aria-hidden="true">
         <div class="countdown-unit">
@@ -794,240 +795,7 @@ const seoEvent = {
   </section>
 
   <!-- ============================================================
-     S5 — ALZAR EL VUELO (concepto)
-     Fondo oscuro. Título+copy 2-col, boarding pass fila completa, franja.
-     ============================================================ -->
-  <section
-    id="concepto"
-    class="s-concepto dark-section"
-    aria-labelledby="h-concepto"
-  >
-    <div class="seccion-inner s-concepto__inner">
-      <!-- Título izquierda con pesos mixtos -->
-      <div class="s-concepto__title-col">
-        <h2 id="h-concepto" class="s-concepto__h2">
-          <span class="s-concepto__h2-l1 display-light">ALZAR</span>
-          <span class="s-concepto__h2-l2 display-light">EL</span>
-          <span class="s-concepto__h2-l3 display-black">VUELO</span>
-        </h2>
-      </div>
-
-      <!-- 4 párrafos oficiales columna derecha -->
-      <div class="s-concepto__copy-col">
-        <p class="s-concepto__p">
-          Alzar el Vuelo es una invitación a salir de lo conocido, explorar
-          nuevos horizontes y descubrir el poder que tienen las ideas para
-          transformar personas, organizaciones y comunidades.
-        </p>
-        <p class="s-concepto__p">
-          En TEDxBarrioUniversitario Women, cada charla será una etapa de este
-          viaje: un recorrido por experiencias, aprendizajes e historias que
-          inspiran, desafían y movilizan a la acción.
-        </p>
-        <p class="s-concepto__p">
-          Porque cuando una idea encuentra el momento y el lugar para ser
-          compartida, tiene el poder de trascender y cambiar realidades.
-        </p>
-        <p class="s-concepto__p">
-          Te invitamos a preparar tu despegue. <strong
-            class="s-concepto__p-strong">El viaje comienza aquí.</strong
-          >
-        </p>
-      </div>
-    </div>
-
-    <!-- Boarding pass + avión: fila ancho-completo debajo de las columnas -->
-    <div class="seccion-inner s-concepto__bp-row">
-      <div
-        class="boarding-pass s-bp"
-        role="img"
-        aria-label="Vuelo directo: IDEA 09:00 HRS hasta ACCIÓN 13:00 HRS, viernes 04 de diciembre"
-      >
-        <div class="boarding-pass__col">
-          <span class="boarding-pass__label">Origen</span>
-          <span class="boarding-pass__valor">IDEA</span>
-          <span class="boarding-pass__hora boarding-pass__hora--hrs mono-date"
-            >09:00 HRS</span
-          >
-          <span class="boarding-pass__hora">Vie 04 dic</span>
-        </div>
-        <div class="boarding-pass__divider">
-          <span class="boarding-pass__directo">Directo</span>
-        </div>
-        <div class="boarding-pass__col s-bp__dest">
-          <span class="boarding-pass__label">Destino</span>
-          <span class="boarding-pass__valor">ACCIÓN</span>
-          <span class="boarding-pass__hora boarding-pass__hora--hrs mono-date"
-            >13:00 HRS</span
-          >
-          <span class="boarding-pass__hora">Vie 04 dic</span>
-        </div>
-      </div>
-
-      <!-- Avión animado — WebM VP9 alfa (Chrome/FF/Edge) + GIF fallback (Safari) -->
-      <div class="s-avion">
-        <!-- Contenedor decorativo aria-hidden; el botón de pausa es hermano (WCAG 2.2.2) -->
-        <div class="s-avion__anim" aria-hidden="true">
-          <video
-            id="avion-video"
-            class="s-avion__media"
-            autoplay
-            muted
-            loop
-            playsinline
-            tabindex="-1"
-            poster="/avion-poster.png"
-          >
-            <source src="/avion.webm" type="video/webm" />
-          </video>
-          <!-- Fallback para Safari (no soporta VP9 alpha) — gestionado por JS -->
-          <img
-            id="avion-fallback"
-            class="s-avion__media"
-            src="/avion-fallback.gif"
-            alt=""
-            hidden
-          />
-        </div>
-        <!-- Botón pausa accesible — fuera del aria-hidden para que AT lo anuncie (WCAG 2.2.2) -->
-        <button
-          type="button"
-          id="btn-pause-avion"
-          class="s-avion__pause"
-          aria-label="Pausar animación del avión"
-          aria-pressed="false"
-        >
-          <span aria-hidden="true">⏸</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Franja inferior: sin aria-hidden (tagline con significado del docx) -->
-    <div class="s-concepto__franja">
-      <p class="s-concepto__franja-text display-light">
-        TODA GRAN TRANSFORMACIÓN COMIENZA CON UNA IDEA
-      </p>
-    </div>
-  </section>
-
-  <!-- ============================================================
-     S6 — FICHA TÉCNICA
-     Fondo claro. Polaroid izquierda + datos + contadores + temáticas.
-     ============================================================ -->
-  <section id="evento" class="s-ficha seccion-light" aria-labelledby="h-ficha">
-    <div class="seccion-inner s-ficha__inner">
-      <!-- Columna izquierda: polaroid patrón S4 (foto + marco overlay + cita en franja blanca) -->
-      <div class="s-ficha__left">
-        <figure class="s-ficha__polaroid-wrap">
-          <div class="s-ficha__polaroid">
-            <Image
-              src={imgFicha}
-              alt="Speaker TEDxBarrioUniversitario Women en el escenario"
-              width={450}
-              height={512}
-              loading="lazy"
-              decoding="async"
-              class="s-ficha__polaroid-foto"
-            />
-            <figcaption class="s-ficha__cita">
-              "Ideas capaces de cambiar perspectivas y generar acción"
-            </figcaption>
-          </div>
-        </figure>
-      </div>
-
-      <!-- Columna derecha: datos + temáticas -->
-      <div class="s-ficha__right">
-        <!-- Flecha decorativa del cliente — PNG transparente -->
-        <img
-          src="/s6-flecha.png"
-          class="s-ficha__deco"
-          aria-hidden="true"
-          alt=""
-          loading="lazy"
-          decoding="async"
-        />
-        <h2 id="h-ficha" class="s-ficha__h2">
-          <span class="s-ficha__h2-top display-light">FICHA</span>
-          <span class="s-ficha__h2-bottom display-black">TÉCNICA</span>
-        </h2>
-
-        <!-- 6 Temáticas -->
-        <div class="s-ficha__tematicas">
-          <p
-            class="s-ficha__tematicas-label eyebrow-label"
-            style="color:var(--color-charcoal); margin-bottom:10px;"
-          >
-            Temáticas
-          </p>
-          <ul class="s-ficha__tematicas-list">
-            {
-              tematicas.map((t) => (
-                <li>
-                  <span class="flecha-roja" aria-hidden="true">
-                    →
-                  </span>{" "}
-                  {t}
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-
-        <p class="s-ficha__desc">
-          Más que un evento, buscamos construir una experiencia que conecte
-          personas con ideas capaces de cambiar perspectivas y generar acción.
-        </p>
-      </div>
-    </div>
-
-    <!-- Franja inferior: Logo UdeC + contadores count-up -->
-    <div class="s-ficha__franja">
-      <div class="s-ficha__franja-inner">
-        <div class="s-ficha__franja-udec">
-          <img
-            src={`${baseUrl}/partners/udec-negro.png`}
-            alt="Universidad de Concepción"
-            width="160"
-            height="60"
-            loading="lazy"
-            decoding="async"
-            class="s-ficha__udec-logo"
-          />
-        </div>
-        <div class="s-ficha__franja-sep" aria-hidden="true"></div>
-        <ul class="s-ficha__counters" aria-label="Datos del evento">
-          <li class="counter-item">
-            <span
-              class="counter-num mono-date js-counter"
-              data-target={evento.asistentes}
-              aria-label={`${evento.asistentes} asistentes presenciales`}
-            ></span>
-            <span class="counter-label">Asistentes presenciales</span>
-          </li>
-          <li class="counter-item">
-            <span
-              class="counter-num mono-date js-counter"
-              data-target={evento.speakers}
-              data-pad="2"
-              aria-label={`${evento.speakers} speakers seleccionados`}></span>
-            <span class="counter-label">Speakers seleccionados</span>
-          </li>
-          <li class="counter-item">
-            <span
-              class="counter-num mono-date js-counter"
-              data-target={evento.ideas}
-              data-pad="2"
-              aria-label={`${evento.ideas} idea de alto impacto`}></span>
-            <span class="counter-label">Idea de alto impacto</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-     SPEAKERS 2026 — después de la Ficha Técnica (pedido Nata, 15-nov-2026)
+     SPEAKERS 2026 — antes de la Ficha Técnica (pedido Nata, 18-nov-2026; ocupa el lugar de "Alzar el vuelo")
      Banda oscura arriba (título) que baja hasta el 70% de las primeras fotos;
      lo demás sobre fondo claro con textura. Fotos con la "X" roja incluida.
      ============================================================ -->
@@ -1129,6 +897,142 @@ const seoEvent = {
   </section>
 
   <!-- ============================================================
+     S6 — FICHA TÉCNICA
+     Fondo claro. Polaroid izquierda + datos + contadores + temáticas.
+     ============================================================ -->
+  <section id="evento" class="s-ficha seccion-light" aria-labelledby="h-ficha">
+    <div class="seccion-inner s-ficha__inner">
+      <!-- Columna izquierda: polaroid patrón S4 (foto + marco overlay + cita en franja blanca) -->
+      <div class="s-ficha__left">
+        <figure class="s-ficha__polaroid-wrap">
+          <div class="s-ficha__polaroid">
+            <Image
+              src={imgFicha}
+              alt="Speaker TEDxBarrioUniversitario Women en el escenario"
+              width={450}
+              height={512}
+              loading="lazy"
+              decoding="async"
+              class="s-ficha__polaroid-foto"
+            />
+            <figcaption class="s-ficha__cita">
+              "Ideas capaces de cambiar perspectivas y generar acción"
+            </figcaption>
+          </div>
+        </figure>
+      </div>
+
+      <!-- Columna derecha: datos + temáticas -->
+      <div class="s-ficha__right">
+        <!-- Flecha decorativa del cliente — PNG transparente -->
+        <img
+          src="/s6-flecha.png"
+          class="s-ficha__deco"
+          aria-hidden="true"
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+        <h2 id="h-ficha" class="s-ficha__h2">
+          <span class="s-ficha__h2-top display-light">FICHA</span>
+          <span class="s-ficha__h2-bottom display-black">TÉCNICA</span>
+        </h2>
+
+        <!-- Fecha y lugar (Nata 18-nov-2026) — íconos del cliente -->
+        <div class="s-ficha__datos">
+          <div class="s-ficha__dato">
+            <svg class="s-ficha__dato-ico" viewBox="22.5 27.75 105 94.5" aria-hidden="true" focusable="false" fill="currentColor"><path d="M72.88,92.04c.19.12.42.24.67.35.22.1.47.16.72.21.44.11,1.03.1,1.44,0,.27-.05.51-.11.74-.21.24-.11.48-.23.7-.37.19-.13.4-.31.6-.5.68-.68,1.09-1.67,1.09-2.68,0-.27-.03-.51-.07-.71v-.07c-.05-.22-.12-.44-.22-.68-.1-.24-.21-.45-.35-.65-.17-.26-.32-.45-.51-.64-.7-.69-1.69-1.09-2.7-1.09-.24,0-.49.03-.73.07-.26.05-.48.12-.72.22-.24.09-.45.2-.66.35-.21.14-.41.3-.59.47-.16.17-.33.36-.48.59-.16.23-.26.45-.36.68-.1.24-.17.46-.21.68-.06.27-.08.51-.08.78,0,1.01.41,2,1.12,2.7C72.47,91.73,72.67,91.89,72.88,92.04Z"/><path d="M52.06,92.61c.24-.06.48-.12.72-.22.24-.11.49-.23.71-.38.17-.12.38-.28.55-.46.19-.18.34-.37.46-.56.16-.24.29-.46.39-.69.07-.21.16-.47.21-.74.04-.2.06-.46.06-.72s-.02-.51-.06-.75c-.06-.26-.14-.51-.23-.76-.08-.18-.2-.4-.35-.61-.15-.24-.3-.42-.5-.63-.15-.15-.36-.31-.57-.45-.19-.14-.41-.25-.62-.33-.28-.12-.51-.19-.73-.23-.25-.05-.51-.08-.76-.08-1.02,0-2.01.4-2.73,1.12-.15.16-.33.35-.47.58-.13.21-.26.44-.37.68-.1.23-.16.48-.21.73-.04.21-.08.47-.08.73,0,1,.41,1.99,1.13,2.71C49.52,92.46,51,92.83,52.06,92.61Z"/><path d="M95.47,90.96c.17.25.32.42.46.56.21.21.41.37.63.52.18.12.41.24.66.35.23.1.47.16.73.21.44.11,1.02.1,1.43,0,.27-.05.52-.11.75-.21.24-.11.47-.23.7-.38.17-.12.37-.28.55-.46.18-.17.32-.34.49-.6.14-.2.25-.42.35-.65.1-.24.17-.47.21-.69.06-.27.08-.51.08-.77s-.02-.51-.07-.72v-.05c-.05-.23-.12-.45-.22-.69-.1-.23-.2-.45-.35-.66-.15-.23-.3-.41-.49-.6-.18-.18-.38-.34-.59-.48-.21-.15-.42-.26-.61-.33-.28-.12-.51-.19-.73-.23-.28-.06-.54-.09-.79-.09s-.47.03-.7.08c-.29.05-.51.12-.74.22-.25.09-.46.2-.66.35-.22.14-.42.3-.6.47-.19.2-.34.38-.47.59-.16.23-.27.45-.37.68-.1.24-.17.46-.2.68-.07.27-.09.51-.09.78s.02.5.07.71c.05.28.12.51.22.74C95.22,90.53,95.33,90.75,95.47,90.96Z"/><path d="M22.56,118.37c0,2.11,1.73,3.84,3.84,3.84h97.2c2.11,0,3.84-1.73,3.84-3.84V43.3c0-2.12-1.73-3.84-3.84-3.84h-21.09v-7.83c0-2.11-1.72-3.84-3.84-3.84s-3.84,1.73-3.84,3.84v7.83h-15.99v-7.83c0-2.11-1.72-3.84-3.84-3.84s-3.84,1.73-3.84,3.84v7.83h-15.99v-7.83c0-2.11-1.73-3.84-3.84-3.84s-3.84,1.73-3.84,3.84v7.83h-21.09c-2.11,0-3.84,1.72-3.84,3.84V118.37ZM30.25,47.14h17.24v7.82c0,2.12,1.72,3.84,3.84,3.84s3.84-1.72,3.84-3.84v-7.82h15.99v7.82c0,2.12,1.72,3.84,3.84,3.84s3.84-1.72,3.84-3.84v-7.82h15.99v7.82c0,2.12,1.72,3.84,3.84,3.84s3.84-1.72,3.84-3.84v-7.82h17.24v67.39H30.25V47.14Z"/></svg>
+            <p class="s-ficha__dato-txt">
+              <span class="s-ficha__dato-strong display-black">VIERNES</span>
+              <span class="s-ficha__dato-strong display-black">04 DE DICIEMBRE</span>
+              <span class="s-ficha__dato-hora mono-date">08:30 A 14:00 HRS.</span>
+            </p>
+          </div>
+          <div class="s-ficha__dato">
+            <svg class="s-ficha__dato-ico" viewBox="35.4 27.75 79.25 94.5" aria-hidden="true" focusable="false" fill="currentColor"><path d="M75,51.03c-8.5,0-15.41,6.91-15.41,15.41s6.91,15.42,15.41,15.42,15.42-6.92,15.42-15.42S83.5,51.03,75,51.03ZM75,74.18c-4.26,0-7.73-3.47-7.73-7.74s3.47-7.73,7.73-7.73,7.73,3.47,7.73,7.73S79.27,74.18,75,74.18Z"/><path d="M114.55,67.34c0-21.8-17.74-39.54-39.55-39.54s-39.55,17.74-39.55,39.54c0,30.57,35.99,53.34,37.52,54.29h0c1.25.78,2.91.76,4.14-.05C78.64,120.57,114.55,96.6,114.55,67.34ZM75.67,113.18l-.72.54-.74-.53c-9.34-6.66-31.07-24.47-31.07-45.85,0-17.57,14.29-31.86,31.86-31.86s31.86,14.29,31.86,31.86C106.86,87.76,85.05,106.2,75.67,113.18Z"/></svg>
+            <p class="s-ficha__dato-txt">
+              <span class="s-ficha__dato-strong display-black">{evento.auditorio.toUpperCase()}</span>
+              <span class="s-ficha__dato-light display-light">{evento.lugar.toUpperCase()}</span>
+              <span class="s-ficha__dato-dir">{evento.direccion}</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- 6 Temáticas -->
+        <div class="s-ficha__tematicas">
+          <p
+            class="s-ficha__tematicas-label eyebrow-label"
+            style="color:var(--color-charcoal); margin-bottom:10px;"
+          >
+            Temáticas
+          </p>
+          <ul class="s-ficha__tematicas-list">
+            {
+              tematicas.map((t) => (
+                <li>
+                  <span class="flecha-roja" aria-hidden="true">
+                    →
+                  </span>{" "}
+                  {t}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <p class="s-ficha__desc">
+          Más que un evento, buscamos construir una experiencia que conecte
+          personas con ideas capaces de cambiar perspectivas y generar acción.
+        </p>
+      </div>
+    </div>
+
+    <!-- Franja inferior: Logo UdeC + contadores count-up -->
+    <div class="s-ficha__franja">
+      <div class="s-ficha__franja-inner">
+        <div class="s-ficha__franja-udec">
+          <img
+            src={`${baseUrl}/partners/udec-negro.png`}
+            alt="Universidad de Concepción"
+            width="160"
+            height="60"
+            loading="lazy"
+            decoding="async"
+            class="s-ficha__udec-logo"
+          />
+        </div>
+        <div class="s-ficha__franja-sep" aria-hidden="true"></div>
+        <ul class="s-ficha__counters" aria-label="Datos del evento">
+          <li class="counter-item">
+            <span
+              class="counter-num mono-date js-counter"
+              data-target={evento.asistentes}
+              aria-label={`${evento.asistentes} asistentes presenciales`}
+            ></span>
+            <span class="counter-label">Asistentes presenciales</span>
+          </li>
+          <li class="counter-item">
+            <span
+              class="counter-num mono-date js-counter"
+              data-target={evento.speakers}
+              data-pad="2"
+              aria-label={`${evento.speakers} speakers seleccionados`}></span>
+            <span class="counter-label">Speakers seleccionados</span>
+          </li>
+          <li class="counter-item">
+            <span
+              class="counter-num mono-date js-counter"
+              data-target={evento.ideas}
+              data-pad="2"
+              aria-label={`${evento.ideas} idea de alto impacto`}></span>
+            <span class="counter-label">Idea de alto impacto</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
      S7 — ENTREVISTAS Y PRENSA
      Fondo oscuro. Header + flecha punteada deco + grid 6 tarjetas
      enlazadas a medios externos (3/2/1 cols).
@@ -1158,15 +1062,15 @@ const seoEvent = {
         </p>
       </div>
 
-      <ul class="prensa-grid">
+      <ul class="prensa-grid" id="prensa-grid">
         {
-          prensa.map((item) => {
+          prensa.map((item, i) => {
             const Tag = item.url ? "a" : "div";
             const linkAttrs = item.url
               ? { href: item.url, target: "_blank", rel: "noopener noreferrer" }
               : {};
             return (
-              <li class="prensa-card">
+              <li class={i >= 6 ? "prensa-card prensa-card--extra" : "prensa-card"}>
                 <Tag class="prensa-card__link" {...linkAttrs}>
                   <span class="prensa-card__media">
                     <Image
@@ -1197,6 +1101,18 @@ const seoEvent = {
           })
         }
       </ul>
+
+      <!-- Ver más entrevistas (pedido Nata 18-nov-2026): sin JS se ven las 10 -->
+      <button
+        type="button"
+        class="prensa-toggle"
+        aria-expanded="false"
+        aria-controls="prensa-grid"
+        aria-label="Ver más entrevistas"
+        hidden
+      >
+        <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
     </div>
   </section>
 
@@ -2223,165 +2139,6 @@ const seoEvent = {
       pointer-events: none;
     }
 
-    /* ── S5 ALZAR EL VUELO (concepto) ──────────────────────────── */
-    .s-concepto {
-      background: var(--color-charcoal);
-      padding: var(--spacing-section) 0 0;
-    }
-    .s-concepto__inner {
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 3rem;
-      align-items: start;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem 2.5rem;
-    }
-    .s-concepto__h2 {
-      display: flex;
-      flex-direction: column;
-      color: #ffffff;
-      line-height: 0.92;
-      margin: 0;
-    }
-    .s-concepto__h2-l1 {
-      font-size: clamp(2.6rem, 7vw, 6rem);
-      letter-spacing: 0.12em;
-    }
-    .s-concepto__h2-l2 {
-      font-size: clamp(2.6rem, 7vw, 6rem);
-      letter-spacing: 0.12em;
-    }
-    .s-concepto__h2-l3 {
-      font-size: clamp(2.8rem, 7.5vw, 6.5rem);
-      letter-spacing: -0.01em;
-    }
-    .s-concepto__copy-col {
-      padding-top: 0.5rem;
-    }
-    .s-concepto__p {
-      color: rgba(255, 255, 255, 0.82);
-      font-family: var(--font-sans);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin: 0 0 1rem;
-      max-width: 48ch;
-    }
-    .s-concepto__p:last-child {
-      margin-bottom: 0;
-    }
-    .s-concepto__p-strong {
-      color: #fff;
-      font-weight: 700;
-    }
-
-    /* Boarding pass fila ancho-completo */
-    .s-concepto__bp-row {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem 1.5rem;
-    }
-    .s-bp {
-      background: var(--color-lavanda);
-      margin-bottom: 1.5rem;
-    }
-    .s-bp__dest {
-      text-align: right;
-    }
-
-    /* Avión animado — WebM VP9 + GIF fallback */
-    .s-avion {
-      position: relative;
-      padding: 0.5rem 0;
-    }
-    .s-avion__anim {
-      line-height: 0; /* eliminar espacio inline bajo el video */
-    }
-    .s-avion__media {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    /* Botón pausa discreto (WCAG 2.2.2) — opaco solo al hover/foco */
-    .s-avion__pause {
-      position: absolute;
-      bottom: 0.35rem;
-      right: 0.35rem;
-      width: 30px;
-      height: 30px;
-      border: none;
-      border-radius: 4px;
-      background: rgba(35, 35, 35, 0.35);
-      color: #fff;
-      opacity: 0.4;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition:
-        opacity 0.2s,
-        background 0.15s;
-    }
-    .s-avion__pause:hover,
-    .s-avion__pause:focus-visible {
-      opacity: 1;
-      background: var(--color-ted-red);
-    }
-    .s-avion__pause:focus-visible {
-      outline: 2px solid var(--color-ted-red);
-      outline-offset: 2px;
-    }
-    /* Móvil: zoom/recorte para que el avión se vea más grande.
-       object-position: left — la animación siempre empieza desde el borde izquierdo,
-       el avión entra por la izquierda y viaja hacia la derecha. */
-    @media (max-width: 768px) {
-      .s-avion__anim {
-        height: 80px;
-        overflow: hidden;
-      }
-      .s-avion__media {
-        height: 80px;
-        object-fit: cover;
-        object-position: left center;
-      }
-    }
-
-    .boarding-pass__hora--hrs {
-      font-size: clamp(1.3rem, 3.5vw, 1.9rem);
-      font-weight: 900;
-      letter-spacing: 0.03em;
-      color: var(--color-charcoal);
-    }
-
-    /* Móvil: el badge "Directo" se centra en la línea divisoria, que a su vez
-       se centra respecto a TODA la columna (label+valor+hora+fecha). En
-       desktop el texto no se envuelve y no se nota; en móvil el centro
-       geométrico cae sobre la hora y la tapa (medido: 16.9px de overlap a
-       390px). Se sube el badge y se reduce su padding vertical para que
-       quede con aire respecto a label y hora en el espacio angosto
-       disponible entre ambos. */
-    @media (max-width: 639px) {
-      .boarding-pass__directo {
-        padding: 2px 12px;
-        transform: translate(-50%, calc(-50% - 18px));
-      }
-    }
-
-    /* Franja inferior: sin fondo rojo — texto blanco sobre charcoal */
-    .s-concepto__franja {
-      padding: 1.25rem 1.5rem 2.75rem;
-      text-align: center;
-      overflow: hidden;
-    }
-    .s-concepto__franja-text {
-      color: #ffffff;
-      font-size: clamp(1rem, 2.6vw, 1.5rem);
-      letter-spacing: 0.18em;
-      margin: 0;
-      white-space: nowrap;
-    }
-
     /* ── S6 FICHA TÉCNICA ──────────────────────────────────────── */
     .s-ficha {
       padding: var(--spacing-section) 0 0;
@@ -2448,6 +2205,53 @@ const seoEvent = {
       color: var(--color-charcoal);
       line-height: 0.9;
       display: block;
+    }
+
+    /* Fecha + lugar bajo el título */
+    .s-ficha__datos {
+      display: grid;
+      grid-template-columns: auto auto;
+      justify-content: start;
+      gap: 1.5rem 3rem;
+      color: var(--color-charcoal);
+    }
+    .s-ficha__dato {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .s-ficha__dato-ico {
+      flex: none;
+      width: 2.1rem;
+      height: auto;
+      color: var(--color-ted-red);
+      margin-top: 0.15rem;
+    }
+    .s-ficha__dato-txt {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      line-height: 1.15;
+    }
+    .s-ficha__dato-strong {
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+    }
+    .s-ficha__dato-light {
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+    }
+    .s-ficha__dato-hora {
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin-top: 0.1rem;
+    }
+    .s-ficha__dato-dir {
+      font-size: 0.8rem;
+      margin-top: 0.3rem;
+    }
+    @media (max-width: 640px) {
+      .s-ficha__datos {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* Flecha decorativa PNG — apunta a la palabra TÉCNICA desde su derecha */
@@ -3104,6 +2908,42 @@ const seoEvent = {
       }
     }
 
+    .prensa-grid.is-collapsed .prensa-card--extra {
+      display: none;
+    }
+    .prensa-toggle {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 2rem;
+      padding: 0.9rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 2px solid var(--color-ted-red);
+      border-radius: 10px;
+      color: #ffffff;
+      cursor: pointer;
+    }
+    .prensa-toggle[hidden] {
+      display: none;
+    }
+    .prensa-toggle:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .prensa-toggle:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 3px;
+    }
+    .prensa-toggle svg {
+      transition: transform 0.2s ease;
+    }
+    .prensa-toggle[aria-expanded="true"] svg {
+      transform: rotate(180deg);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .prensa-toggle svg {
+        transition: none;
+      }
+    }
     .prensa-card {
       display: flex;
       height: 100%;
@@ -3668,10 +3508,6 @@ const seoEvent = {
         grid-template-columns: 1fr;
         gap: 2.5rem;
       }
-      .s-concepto__inner {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
       .s-ficha__inner {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -3726,10 +3562,6 @@ const seoEvent = {
       .s-beneficios__header {
         grid-template-columns: 1fr;
         gap: 1.25rem;
-      }
-
-      .s-concepto__franja-text {
-        white-space: normal;
       }
 
       .s-ficha__franja-sep {
@@ -3915,77 +3747,26 @@ const seoEvent = {
           });
         });
 
-      /* ── AVIÓN ANIMADO (WCAG 2.2.2) ─────────────────────────── */
-      const avionVideo = document.getElementById(
-        "avion-video",
-      ) as HTMLVideoElement | null;
-      const avionFallback = document.getElementById(
-        "avion-fallback",
-      ) as HTMLImageElement | null;
-      const btnPauseAvion = document.getElementById(
-        "btn-pause-avion",
-      ) as HTMLButtonElement | null;
-      let avionUsesGif = false;
-
-      if (avionVideo) {
-        if (prefersReduced) {
-          // Reduced-motion: mostrar solo el poster estático
-          avionVideo.pause();
-          if (btnPauseAvion) btnPauseAvion.hidden = true;
-        } else {
-          const supportsVP9 =
-            avionVideo.canPlayType('video/webm; codecs="vp9"') !== "";
-          if (supportsVP9) {
-            avionVideo.play().catch(() => {});
-          } else {
-            // Safari: ocultar video (muestra poster), mostrar GIF animado
-            avionUsesGif = true;
-            avionVideo.style.display = "none";
-            if (avionFallback) avionFallback.hidden = false;
-          }
-
-          // Botón pausa/play persistente (WCAG 2.2.2)
-          if (btnPauseAvion) {
-            btnPauseAvion.addEventListener("click", () => {
-              const pressed =
-                btnPauseAvion.getAttribute("aria-pressed") === "true";
-              const nowPaused = !pressed;
-              const ico = btnPauseAvion.querySelector("span");
-              btnPauseAvion.setAttribute("aria-pressed", String(nowPaused));
-
-              if (nowPaused) {
-                btnPauseAvion.setAttribute(
-                  "aria-label",
-                  "Reanudar animación del avión",
-                );
-                if (ico) ico.textContent = "▶";
-                if (avionUsesGif) {
-                  // GIF: ocultar GIF → video muestra el poster
-                  if (avionFallback) avionFallback.hidden = true;
-                  avionVideo.style.display = "";
-                } else {
-                  avionVideo.pause();
-                }
-              } else {
-                btnPauseAvion.setAttribute(
-                  "aria-label",
-                  "Pausar animación del avión",
-                );
-                if (ico) ico.textContent = "⏸";
-                if (avionUsesGif) {
-                  avionVideo.style.display = "none";
-                  if (avionFallback) avionFallback.hidden = false;
-                } else {
-                  avionVideo.play().catch(() => {});
-                }
-              }
-            });
-          }
-        }
+      /* ── PRENSA: primeras 6 tarjetas + botón "ver más" ────────── */
+      const prensaGrid = document.getElementById("prensa-grid");
+      const prensaToggle = document.querySelector<HTMLButtonElement>(".prensa-toggle");
+      if (prensaGrid && prensaToggle) {
+        prensaGrid.classList.add("is-collapsed");
+        prensaToggle.hidden = false;
+        prensaToggle.addEventListener("click", () => {
+          const open = prensaToggle.getAttribute("aria-expanded") === "true";
+          prensaToggle.setAttribute("aria-expanded", String(!open));
+          prensaToggle.setAttribute(
+            "aria-label",
+            open ? "Ver más entrevistas" : "Ver menos entrevistas",
+          );
+          prensaGrid.classList.toggle("is-collapsed", open);
+          if (open) prensaToggle.scrollIntoView({ block: "center" });
+        });
       }
 
       /* ── COUNTDOWN ───────────────────────────────────────────── */
-      const TARGET = new Date("2026-12-04T09:00:00-03:00").getTime();
+      const TARGET = new Date("2026-12-04T08:30:00-03:00").getTime();
       const cdDias = document.getElementById("cd-dias");
       const cdHoras = document.getElementById("cd-horas");
       const cdMin = document.getElementById("cd-min");

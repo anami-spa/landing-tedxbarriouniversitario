@@ -38,8 +38,8 @@ Textura concreto al 18% de opacidad: clase `.texture-overlay` → `textura-concr
 | 2 | `equipo` | EN COLABORACIÓN (equipo 6 headshots) | Claro + textura |
 | 3 | `que-es-tedx` | ¿QUÉ ES TEDx? (2 cols: texto + foto) | Claro |
 | 4 | `tedxwomen` | ¿POR QUÉ TEDxWomen? (texto + foto) | Claro + textura |
-| 5 | `speakers` | LAS VOCES QUE NOS INVITAN A ALZAR EL VUELO — 6 speakers (ocupa desde 18-nov-2026 el lugar de "Alzar el vuelo", antes de la Ficha) | Banda oscura + claro con textura |
-| 6 | `evento` | FICHA TÉCNICA — polaroid + fecha/lugar + temáticas + contadores (6 speakers) | Claro |
+| 5 | `speakers` | LAS VOCES QUE NOS INVITAN A ALZAR EL VUELO — 5 speakers (ocupa desde 18-nov-2026 el lugar de "Alzar el vuelo", antes de la Ficha) | Banda oscura + claro con textura |
+| 6 | `evento` | FICHA TÉCNICA — polaroid + fecha/lugar + temáticas + contadores (5 speakers) | Claro |
 | 7 | `prensa` | ENTREVISTAS Y PRENSA — grid de 10 tarjetas, se ven 6 y un botón ↓ despliega las otras 4 | Oscuro |
 | 8 | `partners` | NUESTROS PARTNERS — carrusel 29 logos (1 por slide, con enlace externo si hay URL) | Claro + textura |
 | 9 | `auspiciadores` | ¿POR QUÉ SUMARSE COMO AUSPICIADOR? (2 polaroids rotadas) | Oscuro |
@@ -153,10 +153,10 @@ Contenido de `ACTUALIZACION DE CONTENIDO SITIO WEB.docx` (carpeta cliente `Web -
 Fotos en `src/assets/images/speaker-*.webp` (900×1000, fondo transparente con la "X" roja ya
 incluida). La banda oscura superior es un pseudo-elemento de la foto de la primera tarjeta
 (`200vw`, baja al 70% de la foto) — no un bloque aparte, así sigue al diseño en cualquier ancho.
-Sin `url` no se muestra ícono (Octavio Enriquez). Hans Contreras usa Instagram, no LinkedIn.
-⚠️ **Paulina Saravia figura "por confirmar" en el documento de Nata** y su foto es una silueta
-provisional (`speaker-paulina-saravia.webp`): reemplazar cuando llegue.
-El contador de la Ficha Técnica dice 6 speakers (corregido 18-nov-2026).
+Sin `url` no se muestra ícono. Hans Contreras usa Instagram, no LinkedIn.
+Octavio Enriquez salió de la lista (pedido de Nata, 19-nov-2026); la foto real de Paulina Saravia
+entró el mismo día (ya no está "por confirmar"). Son 5 speakers y el contador de la Ficha
+(`evento.speakers`) dice 5.
 
 ## S07 Prensa — arquitectura (oct-2026; 10 piezas desde nov-2026)
 
@@ -213,9 +213,9 @@ correspondía a ningún logo real y generaba CLS al pintar.
 9. **URLs de PImagen, VIC-UdeC, Sistémico, Lotería, Bar Callejón y los 13 partners nuevos de
    nov-2026** (`#partners`, logos sin link) — pendiente de Nata/Javiera
 12. ~~Quitar el banner al vencer la preventa~~ ✅ se retira solo el 22-nov (`bannerHasta`). Pendiente: confirmar con Javiera si la venta sigue después a precio normal (el botón del menú no caduca)
-13. **Foto definitiva de Paulina Saravia** y confirmar que participa (figura "por confirmar")
+13. ~~Foto definitiva de Paulina Saravia~~ ✅ integrada 19-nov-2026
 14. Confirmar si el "Especial TEDx en TVU" (nov) se suma a la tarjeta del matinal de TVU (hoy se
-    sumaron las dos). El contador de la Ficha ya dice 6 (18-nov-2026)
+    sumaron las dos). El contador de la Ficha dice 5 (19-nov-2026)
 10. ~~CTA rojo del header~~ ✅ desde 17-nov-2026 es "Compra tu entrada" → Evenia (aprobado por Nata)
 11. Confirmar si se agrega "Prensa" al nav (hecho provisionalmente) o si la sección queda solo
     descubrible por scroll. "Speakers" se agregó al nav en nov-2026 (así sale en el diseño de Nata).

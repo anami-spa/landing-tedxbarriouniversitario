@@ -41,7 +41,7 @@ Textura concreto al 18% de opacidad: clase `.texture-overlay` → `textura-concr
 | 5 | `speakers` | LAS VOCES QUE NOS INVITAN A ALZAR EL VUELO — 6 speakers (ocupa desde 18-nov-2026 el lugar de "Alzar el vuelo", antes de la Ficha) | Banda oscura + claro con textura |
 | 6 | `evento` | FICHA TÉCNICA — polaroid + fecha/lugar + temáticas + contadores (6 speakers) | Claro |
 | 7 | `prensa` | ENTREVISTAS Y PRENSA — grid de 10 tarjetas, se ven 6 y un botón ↓ despliega las otras 4 | Oscuro |
-| 8 | `partners` | NUESTROS PARTNERS — carrusel 37 logos (1 por slide, con enlace externo si hay URL) | Claro + textura |
+| 8 | `partners` | NUESTROS PARTNERS — carrusel 38 logos (1 por slide, con enlace externo si hay URL) | Claro + textura |
 | 9 | `auspiciadores` | ¿POR QUÉ SUMARSE COMO AUSPICIADOR? (2 polaroids rotadas) | Oscuro |
 | 10 | `beneficios` | BENEFICIOS — 4 en fila + form Formspree alianzas | Claro + textura |
 | 11 | `contacto` | CONTACTO — email + socials + foto | Oscuro |
@@ -185,7 +185,7 @@ blanco para fondo oscuro — la misma que usa `#que-es-tedx`).
 ## S08 Partners — arquitectura actual (oct-2026)
 
 `partnerSlides` = array explícito ordenado en `src/pages/index.astro` (frontmatter, junto a
-`prensa`). **1 logo por slide, 37 slides** (nov-2026: 14 + 15 nuevos; 24-nov: +8).
+`prensa`). **1 logo por slide, 38 slides** (nov-2026: 14 + 15 nuevos; 24-nov: +9).
 Forma: `{ src, alt, tipo: "anfitrion"|"normal", categoria, url? }`. `url` opcional: sin ella
 el logo renderiza sin `<a>` (ver Pendientes de Contenido).
 
@@ -193,8 +193,8 @@ Categorías según Nata (nov-2026): **Institución Anfitriona** (UdeC), **Partne
 (Camanchaca, Lotería), **Partner Estratégico** (Bar Callejón) y **Partner Colaborador** (todos
 los demás — LINAC, TVU y CMAS bajaron de Estratégico; Casa Endless, VIC-UdeC, Grafitto y
 Sistémico dejaron "Impulsor"/"Pyme"). Orden: ese mismo; los nuevos van al final.
-Desktop: 5 visibles + flechas. Tablet: 3. Móvil: 1. Con 37 logos los puntos (`.partners-dots`)
-hacen salto de línea (`flex-wrap`): en móvil quedan en 4 filas (37 puntos; en escritorio 33, uno por
+Desktop: 5 visibles + flechas. Tablet: 3. Móvil: 1. Con 38 logos los puntos (`.partners-dots`)
+hacen salto de línea (`flex-wrap`): en móvil quedan en 4 filas (38 puntos; en escritorio 34, uno por
 página de 5).
 
 Logos en `public/partners/`, casi todos SVG optimizados con `svgo --multipass`. Excepción:
@@ -202,10 +202,10 @@ Logos en `public/partners/`, casi todos SVG optimizados con `svgo --multipass`. 
 envuelto en SVG (1,0 MB y 81 KB respectivamente); se reconvirtieron a WebP real con sharp
 (→ 7,1 KB y 5,8 KB) en vez de servir ese peso muerto. Igual en nov-2026 con `hg`, `pti`,
 `pettra`, `manada`, `h-celestial`, `casa-luthier` y `emprendidas` (H&G pesaba 1 MB, PTI 800 KB;
-ahora 52 y 55 KB; render a 960×560). Y el 24-nov con los 8 de Nata (`pastene`, `prografix`,
-`rebot`, `ruch`, `solfit`, `somos-dos`, `susana-parada`, `travelfy`): llegaron como PNG/JPEG en
-base64 envuelto en SVG (80 KB a 1,6 MB), hoy 20–33 KB cada uno, con transparencia. Solfit es JPEG
-pero el SVG lo recorta en círculo, así que no se ve recuadro.
+ahora 52 y 55 KB; render a 960×560). Y el 24-nov con los 9 de Nata (`pastene`, `prografix`,
+`rebot`, `ruch`, `solfit`, `somos-dos`, `susana-parada`, `travelfy` y `bar-concepcion`, este último
+llegó horas después): vinieron como PNG/JPEG en base64 envuelto en SVG (80 KB a 2,9 MB), hoy 15–33 KB
+cada uno, con transparencia. Solfit es JPEG pero el SVG lo recorta en círculo, así que no se ve recuadro.
 
 El `width`/`height` declarado en el `<img>` es `240×140` (ratio 1,714, el de los 14 SVG
 nuevos con `viewBox="0 0 1200 700"` uniforme) — antes era `212×140`, un ratio que no
@@ -222,8 +222,8 @@ correspondía a ningún logo real y generaba CLS al pintar.
 7. Rotar clave DirectAdmin tras primer login
 8. **URL de la entrevista en TVU** (`#prensa`, tarjeta 6, el matinal) — pendiente de Javiera
 9. **URLs de PImagen, VIC-UdeC, Sistémico, Lotería, Bar Callejón, los 13 partners nuevos de
-   nov-2026 y los 8 del 24-nov (Pastene, Prografix, Rebot, Ruch, Solfit, SomosDos, Susana Parada,
-   Travelfy)** (`#partners`, logos sin link) — pendiente de Nata/Javiera
+   nov-2026 y los 9 del 24-nov (Pastene, Prografix, Rebot, Ruch, Solfit, SomosDos, Susana Parada,
+   Travelfy, Bar Concepción)** (`#partners`, logos sin link) — pendiente de Nata/Javiera
 12. ~~Quitar el banner al vencer la preventa~~ ✅ se retira solo el 22-nov (`bannerHasta`). Pendiente: confirmar con Javiera si la venta sigue después a precio normal (el botón del menú no caduca)
 13. ~~Foto definitiva de Paulina Saravia~~ ✅ integrada 19-nov-2026
 14. Confirmar si el "Especial TEDx en TVU" (nov) se suma a la tarjeta del matinal de TVU (hoy se

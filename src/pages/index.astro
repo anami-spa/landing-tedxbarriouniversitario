@@ -42,6 +42,7 @@ import imgSpkFrancisca from "../assets/images/speaker-francisca-werlinger.webp";
 import imgSpkHans from "../assets/images/speaker-hans-contreras.webp";
 import imgSpkHumberto from "../assets/images/speaker-humberto-almonacid.webp";
 import imgSpkPaulina from "../assets/images/speaker-paulina-saravia.webp";
+import imgSpkMatias from "../assets/images/speaker-matias-fernandez.webp";
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -58,7 +59,7 @@ const evento = {
   auditorio: "Auditorio Jaime Baeza",
   direccion: "Victoria 490, Concepción",
   ciudad: "Concepción, Chile",
-  speakers: 5,
+  speakers: 6,
   asistentes: 100,
   ideas: 1,
   url: "https://www.ted.com/tedx/events/69535",
@@ -194,6 +195,14 @@ const speakers = [
     url: "https://www.linkedin.com/in/paulina-saravia-pe%C3%B1a-24a15a223/",
     red: "LinkedIn",
   },
+  {
+    nombre: "Matías Fernández",
+    img: imgSpkMatias,
+    rol: "Ingeniería Civil Industrial | Emprendedor",
+    bio: "Emprendedor e innovador tecnológico, estudiante de Ingeniería Civil Industrial de la Universidad de Concepción y ganador nacional de Red Bull Basement 2026 en Silicon Valley. Es cofundador de Frank, una plataforma que utiliza inteligencia artificial para entrenar habilidades humanas a través de conversaciones simuladas, explorando nuevas formas de aprender, comunicarnos y enfrentar desafíos reales. Su trayectoria refleja el potencial de una nueva generación de emprendedores que desafían lo establecido y transforman ideas en soluciones innovadoras, demostrando que desde el Biobío es posible crear soluciones con proyección global.",
+    url: "https://www.linkedin.com/in/matifernandezm1/",
+    red: "LinkedIn",
+  },
 ];
 
 // Entrevistas y prensa — fuente de verdad. 10 piezas, grid 3/2/1 cols.
@@ -285,7 +294,7 @@ const prensa = [
   },
 ];
 
-// Partners — fuente de verdad. 29 logos, 1 por slide (nov-2026: categorías Oficial/Estratégico/Colaborador según Nata).
+// Partners — fuente de verdad. 37 logos, 1 por slide (nov-2026: categorías Oficial/Estratégico/Colaborador según Nata).
 // `url`: opcional. Sin url → el logo se renderiza sin enlace, no rompe el layout.
 // `tipo: "anfitrion"` solo afecta el tamaño del logo (.partners-logo--anfitrion).
 const partnerSlides: {
@@ -325,6 +334,15 @@ const partnerSlides: {
   { src: "manada.webp",           alt: "Manada, experiencias caninas profesionales", tipo: "normal", categoria: "Partner Colaborador" },
   { src: "pettra.webp",           alt: "Wyndham — Pettra Hoteles",               tipo: "normal",    categoria: "Partner Colaborador" },
   { src: "pti.webp",              alt: "PTI Vinos del Biobío",                   tipo: "normal",    categoria: "Partner Colaborador" },
+  // ── Nuevos (24-nov-2026). ⚠️ Sin URL: Nata no las envió; agregar `url` cuando lleguen.
+  { src: "pastene.webp",          alt: "Pastene Publicidad",                     tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "prografix.webp",        alt: "Prografix",                              tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "rebot.webp",            alt: "Rebot",                                  tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "ruch.webp",             alt: "Ruch Studio de Belleza",                 tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "solfit.webp",           alt: "Solfit, centro de salud integral",       tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "somos-dos.webp",        alt: "SomosDos",                               tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "susana-parada.webp",    alt: "Susana Parada Gastronomía y Eventos",    tipo: "normal",    categoria: "Partner Colaborador" },
+  { src: "travelfy.webp",         alt: "Travelfy",                               tipo: "normal",    categoria: "Partner Colaborador" },
 ];
 
 const seoEvent = {
